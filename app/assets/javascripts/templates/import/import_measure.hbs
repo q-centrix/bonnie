@@ -25,8 +25,8 @@
           {{/if}}
 
           <div class="form-group">
-            <label for="measureFileInput" class="col-sm-4 control-label">Bundle</label>
-             <div class="col-sm-8">
+            <label for="measureFileInput" class="col-sm-{{titleSize}} control-label">Bundle</label>
+             <div class="col-sm-{{dataSize}}">
                 <input type="file" class="file nice_input" id="measureFileInput" name="measure_file">
              </div>
             <script>$('.nice_input').bootstrapFileInput();</script>
@@ -34,35 +34,35 @@
           
           <div class="hidden" id="vsacSignIn">
             <div class="form-group has-error">
-              <label for="vsacUser" class="col-sm-4 control-label">VSAC Username</label>
-              <div class="col-sm-8">
+              <label for="vsacUser" class="col-sm-{{titleSize}} control-label">VSAC Username</label>
+              <div class="col-sm-{{dataSize}}">
                 <input type="text" class="form-control" id="vsacUser" name="vsac_username" placeholder="username">
               </div>
             </div>
             <div class="form-group has-error">
-              <label for="vsacPassword" class="col-sm-4 control-label">VSAC Password</label>
-              <div class="col-sm-8">
+              <label for="vsacPassword" class="col-sm-{{titleSize}} control-label">VSAC Password</label>
+              <div class="col-sm-{{dataSize}}">
                 <input type="password" class="form-control" id="vsacPassword" name="vsac_password" placeholder="password">
               </div>
-              <div class="col-sm-offset-4 vsac-registration"><a href="https://uts.nlm.nih.gov/license.html" target="_blank"><i class="fa fa-plus-circle" aria-hidden="true"></i> Register for VSAC</a></div>
+              <div class="col-sm-offset-{{titleSize}} vsac-registration"><a href="https://uts.nlm.nih.gov/license.html" target="_blank"><i class="fa fa-plus-circle" aria-hidden="true"></i> Register for VSAC</a></div>
             </div>
           </div>
 
 
           <div class="form-group">
-            <p class="col-sm-4 control-label">Type</p>
+            <p class="col-sm-{{titleSize}} control-label">Type</p>
             {{#if isUpdate}}
-              <div id="measureTypeModel" class="col-sm-8">
-                <div class="col-sm-8">
+              <div id="measureTypeModel" class="col-sm-{{dataSize}}">
+                <div class="col-sm-{{dataSize}}">
                   <input id="measureTypeRadios" class="sr-only" disabled>
                   <p class="form-control-static">{{measureTypeLabel}}</p>
                 </div>
               </div>
             {{else}}
-              <div class="col-sm-8" >
+              <div class="col-sm-{{dataSize}}">
                 <div class="btn-group-justified" data-toggle="buttons">
                 <label class="btn btn-primary active toggle" for="measureTypeRadios">
-                  <input type="radio" name="measure_type" id="measureTypeRadios" value="ep" checked> <i class="fa fa-user-md" aria-hidden="true"></i> Eligible Professional
+                  <input type="radio" name="measure_type" id="measureTypeRadios" value="ep"> <i class="fa fa-user-md" aria-hidden="true"></i> Eligible Professional
                 </label>
                 <label class="btn btn-primary toggle" for="EH">
                   <input type="radio" name="measure_type" id="EH" value="eh"> <i class="fa fa-h-square" aria-hidden="true"></i> Eligible Hospital
@@ -72,16 +72,16 @@
             {{/if}}
           </div>
           <div class="form-group">
-            <p class="col-sm-4 control-label">Calculation</p>
+            <p class="col-sm-{{titleSize}} control-label">Calculation</p>
             {{#if isUpdate}}
-              <div id="calculationTypeModel" class="col-sm-8">
-                <div class="col-sm-8">
+              <div id="calculationTypeModel" class="col-sm-{{dataSize}}">
+                <div class="col-sm-{{dataSize}}">
                   <input id="calculationTypeRadios" class="sr-only" disabled>
                   <p class="form-control-static">{{calculationTypeLabel}}</p>
                 </div>
               </div>
             {{else}}
-              <div class="col-sm-8">
+              <div class="col-sm-{{dataSize}}">
                 <div class="btn-group-justified" data-toggle="buttons">
                 <label class="btn btn-primary active toggle" for="calculationTypeRadios">
                   <input type="radio" name="calculation_type" value="patient" id="calculationTypeRadios"> <i class="fa fa-user" aria-hidden="true"></i> Patient Based
@@ -94,11 +94,11 @@
             {{/if}}
           </div>
           <div class="form-group">
-            <p class="col-sm-4 control-label">Rebuild patients</p>
+            <p class="col-sm-{{titleSize}} control-label">Rebuild patients</p>
             <div class="col-sm-3">
               <div class="btn-group-justified" data-toggle="buttons">
                 <label class="btn btn-primary toggle active">
-                  <input type="radio" name="rebuild_patients" id="rebuildNo" checked="false"> No
+                  <input type="radio" name="rebuild_patients" id="rebuildNo"> No
                 </label>
                 <label class="btn btn-primary toggle">
                   <input type="radio" name="rebuild_patients" id="rebuildYes"> Yes
@@ -110,8 +110,8 @@
             {{#if episode_of_care}}
               <input type="hidden" name="{{@cid}}[hqmf_id]" value="{{hqmf_id}}">
               <div class="form-group">
-                <label for="episodeSelect_{{@cid}}" class="col-sm-4 control-label">Episode(s) of Care</label>
-                <div class="col-sm-8">
+                <label for="episodeSelect_{{@cid}}" class="col-sm-{{titleSize}} control-label">Episode(s) of Care</label>
+                <div class="col-sm-{{dataSize}}">
                   <select multiple="true" class="form-control" id="episodeSelect_{{@cid}}" name="eoc_{{hqmfSetId}}[episode_ids][]">
                     {{#each source_data_criteria.models}}
                       {{#with attributes}}
