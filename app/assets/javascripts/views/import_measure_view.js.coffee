@@ -49,6 +49,10 @@ class Thorax.Views.ImportMeasure extends Thorax.Views.BonnieView
       @$('#vsacSignIn').addClass('hidden')
       @$('#loadButton').prop('disabled', !@$('input:file').val().length > 0)
 
+  dataToggleButtonsFix: ->
+    if @$('label.active')
+      @$('label.active > input').prop('checked', isChecked)   
+
   setup: ->
     @importDialog = @$("#importMeasureDialog")
     @importWait = @$("#pleaseWaitDialog")
