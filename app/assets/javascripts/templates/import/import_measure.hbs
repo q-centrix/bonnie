@@ -47,6 +47,9 @@
               <div class="col-sm-offset-4 vsac-registration"><a href="https://uts.nlm.nih.gov/license.html" target="_blank"><i class="fa fa-plus-circle" aria-hidden="true"></i> Register for VSAC</a></div>
             </div>
           </div>
+
+<script>$('.toggle').button();</script>
+
           <div class="form-group">
             <p class="col-sm-4 control-label">Type</p>
             {{#if isUpdate}}
@@ -60,10 +63,10 @@
               <div class="col-sm-8" >
                 <div class="btn-group-justified" data-toggle="buttons">
                 <label class="btn btn-primary active toggle" for="measureTypeRadios">
-                  <input type="radio" name="measure_type" id="measureTypeRadios" value="ep" checked="true" checked> <i class="fa fa-user-md" aria-hidden="true"></i> Eligible Professional
+                  <input type="radio" name="measure_type" id="measureTypeRadios" value="ep" checked> <i class="fa fa-user-md" aria-hidden="true"></i> Eligible Professional
                 </label>
                 <label class="btn btn-primary toggle" for="EH">
-                  <input type="radio" name="measure_type" id="EH" value="eh" > <i class="fa fa-h-square" aria-hidden="true"></i> Eligible Hospital
+                  <input type="radio" name="measure_type" id="EH" value="eh"> <i class="fa fa-h-square" aria-hidden="true"></i> Eligible Hospital
                 </label>
                 </div>
               </div>
@@ -82,7 +85,7 @@
               <div class="col-sm-8">
                 <div class="btn-group-justified" data-toggle="buttons">
                 <label class="btn btn-primary active toggle" for="calculationTypeRadios">
-                  <input type="radio" name="calculation_type" value="patient" id="calculationTypeRadios" checked="true" checked> <i class="fa fa-user" aria-hidden="true"></i> Patient Based
+                  <input type="radio" name="calculation_type" value="patient" id="calculationTypeRadios"> <i class="fa fa-user" aria-hidden="true"></i> Patient Based
                 </label>
                 <label class="btn btn-primary toggle" for="EC">
                   <input type="radio" name="calculation_type" value="episode" id="EC"> <i class="fa fa-stethoscope" aria-hidden="true"></i> Episode of Care

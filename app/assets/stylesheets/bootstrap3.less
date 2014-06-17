@@ -169,6 +169,16 @@ h1.modal-title {
   }
 }
 
+//Bootstrap's data-toggle=buttons radio/checkboxes are not accessibile
+//by tabbing because it uses display:none on the actual input. here's a hack
+[data-toggle="buttons"] > .btn > input[type="radio"],
+[data-toggle="buttons"] > .btn > input[type="checkbox"] {
+    display:inline;
+    position:absolute;
+    left:-9999px;
+    // z-index: 1;
+}
+
 .nice_input {
   .btn-primary;
 }
