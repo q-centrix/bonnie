@@ -161,14 +161,6 @@ h1.modal-title {
   margin-bottom: .5em;
 }
 
-.toggle {
-  text-transform: none; 
-  overflow: hidden;
-  &:not(.active) {
-    .btn-default;
-  }
-}
-
 //Bootstrap's data-toggle=buttons radio/checkboxes are not accessibile
 //by tabbing because it uses display:none on the actual input. here's a hack
 [data-toggle="buttons"] > .btn > input[type="radio"],
@@ -177,6 +169,14 @@ h1.modal-title {
     position:absolute;
     left:-9999px;
     // z-index: 1;
+}
+
+[data-toggle="buttons"] > .btn {
+  text-transform: none; 
+  overflow: hidden;
+  &:not(.active) {
+    .btn-default;
+  }
 }
 
 .nice_input {

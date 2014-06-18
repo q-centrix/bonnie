@@ -50,8 +50,12 @@ class Thorax.Views.ImportMeasure extends Thorax.Views.BonnieView
       @$('#loadButton').prop('disabled', !@$('input:file').val().length > 0)
 
   dataToggleButtonsFix: ->
-    if @$('label.active')
-      @$('label.active > input').prop('checked', isChecked)   
+    # $("[data-toggle='buttons'] > .btn").click ->
+    #   $(this).find("input[type=radio]").prop "checked", true
+    #   return
+
+    if $("[data-toggle='buttons'] > .btn").hasClass "active"
+      $(this).find("input[type=radio]").prop "checked", true
 
   setup: ->
     @importDialog = @$("#importMeasureDialog")

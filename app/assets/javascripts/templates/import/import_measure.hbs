@@ -59,11 +59,11 @@
             {{else}}
               <div class="col-sm-{{dataSize}}">
                 <div class="btn-group-justified" data-toggle="buttons">
-                <label class="btn btn-primary active toggle" for="measureTypeRadios">
-                  <input type="radio" name="measure_type" id="measureTypeRadios" value="ep"> <i class="fa fa-user-md" aria-hidden="true"></i> Eligible Professional
+                <label class="btn btn-primary active" for="ep">
+                  <input type="radio" name="measure_type" id="ep" value="ep" checked> <i class="fa fa-user-md" aria-hidden="true"></i> Eligible Professional
                 </label>
-                <label class="btn btn-primary toggle" for="EH">
-                  <input type="radio" name="measure_type" id="EH" value="eh"> <i class="fa fa-h-square" aria-hidden="true"></i> Eligible Hospital
+                <label class="btn btn-primary" for="eh">
+                  <input type="radio" name="measure_type" id="eh" value="eh"> <i class="fa fa-h-square" aria-hidden="true"></i> Eligible Hospital
                 </label>
                 </div>
               </div>
@@ -81,11 +81,11 @@
             {{else}}
               <div class="col-sm-{{dataSize}}">
                 <div class="btn-group-justified" data-toggle="buttons">
-                <label class="btn btn-primary active toggle" for="calculationTypeRadios">
-                  <input type="radio" name="calculation_type" value="patient" id="calculationTypeRadios"> <i class="fa fa-user" aria-hidden="true"></i> Patient Based
+                <label class="btn btn-primary active" for="patient">
+                  <input type="radio" name="calculation_type" value="patient" id="patient" checked> <i class="fa fa-user" aria-hidden="true"></i> Patient Based
                 </label>
-                <label class="btn btn-primary toggle" for="EC">
-                  <input type="radio" name="calculation_type" value="episode" id="EC"> <i class="fa fa-stethoscope" aria-hidden="true"></i> Episode of Care
+                <label class="btn btn-primary" for="episode">
+                  <input type="radio" name="calculation_type" value="episode" id="episode"> <i class="fa fa-stethoscope" aria-hidden="true"></i> Episode of Care
                 </label>
                 </div>
               </div>
@@ -95,10 +95,10 @@
             <p class="col-sm-{{titleSize}} control-label">Rebuild patients</p>
             <div class="col-sm-3">
               <div class="btn-group-justified" data-toggle="buttons">
-                <label class="btn btn-primary toggle active">
-                  <input type="radio" name="rebuild_patients" id="rebuildNo"> No
+                <label class="btn btn-primary active" for="rebuildNo">
+                  <input type="radio" name="rebuild_patients" id="rebuildNo" checked> No
                 </label>
-                <label class="btn btn-primary toggle">
+                <label class="btn btn-primary" for="rebuildYes">
                   <input type="radio" name="rebuild_patients" id="rebuildYes"> Yes
                 </label>
               </div>
