@@ -68,6 +68,9 @@ class Thorax.Views.Measure extends Thorax.Views.BonnieView
         httpMethod: "POST"
         data: {authenticity_token: $("meta[name='csrf-token']").attr('content'), results: differences }
 
+  importPatients: (e) ->
+    console.log "go to patient bank"
+
   toggleMeasureListing: (e) ->
     @$('.main').toggleClass('col-sm-8 col-sm-6')
     @$('.toggle-measure-listing').toggleClass('btn-default btn-measure-listing btn-primary btn-measure-listing-toggled')
