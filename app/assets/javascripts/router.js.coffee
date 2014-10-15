@@ -15,13 +15,14 @@ class BonnieRouter extends Backbone.Router
     @on 'route', -> window.scrollTo(0, 0)
 
   routes:
-    '':                                                'renderMeasures'
-    'measures':                                        'renderMeasures'
-    'measures/:hqmf_set_id':                           'renderMeasure'
-    'measures/:measure_hqmf_set_id/patients/:id/edit': 'renderPatientBuilder'
-    'measures/:measure_hqmf_set_id/patients/new':      'renderPatientBuilder'
-    'admin/users':                                     'renderUsers'
-    'value_sets/edit':                                 'renderValueSetsBuilder'
+    '':                                                 'renderMeasures'
+    'measures':                                         'renderMeasures'
+    'measures/:hqmf_set_id':                            'renderMeasure'
+    'measures/:measure_hqmf_set_id/patients/:id/edit':  'renderPatientBuilder'
+    'measures/:measure_hqmf_set_id/patients/new':       'renderPatientBuilder'
+    'measures/:measure_hqmf_set_id/patient_bank':       'renderPatientBank'
+    'admin/users':                                      'renderUsers'
+    'value_sets/edit':                                  'renderValueSetsBuilder'
 
   renderMeasures: ->
     document.title = "Bonnie v#{bonnie.applicationVersion}: Dashboard";
@@ -78,3 +79,9 @@ class BonnieRouter extends Backbone.Router
     valueSets = new Thorax.Collections.ValueSetsCollection(_(bonnie.valueSetsByOid).values())
     valueSetsBuilderView = new Thorax.Views.ValueSetsBuilder(collection: valueSets, measures: @measures.sort(), patients: @patients)
     @mainView.setView(valueSetsBuilderView)
+
+  renderPatientBank: (measureHqmfSetId) ->
+    measure = @measures.findWhere(hqmf_set_id: measureHqmfSetId)
+    document.title = "Bonnie v#{bonnie.applicationVersion}: Patient Bank - #{measure.get('cms_id')}"
+    @mainView.setView new Thorax.Views.PatientBankView model: measure
+
