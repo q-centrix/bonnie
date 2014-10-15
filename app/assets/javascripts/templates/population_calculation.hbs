@@ -62,9 +62,11 @@
       {{/button}}
       {{#button "deletePatient" class="btn btn-danger delete-{{patient._id}}" style="display: none;" expand-tokens=true}}Delete<span class="sr-only"> patient {{patient.last}} {{patient.first}}</span>{{/button}}
 
-      
-      {{#button "sharePatient" class="btn btn-primary pull-right share-{{patient._id}}"}}Share<span class="sr-only"> patient {{patient.last}} {{patient.first}}</span>{{/button}}
-      {{#button "unsharePatient" class="btn btn-primary-inverse pull-right unshare-{{patient._id}}" style="display: none;"}}Unshare<span class="sr-only"> patient {{patient.last}} {{patient.first}}</span>{{/button}}
+      <button class="btn btn-primary{{#if patient.is_shared}}-inverse{{/if}} pull-right share-{{patient._id}}" data-call-method="togglePatient">
+        <span class="btn-label">{{#if patient.is_shared}}Unshare{{else}}Share{{/if}}</span>
+        <span class="sr-only"> patient {{patient.last}} {{patient.first}}</span>&nbsp;
+        <i class="fa {{#if patient.is_shared}}fa-minus{{else}}fa-plus{{/if}} share-icon" aria-hidden="true"></i>
+      </button>
     </div>
   {{/collection}}
 </div>

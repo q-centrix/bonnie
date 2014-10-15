@@ -80,6 +80,6 @@ class BonnieRouter extends Backbone.Router
     valueSetsBuilderView = new Thorax.Views.ValueSetsBuilder(collection: valueSets, measures: @measures.sort(), patients: @patients)
     @mainView.setView(valueSetsBuilderView)
 
-  renderPatientBank: (hqmfSetId) ->
-    measure = @measures.findWhere(hqmf_set_id: hqmfSetId)
+  renderPatientBank: (measureHqmfSetId) ->
+    measure = @measures.findWhere(hqmf_set_id: measureHqmfSetId)
     @mainView.setView new Thorax.Views.PatientBankView model: measure

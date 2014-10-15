@@ -64,34 +64,24 @@ class Thorax.Views.PopulationCalculation extends Thorax.Views.BonnieView
     patient = @measure.get('patients').get result.get('patient_id')
     bonnie.navigateToPatientBuilder patient.deepClone(omit_id: true, dedupName: true), @measure
 
-  sharePatient: (e) ->
-    console.log "sharing this patient.."
-    unshareButton = $(e.currentTarget).next()
-    shareButton = $(e.currentTarget)
+  togglePatient: (e) ->
+    $btn = $(e.currentTarget)
 
-    #share the patient
-    result = $(e.target).model().result
+    result = $btn.model().result
     patient = @measure.get('patients').get result.get('patient_id')
-    # patient.share()
+
+    # toggle the patient's 'is_shared' attribute
+    if patient.get('is_shared')
+      patient.save({'is_shared': false}, silent: true)
+      $btn.find('.btn-label').text 'Share'
+    else
+      patient.save({'is_shared': true}, silent: true)
+      $btn.find('.btn-label').text 'Unshare'
 
     # switch displayed button
-    shareButton.toggle()
-    unshareButton.toggle()
+    $btn.toggleClass 'btn-primary btn-primary-inverse'
+    $btn.find('.share-icon').toggleClass 'fa-plus fa-minus'
 
-  unsharePatient: (e) ->
-    console.log "unsharing this patient..."
-    shareButton = $(e.currentTarget).prev()
-    unshareButton = $(e.currentTarget)
-
-    #unshare the patient
-    result = $(e.target).model().result
-    patient = @measure.get('patients').get result.get('patient_id')
-    console.log patient
-    # patient.unshare()
-
-    # switch displayed button
-    shareButton.toggle()
-    unshareButton.toggle()
 
   expandResult: (e) ->
     @trigger 'rationale:clear'
