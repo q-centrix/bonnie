@@ -64,6 +64,35 @@ class Thorax.Views.PopulationCalculation extends Thorax.Views.BonnieView
     patient = @measure.get('patients').get result.get('patient_id')
     bonnie.navigateToPatientBuilder patient.deepClone(omit_id: true, dedupName: true), @measure
 
+  sharePatient: (e) ->
+    console.log "sharing this patient.."
+    unshareButton = $(e.currentTarget).next()
+    shareButton = $(e.currentTarget)
+
+    #share the patient
+    result = $(e.target).model().result
+    patient = @measure.get('patients').get result.get('patient_id')
+    # patient.share()
+
+    # switch displayed button
+    shareButton.toggle()
+    unshareButton.toggle()
+
+  unsharePatient: (e) ->
+    console.log "unsharing this patient..."
+    shareButton = $(e.currentTarget).prev()
+    unshareButton = $(e.currentTarget)
+
+    #unshare the patient
+    result = $(e.target).model().result
+    patient = @measure.get('patients').get result.get('patient_id')
+    console.log patient
+    # patient.unshare()
+
+    # switch displayed button
+    shareButton.toggle()
+    unshareButton.toggle()
+
   expandResult: (e) ->
     @trigger 'rationale:clear'
     result = $(e.target).model().result
