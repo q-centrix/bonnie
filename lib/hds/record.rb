@@ -1,5 +1,5 @@
 class Record
-  field :is_shared, Boolean
+  field :is_shared, :type => Boolean
 
   def rebuild!(payer=nil)
     Measures::PatientBuilder.rebuild_patient(self)
