@@ -9,11 +9,14 @@
     {{!-- logic --}}
   </div>
 
-  </div class="col-sm-8">
+  <div class="col-sm-8">
     <h1>Filters</h1>
     Filters
     <h1>Results</h1>
-    results
+
+    {{#collection class="patient-results"}}
+      <div class="shared-patient"><i class="fa fa-user"></i> {{last}} {{first}}</div>
+    {{/collection}}
   </div>
 
 </div>
