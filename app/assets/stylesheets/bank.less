@@ -1,3 +1,31 @@
 .patient-results {
-  .content-columns(2);
+  .content-columns(2,@grid-gutter-width/2);
+}
+
+.shared-patient {
+  width: 100%;
+  display: inline-block;
+  background-color: @gray-light;
+  padding: 4px;
+  margin-bottom: @grid-gutter-width/2;
+  font-size: 1.2em;
+  line-height: 1;
+
+
+  .patient-checkbox {
+    .make-sm-column(1);
+    padding: 0;
+  }
+
+  .patient-user-icon {
+    .make-sm-column(1);
+    padding: 0;
+  }
+
+  .patient-name {
+    .make-sm-column(10);
+    font-weight: normal;
+    padding: 0;
+  }
+
 }
