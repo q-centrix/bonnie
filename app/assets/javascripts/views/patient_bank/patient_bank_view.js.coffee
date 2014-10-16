@@ -1,6 +1,5 @@
 class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
-
-	template: JST['patient_bank/patient_bank']
+  template: JST['patient_bank/patient_bank']
   
-	initialize: ->
-		console.log "hi it's a patient bank"
+  initialize: ->
+    @collection = new Thorax.Collections.Patients
