@@ -15,7 +15,13 @@
     <h1>Results</h1>
 
     {{#collection class="patient-results"}}
-      <div class="shared-patient"><i class="fa fa-user"></i> {{last}} {{first}}</div>
+      <div class="shared-patient">
+        <input type="checkbox" name="pickMe" class="patient-checkbox">
+        <i class="fa fa-user patient-user-icon"></i> 
+        <label for="pickMe" class="patient-name">
+        {{last}} {{first}}
+        </label>
+      </div>
     {{/collection}}
   </div>
 
