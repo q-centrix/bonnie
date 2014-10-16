@@ -1,0 +1,143 @@
+.patient-bank {
+  .make-row();
+  .bank-measure {
+    .make-sm-column(4);
+  }
+  .bank-patients {
+    .make-sm-column(8);
+    .patients-filtering {
+      padding: 8px 0;
+      .make-row();
+      .patients-filter-select {
+        .make-sm-column(5);
+      }
+      .patients-filter-input {
+        .make-sm-column(4);
+        display: none;
+        input {
+          display: none;
+        }
+      }
+    }
+    .patients-results {
+      .clearfix();
+    }
+  }
+  
+}
+
+.patient-results {
+  .content-columns(2,@grid-gutter-width/2);
+  .shared-patient {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid-column;
+  }
+}
+
+.shared-patient > .opened-patient {
+  background-color: @brand-primary;
+  color: white;
+  & .close { color: white; }
+  & .status {
+    &.status-fail {
+      color: @state-danger-bg;
+    }
+    &.status-pass {
+      color: @state-success-bg;
+    }
+  }
+}
+
+.patient {
+  width: 100%;
+  & > div {
+    padding-top: 0px;
+  }
+}
+.patient-checkbox {
+  float: left;
+  padding-right: 5px;
+  input[type="checkbox"] {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+  }
+}
+.patient-status-icon {
+  float: left;
+  width: 26px;
+}
+.patient-user-icon {
+  float: left;
+}
+.patient-name {
+  margin-left: 65px;
+  margin-right: 95px;
+}
+.patient-status {
+  width: 70px;
+  float: right;
+}
+.patient-btn {
+  width: 20px;
+  float: right;
+}
+
+.added-filter {
+  // TODO components!
+  // copied from .patient-builder .criteria-container .patient-criteria 
+  // .criteria-body .criteria-data .existing-values > span ......
+  background-color: #f6f6f6;
+  color: #888888;
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-right: 15px;
+  vertical-align: bottom;
+  .delete {
+    // copied from .patient-builder .criteria-container .patient-criteria 
+    // .criteria-body .criteria-data .existing-values .delete 
+    float: none;
+  }
+}
+
+// base custom dropdown with SelectBoxIt
+.bank-dropdown-container {
+  width: 100%;
+  padding-bottom: 20px;
+  & .selectboxit-option { text-indent: 8px; }
+  & .bank-dropdown-button { width: 100%; }
+}
+
+.bank-dropdown-list {
+  top: 0px !important;
+  & .selectboxit-option-first, .selectboxit-option-last {
+    border-radius: 0px;
+  }
+}
+
+.bank-dropdown-focus {
+  background-color: @brand-primary;
+  &.selectboxit-open { 
+    background: white; 
+    border-color: @brand-primary; 
+   }
+  & .selectboxit-option-anchor { color: white; }
+}
+
+.bank-dropdown-button > .selectboxit-arrow-container {
+  background-color: @brand-primary;
+  color: white;
+  text-align: center;
+  height: 100%;
+  &:before {
+    content: @fa-var-sort;
+    font-family: FontAwesome;
+  }
+}
+
+.bank-dropdown-list, .bank-dropdown-button {
+  border:  3px solid @brand-primary; 
+  border-radius: 0px !important;
+  background-color: white; 
+}
