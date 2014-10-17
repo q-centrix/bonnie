@@ -1,17 +1,15 @@
 .patient-results {
   .content-columns(2,@grid-gutter-width/2);
+  .shared-patient {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid-column;
+  }
 }
 
 .shared-patient {
-  width: 100%;
-  display: inline-block;
-  background-color: @gray-light;
-  padding: 4px;
-  margin-bottom: @grid-gutter-width/2;
-  font-size: 1.2em;
-  line-height: 1;
-
-
+  // TODO decide if these really need to be on a grid?
+  // also, there's already a 'patient-user-icon-col' and a 'patient-name-col', we should probably unclutter these a bit.
   .patient-checkbox {
     .make-sm-column(1);
     padding: 0;
