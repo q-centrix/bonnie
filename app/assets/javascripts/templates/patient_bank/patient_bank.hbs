@@ -11,7 +11,13 @@
 
   <div class="col-sm-8">
     <h1>Filters</h1>
-    Filters
+    <select id="filters" name="filter" class="filter form-control selectBoxIt-native">
+      <option>calculates for...</option>
+      <option>Initial patient population</option>
+      <option>Denominator</option>
+      <option>Numerator</option>
+      <option>Denominator exception</option>
+    </select>
     <h1>Results</h1>
 
     {{#collection differences id="sharedResults" class="patient-results panel-group" item-context=differenceContext}}

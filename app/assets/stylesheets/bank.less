@@ -27,3 +27,48 @@
   }
 
 }
+
+//custom styling for dropdown menu
+
+.patient-filter-list {
+  top: 0px !important;
+  & .selectboxit-option-first, .selectboxit-option-last {
+    border-radius: 0px;
+  }
+  & .selectboxit-option {
+    text-indent: 8px;
+    &.selectboxit-focus {
+      background: @brand-primary;
+      & .selectboxit-option-anchor {
+        color: white;
+      }
+    }
+  }
+}
+
+.selectboxit-options.patient-filter-list, .selectboxit.patient-filter-button {
+  border: 3px solid @brand-primary;
+  border-radius: 0px;
+  background-color: white;
+}
+
+.patient-filter-container {
+  width: 100%;
+  & .patient-filter-button {
+    width: 100%;
+  }
+}
+
+.patient-filter-button > .selectboxit-arrow-container {
+  background-color: @brand-primary;
+  color: white;
+  text-align: center;
+  &:before {
+    content: @fa-var-sort;
+    font-family: FontAwesome;
+  }
+}
+
+
+
+
