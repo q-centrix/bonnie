@@ -28,47 +28,56 @@
 
 }
 
-//custom styling for dropdown menu
+// base custom dropdown
+.bank-dropdown-container {
+  width: 100%;
+  padding-bottom: 20px;
+  & .selectboxit-option { text-indent: 8px; }
+  & .bank-dropdown-button { width: 100%; }
+}
 
-.patient-filter-list {
+.bank-dropdown-list {
   top: 0px !important;
   & .selectboxit-option-first, .selectboxit-option-last {
     border-radius: 0px;
   }
-  & .selectboxit-option {
-    text-indent: 8px;
-    &.selectboxit-focus {
-      background: @brand-primary;
-      & .selectboxit-option-anchor {
-        color: white;
-      }
-    }
-  }
 }
 
-.selectboxit-options.patient-filter-list, .selectboxit.patient-filter-button {
-  border: 3px solid @brand-primary;
-  border-radius: 0px;
-  background-color: white;
+.bank-dropdown-focus {
+  background-color: @brand-primary;
+  &.selectboxit-open { 
+    background: white; 
+    border-color: @brand-primary; 
+   }
+  & .selectboxit-option-anchor { color: inherit; }
 }
 
-.patient-filter-container {
-  width: 100%;
-  & .patient-filter-button {
-    width: 100%;
-  }
-}
-
-.patient-filter-button > .selectboxit-arrow-container {
+.bank-dropdown-button > .selectboxit-arrow-container {
   background-color: @brand-primary;
   color: white;
   text-align: center;
+  height: 100%;
   &:before {
     content: @fa-var-sort;
     font-family: FontAwesome;
   }
 }
 
+.bank-dropdown-list, .bank-dropdown-button {
+  border:  3px solid @brand-primary; 
+  border-radius: 0px !important;
+  background-color: white; 
+}
 
-
-
+.bank-measure-dropdown-container {
+  &:extend(.bank-dropdown-container all);
+  & * {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  & .bank-dropdown-list, .bank-dropdown-button {
+    border:  none; 
+    background-color: @gray-lighter;
+   
+  }
+}
