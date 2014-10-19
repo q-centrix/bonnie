@@ -1,23 +1,50 @@
-<div class="panel">
-  <p>This is the grand ol' patient bank</p>
-</div>
-
 <div class="row">
 
   <div class="col-sm-4">
-    logic
-    {{!-- logic --}}
+    <h1>Measure</h1>
+
+    <select id="measures" name="measure" class="measure form-control">
+      <option>{{ cms_id }}</option>
+      <option>more measure</option>
+      <option>another</option>
+      <option>..</option>
+      <option>.....</option>
+    </select>
+
+    <div class="panel">
+      <p>Some sort of logic view.</p>
+    </div>
   </div>
 
   <div class="col-sm-8">
     <h1>Filters</h1>
-    <select id="filters" name="filter" class="filter form-control selectBoxIt-native">
-      <option>calculates for...</option>
-      <option>Initial patient population</option>
-      <option>Denominator</option>
-      <option>Numerator</option>
-      <option>Denominator exception</option>
-    </select>
+
+    {{#collection patientFilters class="existing-values"}}
+      <span>
+        {{ patient_filter }}
+        {{#button "removeFilter" class="btn btn-link close delete"}}&times; <span class="sr-only">Delete</span>{{/button}}
+      </span>
+    {{/collection}}
+
+    <div class="row">
+      <div class="col-sm-7">
+        <select id="filters" name="filter" class="filter form-control selectBoxIt-native">
+          <option>Initial patient population</option>
+          <option>Denominator</option>
+          <option>Numerator</option>
+          <option>Denominator exception</option>
+        </select>
+      </div>
+      <div class="col-sm-1">
+        {{#button "addFilter" class="btn btn-primary pull-right" disabled="disabled"}}
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <span class="sr-only">add code</span>
+        {{/button}}
+      </div>
+      <div class="col-sm-4">
+        <input type="checkbox"> <label>expectation set</label>
+      </div>
+    </div>
     <h1>Results</h1>
 
     {{#collection differences id="sharedResults" class="patient-results panel-group" item-context=differenceContext}}
