@@ -1,14 +1,22 @@
 .patient-bank {
-  .row;
-  & .row {
-    padding-bottom: 14px;
-  }
+  .make-row();
   .bank-measure {
     .make-sm-column(4);
   }
   .bank-patients {
     .make-sm-column(8);
+    .patients-filtering {
+      padding: 8px 0;
+      .make-row();
+      .patients-filter-select {
+        .make-sm-column(7);
+      }
+    }
+    .patients-results {
+      .clearfix();
+    }
   }
+  
 }
 
 .patient-results {
@@ -39,6 +47,24 @@
     padding: 0;
   }
 
+}
+
+.added-filter {
+  // TODO components!
+  // copied from .patient-builder .criteria-container .patient-criteria 
+  // .criteria-body .criteria-data .existing-values > span ......
+  background-color: #f6f6f6;
+  color: #888888;
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-right: 15px;
+  vertical-align: bottom;
+  .delete {
+    // copied from .patient-builder .criteria-container .patient-criteria 
+    // .criteria-body .criteria-data .existing-values .delete 
+    float: none;
+  }
 }
 
 // base custom dropdown

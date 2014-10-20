@@ -11,7 +11,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) ->
         $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'fa-angle-right fa-angle-down'
 
-      @$('select.patients-filter').selectBoxIt downArrowIcon: "bank-dropdown-arrow", defaultText: "calculates for...", aggressiveChange: true, autoWidth: false, theme:
+      @$('select[name=patients-filter]').selectBoxIt downArrowIcon: "bank-dropdown-arrow", defaultText: "calculates for...", aggressiveChange: true, autoWidth: false, theme:
         button: "bank-dropdown-button"
         list: "bank-dropdown-list"
         container: "bank-dropdown-container"
