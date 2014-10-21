@@ -28,26 +28,33 @@
   }
 }
 
-.shared-patient {
-  // TODO decide if these really need to be on a grid?
-  // also, there's already a 'patient-user-icon-col' and a 'patient-name-col', we should probably unclutter these a bit.
-  .patient-checkbox {
-    .make-sm-column(1);
-    padding: 0;
+// .shared-patient {
+  // TODO is this better than a grid?
+  .patient {
+    display: table;
+    width: 100%;
+    & > div {
+      display: table-cell;
+      vertical-align: top;
+      padding-top: 3px;
+      border: 1px @blue-lightest solid;
+    }
   }
-
+  .patient-status-icon {
+    width: 26px;
+  }
   .patient-user-icon {
-    .make-sm-column(1);
-    padding: 0;
+    width: 20px;
   }
-
-  .patient-name {
-    .make-sm-column(10);
-    font-weight: normal;
-    padding: 0;
+  .patient-status {
+    width: 75px;
+    padding-left: 5px;
   }
-
+  .patient-btn {
+    width: 10px;
+  }
 }
+// }
 
 .added-filter {
   // TODO components!
