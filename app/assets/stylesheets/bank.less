@@ -31,29 +31,31 @@
 // .shared-patient {
   // TODO is this better than a grid?
   .patient {
-    display: table;
     width: 100%;
     & > div {
-      display: table-cell;
-      vertical-align: top;
-      padding-top: 3px;
+      padding-top: 0px;
       border: 1px @blue-lightest solid;
     }
   }
   .patient-status-icon {
+    float: left;
     width: 26px;
   }
   .patient-user-icon {
-    width: 20px;
+    float: left;
+  }
+  .patient-name {
+    margin-left: 45px;
+    margin-right: 95px;
   }
   .patient-status {
-    width: 75px;
-    padding-left: 5px;
+    width: 70px;
+    float: right;
   }
   .patient-btn {
-    width: 10px;
+    width: 20px;
+    float: right;
   }
-}
 // }
 
 .added-filter {
