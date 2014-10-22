@@ -16,12 +16,24 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         list: "bank-dropdown-list"
         container: "bank-dropdown-container"
         focus: "bank-dropdown-focus"
+      
+      measurelist = []
+      @measures.each (m) -> measurelist.push({ text: m.get('cms_id'), value: m.get('hqmf_set_id') })
 
-      @$('select.measures-filter').selectBoxIt downArrowIcon: "bank-dropdown-arrow", hideCurrent: false, aggressiveChange: true, autoWidth: false, theme:
-        button: "bank-dropdown-button"
-        list: "bank-dropdown-list"
-        container: "bank-measure-dropdown-container"
-        focus: "bank-dropdown-focus"
+      thisMeasure = @model.get('cms_id')
+      @$('select.measures-filter').selectBoxIt 
+        downArrowIcon: "bank-dropdown-arrow", 
+        defaultText: "#{thisMeasure}", 
+        hideCurrent: false, 
+        aggressiveChange: true, 
+        autoWidth: false, 
+        theme:
+          button: "bank-dropdown-button"
+          list: "bank-dropdown-list"
+          container: "bank-measure-dropdown-container"
+          focus: "bank-dropdown-focus"
+        populate: 
+          data: measurelist
 
   initialize: ->
     @collection = new Thorax.Collections.Patients
