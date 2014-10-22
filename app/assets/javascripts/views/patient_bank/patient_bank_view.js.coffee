@@ -28,6 +28,8 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @currentPopulation = @model.get('populations').first()
     @differences = new Thorax.Collections.Differences()
 
+    @bankLogicView = new Thorax.Views.BuilderPopulationLogic
+    @bankLogicView.setPopulation @currentPopulation
   differenceContext: (difference) ->
     _(difference.toJSON()).extend
       patient: difference.result.patient.toJSON()
