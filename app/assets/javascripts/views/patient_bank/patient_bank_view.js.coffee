@@ -4,11 +4,19 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     'click .bank-dropdown-button': 'adjustDropdowns'
     collection:
       sync: ->
+        # TODO set expectations only if the patient was originally developed for this measure
         @differences.reset @collection.map (patient) => @currentPopulation.differenceFromExpected(patient)
 
     rendered: ->
-      # TODO do we also need to @trigger 'rationale:clear' and set toggledPatient?
-      @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) ->
+      @$('#sharedResults').on 'shown.bs.collapse hidden.bs.collapse', (e) =>
+        @bankLogicView.clearRationale()
+        if e.type is 'shown'
+          @toggledPatient = $(e.target).model().result
+          @bankLogicView.showRationale(@toggledPatient)
+        else
+          @toggledPatient = null
+
+      @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) =>
         $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'fa-angle-right fa-angle-down'
 
       @$('select[name=patients-filter]').selectBoxIt downArrowIcon: "bank-dropdown-arrow", defaultText: "calculates for...", aggressiveChange: true, autoWidth: false, theme:
