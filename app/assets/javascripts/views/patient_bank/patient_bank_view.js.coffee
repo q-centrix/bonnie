@@ -2,10 +2,10 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   template: JST['patient_bank/patient_bank']
   events:
     'click .bank-dropdown-button': 'adjustDropdowns'
-
     collection:
       sync: ->
         @differences.reset @collection.map (patient) => @currentPopulation.differenceFromExpected(patient)
+
     rendered: ->
       # TODO do we also need to @trigger 'rationale:clear' and set toggledPatient?
       @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) ->
@@ -16,32 +16,24 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         list: "bank-dropdown-list"
         container: "bank-dropdown-container"
         focus: "bank-dropdown-focus"
-      
-      measurelist = []
-      @measures.each (m) -> measurelist.push({ text: m.get('cms_id'), value: m.get('hqmf_set_id') })
-
-      thisMeasure = @model.get('cms_id')
-      @$('select.measures-filter').selectBoxIt 
-        downArrowIcon: "bank-dropdown-arrow", 
-        defaultText: "#{thisMeasure}", 
-        hideCurrent: false, 
-        aggressiveChange: true, 
-        autoWidth: false, 
-        theme:
-          button: "bank-dropdown-button"
-          list: "bank-dropdown-list"
-          container: "bank-measure-dropdown-container"
-          focus: "bank-dropdown-focus"
-        populate: 
-          data: measurelist
 
   initialize: ->
     @collection = new Thorax.Collections.Patients
-    @currentPopulation = @model.get('populations').first()
     @differences = new Thorax.Collections.Differences()
 
-    @bankLogicView = new Thorax.Views.BuilderPopulationLogic
-    @bankLogicView.setPopulation @currentPopulation
+    populations = @model.get('populations')
+    @currentPopulation = populations.first()
+    populationLogicView = new Thorax.Views.PopulationLogic(model: @currentPopulation)
+    if populations.length > 1
+      @bankLogicView = new Thorax.Views.PopulationsLogic collection: populations
+      @bankLogicView.setView populationLogicView
+    else
+      @bankLogicView = populationLogicView
+
+
+  measureSelectionContext: (measure) ->
+    _(measure.toJSON()).extend isSelected: measure is @model
+
   differenceContext: (difference) ->
     _(difference.toJSON()).extend
       patient: difference.result.patient.toJSON()
