@@ -2,9 +2,7 @@
 
   <div class="bank-measure">
     <h1>{{cms_id}}</h1>
-    <div class="panel">
-      {{view bankLogicView}}
-    </div>
+    {{view bankLogicView}}
   </div>
 
   <div class="bank-patients">    
@@ -20,13 +18,7 @@
 
     <div class="patients-filtering">
       <div class="patients-filter-select">
-        <select id="filters" name="patients-filter" class="form-control selectBoxIt-native">
-          {{!-- TODO: show relevant populations for current measure --}}
-          <option>Initial patient population</option>
-          <option>Denominator</option>
-          <option>Numerator</option>
-          <option>Denominator exception</option>
-        </select>
+        <select id="filters" name="patients-filter" class="form-control selectBoxIt-native"> </select>
       </div>
 
       {{#button "addFilter" class="btn btn-primary" disabled="disabled"}}
@@ -43,7 +35,7 @@
         
       {{#button "exportBankPatients" class="btn btn-primary pull-right"}}Export<span class="sr-only"> patients selected from patient bank</span>{{/button}}
 
-      {{#button "cloneBankPatients" class="btn btn-primary pull-right"}}Clone<span class="sr-only"> patients selected from patient bank</span>{{/button}}
+      {{#button "cloneBankPatients" class="btn btn-default pull-right"}}Clone<span class="sr-only"> patients selected from patient bank</span>{{/button}}
       
     </div>
     
