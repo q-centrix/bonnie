@@ -1,15 +1,29 @@
 class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   template: JST['patient_bank/patient_bank']
   events:
-
-    'change select[name=patients-filter]': 'moreInput'
+    'change select[name=patients-filter]':  'supplyExtraFilterInput'
+    'submit form':                          'addFilter'
 
     collection:
       sync: ->
-        # TODO set expectations only if the patient was originally developed for this measure
-        @differences.reset @collection.map (patient) => @currentPopulation.differenceFromExpected(patient)
+        # add calculated patients for those in this measure
+        @collectionThisMeasure = @collection.filter (patient) => _(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
+        @differences.reset @collectionThisMeasure.map (patient) => @currentPopulation.differenceFromExpected(patient)
+        # add the other patients without setting expectations
+        @collectionOtherMeasures = @collection.filter (patient) => !_(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
+        @differences.add @collectionOtherMeasures.map (patient) => @currentPopulation.differenceFromUnexpected(patient)
+
+        @differences.each (d) =>
+          # find all measures from this patient's measure_ids, translates into CMS ids for filtering
+          patient_measures = @measures.filter (m) -> _(d.result.patient.get('measure_ids')).contains m.get('hqmf_set_id')
+          cms_ids = []
+          _(patient_measures).each (m) -> cms_ids.push m.get('cms_id')
+          d.result.patient.set({ cms_ids: cms_ids }, { silent: true})
+
+        @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
 
     rendered: ->
+
       @$('#sharedResults').on 'shown.bs.collapse hidden.bs.collapse', (e) =>
         @bankLogicView.clearRationale()
         if e.type is 'shown'
@@ -21,8 +35,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) =>
         $(e.target).prev('.panel-heading').toggleClass('opened-patient')
         $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'fa-angle-right fa-angle-down'
-
-      @$('.patients-filter-input').hide()
 
       @$('select[name=patients-filter]').selectBoxIt
         downArrowIcon: "bank-dropdown-arrow",
@@ -38,7 +50,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
   initialize: ->
     @collection = new Thorax.Collections.Patients
-    @differences = new Thorax.Collections.Differences()
+    @differences = new Thorax.Collections.Differences
 
     populations = @model.get('populations')
     @currentPopulation = populations.first()
@@ -49,8 +61,20 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     else
       @bankLogicView = populationLogicView
 
+    @appliedFilters = new Thorax.Collection
+    @availableFilters = new Thorax.Collection
+
+    _(@currentPopulation.populationCriteria()).each (criteria) =>
+      @availableFilters.add filter: Thorax.Models.PopulationsFilter, name: criteria
+    @availableFilters.add filter: Thorax.Models.MeasureAuthorFilter, name: 'created by...'
+    @availableFilters.add filter: Thorax.Models.MeasureFilter, name: 'from measure...'
+
   measureSelectionContext: (measure) ->
     _(measure.toJSON()).extend isSelected: measure is @model
+
+  appliedFilterContext: (filter) ->
+    _(filter.toJSON()).extend
+      label: filter.label()
 
   differenceContext: (difference) ->
     _(difference.toJSON()).extend
@@ -58,6 +82,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       measure_id: @model.get('hqmf_set_id')
       cms_id: @model.get('cms_id')
       episode_of_care: @model.get('episode_of_care')
+      patient_measure: difference.result.patient.get('measure_ids')[0] # TODO show CMS ID
 
   patientFilter: (difference) ->
     patient = difference.result.patient
@@ -74,56 +99,16 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     else
       filter = new filterModel($additionalRequirements.val()) # TODO validate input
     @appliedFilters.add(filter)
-    @updateFilter() # force update to show filtered results
-    @filterSelectedPatients()
-    @updateFilteredCount()
+    @updateFilter()
     # TODO - don't keed adding endless filters or duplicate filters
-    @resetFilterSelect($select)
+    @$('input[name="additional_requirements"]').remove()
+    $select.find('option:eq(0)').prop("selected", true) # reset option viewed
+    $select.data("selectBox-selectBoxIt").refresh() # update dropdown
 
   removeFilter: (e) ->
     thisFilter = $(e.target).model()
     @appliedFilters.remove(thisFilter)
     @updateFilter()
-    @updateFilteredCount()
-
-  resetFilterSelect: ($select) ->
-    # resets dropdown menu for filtering
-    @$('input[name="additional_requirements"]').remove()
-    $select.find('option:eq(0)').prop("selected", true)
-    $select.data("selectBox-selectBoxIt").refresh() # update dropdown
-
-  updateFilteredCount: ->
-    # updates displayed count of patient bank results
-    @$('.patient-count').text "("+$('.shared-patient:visible').length+")"
-    if !$('.shared-patient:visible').length
-      @clearSelectedPatients()
-      @$('.patient-select-count').html ''
-
-  updateSelectedCount: ->
-    # updates displayed count of selected patients, handles button enabling
-    if @selectedPatients.length == 1
-      @$('.patient-select-count').html '1 patient selected <i class="fa fa-times-circle clear-selected"></i>'
-      @$('.bank-actions').removeAttr("disabled")
-    else if !@selectedPatients.length
-      @$('.patient-select-count').html 'Please select patients below.'
-      @$('.bank-actions').attr("disabled", true)
-    else
-      @$('.patient-select-count').html @selectedPatients.length + ' patients selected <i class="fa fa-times-circle clear-selected"></i>'
-      @$('.bank-actions').removeAttr("disabled")
-
-  filterSelectedPatients: ->
-    # when selected patients get filtered out, properly remove them from selected patients.
-    $hiddenPatients = @$('input.select-patient:checked:hidden')
-    $hiddenPatients.prop('checked',false) # resets checkboxes
-    $hiddenPatients.each (index, element) =>
-      patient = @$(element).model().result.patient
-      @selectedPatients.remove patient
-    @updateSelectedCount()
-
-  clearSelectedPatients: ->
-    @$('input.select-patient:checked').prop('checked',false) # resets checkboxes
-    @selectedPatients.reset() # empties collection
-    @updateSelectedCount()
 
   filterSelectedPatients: ->
     # when selected patients get filtered out, properly remove them from selected patients.
@@ -196,4 +181,16 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         if bonnie.isPortfolio
           @measures.each (m) -> m.get('patients').add patient
 
+  cloneOnePatient: (e) ->
+    @$(e.target).button('cloning')
+    patient = @$(e.target).model().result.patient # gets the patient model to clone
+    @clonePatientIntoMeasure(patient)
+    @$(e.target).button('cloned')
+    @$(e.target).attr("disabled", true)
 
+  cloneBankPatients: (e) ->
+    @$(e.target).button('cloning')
+    @selectedPatients.each (patient) => @clonePatientIntoMeasure(patient)
+    @$(e.target).button('cloned')
+    bonnie.navigate "measures/#{@model.get('hqmf_set_id')}" # return to measure
+    window.location.reload() # refreshes the measure page so it shows newly imported patients

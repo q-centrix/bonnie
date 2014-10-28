@@ -5,25 +5,13 @@
   }
   .bank-patients {
     .make-sm-column(8);
-    .patients-filtering {
-      padding: 8px 0;
-      .make-row();
-      .patients-filter-select {
-        .make-sm-column(5);
-      }
-      .patients-filter-input {
-        .make-sm-column(4);
-        display: none;
-        input {
-          display: none;
-        }
-      }
-    }
     .patients-results {
       .clearfix();
     }
   }
-  
+  .patient-filters {
+    padding: 15px 0 30px 0;
+  }
 }
 
 .patient-results {
@@ -32,6 +20,7 @@
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid-column;
+    & .status.status-NA { color: @brand-primary; }
   }
 }
 
@@ -84,9 +73,6 @@
 }
 
 .added-filter {
-  // TODO components!
-  // copied from .patient-builder .criteria-container .patient-criteria 
-  // .criteria-body .criteria-data .existing-values > span ......
   background-color: #f6f6f6;
   color: #888888;
   display: inline-block;
@@ -95,18 +81,13 @@
   margin-right: 15px;
   vertical-align: bottom;
   .delete {
-    // copied from .patient-builder .criteria-container .patient-criteria 
-    // .criteria-body .criteria-data .existing-values .delete 
     float: none;
   }
 }
 
 // base custom dropdown with SelectBoxIt
 .bank-dropdown-container {
-  width: 100%;
-  padding-bottom: 20px;
   & .selectboxit-option { text-indent: 8px; }
-  & .bank-dropdown-button { width: 100%; }
 }
 
 .bank-dropdown-list {
@@ -118,9 +99,9 @@
 
 .bank-dropdown-focus {
   background-color: @brand-primary;
-  &.selectboxit-open { 
-    background: white; 
-    border-color: @brand-primary; 
+  &.selectboxit-open {
+    background: white;
+    border-color: @brand-primary;
    }
   & .selectboxit-option-anchor { color: white; }
 }
@@ -137,7 +118,7 @@
 }
 
 .bank-dropdown-list, .bank-dropdown-button {
-  border:  3px solid @brand-primary; 
+  border:  3px solid @brand-primary;
   border-radius: 0px !important;
-  background-color: white; 
+  background-color: white;
 }

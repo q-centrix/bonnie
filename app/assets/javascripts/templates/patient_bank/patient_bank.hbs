@@ -7,50 +7,38 @@
 
   <div class="bank-patients">
     <h1>Filters</h1>
-    {{!-- TODO: show added filters --}}
-    {{!-- {{#collection patientFilters class="existing-filters"}} --}}
+    {{#collection appliedFilters class="existing-filters" item-context=appliedFilterContext}}
       <span class="added-filter">
-        {{ patient_filter }}
+        {{ label }}
         {{#button "removeFilter" class="btn btn-link close delete"}}&times; <span class="sr-only">Delete</span>{{/button}}
       </span>
-    {{!-- {{/collection}} --}}
+    {{/collection}}
 
-    <div class="patients-filtering">
-      <div class="patients-filter-select">
-        <select id="filters" name="patients-filter" class="form-control selectBoxIt-native">
-          <option>IPP</option>
-          <option>NUM</option>
-          <option value="user">By user...</option>
-          <option value="measure">By measure...</option>
-        </select>
+    <form class="patient-filters form-inline">
+      <div class="form-group">
+        <label for='patients-filter' class="sr-only">Filter the results below by measure population, measure ID, or user email.</label>
+        {{#collection availableFilters tag='select' name='patients-filter' id='patients-filter' class='form-control selectBoxIt-native'}}
+          <option>{{name}}</option>
+        {{/collection}}
       </div>
-
-      <div class="patients-filter-input">
-        <input type="text" name="origin_email" class="form-control" placeholder="email address">
-
-        <input type="text" name="origin_measure" class="form-control" placeholder="Measure CMS ID">
-      </div>
-
-      {{#button "addFilter" class="btn btn-primary" disabled="disabled"}}
+      <div class="form-group additional-requirements"></div>
+      <button type="submit" class="btn btn-primary">
         <i class="fa fa-plus" aria-hidden="true"></i>
         <span class="sr-only">add code</span>
-      {{/button}}
-
-      <input type="checkbox" name="expectation-set"> <label for="expectation-set">expectation set</label>
-
-    </div>
+      </button>
+    </form>
 
     <div class="patients-results">
       <h1 class="pull-left">Results</h1>
 
       <div class="pull-right">
-        {{#button "cloneBankPatients" class="btn btn-default"}}Clone<span class="sr-only"> patients selected from patient bank</span>{{/button}}
-        {{#button "exportBankPatients" class="btn btn-primary"}}Export All<span class="sr-only"> patients selected from patient bank</span>{{/button}}
+        <span class="patient-select-count"></span>
+        {{#button "cloneBankPatients" class="btn btn-default bank-actions" data-cloning-text="Cloning..." data-cloned-text="Cloned successfully" disabled="true"}}Clone into {{cms_id}}<span class="sr-only"> patients selected from patient bank</span>{{/button}}
       </div>
 
     </div>
 
-    {{#collection differences id="sharedResults" class="patient-results panel-group" item-context=differenceContext}}
+    {{#collection differences id="sharedResults" class="patient-results panel-group" item-context=differenceContext item-filter=patientFilter}}
       <div class="panel panel-default shared-patient">
         <div class="panel-heading">
           <div class="panel-title">

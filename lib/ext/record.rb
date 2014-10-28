@@ -5,11 +5,14 @@ class Record
   field :source_data_criteria, type: Array
   field :expected_values, type: Array
   field :is_shared, :type => Boolean
-  field :origin_cms_id, :type => String
 
   belongs_to :user
   belongs_to :bundle, class_name: "HealthDataStandards::CQM::Bundle"
   scope :by_user, ->(user) { where({'user_id'=>user.id}) }
+
+  def user_email
+    user.try(:email)
+  end
 
   def rebuild!(payer=nil)
     Measures::PatientBuilder.rebuild_patient(self)
