@@ -10,7 +10,7 @@
     {{!-- TODO: show added filters --}}
     {{!-- {{#collection patientFilters class="existing-filters"}} --}}
       <span class="added-filter">
-        Existing 
+        Email: example@example.com 
         {{ patient_filter }}
         {{#button "removeFilter" class="btn btn-link close delete"}}&times; <span class="sr-only">Delete</span>{{/button}}
       </span>
@@ -18,22 +18,31 @@
 
     <div class="patients-filtering">
       <div class="patients-filter-select">
-        <select id="filters" name="patients-filter" class="form-control selectBoxIt-native"> </select>
+        <select id="filters" name="patients-filter" class="form-control selectBoxIt-native">
+          <option>IPP</option>
+          <option>NUM</option>
+          <option value="user">By user...</option>
+          <option value="measure">By measure...</option>
+        </select>
+      </div>
+
+      <div class="patients-filter-input">
+        <input type="text" name="origin_email" class="form-control" placeholder="email address">
+
+        <input type="text" name="origin_measure" class="form-control" placeholder="Measure CMS ID">
       </div>
 
       {{#button "addFilter" class="btn btn-primary" disabled="disabled"}}
         <i class="fa fa-plus" aria-hidden="true"></i>
         <span class="sr-only">add code</span>
       {{/button}}
-
-      <input type="checkbox" name="expectation-set"> <label for="expectation-set">expectation set</label>
    
     </div>
 
     <div class="patients-results">
       <h1 class="pull-left">Results</h1>
         
-      {{#button "exportBankPatients" class="btn btn-primary pull-right"}}Export<span class="sr-only"> patients selected from patient bank</span>{{/button}}
+      {{#button "exportBankPatients" class="btn btn-primary pull-right"}}Export all<span class="sr-only"> patients selected from patient bank</span>{{/button}}
 
       {{#button "cloneBankPatients" class="btn btn-default pull-right"}}Clone<span class="sr-only"> patients selected from patient bank</span>{{/button}}
       
