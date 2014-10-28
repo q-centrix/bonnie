@@ -41,10 +41,11 @@
 
     <div class="patients-results">
       <h1 class="pull-left">Results</h1>
-        
-      {{#button "exportBankPatients" class="btn btn-primary pull-right"}}Export all<span class="sr-only"> patients selected from patient bank</span>{{/button}}
-
-      {{#button "cloneBankPatients" class="btn btn-default pull-right"}}Clone<span class="sr-only"> patients selected from patient bank</span>{{/button}}
+      
+      <div class="pull-right">
+        {{#button "cloneBankPatients" class="btn btn-default"}}Clone<span class="sr-only"> patients selected from patient bank</span>{{/button}}
+        {{#button "exportBankPatients" class="btn btn-primary"}}Export All<span class="sr-only"> patients selected from patient bank</span>{{/button}}
+      </div>
       
     </div>
     
