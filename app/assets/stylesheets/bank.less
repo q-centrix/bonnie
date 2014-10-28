@@ -21,10 +21,27 @@
   }
 }
 
+.shared-patient > .opened-patient {
+  background-color: @blue-darker;
+  color: white;
+  & .close { color: white; }
+  & .patient-status, .patient-status-icon {
+    color: @blue-lighter;
+  }
+}
+
 .patient {
   width: 100%;
   & > div {
     padding-top: 0px;
+  }
+}
+.patient-checkbox {
+  float: left;
+  padding-right: 5px;
+  input[type="checkbox"] {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
   }
 }
 .patient-status-icon {
@@ -35,7 +52,7 @@
   float: left;
 }
 .patient-name {
-  margin-left: 45px;
+  margin-left: 65px;
   margin-right: 95px;
 }
 .patient-status {

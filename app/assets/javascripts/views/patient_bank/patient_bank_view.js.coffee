@@ -18,6 +18,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
           @toggledPatient = null
 
       @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) =>
+        $(e.target).prev('.panel-heading').toggleClass('opened-patient')
         $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'fa-angle-right fa-angle-down'
 
       @$('.patients-filter-input').hide()
