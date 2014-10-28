@@ -16,28 +16,16 @@
       </span>
     {{!-- {{/collection}} --}}
 
-    <div class="patients-filtering">
-      <div class="patients-filter-select">
-        <select id="filters" name="patients-filter" class="form-control selectBoxIt-native">
-          <option>IPP</option>
-          <option>NUM</option>
-          <option value="user">By user...</option>
-          <option value="measure">By measure...</option>
-        </select>
-      </div>
-
-      <div class="patients-filter-input">
-        <input type="text" name="origin_email" class="form-control" placeholder="email address">
-
-        <input type="text" name="origin_measure" class="form-control" placeholder="Measure CMS ID">
-      </div>
+    <form class="form-inline">
+      {{#collection availableFilters tag='select' name='patients-filter' class='form-control'}}
+        <option>{{name}}</option>
+      {{/collection}}
 
       {{#button "addFilter" class="btn btn-primary" disabled="disabled"}}
         <i class="fa fa-plus" aria-hidden="true"></i>
         <span class="sr-only">add code</span>
       {{/button}}
-   
-    </div>
+    </form>
 
     <div class="patients-results">
       <h1 class="pull-left">Results</h1>

@@ -1,8 +1,7 @@
 class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   template: JST['patient_bank/patient_bank']
   events:
-
-    'change select[name=patients-filter]': 'moreInput'
+    'change select[name=patients-filter]': 'supplyExtraFilterInput'
 
     collection:
       sync: ->
@@ -23,19 +22,20 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
       @$('.patients-filter-input').hide()
 
-      @$('select[name=patients-filter]').selectBoxIt 
-        downArrowIcon: "bank-dropdown-arrow", 
-        defaultText: "calculates for...", 
-        autoWidth: false, 
-        theme:
-          button: "bank-dropdown-button"
-          list: "bank-dropdown-list"
-          container: "bank-dropdown-container"
-          focus: "bank-dropdown-focus"
+      # FIXME add selectBoxIt back in when it doesn't interfere with events
+      # @$('select[name=patients-filter]').selectBoxIt 
+      #   downArrowIcon: "bank-dropdown-arrow", 
+      #   defaultText: "calculates for...", 
+      #   autoWidth: false, 
+      #   theme:
+      #     button: "bank-dropdown-button"
+      #     list: "bank-dropdown-list"
+      #     container: "bank-dropdown-container"
+      #     focus: "bank-dropdown-focus"
 
   initialize: ->
     @collection = new Thorax.Collections.Patients
-    @differences = new Thorax.Collections.Differences()
+    @differences = new Thorax.Collections.Differences
 
     populations = @model.get('populations')
     @currentPopulation = populations.first()
@@ -45,6 +45,13 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @bankLogicView.setView populationLogicView
     else
       @bankLogicView = populationLogicView
+
+    @appliedFilters = new Thorax.Collection
+    @availableFilters = new Thorax.Collection
+
+    _(@currentPopulation.populationCriteria()).each (criteria) =>
+      @availableFilters.add filter: Thorax.Models.PopulationsFilter, name: criteria
+    @availableFilters.add filter:Thorax.Models.MeasureAuthorFilter, name: 'created by...'
 
   measureSelectionContext: (measure) ->
     _(measure.toJSON()).extend isSelected: measure is @model
@@ -56,14 +63,13 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       cms_id: @model.get('cms_id')
       episode_of_care: @model.get('episode_of_care')
 
-  moreInput: (e) ->
-    selected = @$(e.currentTarget).val()
-    @$('.patients-filter-input').find('input').hide()
-    if selected is "measure"
-      @$('.patients-filter-input').show("slow").find('input[name="origin_measure"]').show()
-    else if selected is "user"
-      @$('.patients-filter-input').show("slow").find('input[name="origin_email"]').show()
-    else 
-      @$('.patients-filter-input').hide("slow")
-
-
+  supplyExtraFilterInput: (e) ->
+    $select = $(e.target)
+    # the filter is associated with the option, not the select - we need to get the selected option upon a select event
+    filterModel = $select.find(':selected').model().get('filter')
+    additionalRequirements = filterModel::additionalRequirements
+    # remove any filter added previously
+    $select.next('.additional-requirements').remove()
+    if additionalRequirements?
+      # FIXME use a partial, this is a lot of markup
+      $select.after "<div class='form-group additional-requirements'><input type='text' name='additional_requirements' class='form-control' placeholder='#{additionalRequirements.text}'></div>"
