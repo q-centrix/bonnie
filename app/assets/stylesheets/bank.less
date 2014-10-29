@@ -25,11 +25,16 @@
 }
 
 .shared-patient > .opened-patient {
-  background-color: @blue-darker;
+  background-color: @brand-primary;
   color: white;
   & .close { color: white; }
-  & .patient-status, .patient-status-icon {
-    color: @blue-lighter;
+  & .status {
+    &.status-fail {
+      color: @state-danger-bg;
+    }
+    &.status-pass {
+      color: @state-success-bg;
+    }
   }
 }
 
