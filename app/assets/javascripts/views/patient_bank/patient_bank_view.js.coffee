@@ -1,7 +1,8 @@
 class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   template: JST['patient_bank/patient_bank']
   events:
-    'change select[name=patients-filter]': 'supplyExtraFilterInput'
+    'change select[name=patients-filter]':  'supplyExtraFilterInput'
+    'submit form':                          'addFilter'
 
     collection:
       sync: ->
@@ -24,10 +25,10 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @$('.patients-filter-input').hide()
 
       # FIXME add selectBoxIt back in when it doesn't interfere with events
-      # @$('select[name=patients-filter]').selectBoxIt 
-      #   downArrowIcon: "bank-dropdown-arrow", 
-      #   defaultText: "calculates for...", 
-      #   autoWidth: false, 
+      # @$('select[name=patients-filter]').selectBoxIt
+      #   downArrowIcon: "bank-dropdown-arrow",
+      #   defaultText: "calculates for...",
+      #   autoWidth: false,
       #   theme:
       #     button: "bank-dropdown-button"
       #     list: "bank-dropdown-list"
@@ -52,10 +53,15 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
     _(@currentPopulation.populationCriteria()).each (criteria) =>
       @availableFilters.add filter: Thorax.Models.PopulationsFilter, name: criteria
-    @availableFilters.add filter:Thorax.Models.MeasureAuthorFilter, name: 'created by...'
+    @availableFilters.add filter: Thorax.Models.MeasureAuthorFilter, name: 'created by...'
+    @availableFilters.add filter: Thorax.Models.MeasureFilter, name: 'from measure...'
 
   measureSelectionContext: (measure) ->
     _(measure.toJSON()).extend isSelected: measure is @model
+
+  appliedFilterContext: (filter) ->
+    _(filter.toJSON()).extend
+      label: filter.label()
 
   differenceContext: (difference) ->
     _(difference.toJSON()).extend
@@ -63,6 +69,22 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       measure_id: @model.get('hqmf_set_id')
       cms_id: @model.get('cms_id')
       episode_of_care: @model.get('episode_of_care')
+
+  differenceFilter: (difference) ->
+    patient = difference.result.patient
+    @appliedFilters.all (filter) -> filter.apply(patient)
+
+  addFilter: (e) ->
+    e.preventDefault()
+    $form = $(e.target)
+    $select = $form.find('select')
+    $additionalRequirements = $form.find('input[name=additional_requirements]')
+    filterModel = $select.find(':selected').model().get('filter')
+    filter = new filterModel($additionalRequirements.val())
+    @appliedFilters.add(filter)
+    # TODO
+    # trigger an event to re-run all the filters
+    $form.find('.additional-requirements').remove()
 
   supplyExtraFilterInput: (e) ->
     $select = $(e.target)
