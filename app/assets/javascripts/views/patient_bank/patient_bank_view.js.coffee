@@ -73,4 +73,4 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     $select.next('.additional-requirements').remove()
     if additionalRequirements?
       # FIXME use a partial, this is a lot of markup
-      $select.after "<div class='form-group additional-requirements'><input type='text' name='additional_requirements' class='form-control' placeholder='#{additionalRequirements.text}'></div>"
+      $select.after "<div class='form-group additional-requirements'><input type='#{additionalRequirements.type}' name='additional_requirements' class='form-control' placeholder='#{additionalRequirements.text}'></div>"

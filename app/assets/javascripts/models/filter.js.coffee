@@ -1,7 +1,7 @@
 ## All filter implementations should have an #apply(patient) method that returns true/false.
 
 class Thorax.Models.MeasureAuthorFilter extends Thorax.Model
-  additionalRequirements: {name: 'email', text: 'E-mail address'}
+  additionalRequirements: {name: 'email', text: 'E-mail address', type: 'email'}
   initialize: (@email) ->
   apply: (patient) ->
     # TODO determine if the patient's creator has this filter's email address
