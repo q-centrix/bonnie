@@ -81,6 +81,10 @@
         </div>
         <div id="toggle{{@cid}}" class="panel-collapse collapse">
           <div class="panel-body">
+            <div class="meta">
+              <p>By user: {{patient.user_id}}</p>
+              <p>From measure: {{patient.measure_ids.[0]}}</p>
+            </div>
             {{template "population_calculation_results"}}
             {{#button "clonePatient" class="btn btn-primary"}}CLONE<span class="sr-only"> patient {{patient.last}} {{patient.first}}</span>{{/button}}
           </div>
