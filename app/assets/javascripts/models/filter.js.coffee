@@ -12,23 +12,16 @@ class Thorax.Models.MeasureFilter extends Thorax.Model
   initialize: (@cmsId) ->
   apply: (patient) ->
     cmsId = @cmsId.slice(0,3).toUpperCase() + @cmsId.replace('V','v').slice(3) # format CMS id so it can match
-    targetMeasure = bonnie.measures.findWhere(cms_id: cmsId)
+    targetMeasure = bonnie.measures.findWhere(cms_id: cmsId) # TODO only works with user's measures - needs to know every measure
     _(patient.get('measure_ids')).any (hqmfSetId) -> targetMeasure.get('hqmf_set_id') is hqmfSetId
   label: -> @cmsId
 
 class Thorax.Models.PopulationsFilter extends Thorax.Model
-  initialize: (@population, @criteria) ->
+  initialize: (@criteria, @population) ->
 
   apply: (patient) ->
     calculation = @population.calculate(patient)
     result = calculation.get @criteria
-    if result?
-      # we're already calculated, just return the result
-      result
-    else
-      # listen to when the calculation is
-      # TODO one trigger per filter
-      # calculation.one 'finished', => @trigger 'filter madness'
-      false
+    if result? then result # if it calculates true, return the patient
 
   label: -> @criteria

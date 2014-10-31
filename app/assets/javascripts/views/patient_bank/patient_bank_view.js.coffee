@@ -67,6 +67,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       measure_id: @model.get('hqmf_set_id')
       cms_id: @model.get('cms_id')
       episode_of_care: @model.get('episode_of_care')
+      patient_measure: difference.result.patient.get('measure_ids')[0] # TODO show CMS ID
 
   patientFilter: (difference) ->
     patient = difference.result.patient
@@ -78,10 +79,11 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     $select = $form.find('select')
     $additionalRequirements = $form.find('input[name=additional_requirements]')
     filterModel = $select.find(':selected').model().get('filter')
-    filter = new filterModel($additionalRequirements.val())
+    if filterModel.name is "PopulationsFilter" 
+      filter = new filterModel($select.val(),@currentPopulation)
+    else
+      filter = new filterModel($additionalRequirements.val())
     @appliedFilters.add(filter)
-    # TODO
-    # trigger an event to re-run all the filters
     @updateFilter()
     # TODO - don't keed adding endless filters or duplicate filters
     $form.find('.additional-requirements').remove()
