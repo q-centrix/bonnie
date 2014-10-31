@@ -11,7 +11,8 @@ class Thorax.Models.MeasureFilter extends Thorax.Model
   additionalRequirements: {name: 'cms_id', text: 'CMS ID', type: 'text'}
   initialize: (@cmsId) ->
   apply: (patient) ->
-    targetMeasure = bonnie.measures.findWhere(cms_id: @cmsId)
+    cmsId = @cmsId.slice(0,3).toUpperCase() + @cmsId.replace('V','v').slice(3) # format CMS id so it can match
+    targetMeasure = bonnie.measures.findWhere(cms_id: cmsId)
     _(patient.get('measure_ids')).any (hqmfSetId) -> targetMeasure.get('hqmf_set_id') is hqmfSetId
   label: -> @cmsId
 
