@@ -22,8 +22,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         $(e.target).prev('.panel-heading').toggleClass('opened-patient')
         $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'fa-angle-right fa-angle-down'
 
-      @$('.patients-filter-input').hide()
-
       # FIXME add selectBoxIt back in when it doesn't interfere with events
       # @$('select[name=patients-filter]').selectBoxIt
       #   downArrowIcon: "bank-dropdown-arrow",
@@ -70,7 +68,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       cms_id: @model.get('cms_id')
       episode_of_care: @model.get('episode_of_care')
 
-  differenceFilter: (difference) ->
+  patientFilter: (difference) ->
     patient = difference.result.patient
     @appliedFilters.all (filter) -> filter.apply(patient)
 
@@ -84,11 +82,15 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @appliedFilters.add(filter)
     # TODO
     # trigger an event to re-run all the filters
+    @updateFilter()
+    # TODO - don't keed adding endless filters or duplicate filters
     $form.find('.additional-requirements').remove()
+    $select.find('option:eq(0)').prop("selected", true) # reset option viewed
 
   removeFilter: (e) ->
     thisFilter = $(e.target).model()
     @appliedFilters.remove(thisFilter)
+    @updateFilter()
 
   supplyExtraFilterInput: (e) ->
     $select = $(e.target)
