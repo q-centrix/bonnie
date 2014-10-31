@@ -86,6 +86,10 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     # trigger an event to re-run all the filters
     $form.find('.additional-requirements').remove()
 
+  removeFilter: (e) ->
+    thisFilter = $(e.target).model()
+    @appliedFilters.remove(thisFilter)
+
   supplyExtraFilterInput: (e) ->
     $select = $(e.target)
     # the filter is associated with the option, not the select - we need to get the selected option upon a select event
