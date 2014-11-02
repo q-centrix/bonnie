@@ -22,16 +22,15 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         $(e.target).prev('.panel-heading').toggleClass('opened-patient')
         $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'fa-angle-right fa-angle-down'
 
-      # FIXME add selectBoxIt back in when it doesn't interfere with events
-      # @$('select[name=patients-filter]').selectBoxIt
-      #   downArrowIcon: "bank-dropdown-arrow",
-      #   defaultText: "calculates for...",
-      #   autoWidth: false,
-      #   theme:
-      #     button: "bank-dropdown-button"
-      #     list: "bank-dropdown-list"
-      #     container: "bank-dropdown-container"
-      #     focus: "bank-dropdown-focus"
+      @$('select[name=patients-filter]').selectBoxIt
+        downArrowIcon: "bank-dropdown-arrow",
+        defaultText: "calculates for...",
+        autoWidth: false,
+        theme:
+          button: "bank-dropdown-button"
+          list: "bank-dropdown-list"
+          container: "bank-dropdown-container"
+          focus: "bank-dropdown-focus"
 
   initialize: ->
     @collection = new Thorax.Collections.Patients
@@ -82,12 +81,13 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     if filterModel.name is "PopulationsFilter" 
       filter = new filterModel($select.val(),@currentPopulation)
     else
-      filter = new filterModel($additionalRequirements.val())
+      filter = new filterModel($additionalRequirements.val()) # TODO validate input
     @appliedFilters.add(filter)
     @updateFilter()
     # TODO - don't keed adding endless filters or duplicate filters
-    $form.find('.additional-requirements').remove()
+    @$('input[name="additional_requirements"]').remove()
     $select.find('option:eq(0)').prop("selected", true) # reset option viewed
+    $select.data("selectBox-selectBoxIt").refresh() # update dropdown
 
   removeFilter: (e) ->
     thisFilter = $(e.target).model()
@@ -100,7 +100,10 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     filterModel = $select.find(':selected').model().get('filter')
     additionalRequirements = filterModel::additionalRequirements
     # remove any filter added previously
-    $select.next('.additional-requirements').remove()
+    @$('input[name="additional_requirements"]').remove()
     if additionalRequirements?
       # FIXME use a partial, this is a lot of markup
-      $select.after "<div class='form-group additional-requirements'><input type='#{additionalRequirements.type}' name='additional_requirements' class='form-control' placeholder='#{additionalRequirements.text}'></div>"
+      input = "<input type='#{additionalRequirements.type}' class='form-control' name='additional_requirements' placeholder='#{additionalRequirements.text}'>"
+      div = @$('.additional-requirements')
+      $(input).hide().appendTo(div).animate({width: 'toggle'},"fast")
+      
