@@ -12,11 +12,12 @@ class Thorax.Models.MeasureFilter extends Thorax.Model
   initialize: (@cmsId) ->
   apply: (patient) ->
     cmsId = @cmsId.slice(0,3).toUpperCase() + @cmsId.replace('V','v').slice(3) # format CMS id so it can match
-    targetMeasure = bonnie.measures.findWhere(cms_id: cmsId) # TODO only works with user's measures - needs to know every measure
-    _(patient.get('measure_ids')).any (hqmfSetId) -> targetMeasure.get('hqmf_set_id') is hqmfSetId
+    if patient.get('origin_cms_id') == cmsId
+      return true
   label: -> @cmsId
 
 class Thorax.Models.PopulationsFilter extends Thorax.Model
+  # TODO determine if this needs tweaking for CV measures
   initialize: (@criteria, @population) ->
 
   apply: (patient) ->

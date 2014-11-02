@@ -5,7 +5,13 @@ class PatientsController < ApplicationController
   ETHNICITY_NAME_MAP={'2186-5'=>'Not Hispanic or Latino', '2135-2'=>'Hispanic Or Latino'}
 
   def index
-    render :json => Record.where(is_shared: true)
+    shared_patients = Record.where(is_shared: true)
+    shared_patients.each do |p|
+      measure = p['measure_ids'].first # gets the measure ID
+      m = Measure.where(hqmf_set_id: measure).first # gets corresponding measure
+      p[:origin_cms_id] = m.cms_id # attach CMS ID
+    end
+    render :json => shared_patients
   end
 
   def update
