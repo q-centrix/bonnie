@@ -3,6 +3,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   events:
     'change select[name=patients-filter]':  'supplyExtraFilterInput'
     'submit form':                          'addFilter'
+    'change input.select-patient':          'changeSelectedPatients'
 
     collection:
       sync: ->
@@ -31,6 +32,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
           @bankLogicView.showRationale(@toggledPatient)
         else
           @toggledPatient = null
+          @updateDisplayedCoverage()
 
       @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) =>
         $(e.target).prev('.panel-heading').toggleClass('opened-patient')
@@ -52,6 +54,9 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @collection = new Thorax.Collections.Patients
     @differences = new Thorax.Collections.Differences
 
+    @selectedPatients = new Thorax.Collection
+    @selectedPatients.on 'add remove', _.bind(@updateDisplayedCoverage, this)
+
     populations = @model.get('populations')
     @currentPopulation = populations.first()
     populationLogicView = new Thorax.Views.PopulationLogic(model: @currentPopulation)
@@ -69,6 +74,20 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @availableFilters.add filter: Thorax.Models.MeasureAuthorFilter, name: 'created by...'
     @availableFilters.add filter: Thorax.Models.MeasureFilter, name: 'from measure...'
 
+  changeSelectedPatients: (e) ->
+    patient = $(e.target).model().result.patient # gets the patient model
+    if $(e.target).is(':checked')
+      @selectedPatients.add patient
+    else 
+      @selectedPatients.remove patient
+
+  updateDisplayedCoverage: ->
+    if !@$('.shared-patient > .in').length # only show coverage if no patients are expanded
+      if @selectedPatients.isEmpty() 
+        @bankLogicView.showCoverage()
+      else 
+        @bankLogicView.clearCoverage() # TODO coverage tailored to selected patients
+
   measureSelectionContext: (measure) ->
     _(measure.toJSON()).extend isSelected: measure is @model
 
@@ -82,7 +101,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       measure_id: @model.get('hqmf_set_id')
       cms_id: @model.get('cms_id')
       episode_of_care: @model.get('episode_of_care')
-      patient_measure: difference.result.patient.get('measure_ids')[0] # TODO show CMS ID
 
   patientFilter: (difference) ->
     patient = difference.result.patient
