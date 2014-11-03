@@ -124,4 +124,32 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       input = "<input type='#{additionalRequirements.type}' class='form-control' name='additional_requirements' placeholder='#{additionalRequirements.text}'>"
       div = @$('.additional-requirements')
       $(input).hide().appendTo(div).animate({width: 'toggle'},"fast")
-      
+
+  cloneBankPatients: ->
+    # TODO do something else if there are no selected patients
+
+    this_measure_id = @model.get('hqmf_set_id')
+    this_cms_id = @model.get('cms_id')
+    this_user_id = @model.get('user_id')
+
+    @selectedPatients.each (patient) ->
+      clonedPatient = patient.deepClone(omit_id: true)
+      # set clone to this measure, user, and default to unshared
+      patient_measures = clonedPatient.get('measure_ids')
+      patient_measures[0] = this_measure_id
+      clonedPatient.set
+        'measure_ids': patient_measures,
+        'user_id': this_user_id,
+        'is_shared': false,
+        'origin_cms_id': this_cms_id
+        # todo add origin_email
+
+      # clonedPatient.save clonedPatient.toJSON(),
+      #   success: (patientModel) =>
+      #     @patients.add patientModel # make sure that the patient exist in the global patient collection
+      #     @model.get('patients').add patientModel # and that measure's patient collection
+      #     if bonnie.isPortfolio
+      #     @measures.each (m) -> m.get('patients').add model
+      #     route = if @measure then "measures/#{@measure.get('hqmf_set_id')}" else "patients"
+      #     bonnie.navigate route, trigger: true
+
