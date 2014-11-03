@@ -78,14 +78,14 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     patient = $(e.target).model().result.patient # gets the patient model
     if $(e.target).is(':checked')
       @selectedPatients.add patient
-    else 
+    else
       @selectedPatients.remove patient
 
   updateDisplayedCoverage: ->
     if !@$('.shared-patient > .in').length # only show coverage if no patients are expanded
-      if @selectedPatients.isEmpty() 
+      if @selectedPatients.isEmpty()
         @bankLogicView.showCoverage()
-      else 
+      else
         @bankLogicView.clearCoverage() # TODO coverage tailored to selected patients
 
   measureSelectionContext: (measure) ->
