@@ -10,6 +10,7 @@ class PatientsController < ApplicationController
       measure = p['measure_ids'].first # gets the measure ID
       m = Measure.where(hqmf_set_id: measure).first # gets corresponding measure
       p[:origin_cms_id] = m.cms_id # attach CMS ID
+      p.save!
     end
     render :json => shared_patients
   end
