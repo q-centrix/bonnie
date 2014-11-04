@@ -85,7 +85,7 @@ class PatientsController < ApplicationController
 
   end
 
-private 
+private
 
   def update_patient(patient)
 
@@ -121,7 +121,7 @@ private
 
   def get_summary_content(measure, records, results, qrda_errors, html_errors)
     # restructure differences for output
-    results.each do |r| 
+    results.each do |r|
       r[:differences] = convert_to_hash(:medicalRecordNumber, r[:differences].values)
       r[:differences].values.each {|d| d[:comparisons] = convert_to_hash(:name, d[:comparisons].values)}
     end
