@@ -62,7 +62,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     patient = $(e.target).model().result.patient # gets the patient model
     if $(e.target).is(':checked')
       @selectedPatients.add patient
-    else 
+    else
       @selectedPatients.remove patient
 
   updateDisplayedCoverage: ->
@@ -96,7 +96,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     $select = $form.find('select')
     $additionalRequirements = $form.find('input[name=additional_requirements]')
     filterModel = $select.find(':selected').model().get('filter')
-    if filterModel.name is "PopulationsFilter" 
+    if filterModel.name is "PopulationsFilter"
       filter = new filterModel($select.val(),@currentPopulation)
     else
       filter = new filterModel($additionalRequirements.val()) # TODO validate input
