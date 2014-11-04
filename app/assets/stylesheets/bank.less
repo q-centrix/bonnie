@@ -7,6 +7,13 @@
     .make-sm-column(8);
     .patients-results {
       .clearfix();
+      .patient-count {
+        font-weight: normal;
+      }
+      .patient-select-count {
+        color: @gray-darker;
+        padding-right: 5px;
+      }
     }
   }
   .patient-filters {
@@ -23,7 +30,6 @@
   }
   .meta {
     color: @gray-darker;
-    font-size: 12px;
   }
 }
 
@@ -49,7 +55,7 @@
 }
 .patient-checkbox {
   float: left;
-  padding-right: 5px;
+  padding-right: 10px;
   input[type="checkbox"] {
     transform: scale(1.5);
     -webkit-transform: scale(1.5);
@@ -63,7 +69,7 @@
   float: left;
 }
 .patient-name {
-  margin-left: 65px;
+  margin-left: 45px;
   margin-right: 95px;
 }
 .patient-status {
