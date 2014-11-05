@@ -82,4 +82,4 @@ class BonnieRouter extends Backbone.Router
 
   renderPatientBank: (measureHqmfSetId) ->
     measure = @measures.findWhere(hqmf_set_id: measureHqmfSetId)
-    @mainView.setView new Thorax.Views.PatientBankView model: measure, measures: @measures.sort()
+    @mainView.setView new Thorax.Views.PatientBankView model: measure, measures: @measures, patients: @patients
