@@ -32,8 +32,8 @@
 
       <div class="pull-right">
         <span class="patient-select-count"></span>
-        {{#button "cloneBankPatients" class="btn btn-default"}}Clone<span class="sr-only"> patients selected from patient bank</span>{{/button}}
-        {{#button "exportBankPatients" class="btn btn-primary"}}Export All<span class="sr-only"> patients selected from patient bank</span>{{/button}}
+        {{#button "cloneBankPatients" class="btn btn-default bank-actions"}}Clone<span class="sr-only"> patients selected from patient bank</span>{{/button}}
+        {{#button "exportBankPatients" class="btn btn-primary bank-actions"}}Export All<span class="sr-only"> patients selected from patient bank</span>{{/button}}
       </div>
 
     </div>
@@ -49,18 +49,6 @@
                   <input type="checkbox" class="select-patient">
                 </label>
               </div>
-             {{!--  <div class="patient-status-icon status status-{{status}}">
-                {{#if ../patientsListing}}
-                {{else}}
-                  {{#if done}}
-                    {{#if match}}
-                      <i class="fa fa-check" aria-hidden="true"></i><span class="sr-only">{{patient.last}} {{patient.first}}, patient passing</span>
-                    {{else}}
-                      <i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">{{patient.last}} {{patient.first}}, patient failing</span>
-                    {{/if}}
-                  {{/if}}
-                {{/if}}
-              </div> --}}
               <div class="patient-user-icon">
                 <i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">{{patient.last}} {{patient.first}}, patient result</span>
               </div>
