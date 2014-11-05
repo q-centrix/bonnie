@@ -44,7 +44,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @differences = new Thorax.Collections.Differences
 
     @selectedPatients = new Thorax.Collection
-    @selectedPatients.on 'add remove', _.bind(@updateDisplayedCoverage, this)
+    @listenTo @selectedPatients, 'add remove', _.bind(@updateDisplayedCoverage, this)
 
     populations = @model.get('populations')
     @currentPopulation = populations.first()
