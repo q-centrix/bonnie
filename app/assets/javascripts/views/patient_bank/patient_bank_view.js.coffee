@@ -37,6 +37,8 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
           container: "bank-dropdown-container"
           focus: "bank-dropdown-focus"
 
+      @$('.bank-actions').attr("disabled", true)
+
   initialize: ->
     @collection = new Thorax.Collections.Patients
     @differences = new Thorax.Collections.Differences
@@ -131,13 +133,16 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @$('.patient-select-count').html ''
 
   updateSelectedCount: ->
-    # updates displayed count of selected patients
+    # updates displayed count of selected patients, handles button enabling
     if @selectedPatients.length == 1
       @$('.patient-select-count').html '1 patient selected <i class="fa fa-times-circle clear-selected"></i>'
+      @$('.bank-actions').removeAttr("disabled")
     else if !@selectedPatients.length
-        @$('.patient-select-count').html 'Please select patients below.'
+      @$('.patient-select-count').html 'Please select patients below.'
+      @$('.bank-actions').attr("disabled", true)
     else
       @$('.patient-select-count').html @selectedPatients.length + ' patients selected <i class="fa fa-times-circle clear-selected"></i>'
+      @$('.bank-actions').removeAttr("disabled")
 
   filterSelectedPatients: ->
     # when selected patients get filtered out, properly remove them from selected patients.
