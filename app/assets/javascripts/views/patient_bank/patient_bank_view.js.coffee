@@ -174,6 +174,13 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   cloneBankPatients: ->
     @selectedPatients.each (patient) =>
       clonedPatient = patient.deepClone(omit_id: true)
+      # store origin patient's data into clone
+      origin_data = {}
+      origin_data.patient_id = patient.get('_id')
+      origin_data.measure_ids = patient.get('measure_ids')
+      origin_data.cms_id = patient.get('cms_id')
+      origin_data.user_id = patient.get('user_id')
+      origin_data.user_email = patient.get('user_email')
       # set clone to this measure, user, and default to unshared
       patient_measures = clonedPatient.get('measure_ids')
       patient_measures[0] = @model.get('hqmf_set_id')
@@ -181,7 +188,8 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         'measure_ids': patient_measures,
         'cms_id': @model.get('cms_id'),
         'user_id': @model.get('user_id'),
-        'is_shared': false
+        'is_shared': false,
+        'origin_data': origin_data
       clonedPatient.save clonedPatient.toJSON(),
         success: (patient) =>
           @patients.add patient # make sure that the patient exist in the global patient collection
