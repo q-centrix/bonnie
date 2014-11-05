@@ -1,7 +1,7 @@
 <div class="patient-bank">
 
   <div class="bank-measure">
-    <h1>{{cms_id}}</h1>
+    <h1>{{#link "measures/{{hqmf_set_id}}" expand-tokens=true}}<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> {{cms_id}}{{/link}}</h1>
     {{view bankLogicView}}
   </div>
 
