@@ -2,18 +2,14 @@
 
 class Thorax.Models.MeasureAuthorFilter extends Thorax.Model
   additionalRequirements: {name: 'email', text: 'E-mail address', type: 'email'}
-  initialize: (@email) ->
-  apply: (patient) ->
-    # TODO determine if the patient's creator has this filter's email address... do we need to ask the server?
+  initialize: (@email) -> @regexp = new RegExp(@email, "i")
+  apply: (patient) -> !!patient.get('user_email').match(@regexp)
   label: -> "E-mail (#{@email})"
 
 class Thorax.Models.MeasureFilter extends Thorax.Model
   additionalRequirements: {name: 'cms_id', text: 'CMS ID', type: 'text'}
-  initialize: (@cmsId) ->
-  apply: (patient) ->
-    cmsId = @cmsId.slice(0,3).toUpperCase() + @cmsId.replace('V','v').slice(3) # format CMS id so it can match
-    if patient.get('origin_cms_id') == cmsId
-      return true
+  initialize: (@cmsId) -> @regexp = new RegExp(@cmsId, "i")
+  apply: (patient) -> !!patient.get('cms_id').match(@regexp)
   label: -> @cmsId
 
 class Thorax.Models.PopulationsFilter extends Thorax.Model

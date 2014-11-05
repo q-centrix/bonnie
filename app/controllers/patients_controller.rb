@@ -5,14 +5,9 @@ class PatientsController < ApplicationController
   ETHNICITY_NAME_MAP={'2186-5'=>'Not Hispanic or Latino', '2135-2'=>'Hispanic Or Latino'}
 
   def index
-    shared_patients = Record.where(is_shared: true)
-    shared_patients.each do |p|
-      measure = p['measure_ids'].first # gets the measure ID
-      m = Measure.where(hqmf_set_id: measure).first # gets corresponding measure
-      p[:origin_cms_id] = m.cms_id # attach CMS ID
-      p.save!
-    end
-    render :json => shared_patients
+    # FIXME: this suffers from a 1+N problem: there's a separate query for cms_id and user_email for each
+    # record; we should probably just store these on the patient record when the record is first created
+    render :json => MultiJson.encode(Record.where(is_shared: true).as_json(:methods => [:cms_id, :user_email]))
   end
 
   def update
