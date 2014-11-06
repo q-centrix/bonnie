@@ -64,8 +64,9 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @availableFilters.add filter: Thorax.Models.MeasureFilter, name: 'From measure...'
 
   changeSelectedPatients: (e) ->
-    patient = $(e.target).model().result.patient # gets the patient model
-    if $(e.target).is(':checked')
+    @$(e.target).closest('.panel-heading').toggleClass('selected-patient')
+    patient = @$(e.target).model().result.patient # gets the patient model
+    if @$(e.target).is(':checked')
       @selectedPatients.add patient
     else
       @selectedPatients.remove patient
@@ -147,14 +148,14 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   filterSelectedPatients: ->
     # when selected patients get filtered out, properly remove them from selected patients.
     $hiddenPatients = @$('input.select-patient:checked:hidden')
-    $hiddenPatients.prop('checked',false) # resets checkboxes
+    $hiddenPatients.prop('checked',false).trigger("change") # resets checkboxes
     $hiddenPatients.each (index, element) =>
       patient = @$(element).model().result.patient
       @selectedPatients.remove patient
     @updateSelectedCount()
 
   clearSelectedPatients: ->
-    @$('input.select-patient:checked').prop('checked',false) # resets checkboxes
+    @$('input.select-patient:checked').prop('checked',false).trigger("change") # resets checkboxes
     @selectedPatients.reset() # empties collection
     @updateSelectedCount()
 
