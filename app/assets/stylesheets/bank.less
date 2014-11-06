@@ -7,18 +7,20 @@
     .make-sm-column(8);
     .patients-results {
       .clearfix();
-      .patient-count {
-        font-weight: normal;
-      }
+      .patient-count { font-weight: normal; }
       .patient-select-count {
         color: @gray-darker;
         padding-right: 5px;
       }
     }
   }
+<<<<<<< HEAD
   .patient-filters {
     padding: 15px 0 30px 0;
   }
+=======
+  .patient-filters { padding: 15px 0 30px 0; }
+>>>>>>> a65da60... markup cleanup, add visual selected class
 }
 
 .patient-results {
@@ -27,56 +29,53 @@
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid-column;
+<<<<<<< HEAD
     & .status.status-NA { color: @brand-primary; }
   }
+=======
+  }
+  .meta { color: @gray-darker; }
+>>>>>>> a65da60... markup cleanup, add visual selected class
 }
+
+.shared-patient > .selected-patient { background-color: @gray-light; }
 
 .shared-patient > .opened-patient {
   background-color: @brand-primary;
   color: white;
   & .close { color: white; }
-  & .status {
-    &.status-fail {
-      color: @state-danger-bg;
-    }
-    &.status-pass {
-      color: @state-success-bg;
-    }
-  }
+  & .status.status-fail { color: @state-danger-bg; }
+  & .status.status-pass { color: @state-success-bg; }
 }
 
 .patient {
   width: 100%;
-  & > div {
-    padding-top: 0px;
+  & > div { padding-top: 0px; }
+  .patient-checkbox {
+    float: left;
+    padding-right: 10px;
+    input[type="checkbox"] {
+      transform: scale(1.5);
+      -webkit-transform: scale(1.5);
+    }
   }
-}
-.patient-checkbox {
-  float: left;
-  padding-right: 10px;
-  input[type="checkbox"] {
-    transform: scale(1.5);
-    -webkit-transform: scale(1.5);
+  .patient-status-icon {
+    float: left;
+    width: 26px;
   }
-}
-.patient-status-icon {
-  float: left;
-  width: 26px;
-}
-.patient-user-icon {
-  float: left;
-}
-.patient-name {
-  margin-left: 45px;
-  margin-right: 95px;
-}
-.patient-status {
-  width: 70px;
-  float: right;
-}
-.patient-btn {
-  width: 20px;
-  float: right;
+  .patient-user-icon { float: left; }
+  .patient-name {
+    margin-left: 45px;
+    margin-right: 95px;
+  }
+  .patient-status {
+    width: 70px;
+    float: right;
+  }
+  .patient-btn {
+    width: 20px;
+    float: right;
+  }
 }
 
 .added-filter {
@@ -87,23 +86,18 @@
   margin-bottom: 5px;
   margin-right: 15px;
   vertical-align: bottom;
-  .delete {
-    float: none;
-  }
+  .delete { float: none; }
 }
 
-// base custom dropdown with SelectBoxIt
-.bank-dropdown-container {
-  & .selectboxit-option { text-indent: 8px; }
-}
+// define custom dropdown with SelectBoxIt
 
+.bank-dropdown-container .selectboxit-option { text-indent: 8px; }
+// override list styling
 .bank-dropdown-list {
-  top: 0px !important;
-  & .selectboxit-option-first, .selectboxit-option-last {
-    border-radius: 0px;
-  }
+  top: 0px !important; // open on top of rather than below select box
+  & .selectboxit-option-first, .selectboxit-option-last { border-radius: 0px; }
 }
-
+// override hover over option styling
 .bank-dropdown-focus {
   background-color: @brand-primary;
   &.selectboxit-open {
@@ -112,7 +106,7 @@
    }
   & .selectboxit-option-anchor { color: white; }
 }
-
+// custom arrow for dropdown
 .bank-dropdown-button > .selectboxit-arrow-container {
   background-color: @brand-primary;
   color: white;
@@ -123,7 +117,7 @@
     font-family: FontAwesome;
   }
 }
-
+// overide plugin's border and define background
 .bank-dropdown-list, .bank-dropdown-button {
   border:  3px solid @brand-primary;
   border-radius: 0px !important;

@@ -4,7 +4,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     'change select[name=patients-filter]':  'supplyExtraFilterInput'
     'submit form':                          'addFilter'
     'change input.select-patient':          'changeSelectedPatients'
-    'click .clear-selected':                (e) -> @clearSelectedPatients()
+    'click .clear-selected':                (e) -> @$('input.select-patient:checked').prop('checked',false).trigger("change")
 
     collection:
       sync: ->
@@ -24,7 +24,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
         @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
 
-        $('.patient-count').text "("+@differences.length+")" # show number of patients in bank
+        @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
 
     rendered: ->
 
@@ -38,10 +38,10 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
           @updateDisplayedCoverage()
 
       @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) =>
-        $(e.target).prev('.panel-heading').toggleClass('opened-patient')
-        $(e.target).parent('.panel').find('.panel-chevron').toggleClass 'fa-angle-right fa-angle-down'
+        @$(e.target).prev('.panel-heading').toggleClass('opened-patient')
+        @$(e.target).parent('.panel').find('.panel-chevron').toggleClass 'fa-angle-right fa-angle-down'
 
-      @$('select[name=patients-filter]').selectBoxIt
+      @$('select[name=patients-filter]').selectBoxIt # custom styling for dropdown
         downArrowIcon: "bank-dropdown-arrow",
         defaultText: "calculates for...",
         autoWidth: false,
@@ -50,8 +50,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
           list: "bank-dropdown-list"
           container: "bank-dropdown-container"
           focus: "bank-dropdown-focus"
-
-      @$('.bank-actions').attr("disabled", true)
 
   initialize: ->
     @collection = new Thorax.Collections.Patients
@@ -77,24 +75,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @availableFilters.add filter: Thorax.Models.MeasureAuthorFilter, name: 'Created by...'
     @availableFilters.add filter: Thorax.Models.MeasureFilter, name: 'From measure...'
 
-  changeSelectedPatients: (e) ->
-    patient = $(e.target).model().result.patient # gets the patient model
-    if $(e.target).is(':checked')
-      @selectedPatients.add patient
-    else
-      @selectedPatients.remove patient
-    @updateSelectedCount()
-
-  updateDisplayedCoverage: ->
-    if !@$('.shared-patient > .in').length # only show coverage if no patients are expanded
-      if @selectedPatients.isEmpty()
-        @bankLogicView.showCoverage() # TODO show coverage for ALL patients, not just patients from the current measure
-      else
-        @bankLogicView.clearCoverage() # TODO coverage tailored to selected patients
-
-  measureSelectionContext: (measure) ->
-    _(measure.toJSON()).extend isSelected: measure is @model
-
   appliedFilterContext: (filter) ->
     _(filter.toJSON()).extend
       label: filter.label()
@@ -119,60 +99,27 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     if filterModel.name is "PopulationsFilter"
       filter = new filterModel($select.val(),@currentPopulation)
     else
-      filter = new filterModel($additionalRequirements.val()) # TODO validate input
+      filter = new filterModel($additionalRequirements.val())
     @appliedFilters.add(filter)
-    @updateFilter() # force update to show filtered results
-    @filterSelectedPatients()
-    @updateFilteredCount()
+    @updateFilteredDisplay()
     # TODO - don't keed adding endless filters or duplicate filters
-    @resetFilterSelect($select)
+    $select.find('option:eq(0)').prop("selected", true).trigger("change")
+    $select.data("selectBox-selectBoxIt").refresh() # update dropdown
 
   removeFilter: (e) ->
     thisFilter = $(e.target).model()
     @appliedFilters.remove(thisFilter)
-    @updateFilter()
-    @updateFilteredCount()
+    @updateFilteredDisplay()
 
-  resetFilterSelect: ($select) ->
-    # resets dropdown menu for filtering
-    @$('input[name="additional_requirements"]').remove()
-    $select.find('option:eq(0)').prop("selected", true)
-    $select.data("selectBox-selectBoxIt").refresh() # update dropdown
-
-  updateFilteredCount: ->
-    # updates displayed count of patient bank results
-    @$('.patient-count').text "("+$('.shared-patient:visible').length+")"
-    if !$('.shared-patient:visible').length
-      @clearSelectedPatients()
-      @$('.patient-select-count').html ''
-
-  updateSelectedCount: ->
-    # updates displayed count of selected patients
-    if @selectedPatients.length == 1
-      @$('.patient-select-count').html '1 patient selected <i class="fa fa-times-circle clear-selected"></i>'
-    else if !@selectedPatients.length
-        @$('.patient-select-count').html 'Please select patients below.'
-    else
-      @$('.patient-select-count').html @selectedPatients.length + ' patients selected <i class="fa fa-times-circle clear-selected"></i>'
+  updateFilteredDisplay: ->
+    @updateFilter() # force item-filter to show new results
+    @$('.patient-count').text "("+$('.shared-patient:visible').length+")" # updates displayed count of patient bank results
+    @filterSelectedPatients() # if needed, adjust the currently selected patient set
 
   filterSelectedPatients: ->
     # when selected patients get filtered out, properly remove them from selected patients.
     $hiddenPatients = @$('input.select-patient:checked:hidden')
-    $hiddenPatients.prop('checked',false) # resets checkboxes
-    $hiddenPatients.each (index, element) =>
-      patient = @$(element).model().result.patient
-      @selectedPatients.remove patient
-    @updateSelectedCount()
-
-  clearSelectedPatients: ->
-    @$('input.select-patient:checked').prop('checked',false) # resets checkboxes
-    @selectedPatients.reset() # empties collection
-    @updateSelectedCount()
-
-  filterSelectedPatients: ->
-    # when selected patients get filtered out, properly remove them from selected patients.
-    $hiddenPatients = @$('input.select-patient:checked:hidden')
-    $hiddenPatients.prop('checked',false).trigger("change") # resets checkboxes
+    $hiddenPatients.prop('checked',false).trigger("change")
     $hiddenPatients.each (index, element) =>
       patient = @$(element).model().result.patient
       @selectedPatients.remove patient
@@ -182,7 +129,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     patient = @$(e.target).model().result.patient # gets the patient model to add or remove
     if @$(e.target).is(':checked') then @selectedPatients.add patient else @selectedPatients.remove patient
     # updates displayed count of selected patients, handles button enabling
-    if !@selectedPatients.isEmpty()
+    if @selectedPatients.length >= 1
       @$('.bank-actions').removeAttr("disabled")
       if @selectedPatients.length == 1 then @$('.patient-select-count').html '1 patient selected <i class="fa fa-times-circle clear-selected"></i>'
       else @$('.patient-select-count').html @selectedPatients.length + ' patients selected <i class="fa fa-times-circle clear-selected"></i>'
@@ -190,17 +137,10 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @$('.bank-actions').attr("disabled", true)
       @$('.patient-select-count').html 'Please select patients below.'
 
-  clearSelectedPatients: ->
-    @$('input.select-patient:checked').prop('checked',false).trigger("change") # resets checkboxes
-    @selectedPatients.reset() # empties collection
-    @updateSelectedCount()
-
   supplyExtraFilterInput: ->
     @$('input[name="additional_requirements"]').remove() # remove any filter added previously
     filterModel = @$('select[name=patients-filter]').find(':selected').model().get('filter') # get relevant filter type
     additionalRequirements = filterModel::additionalRequirements
-    # remove any filter added previously
-    @$('input[name="additional_requirements"]').remove()
     if additionalRequirements?
       # FIXME use a partial, this is a lot of markup
       input = "<input type='#{additionalRequirements.type}' class='form-control' name='additional_requirements' placeholder='#{additionalRequirements.text}'>"
