@@ -14,6 +14,9 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
 
     rendered: ->
+      @exportPatientsView = new Thorax.Views.ExportPatientsView() # Modal dialogs for exporting
+      @exportPatientsView.appendTo(@$el)
+
       @$('#sharedResults').on 'shown.bs.collapse hidden.bs.collapse', (e) =>
         @bankLogicView.clearRationale()
         if e.type is 'shown'
@@ -169,19 +172,35 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
             @measures.each (m) -> m.get('patients').add patient
     @$(e.target).button('cloned')
 
-  exportBankPatients: (e) ->
-    console.log "exporting bank patients"
-    @$(e.target).button('exporting')
-    @$(e.target).button('exported')
-    # from measure view
-    # @exportPatientsView.exporting()
-    # @model.get('populations').whenDifferencesComputed =>
-    #   differences = []
-    #   @model.get('populations').each (population) ->
-    #     differences.push(_(population.differencesFromExpected().toJSON()).extend(population.coverage().toJSON()))
+    bonnie.navigate "measures/#{@model.get('hqmf_set_id')}" # return to measure
+    window.location.reload() # refreshes the measure page so it shows newly imported patients
 
-    #   $.fileDownload "patients/export?hqmf_set_id=#{@model.get('hqmf_set_id')}",
-    #     successCallback: => @exportPatientsView.success()
-    #     failCallback: => @exportPatientsView.fail()
-    #     httpMethod: "POST"
-    #     data: {authenticity_token: $("meta[name='csrf-token']").attr('content'), results: differences }
+  exportBankPatients: (e) ->
+    @exportPatientsView.exporting()
+
+    @$(e.target).button('exporting')
+    # get the already-calculated differences for selected patients only
+    @selectedDifferences = new Thorax.Collections.Differences
+    @differences.filter (difference) =>
+      if _.contains @selectedPatients.models, difference.result.patient
+        @selectedDifferences.add difference
+
+    # from pivotal: Implementation note: each patient record should probably
+    # only be exported against the measure it was originally built for.
+    # (We may want to consider scoop and filter against both measures?)
+
+    # format for exporting
+    differences = []
+    @model.get('populations').each (population) =>
+      # differences.push(_(population.differencesFromExpected().toJSON()).extend(population.coverage().toJSON()))
+      # differences.push _.extend(@selectedDifferences.toJSON(), population.coverage().toJSON())
+
+    $.fileDownload "patients/export?hqmf_set_id=#{@model.get('hqmf_set_id')}",
+      successCallback: => @exportPatientsView.success()
+      failCallback: => @exportPatientsView.fail()
+      httpMethod: "POST"
+      data: {authenticity_token: $("meta[name='csrf-token']").attr('content'), results: differences }
+
+    @$(e.target).button('exported')
+    # bonnie.navigate "measures/#{@model.get('hqmf_set_id')}" # return to measure
+    # window.location.reload() # refreshes the measure page so it shows newly imported patients
