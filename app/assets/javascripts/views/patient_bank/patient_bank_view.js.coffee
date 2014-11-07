@@ -111,6 +111,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @selectedPatients.remove patient
 
   changeSelectedPatients: (e) ->
+    @$('.bank-actions').button('reset')
     @$(e.target).closest('.panel-heading').toggleClass('selected-patient')
     patient = @$(e.target).model().result.patient # gets the patient model to add or remove
     if @$(e.target).is(':checked') then @selectedPatients.add patient else @selectedPatients.remove patient
@@ -140,7 +141,8 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       else
         @bankLogicView.clearCoverage() # TODO coverage tailored to selected patients
 
-  cloneBankPatients: ->
+  cloneBankPatients: (e) ->
+    @$(e.target).button('cloning')
     @selectedPatients.each (patient) =>
       clonedPatient = patient.deepClone(omit_id: true)
       # store origin patient's data into clone
@@ -165,3 +167,21 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
           @model.get('patients').add patient # and that measure's patient collection
           if bonnie.isPortfolio
             @measures.each (m) -> m.get('patients').add patient
+    @$(e.target).button('cloned')
+
+  exportBankPatients: (e) ->
+    console.log "exporting bank patients"
+    @$(e.target).button('exporting')
+    @$(e.target).button('exported')
+    # from measure view
+    # @exportPatientsView.exporting()
+    # @model.get('populations').whenDifferencesComputed =>
+    #   differences = []
+    #   @model.get('populations').each (population) ->
+    #     differences.push(_(population.differencesFromExpected().toJSON()).extend(population.coverage().toJSON()))
+
+    #   $.fileDownload "patients/export?hqmf_set_id=#{@model.get('hqmf_set_id')}",
+    #     successCallback: => @exportPatientsView.success()
+    #     failCallback: => @exportPatientsView.fail()
+    #     httpMethod: "POST"
+    #     data: {authenticity_token: $("meta[name='csrf-token']").attr('content'), results: differences }
