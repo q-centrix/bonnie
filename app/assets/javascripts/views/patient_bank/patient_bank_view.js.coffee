@@ -58,6 +58,9 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @selectedPatients = new Thorax.Collection
     @listenTo @selectedPatients, 'add remove', _.bind(@updateDisplayedCoverage, this)
 
+    # make sure filters only enabled after everything calculates
+    @listenTo @differences, 'complete', -> @$('button[type=submit]').button('ready').removeAttr("disabled")
+
     populations = @model.get('populations')
     @currentPopulation = populations.first()
     populationLogicView = new Thorax.Views.PopulationLogic(model: @currentPopulation)
