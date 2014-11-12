@@ -23,15 +23,7 @@
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid-column;
-    & .status.status-NA {
-      line-height: 0;
-      color: transparent;
-      &:after {
-        content: "N/A";
-        color: @brand-primary;
-        line-height: initial;
-      }
-    }
+    & .status.status-NA { color: @brand-primary; }
   .meta { color: @gray-darker; }
   }
 }
@@ -44,6 +36,7 @@
   & .close { color: white; }
   & .status.status-fail { color: @state-danger-bg; }
   & .status.status-pass { color: @state-success-bg; }
+  & .status.status-NA { color: @blue-lightest; }
 }
 
 .patient {

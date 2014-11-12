@@ -1,7 +1,7 @@
 ## All filter implementations should have an #apply(patient) method that returns true/false.
 
 class Thorax.Models.MeasureAuthorFilter extends Thorax.Model
-  additionalRequirements: {name: 'email', text: 'E-mail address', type: 'email'}
+  additionalRequirements: {name: 'email', text: 'E-mail address', type: 'text'}
   initialize: (@email) -> @regexp = new RegExp(@email, "i")
   apply: (patient) -> !!patient.get('user_email').match(@regexp)
   label: -> "E-mail (#{@email})"

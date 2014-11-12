@@ -124,12 +124,11 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @selectedPatients.remove patient
 
   changeSelectedPatients: (e) ->
-    @$('.bank-actions').button('reset')
     @$(e.target).closest('.panel-heading').toggleClass('selected-patient')
     patient = @$(e.target).model().result.patient # gets the patient model to add or remove
     if @$(e.target).is(':checked') then @selectedPatients.add patient else @selectedPatients.remove patient
     # updates displayed count of selected patients, handles button enabling
-    if @selectedPatients.length >= 1
+    if !@selectedPatients.isEmpty()
       @$('.bank-actions').removeAttr("disabled")
       if @selectedPatients.length == 1 then @$('.patient-select-count').html '1 patient selected <i class="fa fa-times-circle clear-selected"></i>'
       else @$('.patient-select-count').html @selectedPatients.length + ' patients selected <i class="fa fa-times-circle clear-selected"></i>'
