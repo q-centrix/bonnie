@@ -59,7 +59,12 @@
                 </a>
               </div>
               <div class="patient-status status status-{{status}}">
-                <span class="sr-only">{{patient.last}} {{patient.first}}, status </span>{{status}}
+                <span class="sr-only">{{patient.last}} {{patient.first}}, status </span>
+                {{#ifCond status "==" "NA"}}
+                  N/A
+                {{else}}
+                  {{status}}
+                {{/ifCond}}
               </div>
               <div class="patient-name">
                 <span class="sr-only">patient name: </span>{{patient.last}} {{patient.first}}
