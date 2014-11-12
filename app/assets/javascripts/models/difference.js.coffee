@@ -13,10 +13,12 @@ class Thorax.Models.Difference extends Thorax.Model
                when true then 'pass'
                when false then 'fail'
                else 'pending'
+    # if no expectations are set, use n/a instead of failing
+    if _.some(@expected.attributes, (value, key) -> return !value?) then status = 'NA'
     @set done: match?, match: match, status: status, comparisons: @expected.comparison(@result)
 
   toJSON: ->
-    _(super).extend({medicalRecordNumber: @result.patient.get('medical_record_number')} if @result.isPopulated()) 
+    _(super).extend({medicalRecordNumber: @result.patient.get('medical_record_number')} if @result.isPopulated())
 
 class Thorax.Collections.Differences extends Thorax.Collection
   model: Thorax.Models.Difference

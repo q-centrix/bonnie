@@ -8,8 +8,15 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
     collection:
       sync: ->
-        # TODO set expectations only if the patient was originally developed for this measure
-        @differences.reset @collection.map (patient) => @currentPopulation.differenceFromExpected(patient)
+        @differences.reset # empty
+        #split the collection of shared patients based on in-measure or out
+        # TODO use CMS ID instead of HQMF set ID
+        @collectionThisMeasure = @collection.filter (patient) => _(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
+        @collectionOtherMeasures = @collection.filter (patient) => !_(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
+        # add calculated patients for these measures
+        @differences.add @collectionThisMeasure.map (patient) => @currentPopulation.differenceFromExpected(patient)
+        # add the other patients without setting expectations
+        @differences.add @collectionOtherMeasures.map (patient) => @currentPopulation.differenceFromUnexpected(patient)
 
         @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
 
