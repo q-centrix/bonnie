@@ -24,8 +24,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
         @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
 
-        @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
-
     rendered: ->
 
       @$('#sharedResults').on 'shown.bs.collapse hidden.bs.collapse', (e) =>
