@@ -23,8 +23,17 @@
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid-column;
-  }
+    & .status.status-NA {
+      line-height: 0;
+      color: transparent;
+      &:after {
+        content: "N/A";
+        color: @brand-primary;
+        line-height: initial;
+      }
+    }
   .meta { color: @gray-darker; }
+  }
 }
 
 .shared-patient > .selected-patient { background-color: @gray-light; }
@@ -44,8 +53,8 @@
     float: left;
     padding-right: 10px;
     input[type="checkbox"] {
-      transform: scale(1.5);
-      -webkit-transform: scale(1.5);
+      // transform: scale(1.5);
+      // -webkit-transform: scale(1.5);
     }
   }
   .patient-status-icon {
