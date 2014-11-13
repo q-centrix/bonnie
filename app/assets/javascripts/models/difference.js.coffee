@@ -14,7 +14,7 @@ class Thorax.Models.Difference extends Thorax.Model
                when false then 'fail'
                else 'pending'
     # if no expectations are set, use n/a instead of failing
-    if _.some(@expected.attributes, (value, key) -> return !value?) then status = 'NA'
+    if _.every(@expected.attributes, (value, key) -> return !value?) then status = 'NA'
     @set done: match?, match: match, status: status, comparisons: @expected.comparison(@result)
 
   toJSON: ->

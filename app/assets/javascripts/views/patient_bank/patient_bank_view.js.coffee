@@ -8,14 +8,11 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
     collection:
       sync: ->
-        @differences.reset # empty
-        #split the collection of shared patients based on in-measure or out
-        # TODO use CMS ID instead of HQMF set ID
+        # add calculated patients for those in this measure
         @collectionThisMeasure = @collection.filter (patient) => _(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
-        @collectionOtherMeasures = @collection.filter (patient) => !_(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
-        # add calculated patients for these measures
-        @differences.add @collectionThisMeasure.map (patient) => @currentPopulation.differenceFromExpected(patient)
+        @differences.reset @collectionThisMeasure.map (patient) => @currentPopulation.differenceFromExpected(patient)
         # add the other patients without setting expectations
+        @collectionOtherMeasures = @collection.filter (patient) => !_(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
         @differences.add @collectionOtherMeasures.map (patient) => @currentPopulation.differenceFromUnexpected(patient)
 
         @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
@@ -177,34 +174,46 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       else
         @bankLogicView.clearCoverage() # TODO coverage tailored to selected patients
 
+  clonePatientIntoMeasure: (patient) ->
+    clonedPatient = patient.deepClone(omit_id: true, dedupName: true)
+    # store origin patient's data into clone
+    origin_data =
+      patient_id: patient.get('_id')
+      measure_ids: patient.get('measure_ids')
+      cms_id: patient.get('cms_id')
+      user_id: patient.get('user_id')
+      user_email: patient.get('user_email')
+    # set clone to this measure, user, and default to unshared
+    patient_measures = clonedPatient.get('measure_ids')
+    patient_measures[0] = @model.get('hqmf_set_id')
+    clonedPatient.set
+      'measure_ids': patient_measures,
+      'cms_id': @model.get('cms_id'),
+      'user_id': @model.get('user_id'),
+      'is_shared': false,
+      'origin_data': origin_data
+
+    console.log clonedPatient
+
+    clonedPatient.save clonedPatient.toJSON(),
+      success: (patient) =>
+        console.log patient
+        @patients.add patient # make sure that the patient exist in the global patient collection
+        @model.get('patients').add patient # and that measure's patient collection
+        if bonnie.isPortfolio
+          @measures.each (m) -> m.get('patients').add patient
+
+  cloneOnePatient: (e) ->
+    @$(e.target).button('cloning')
+    patient = @$(e.target).model().result.patient # gets the patient model to clone
+    @clonePatientIntoMeasure(patient)
+    @$(e.target).button('cloned')
+    @$(e.target).attr("disabled", true)
+
   cloneBankPatients: (e) ->
     @$(e.target).button('cloning')
-    @selectedPatients.each (patient) =>
-      clonedPatient = patient.deepClone(omit_id: true)
-      # store origin patient's data into clone
-      origin_data =
-        patient_id: patient.get('_id')
-        measure_ids: patient.get('measure_ids')
-        cms_id: patient.get('cms_id')
-        user_id: patient.get('user_id')
-        user_email: patient.get('user_email')
-      # set clone to this measure, user, and default to unshared
-      patient_measures = clonedPatient.get('measure_ids')
-      patient_measures[0] = @model.get('hqmf_set_id')
-      clonedPatient.set
-        'measure_ids': patient_measures,
-        'cms_id': @model.get('cms_id'),
-        'user_id': @model.get('user_id'),
-        'is_shared': false,
-        'origin_data': origin_data
-      clonedPatient.save clonedPatient.toJSON(),
-        success: (patient) =>
-          @patients.add patient # make sure that the patient exist in the global patient collection
-          @model.get('patients').add patient # and that measure's patient collection
-          if bonnie.isPortfolio
-            @measures.each (m) -> m.get('patients').add patient
+    @selectedPatients.each (patient) => @clonePatientIntoMeasure(patient)
     @$(e.target).button('cloned')
-
     bonnie.navigate "measures/#{@model.get('hqmf_set_id')}" # return to measure
     window.location.reload() # refreshes the measure page so it shows newly imported patients
 
