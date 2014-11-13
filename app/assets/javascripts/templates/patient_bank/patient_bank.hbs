@@ -79,7 +79,7 @@
               <p><i class="fa fa-tasks" aria-hidden="true"></i> {{patient.cms_id}}</p>
             </div>
             {{template "population_calculation_results"}}
-            {{#button "clonePatient" class="btn btn-primary"}}CLONE<span class="sr-only"> patient {{patient.last}} {{patient.first}}</span>{{/button}}
+            {{#button "cloneOnePatient" class="btn btn-primary" data-cloning-text="Cloning..." data-cloned-text="Cloned"}}Clone <span class="sr-only">patient {{patient.last}} {{patient.first}}</span> into {{cms_id}}{{/button}}
           </div>
         </div>
       </div>
