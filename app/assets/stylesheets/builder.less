@@ -349,12 +349,15 @@
 
   .logic-pager { 
   	text-align: center;
-  	color: white;
+  	color: @brand-primary;
   	font-size: @font-size-base*2;
-  	background-color: @blue-lighter;
   	width: 100%;
-    &:hover {
-      background-color: @blue-darker;
+    &.disabled {
+      color: @gray-lighter;
+    }
+    &:not(.disabled):hover {
+      color: @blue-darker;
+      background-color: @gray-lighter;
     }
     &:before {
       content: @fa-var-chevron-circle-up;
@@ -370,12 +373,6 @@
   	}
   }
 
-  #history .scrolling {
-    //needed the keep the icons visible when div overflows
-    padding-left: 15px;
-    margin-left: -15px;
-  }
-
   .affix-top {
     position: static;
   }
@@ -389,7 +386,7 @@
     }
     & .scrolling {
       position: absolute;
-      width: 100%
+      width: 100%;
       top: 0px;
       bottom: 0px;
     }
