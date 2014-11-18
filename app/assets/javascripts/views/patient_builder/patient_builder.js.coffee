@@ -194,14 +194,19 @@ class Thorax.Views.PatientBuilder extends Thorax.Views.BonnieView
 
   setAffix: ->
     @$('.criteria-container').css 'min-height': $(window).height() # in case patient history is too short to scroll, set height
-    @$('.logic-pager').show().first().addClass('disabled')
+
+    # only enable paging if the logic is long enough to scroll
+    if @$("#populationLogic").find('.scrolling').prop('scrollHeight') > @$("#populationLogic").find('.scrolling').height() 
+      @$('.logic-pager').show()
+      @$('.logic-pager.up').addClass('disabled')
+
     @$('#criteriaElements, #populationLogic').each ->
       # assign current width explicitly to affixed element $(@)
       $(@).css width: $(@).width()
       # the inner scrolling part - shift down so header can show.
-      # assumes unknown number of elements above the scrolling section
+      # assumes unknown number of visible elements above the scrolling section
       shiftDown = 0
-      $(@).find('.scrolling').prevAll().each -> shiftDown += $(@).outerHeight(true)
+      $(@).find('.scrolling').prevAll(':visible').each -> shiftDown += $(@).outerHeight(true)
       $(@).find('.scrolling').css
         top: shiftDown
         bottom: $(@).find('.logic-pager.down').height() || 0 # leave room for button to scroll down
