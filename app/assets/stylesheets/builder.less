@@ -320,10 +320,6 @@
     }
   }
 
-  .scrolling {
-    overflow: auto;
-  }
-
   .logic-pager {
   	text-align: center;
   	color: @brand-primary;
@@ -358,10 +354,13 @@
     position: fixed;
     top: 0px;
     height: 100%;
+    box-sizing: content-box; // for IE9
     &#criteriaElements {
       padding-right: 0px;
     }
     & .scrolling {
+      overflow: auto;
+      box-sizing: content-box; // for IE9
       position: absolute;
       width: 100%;
       top: 0px;
