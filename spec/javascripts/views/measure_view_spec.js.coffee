@@ -26,20 +26,27 @@ describe 'MeasureView', ->
     expect(@measureView.$('[data-toggle="collapse"]')).not.toHaveClass('collapsed')
 
   it 'renders patient results', ->
-    expect(@measureView.$('.patient.row')).toExist()
+    expect(@measureView.$('.patient')).toExist()
     expect(@measureView.$('.toggle-result')).not.toBeVisible()
     expect(@measureView.$('.btn-show-coverage')).not.toBeVisible()
     @measureView.$('[data-call-method="expandResult"]').click()
     expect(@measureView.$('.toggle-result')).toBeVisible()
     expect(@measureView.$('.btn-show-coverage')).toBeVisible()
 
-  it 'sets up patient transfers', ->
-    @measureView.$('.toggle-measure-listing').click()
-    expect(@measureView.$('.measure-listing')).not.toContainText @measure.get('cms_id')
-    @measureView.$('.measure-listing').click()
-    expect(@measureView.$('.measure-listing.active')).not.toExist()
-    expect(@measureView.$(".btn-clone-#{bonnie.measures.last().get('hqmf_set_id')}")).toBeHidden()
-    @measureView.$('.select-patient').click()
-    @measureView.$('.measure-listing:first').click()
-    expect(@measureView.$('.measure-listing.active')).toExist()
-    expect(@measureView.$(".btn-clone-#{bonnie.measures.last().get('hqmf_set_id')}")).toBeVisible()
+  it 'lets users share or unshare a patient', ->
+    expect(@measureView.$('.share-patient')).toExist()
+    # the button actually shares by changing the patient's is_shared attribute
+    # @measureView.$('[data-call-method="togglePatient"]').click()
+    @measureView.$('[data-call-method="expandResult"]').click()
+    expect(@measureView.$('.share-patient')).toBeVisible()
+    @measureView.$('.share-patient').click()
+    # expect(@measureView.$('[data-call-method="togglePatient"]').model()).not.toBeUndefined()
+    # @measureView.$('[data-call-method="togglePatient"]').first().click()
+    # expect($('[data-call-method="togglePatient"]').first().model().result.patient.get('is_shared')).toEqual false
+    # the button also unshares
+
+    # the button accurately reflects shared or unshared state
+
+  it 'lets users navigate to the patient bank', ->
+    @measureView.$('[data-call-method="patientSettings"]').click()
+    expect(@measureView.$('.import-patients')).toBeVisible()
