@@ -16,6 +16,8 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         @differences.add @collectionOtherMeasures.map (patient) => @currentPopulation.differenceFromUnexpected(patient)
 
         @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
+        @bankLogicView.showSelectCoverages(@differences,@currentPopulation) # set coverage view
+        # @bankLogicView.showCoverage()
 
     rendered: ->
       @exportPatientsView = new Thorax.Views.ExportPatientsView() # Modal dialogs for exporting
@@ -51,9 +53,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @selectedPatients = new Thorax.Collection
     @listenTo @selectedPatients, 'add remove', _.bind(@updateDisplayedCoverage, this)
 
-    # make sure filters only enabled after everything calculates
-    @listenTo @differences, 'complete', -> @$('button[type=submit]').button('ready').removeAttr("disabled")
-
     populations = @model.get('populations')
     @currentPopulation = populations.first()
     populationLogicView = new Thorax.Views.PopulationLogic(model: @currentPopulation)
@@ -71,21 +70,9 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @availableFilters.add filter: Thorax.Models.MeasureAuthorFilter, name: 'Created by...'
     @availableFilters.add filter: Thorax.Models.MeasureFilter, name: 'From measure...'
 
-  changeSelectedPatients: (e) ->
-    @$(e.target).closest('.panel-heading').toggleClass('selected-patient')
-    patient = @$(e.target).model().result.patient # gets the patient model
-    if @$(e.target).is(':checked')
-      @selectedPatients.add patient
-    else
-      @selectedPatients.remove patient
-    @updateSelectedCount()
-
-  updateDisplayedCoverage: ->
-    if !@$('.shared-patient > .in').length # only show coverage if no patients are expanded
-      if @selectedPatients.isEmpty()
-        @bankLogicView.showCoverage() # TODO show coverage for ALL patients, not just patients from the current measure
-      else
-        @bankLogicView.clearCoverage() # TODO coverage tailored to selected patients
+    # after everything calculates
+    @listenTo @differences, 'complete', ->
+      @$('button[type=submit]').button('ready').removeAttr("disabled") # enable filters
 
   measureSelectionContext: (measure) ->
     _(measure.toJSON()).extend isSelected: measure is @model
@@ -170,9 +157,13 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   updateDisplayedCoverage: ->
     if !@$('.shared-patient > .in').length # only show coverage if no patients are expanded
       if @selectedPatients.isEmpty()
-        @bankLogicView.showCoverage() # TODO show coverage for ALL patients, not just patients from the current measure
+        @bankLogicView.showSelectCoverages(@differences,@currentPopulation) # all the patient bank patients
       else
-        @bankLogicView.clearCoverage() # TODO coverage tailored to selected patients
+        @selectedDifferences = new Thorax.Collections.Differences
+        @differences.filter (difference) =>
+          if _.contains @selectedPatients.models, difference.result.patient
+            @selectedDifferences.add difference
+        @bankLogicView.showSelectCoverages(@selectedDifferences,@currentPopulation) # selected patient bank patients
 
   clonePatientIntoMeasure: (patient) ->
     clonedPatient = patient.deepClone(omit_id: true, dedupName: true)

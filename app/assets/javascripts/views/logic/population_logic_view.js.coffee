@@ -103,6 +103,23 @@ class Thorax.Views.PopulationLogic extends Thorax.Views.BonnieView
       @$("rect[precondition=\"#{criteria}\"]").attr 'class', (index, classNames) -> "#{classNames} coverage"
     @coverageScreenReaderStatus()
 
+  showSelectCoverages: (differences, population) ->
+    @clearRationale()
+    @clearCoverage()
+    @measureCriteria = population.dataCriteriaKeys()
+    # Find all unique criteria that evaluated true in the rationale that are also in the measure
+    @rationaleCriteria = []
+    differences.each (difference) =>
+      result = difference.result
+      rationale = result.get('rationale')
+      @rationaleCriteria.push(criteria) for criteria, result of rationale when result
+    @rationaleCriteria = _(@rationaleCriteria).intersection(@measureCriteria)
+
+    for criteria in @rationaleCriteria
+      @$(".#{criteria}").addClass('eval-coverage')
+      @$("rect[precondition=\"#{criteria}\"]").attr 'class', (index, classNames) -> "#{classNames} coverage"
+    @coverageScreenReaderStatus()
+
   coverageScreenReaderStatus: ->
     @$('.rationale .rationale-target').find('.sr-highlight-status').html('(status: not covered)')
     @$('.eval-coverage').children('.sr-highlight-status').html('(status: covered)')
