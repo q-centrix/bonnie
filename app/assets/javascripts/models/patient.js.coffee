@@ -175,8 +175,8 @@ class Thorax.Models.Patient extends Thorax.Model
     return errors if errors.length > 0
 
 class Thorax.Collections.Patients extends Thorax.Collection
-  url: '/patients'
   model: Thorax.Models.Patient
+  url: '/patients'
   dedupName: (patient) ->
     return patient.first if !(patient.first && patient.last)
     #matcher to find all of the records that have the same last name and the first name starts with the first name of the

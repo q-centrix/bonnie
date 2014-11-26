@@ -66,22 +66,12 @@ class Thorax.Views.PopulationCalculation extends Thorax.Views.BonnieView
 
   togglePatient: (e) ->
     $btn = $(e.currentTarget)
-
-    result = $btn.model().result
-    patient = @measure.get('patients').get result.get('patient_id')
-
-    # toggle the patient's 'is_shared' attribute
-    if patient.get('is_shared')
-      patient.save({'is_shared': false}, silent: true)
-      $btn.find('.btn-label').text 'Share'
-    else
-      patient.save({'is_shared': true}, silent: true)
-      $btn.find('.btn-label').text 'Unshare'
-
+    patient = @measure.get('patients').get $btn.model().result.patient.id
+    patient.save {'is_shared': !patient.get('is_shared') }, silent: true
     # switch displayed button
+    $btn.find('.btn-label').text if $btn.find('.btn-label').text() == 'Share' then 'Unshare' else 'Share'
     $btn.toggleClass 'btn-primary btn-primary-inverse'
     $btn.find('.share-icon').toggleClass 'fa-plus fa-minus'
-
 
   expandResult: (e) ->
     @trigger 'rationale:clear'

@@ -2,46 +2,60 @@ describe 'PatientBankView', ->
 
   beforeEach ->
     @measures = bonnie.measures
-    @patients = bonnie.patients
-    # @patients = new Thorax.Collections.Patients getJSONFixture('patients.json'), parse: true
-    @measure = bonnie.measures.first()
-    # @patientBankView = new Thorax.Views.PatientBankView(model: @measure, measures: @measures, patients: @patients)
-    # @patientBankView.render()
-    # @$el = @patientBankView.$el
-    # @patientBankView.appendTo 'body'
+    @patients = new Thorax.Collections.Patients getJSONFixture('patients.json'), parse: true
+    # mockup some shared patients
+    @patients.at(0).set('is_shared', true)
+    @patients.at(2).set('is_shared', true)
+    @bankpatients = @patients.where({'is_shared': true})
 
-  # afterEach ->
+    @measure = bonnie.measures.filter( (m) -> return m.get('populations').length > 1 )[0]
+    # @currentPopulation = @measure.get('populations').first()
+
+    # @patientBankView = new Thorax.Views.PatientBankView
+    @patientBankView = new Thorax.Views.PatientBankView(model: @measure)
+    # @patientBankView = new Thorax.Views.PatientBankView(model: @measure, measures: @measures, patients: @patients)
+    console.log @patientBankView
+    # @patientBankView.collection = @bankpatients
+    # manually "sync" with a "server"
+    # @patientBankView.differences.add @bankpatients.map (patient) => @currentPopulation.differenceFromExpected(patient)
+    @patientBankView.render()
+    @patientBankView.appendTo 'body'
+
+  afterEach ->
     # @patientBankView.remove()
 
   it 'shows list of shared patients', ->
-    shared_patients = bonnie.patients.where({ is_shared: true })
-    displayed_patients = @patientBankView.$('.shared-patient')
-    expect(displayed_patients.length).toEqual shared_patients.length
-    expect($('.shared-patient').model().result.patient.get('cms_id')).toBeTruthy()
-    expect($('.shared-patient').model().result.patient.get('user_email')).toBeTruthy()
+  #   displayed_patients = @patientBankView.$('.shared-patient')
+  #   shared_patients = @patients.where({'is_shared': true}).length
+  #   expect(displayed_patients.length).toEqual shared_patients
 
   it 'shows calculation results for each patient', ->
-    expect(@patientBankView.$('.shared-patient').model().result).toExist()
-    expect(@patientBankView.$('.shared-patient').model().get('done')).toBeTruthy()
-    @patientBankView.$('.patient-btn').click()
-    expect(@patientBankView.$('.table')).toBeVisible()
+  #   expect(@patientBankView.$('.shared-patient').model().result).toExist()
+  #   @patientBankView.$('.shared-patient a[data-toggle="collapse"]').click()
+  #   expect(@patientBankView.$('.shared-patient table')).toBeVisible()
 
   it 'lets users clone patients from the bank to the measure', ->
-    @patientBankView.$('.patient-btn').click()
-    expect(@patientBankView.$('[data-call-method="cloneOnePatient"]')).toBeVisible()
+  #   # cloning the first way
+  #   @patientBankView.$('.shared-patient a[data-toggle="collapse"]').click()
+  #   expect(@patientBankView.$('[data-call-method="cloneOnePatient"]')).toBeVisible()
 
+  #   console.log @patientBankView.$('input.select-patient')
+  #   @patientBankView.$('input.select-patient').prop('checked',true).trigger("change")
+  #   # need to manually trigger that
+  #   # @patientBankView.changeSelectedPatients()
+  #   console.log @patientBankView.$('[data-call-method="cloneBankPatients"]').prop('disabled')
+  #   # check if main clone button is enabled
+  #   console.log @patientBankView.selectedPatients
+  #   # expect(@patientBankView.$('[data-call-method="cloneBankPatients"]').isEnabled()).toBe(true)
 
-    @patientBankView.$('input.select-patient').prop('checked','true')
-    # check if main clone button is enabled
-
-    # when cloned, sets it to unshared, and adds origin_data attributes
-    ## indicates that it has been cloned if cloned singly
+  #   # when cloned, sets it to unshared, and adds origin_data attributes
+  #   ## indicates that it has been cloned if cloned singly
 
   # it 'lets users export patients from the bank', ->
 
   it 'shows measure logic', ->
-    # expect(@patientBankView.$el).toContainText @measure.get('cms_id')
-    # expect(@patientBankView.$('.measure-viz')).toExist()
+  #   expect(@patientBankView.$el).toContainText @measure.get('cms_id')
+  #   expect(@patientBankView.$('.measure-viz')).toExist()
 
   describe 'toggles measure coverage and rationale', ->
 

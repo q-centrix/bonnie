@@ -1,7 +1,7 @@
 describe 'MeasureView', ->
 
   beforeEach ->
-    @measure = bonnie.measures.first()
+    @measure = bonnie.measures.filter( (m) -> return m.get('populations').length > 1 )[0]
     @patient = new Thorax.Models.Patient getJSONFixture('patients.json')[0], parse: true
     @measure.get('patients').add @patient
     @measureView = new Thorax.Views.Measure(model: @measure, patients: @measure.get('patients'))
@@ -34,18 +34,14 @@ describe 'MeasureView', ->
     expect(@measureView.$('.btn-show-coverage')).toBeVisible()
 
   it 'lets users share or unshare a patient', ->
-    expect(@measureView.$('.share-patient')).toExist()
-    # the button actually shares by changing the patient's is_shared attribute
-    # @measureView.$('[data-call-method="togglePatient"]').click()
     @measureView.$('[data-call-method="expandResult"]').click()
     expect(@measureView.$('.share-patient')).toBeVisible()
-    @measureView.$('.share-patient').click()
-    # expect(@measureView.$('[data-call-method="togglePatient"]').model()).not.toBeUndefined()
-    # @measureView.$('[data-call-method="togglePatient"]').first().click()
-    # expect($('[data-call-method="togglePatient"]').first().model().result.patient.get('is_shared')).toEqual false
-    # the button also unshares
-
-    # the button accurately reflects shared or unshared state
+    testpatient = @measureView.$('[data-call-method="togglePatient"]')
+    unclicked = testpatient.model().result.patient.get('is_shared')
+    testpatient[0].click()
+    clicked = testpatient.model().result.patient.get('is_shared')
+    expect(clicked).not.toEqual(unclicked)
+    expect(clicked).toBeTruthy()
 
   it 'lets users navigate to the patient bank', ->
     @measureView.$('[data-call-method="patientSettings"]').click()

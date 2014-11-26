@@ -8,16 +8,16 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
     collection:
       sync: ->
+        @differences.reset
         # add calculated patients for those in this measure
         @collectionThisMeasure = @collection.filter (patient) => _(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
-        @differences.reset @collectionThisMeasure.map (patient) => @currentPopulation.differenceFromExpected(patient)
+        @differences.add @collectionThisMeasure.map (patient) => @currentPopulation.differenceFromExpected(patient)
         # add the other patients without setting expectations
         @collectionOtherMeasures = @collection.filter (patient) => !_(patient.get('measure_ids')).contains @model.get('hqmf_set_id')
         @differences.add @collectionOtherMeasures.map (patient) => @currentPopulation.differenceFromUnexpected(patient)
 
         @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
-        @bankLogicView.showSelectCoverages(@differences,@currentPopulation) # set coverage view
-        # @bankLogicView.showCoverage()
+        # @bankLogicView.showSelectCoverages(@differences,@currentPopulation) # set coverage view
 
     rendered: ->
       @exportPatientsView = new Thorax.Views.ExportPatientsView() # Modal dialogs for exporting
@@ -51,7 +51,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @differences = new Thorax.Collections.Differences
 
     @selectedPatients = new Thorax.Collection
-    @listenTo @selectedPatients, 'add remove', _.bind(@updateDisplayedCoverage, this)
+    # @listenTo @selectedPatients, 'add remove', _.bind(@updateDisplayedCoverage, this)
 
     populations = @model.get('populations')
     @currentPopulation = populations.first()
@@ -104,7 +104,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       filter = new filterModel($additionalRequirements.val())
     @appliedFilters.add(filter)
     @updateFilteredDisplay()
-    # TODO - don't keed adding endless filters or duplicate filters
     $select.find('option:eq(0)').prop("selected", true).trigger("change")
     $select.data("selectBox-selectBoxIt").refresh() # update dropdown
 
@@ -129,7 +128,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   clearSelectedPatients: ->
     @$('input.select-patient:checked').prop('checked',false).trigger("change") # resets checkboxes
     @selectedPatients.reset() # empties collection
-    @updateSelectedCount()
 
   changeSelectedPatients: (e) ->
     @$(e.target).closest('.panel-heading').toggleClass('selected-patient')
@@ -157,13 +155,13 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
   updateDisplayedCoverage: ->
     if !@$('.shared-patient > .in').length # only show coverage if no patients are expanded
       if @selectedPatients.isEmpty()
-        @bankLogicView.showSelectCoverages(@differences,@currentPopulation) # all the patient bank patients
+        # @bankLogicView.showSelectCoverages(@differences,@currentPopulation) # all the patient bank patients
       else
         @selectedDifferences = new Thorax.Collections.Differences
         @differences.filter (difference) =>
           if _.contains @selectedPatients.models, difference.result.patient
             @selectedDifferences.add difference
-        @bankLogicView.showSelectCoverages(@selectedDifferences,@currentPopulation) # selected patient bank patients
+        # @bankLogicView.showSelectCoverages(@selectedDifferences,@currentPopulation) # selected patient bank patients
 
   clonePatientIntoMeasure: (patient) ->
     clonedPatient = patient.deepClone(omit_id: true, dedupName: true)
@@ -184,22 +182,17 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       'is_shared': false,
       'origin_data': origin_data
 
-    console.log clonedPatient
-
     clonedPatient.save clonedPatient.toJSON(),
       success: (patient) =>
-        console.log patient
         @patients.add patient # make sure that the patient exist in the global patient collection
         @model.get('patients').add patient # and that measure's patient collection
         if bonnie.isPortfolio
           @measures.each (m) -> m.get('patients').add patient
 
   cloneOnePatient: (e) ->
-    @$(e.target).button('cloning')
     patient = @$(e.target).model().result.patient # gets the patient model to clone
     @clonePatientIntoMeasure(patient)
-    @$(e.target).button('cloned')
-    @$(e.target).attr("disabled", true)
+    @$(e.target).attr("disabled", "disabled")
 
   cloneBankPatients: (e) ->
     @$(e.target).button('cloning')
