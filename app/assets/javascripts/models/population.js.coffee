@@ -19,15 +19,6 @@ class Thorax.Models.Population extends Thorax.Model
     expected = patient.getExpectedValue(this)
     new Thorax.Models.Difference({}, result: result, expected: expected)
 
-  differenceFromUnexpected: (patient) ->
-    result = @calculate(patient)
-    expected = new Thorax.Models.ExpectedValue
-    # copy results attributes to expected and set them undefined
-    keys = _.keys(result.population.attributes)
-    values = _.map _.clone(keys), -> _.noop # fill undefined values
-    expected.set _.object(keys,values) # add undefined expectations
-    new Thorax.Models.Difference({}, result: result, expected: expected)
-
   differencesFromExpected: ->
     differences = new Thorax.Collections.Differences()
     # We want to explicitly call reset to fire an event (it doesn't happen if we just initialize)
