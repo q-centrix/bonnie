@@ -68,6 +68,9 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     else
       @bankLogicView = populationLogicView
 
+    @listenTo @bankLogicView, 'population:update', (population) ->
+      if @toggledPatient then @bankLogicView.showRationale(@toggledPatient)
+
     @appliedFilters = new Thorax.Collection
     @availableFilters = new Thorax.Collection
 
