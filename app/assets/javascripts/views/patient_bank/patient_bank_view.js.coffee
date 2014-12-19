@@ -16,8 +16,6 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
           _(patient_measures).each (m) -> cms_ids.push m.get('cms_id')
           d.result.patient.set({ cms_ids: cms_ids }, { silent: true})
 
-        @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
-
     rendered: ->
 
       @$('#sharedResults').on 'shown.bs.collapse hidden.bs.collapse', (e) =>
@@ -27,7 +25,7 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
           @bankLogicView.showRationale(@toggledPatient)
         else
           @toggledPatient = null
-          @updateDisplayedCoverage()
+          @showSelectedPatients()
 
       @$('#sharedResults').on 'show.bs.collapse hidden.bs.collapse', (e) =>
         @$(e.target).prev('.panel-heading').toggleClass('opened-patient')
@@ -48,10 +46,14 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @differences = new Thorax.Collections.Differences
 
     @selectedPatients = new Thorax.Collection
-    @listenTo @selectedPatients, 'add remove', _.bind(@updateDisplayedCoverage, this)
+    @listenTo @selectedPatients, 'add remove', _.bind(@showSelectedPatients, this)
+    @selectedDifferences = new Thorax.Collection
 
-    # make sure filters only enabled after everything calculates
-    @listenTo @differences, 'complete', -> @$('button[type=submit]').button('ready').removeAttr("disabled")
+    # wait so everything calculates
+    @listenTo @differences, 'complete', ->
+      @$('button[type=submit]').button('ready').removeAttr("disabled")
+      @$('.patient-count').text "("+@differences.length+")" # show number of patients in bank
+      @showSelectedPatients()
 
     populations = @model.get('populations')
     @currentPopulation = populations.first()
@@ -63,15 +65,17 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       @bankLogicView = populationLogicView
 
     @listenTo @bankLogicView, 'population:update', (population) ->
-      if @toggledPatient then @bankLogicView.showRationale(@toggledPatient)
+      @currentPopulation = population # change to reflect the selection
+      @createFilters() # need to update filters based on the selected population
+      @collection.fetch() # need to update the patient results based on the selected population
+      # wait but don't reset toggled patient....
+      if @toggledPatient then @bankLogicView.showRationale(@toggledPatient) else @showSelectedPatients()
+      # wait but don't reset selected patients..
 
     @appliedFilters = new Thorax.Collection
+    @listenTo @appliedFilters, 'add remove', _.bind(@updateFilteredDisplay, this)
     @availableFilters = new Thorax.Collection
-
-    _(@currentPopulation.populationCriteria()).each (criteria) =>
-      @availableFilters.add filter: Thorax.Models.PopulationsFilter, name: criteria
-    @availableFilters.add filter: Thorax.Models.MeasureAuthorFilter, name: 'Created by...'
-    @availableFilters.add filter: Thorax.Models.MeasureFilter, name: 'From measure...'
+    @createFilters()
 
   appliedFilterContext: (filter) ->
     _(filter.toJSON()).extend
@@ -83,6 +87,12 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       measure_id: @model.get('hqmf_set_id')
       cms_id: @model.get('cms_id')
       episode_of_care: @model.get('episode_of_care')
+
+  createFilters: ->
+    _(@currentPopulation.populationCriteria()).each (criteria) =>
+      @availableFilters.add filter: Thorax.Models.PopulationsFilter, name: criteria
+    @availableFilters.add filter: Thorax.Models.MeasureAuthorFilter, name: 'Created by...'
+    @availableFilters.add filter: Thorax.Models.MeasureFilter, name: 'From measure...'
 
   patientFilter: (difference) ->
     patient = difference.result.patient
@@ -122,35 +132,36 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       patient = @$(element).model().result.patient
       @selectedPatients.remove patient
 
+  updateFilteredDisplay: ->
+    @updateFilter() # force item-filter to show new results
+    @$('.patient-count').text "("+$('.shared-patient:visible').length+")" # updates displayed count of patient bank results
+    @filterSelectedPatients() # if needed, adjust the currently selected patient set
+
   changeSelectedPatients: (e) ->
     @$(e.target).closest('.panel-heading').toggleClass('selected-patient')
     patient = @$(e.target).model().result.patient # gets the patient model to add or remove
     if @$(e.target).is(':checked') then @selectedPatients.add patient else @selectedPatients.remove patient
-    # updates displayed count of selected patients, handles button enabling
-    if !@selectedPatients.isEmpty()
+
+  showSelectedPatients: ->
+    #reflects the selected patient across the view
+    if @selectedPatients.isEmpty()
+      @$('.bank-actions').attr("disabled", true)
+      @$('.patient-select-count').html 'Please select patients below.'
+      @selectedDifferences.reset @differences.models # show the coverage for everyone
+    else
       @$('.bank-actions').removeAttr("disabled")
       if @selectedPatients.length == 1 then @$('.patient-select-count').html '1 patient selected <i class="fa fa-times-circle clear-selected"></i>'
       else @$('.patient-select-count').html @selectedPatients.length + ' patients selected <i class="fa fa-times-circle clear-selected"></i>'
-    else
-      @$('.bank-actions').attr("disabled", true)
-      @$('.patient-select-count').html 'Please select patients below.'
+      @selectedDifferences.reset @selectedPatients.map (patient) => @currentPopulation.differenceFromExpected(patient)
 
-  supplyExtraFilterInput: ->
-    @$('input[name="additional_requirements"]').remove() # remove any filter added previously
-    filterModel = @$('select[name=patients-filter]').find(':selected').model().get('filter') # get relevant filter type
-    additionalRequirements = filterModel::additionalRequirements
-    if additionalRequirements?
-      # FIXME use a partial, this is a lot of markup
-      input = "<input type='#{additionalRequirements.type}' class='form-control' name='additional_requirements' placeholder='#{additionalRequirements.text}'>"
-      div = @$('.additional-requirements')
-      $(input).hide().appendTo(div).animate({width: 'toggle'},"fast")
-
-  updateDisplayedCoverage: ->
-    if !@$('.shared-patient > .in').length # only show coverage if no patients are expanded
-      if @selectedPatients.isEmpty()
-        @bankLogicView.showCoverage() # TODO show coverage for ALL patients, not just patients from the current measure
-      else
-        @bankLogicView.clearCoverage() # TODO coverage tailored to selected patients
+    @rationaleCriteria = []
+    @selectedDifferences.each (difference) => if difference.get('done')
+      result = difference.result
+      rationale = result.get('rationale')
+      @rationaleCriteria.push(criteria) for criteria, result of rationale when result
+    @measureCriteria = @currentPopulation.dataCriteriaKeys()
+    @rationaleCriteria = _(@rationaleCriteria).intersection(@measureCriteria)
+    if not @toggledPatient then @bankLogicView.showSelectCoverage(@rationaleCriteria) # returns a custom coverage view
 
   clonePatientIntoMeasure: (patient) ->
     clonedPatient = patient.deepClone(omit_id: true, dedupName: true)
