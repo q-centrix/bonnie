@@ -109,20 +109,22 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     else
       filter = new filterModel($additionalRequirements.val())
     @appliedFilters.add(filter)
-    @updateFilteredDisplay()
-    # TODO - don't keed adding endless filters or duplicate filters
     $select.find('option:eq(0)').prop("selected", true).trigger("change")
     $select.data("selectBox-selectBoxIt").refresh() # update dropdown
 
   removeFilter: (e) ->
     thisFilter = $(e.target).model()
     @appliedFilters.remove(thisFilter)
-    @updateFilteredDisplay()
 
-  updateFilteredDisplay: ->
-    @updateFilter() # force item-filter to show new results
-    @$('.patient-count').text "("+$('.shared-patient:visible').length+")" # updates displayed count of patient bank results
-    @filterSelectedPatients() # if needed, adjust the currently selected patient set
+  supplyExtraFilterInput: ->
+    @$('input[name="additional_requirements"]').remove() # remove any filter added previously
+    filterModel = @$('select[name=patients-filter]').find(':selected').model().get('filter') # get relevant filter type
+    additionalRequirements = filterModel::additionalRequirements
+    if additionalRequirements?
+      # FIXME use a partial, this is a lot of markup
+      input = "<input type='#{additionalRequirements.type}' class='form-control' name='additional_requirements' placeholder='#{additionalRequirements.text}'>"
+      div = @$('.additional-requirements')
+      $(input).hide().appendTo(div).animate({width: 'toggle'},"fast")
 
   filterSelectedPatients: ->
     # when selected patients get filtered out, properly remove them from selected patients.
