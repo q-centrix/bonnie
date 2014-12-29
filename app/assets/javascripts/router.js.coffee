@@ -83,5 +83,4 @@ class BonnieRouter extends Backbone.Router
   renderPatientBank: (measureHqmfSetId) ->
     measure = @measures.findWhere(hqmf_set_id: measureHqmfSetId)
     document.title = "Bonnie v#{bonnie.applicationVersion}: Patient Bank - #{measure.get('cms_id')}"
-    @mainView.setView new Thorax.Views.PatientBankView model: measure
-
+    @mainView.setView new Thorax.Views.PatientBankView model: measure, patients: @patients
