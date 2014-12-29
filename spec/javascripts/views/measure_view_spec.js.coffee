@@ -26,7 +26,7 @@ describe 'MeasureView', ->
     expect(@measureView.$('[data-toggle="collapse"]')).not.toHaveClass('collapsed')
 
   it 'renders patient results', ->
-    expect(@measureView.$('.patient.row')).toExist()
+    expect(@measureView.$('.patient')).toExist()
     expect(@measureView.$('.toggle-result')).not.toBeVisible()
     expect(@measureView.$('.btn-show-coverage')).not.toBeVisible()
     @measureView.$('[data-call-method="expandResult"]').click()
