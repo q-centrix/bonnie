@@ -52,6 +52,8 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
 
     @listenTo @bankLogicView, 'population:update', (population) ->
       @currentPopulation = population # change to reflect the selection
+      @bankFilterView.population = @currentPopulation
+      @bankFilterView.render()
       # keep track of patients who are currently toggled and/or selected
       toggledResult = @toggledPatient # {} one result model, also contains patient
       selectedPatients = @selectedPatients # a collection of patient models
@@ -59,6 +61,18 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
       # make sure whatever patients are selected or toggled still hold
       if toggledResult then @updateToggledPatient(toggledResult)
       if !@selectedPatients.isEmpty() then @updateSelectedPatients(selectedPatients)
+
+    @bankFilterView = new Thorax.Views.BankFilters population: @currentPopulation
+    @bankFilterView.listenTo @bankFilterView.appliedFilters, 'add remove', =>
+      @updateFilter() # force item-filter to show new results
+      @$('.patient-count').text "("+@$('.shared-patient:visible').length+")" # updates displayed count of patient bank results
+      # when selected patients get filtered out, properly remove them from selected patients.
+      $hiddenPatients = @$('input.select-patient:checked:hidden')
+      $hiddenPatients.prop('checked',false).trigger("change")
+
+  patientFilter: (difference) ->
+    patient = difference.result.patient
+    @bankFilterView.appliedFilters.all (filter) -> filter.apply(patient)
 
   differenceContext: (difference) ->
     _(difference.toJSON()).extend
