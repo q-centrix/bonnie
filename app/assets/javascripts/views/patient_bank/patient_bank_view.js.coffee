@@ -14,6 +14,9 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
         @differences.reset @allDifferences.filter (d) => _(d.result.population).isEqual @currentPopulation
 
     rendered: ->
+      @exportPatientsView = new Thorax.Views.ExportPatientsView() # Modal dialogs for exporting
+      @exportPatientsView.appendTo(@$el)
+
       @$('#sharedResults').on 'shown.bs.collapse hidden.bs.collapse', (e) =>
         @bankLogicView.clearRationale()
         if e.type is 'shown'
@@ -156,3 +159,27 @@ class Thorax.Views.PatientBankView extends Thorax.Views.BonnieView
     @$(e.target).button('cloned')
     bonnie.navigate "measures/#{@model.get('hqmf_set_id')}" # return to measure
     window.location.reload() # refreshes the measure page so it shows newly imported patients
+
+  exportBankPatients: (e) ->
+    @exportPatientsView.exporting()
+
+    bankDifferences = new Thorax.Collections.Differences()
+
+    @selectedPatients.each (patient) =>
+      # FIXME: get access to all measures
+      measure_cms = patient.get('cms_id')
+      ### somehow get the relevant measure data here so we can calculate differences ###
+      measure.get('populations').each (population) =>
+        bankDifferences.add population.differenceFromExpected(patient)
+
+    bankDifferences.on 'complete', =>
+      results = [bankDifferences.toJSON()]
+      patients = @selectedPatients.map (p) -> p.id #just an array of patient IDs, used to find the records later
+      $.fileDownload "patients/export",
+        successCallback: => @exportPatientsView.success()
+        failCallback: => @exportPatientsView.fail()
+        httpMethod: "POST"
+        data:
+          authenticity_token: $("meta[name='csrf-token']").attr('content'),
+          results: results,
+          patients: patients
