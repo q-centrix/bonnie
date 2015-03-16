@@ -6,38 +6,51 @@
   {{view "SubsetOperatorLogic" subsetOperator=this tag="span"}}
 {{/each}}
 {{#if hasChildren}}
-  {{#if isSatisfies}}
-    {{view "SatisfiesLogic" reference=dataCriteria.key measure=../measure tag="span"}}
-  {{else}}
-    {{#if dataCriteria.children_criteria}}
-      {{#if isSetOp}}
-        {{#unless expandVariable}}
-          <ul><li><span class="set-op {{dataCriteria.key}} rationale-target"> {{translate_set_operator dataCriteria.derivation_operator}}:</span></li>
-        {{/unless}}
-      {{/if}}
-      <ul>
-        {{#each dataCriteria.children_criteria}}
-          <li{{#if ../isSetOp}}{{#unless ../../expandVariable}} class="set-op-item"{{/unless}}{{/if}}>
-            {{#unless ../isSetOp}}
-              <span class="conjunction {{../../dataCriteria.key}} rationale-target">{{translate_logic_operator ../../dataCriteria.derivation_operator}} : <span class="sr-only sr-highlight-status"></span></span>
-            {{/unless}}
-            {{view "DataCriteriaLogic" reference=this measure=../measure tag="span"}}
-          </li>
-        {{/each}}
-        {{#if dataCriteria.temporal_references}}
+  {{#if groupedVariableReference}}
+    {{view "DataCriteriaLogic" reference=dataCriteria.onlyChild measure=../measure tag="span"}}
+    {{#if dataCriteria.temporal_references}}
           {{#each dataCriteria.temporal_references}}
-            <li>
               <span class="{{../dataCriteria.key}} rationale-target">
                 {{view "TemporalReferenceLogic" temporalReference=this measure=../measure tag="span"}}
               </span>
-            </li>
           {{/each}}
         {{/if}}
-      </ul>
-      {{#if isSetOp}}
-        {{#unless expandVariable}}
-          </ul>
-        {{/unless}}
+  {{else}}
+    {{#if isSatisfies}}
+      {{view "SatisfiesLogic" reference=dataCriteria.key measure=../measure tag="span"}}
+    {{else}}
+      {{#if dataCriteria.children_criteria}}
+        {{#if isSetOp}}
+          {{#unless expandVariable}}
+            <ul><li><span class="set-op {{dataCriteria.key}} rationale-target"> {{translate_set_operator dataCriteria.derivation_operator}}:</span></li>
+          {{/unless}}
+        {{/if}}
+        <ul>
+          {{#each dataCriteria.children_criteria}}
+            <li{{#if ../isSetOp}}{{#unless ../../expandVariable}} class="set-op-item"{{/unless}}{{/if}}>
+              {{#unless ../isSetOp}}
+                {{#ifCond ../dataCriteria.derivation_operator}}
+                <span class="conjunction {{../../dataCriteria.key}} rationale-target">{{translate_logic_operator ../../dataCriteria.derivation_operator}} : <span class="sr-only sr-highlight-status"></span></span>
+                {{/ifCond}}
+              {{/unless}}
+              {{view "DataCriteriaLogic" reference=this measure=../measure tag="span"}}
+            </li>
+          {{/each}}
+          {{#if dataCriteria.temporal_references}}
+            {{#each dataCriteria.temporal_references}}
+              <li>
+                <span class="{{../dataCriteria.key}} rationale-target">
+                  {{view "TemporalReferenceLogic" temporalReference=this measure=../measure tag="span"}}
+                </span>
+              </li>
+            {{/each}}
+          {{/if}}
+        </ul>
+        {{#if isSetOp}}
+          {{#unless expandVariable}}
+            </ul>
+          {{/unless}}
+        {{/if}}
       {{/if}}
     {{/if}}
   {{/if}}

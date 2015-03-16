@@ -31,7 +31,15 @@ class Thorax.Views.DataCriteriaLogic extends Thorax.Views.BonnieView
     @dataCriteria.field_values = null if @dataCriteria && _.isEmpty(@dataCriteria.field_values)
     @isSatisfies = @dataCriteria.definition in @satisfiesDefinitions
     @isDerived = @dataCriteria.type == 'derived'
+
     @hasChildren = @isDerived && (!@dataCriteria.variable || @expandVariable)
+
+  groupedVariableReference: -> 
+    @dataCriteria.children_criteria?.length == 1 && 
+    @measure.get('data_criteria')[@dataCriteria.children_criteria[0]].variable &&
+    not @dataCriteria.derivation_operator?
+
+  onlyChild: -> @dataCriteria.children_criteria[0] 
 
   isSetOp: => @dataCriteria.derivation_operator in _(@set_operator_map).keys()
 
