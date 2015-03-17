@@ -53,6 +53,58 @@ namespace :bonnie do
       puts "#{ENV['EMAIL']} is no longer a portfolio user."
     end
 
+    desc %{Grant an existing bonnie user dashboard privileges.
+
+    You must identify the user by USER_ID or EMAIL:
+
+    $ rake bonnie:users:grant_dashboard USER_ID=###
+    or
+    $ rake bonnie:users:grant_dashboard EMAIL=xxx}
+    task :grant_dashboard => :environment do
+      user = User.find_by email: ENV['EMAIL']
+      user.grant_dashboard()
+      puts "#{ENV['EMAIL']} is now a dashboard user."
+    end
+
+    desc %{Remove the dashboard role from an existing bonnie user.
+
+    You must identify the user by USER_ID or EMAIL:
+
+    $ rake bonnie:users:revoke_dashboard USER_ID=###
+    or
+    $ rake bonnie:users:revoke_dashboard EMAIL=xxx}
+    task :revoke_dashboard => :environment do
+      user = User.find_by email: ENV["EMAIL"]
+      user.revoke_dashboard()
+      puts "#{ENV['EMAIL']} is no longer a dashboard user."
+    end
+
+    desc %{Grant an existing bonnie user dashboard_set privileges.
+
+    You must identify the user by USER_ID or EMAIL:
+
+    $ rake bonnie:users:grant_dashboard_set USER_ID=###
+    or
+    $ rake bonnie:users:grant_dashboard_set EMAIL=xxx}
+    task :grant_dashboard_set => :environment do
+      user = User.find_by email: ENV['EMAIL']
+      user.grant_dashboard_set()
+      puts "#{ENV['EMAIL']} is now a dashboard_set user."
+    end
+
+    desc %{Remove the dashboard_set role from an existing bonnie user.
+
+    You must identify the user by USER_ID or EMAIL:
+
+    $ rake bonnie:users:revoke_dashboard_set USER_ID=###
+    or
+    $ rake bonnie:users:revoke_dashboard_set EMAIL=xxx}
+    task :revoke_dashboard_set => :environment do
+      user = User.find_by email: ENV["EMAIL"]
+      user.revoke_dashboard_set()
+      puts "#{ENV['EMAIL']} is no longer a dashboard_set user."
+    end
+
     desc 'Associate the currently loaded measures with the first User; use EMAIL=<user email> to select another user'
     task :associate_user_with_measures => :environment do
       user_email = ENV['EMAIL'] || User.first.email
@@ -316,6 +368,19 @@ namespace :bonnie do
   end
 
   namespace :patients do
+
+    desc "Share a random set of patients to the patient bank"
+    task :share_with_bank=> :environment do
+      Record.where(is_shared: true).update_all(is_shared: false) # reset everyone to not shared.
+      # share specified number of patients if possible, else share 25% of all existing patients
+      to_share = ((ENV["NUMBER"].to_i > 0) && (ENV["NUMBER"].to_i <= Record.count)) ? ENV["NUMBER"].to_i : (Record.count*0.25).round
+      patients = Record.all.sample(to_share)
+      patients.each do |patient|
+        patient['is_shared'] = true
+        patient.save
+      end
+      puts "Shared patients to the patient bank."
+    end
 
     desc "Materialize all patients"
     task :materialize_all=> :environment do

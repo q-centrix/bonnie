@@ -57,17 +57,24 @@
         margin-left: -@offset;
         padding-right: (@grid-gutter-width / 2); // leave out @time-bar-width to account for parent's border-right
       }
+      & .heading-muted {
+        margin-right: -@grid-gutter-width;
+      }
     }
   }
 
   .col-center {
-    .make-md-column(6);
     .make-sm-column(6);
+    padding-bottom: @grid-gutter-width;
     .form-data {
       .time-bar();
-      // FIXME this border is attached here because this column is taller, but really belongs on .col-right
-      border-right: 4px solid @brand-primary;
       margin-left: 0;
+      margin-top: -5px;
+      padding-top: 5px;
+      // FIXME: hack to get the grey bar to extend to next row
+      margin-bottom: -450px;
+      padding-bottom: 450px;
+      padding-right: (@grid-gutter-width / 2);
       padding-left: (@grid-gutter-width / 2);
     }
     .deceased-checkbox {
@@ -78,7 +85,7 @@
     }
     .remove-death-date {
       float: right;
-      padding-top: 8px;
+      padding-top: 0px;
       padding-right: 8px;
       padding-left: 0;
       padding-bottom: 0;
@@ -92,7 +99,7 @@
 
   .timeline-icon {
     color: @brand-primary;
-    margin-left: -32px;
+    margin-left: -23px;
   }
 
   .validation-alerts {
@@ -103,18 +110,30 @@
   }
 
   .expected-values {
+    .description {
+      max-height: @line-height-computed * 3; //show 3 lines of text.
+      overflow: hidden;
+      margin-bottom: @grid-gutter-width;
+    }
+    .expand {
+      color: @brand-primary;
+      margin-top: -@grid-gutter-width;
+      cursor: pointer;
+    }
     .nav-tabs .active a, .tab-content {
       background-color: @gray-lighter;
     }
     .tab-content {
-      padding-bottom: 10px;
+      padding: @grid-gutter-width/2;
+      padding-bottom: @grid-gutter-width * 1.5;
       h2, h3 {
         &:extend(h2);
         margin-top: 0;
-        padding-top: 6px;
       }
-
       .form-inline {
+        .checkbox-inline:first-child {
+          padding-left: 0px;
+        }
         .form-group {
           padding-right: 10px;
           label {
@@ -137,7 +156,7 @@
 
   .heading-muted {
     background-color: @gray-lighter;
-    padding-left: 3px;
+    padding-left: 8px;
   }
   .submeasure {
     text-transform: lowercase;
@@ -152,6 +171,7 @@
     background-color: @blue-lighter;
     color: white;
     padding-left: @grid-gutter-width;
+    margin-right: -@grid-gutter-width;
   }
 
   .panel {
@@ -162,20 +182,35 @@
       font-size: @font-size-base;
       padding: (@grid-gutter-width / 2);
       text-transform: uppercase;
-      .panel-icon {
-        display: block;
-        .transition(font-size .35s ease);
-        &.opened {
-          display: inline-block;
+      &[class*="-elements"] {
+        .transition(all .35s ease);
+        background-color: @blue-lighter;
+        &.closed {
+          padding: 4px (@grid-gutter-width / 2);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          &:before {
+            content: ''; // IE9 ellipsis fix
+          }
+          .panel-icon {
+            display: inline-block;
+            font-weight: bold;
+          }
+          .element-title {
+            line-height: 28px; // center it with arrow
+          }
         }
-      }
-      .panel-expander {
-        .transition(font-size .35s ease);
-        .pull-right;
-        line-height: 2;
-      }
-      &:hover {
-        text-decoration: none;
+        .panel-icon {
+          display: block;
+        }
+        .panel-expander {
+          .pull-right;
+        }
+        &:hover {
+          background-color: @blue-darker;
+          text-decoration: none;
+        }
       }
     }
     .draggable {
@@ -209,7 +244,7 @@
     .patient-criteria {
       .time-bar();
       &.during-measurement-period {
-        .time-bar(@blue-lightest);
+        .time-bar(@blue-lighter);
       }
       .criteria-type-marker {
         @radius: 18px;
@@ -283,15 +318,6 @@
           .control-label {
             color: @brand-primary;
           }
-          .datetime-control {
-            .make-row(0);
-            &> * {
-              .make-md-column(6; 0);
-            }
-            &> :last-child input {
-              border-left: 0;
-            }
-          }
           .input-group-addon {
             padding: 0;
             border: none;
@@ -322,6 +348,75 @@
         }
       }
     }
+  }
+  .datetime-control {
+    .make-row(0);
+    &> * {
+      .make-md-column(6; 0);
+    }
+    &> :last-child input {
+      border-left: 0;
+    }
+  }
+
+  .logic-pager {
+    text-align: center;
+    color: @brand-primary;
+    font-size: @font-size-base*2;
+    width: 100%;
+    &.disabled {
+      color: @gray-lighter;
+    }
+    &:not(.disabled):hover {
+      color: @blue-darker;
+      background-color: @gray-lighter;
+      cursor: pointer;
+    }
+    &:before {
+      content: @fa-var-chevron-circle-up;
+      font-family: FontAwesome;
+    }
+    &.down {
+      bottom: 0px;
+      position: absolute;
+      &:before {
+        content: @fa-var-chevron-circle-down;
+        font-family: FontAwesome;
+      }
+    }
+  }
+
+  .affix-top {
+    position: static;
+  }
+
+  .affix {
+    position: fixed;
+    top: 0px;
+    height: 100%;
+    box-sizing: content-box; // for IE9
+    &#criteriaElements {
+      padding-right: 0px;
+    }
+    & .scrolling {
+      overflow: auto;
+      box-sizing: content-box; // for IE9
+      position: absolute;
+      width: 100%;
+      top: 0px;
+      bottom: 0px;
+    }
+  }
+
+  .ui-draggable-dragging {
+    background: white;
+    width: 200px;
+    .panel > .draggable;
+    .box-shadow(0 1px 3px rgba(0,0,0,.25));
+  }
+
+  .active-drop {
+    background-color: fadeout(@blue-lightest, 75%);
   }
 }
 .selectBoxIt-native {

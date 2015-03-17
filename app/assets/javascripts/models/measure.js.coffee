@@ -1,7 +1,8 @@
 class Thorax.Models.Measure extends Thorax.Model
   idAttribute: '_id'
   initialize: ->
-    @set 'patients', new Thorax.Collections.Patients
+    # Becasue we bootstrap patients we mark them as _fetched, so isEmpty() will be sensible
+    @set 'patients', new Thorax.Collections.Patients [], _fetched: true
   parse: (attrs) ->
     alphabet = 'abcdefghijklmnopqrstuvwxyz' # for population sub-ids
     populations = new Thorax.Collections.Population [], parent: this
@@ -19,6 +20,14 @@ class Thorax.Models.Measure extends Thorax.Model
 
     for key, data_criteria of attrs.data_criteria
       data_criteria.key = key
+      if data_criteria.field_values
+        data_criteria.references = {}
+        for k,field of data_criteria.field_values
+          if field.reference?
+            data_criteria.references[k] = field
+            ref = attrs.data_criteria[field.reference]
+            field["referenced_criteria"] = ref
+            delete data_criteria.field_values[k]
 
     attrs.source_data_criteria = new Thorax.Collections.MeasureDataCriteria _(attrs.source_data_criteria).values(), parent: this
     attrs
@@ -34,6 +43,9 @@ class Thorax.Models.Measure extends Thorax.Model
         console.log('WARNING: missing value set') if !vs.get('display_name') && console?
         vs.get('display_name')?.toLowerCase())
     @cachedValueSets
+
+  @referencesFor: (criteriaType) ->
+    [{key: "fulfills", title: "Fulfills"}]
 
   @logicFieldsFor: (criteriaType) ->
 

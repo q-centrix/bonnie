@@ -39,14 +39,15 @@ class Thorax.Views.PatientBuilder extends Thorax.Views.BonnieView
     categories = {}
     @measure?.get('source_data_criteria').each (criteria) ->
       type = criteria.get('type').replace(/_/g, ' ')
-      # Filter out negations
+      # Filter out negations and specific occurrences
       filter_criteria = criteria.get('negation') or
       ( criteria.get('definition') is 'patient_characteristic_birthdate' ) or
       ( criteria.get('definition') is 'patient_characteristic_gender' ) or
       ( criteria.get('definition') is 'patient_characteristic_expired' ) or
       ( criteria.get('definition') is 'patient_characteristic_race' ) or
       ( criteria.get('definition') is 'patient_characteristic_ethnicity' ) or
-      ( criteria.get('definition') is 'patient_characteristic_payer' )
+      ( criteria.get('definition') is 'patient_characteristic_payer' ) or
+      ( criteria.has('specific_occurrence') )
       unless filter_criteria
         categories[type] ||= new Thorax.Collection
         categories[type].add criteria unless categories[type].any (c) -> c.get('description').replace(/,/g , "") == criteria.get('description').replace(/,/g , "")
@@ -56,7 +57,7 @@ class Thorax.Views.PatientBuilder extends Thorax.Views.BonnieView
     _(categoriesArray).sortBy (entry) -> entry.type
 
   events:
-    'blur :text':               'materialize'  
+    'blur :text':               'materialize'
     'change select': (e) ->
       @materialize()
       switch @$(e.target).attr('name') #jquery with focusable next for each select elements change
@@ -71,16 +72,43 @@ class Thorax.Views.PatientBuilder extends Thorax.Views.BonnieView
     'click .deceased-checkbox': 'toggleDeceased'
     # hide date-picker if it's still visible and focus is not on a .date-picker input (occurs with JAWS SR arrow-key navigation)
     'focus .form-control': (e) -> if not @$(e.target).hasClass('date-picker') and $('.datepicker').is(':visible') then @$('.date-picker').datepicker('hide')
+    # toggle showing the measure description
+    'click .expand.opened': ->
+      @$('.description').animate 'max-height': parseInt(@$('.description').css('line-height')) * 3 # contract
+      @$('.expand').toggleClass('closed opened').html 'Show more <i class="fa fa-caret-down"></i>'
+    'click .expand.closed': ->
+      if @$('.description')[0].scrollHeight > @$('.description').height()
+        @$('.description').animate 'max-height': @$('.description')[0].scrollHeight # expand
+        @$('.expand').toggleClass('closed opened').html 'Show less <i class="fa fa-caret-up"></i>'
+      else
+        # FIXME: remove this toggle if the description is too short on render rather than on this click.
+        @$('.expand').html('Nothing more to show...').fadeOut 2000, -> $(@).remove()
+
     rendered: ->
-      @$('.draggable').draggable revert: 'invalid', helper: 'clone', zIndex: 10
+      @$('.draggable').draggable revert: 'invalid', helper: 'clone', appendTo: '.patient-builder', zIndex: 10
 
       # Make criteria list a drop target
-      @$('.criteria-container.droppable').droppable greedy: true, accept: '.ui-draggable', drop: _.bind(@drop, this)
-
+      @$('.criteria-container.droppable').droppable greedy: true, accept: '.ui-draggable', activeClass: 'active-drop', drop: _.bind(@drop, this)
       @$('.date-picker').datepicker().on 'changeDate', _.bind(@materialize, this)
       @$('.time-picker').timepicker(template: false).on 'changeTime.timepicker', _.bind(@materialize, this)
-      $('.indicator-circle, .navbar-nav > li').removeClass('active')
-      $('.indicator-patient-builder').addClass('active')
+
+      @$('#criteriaElements, #populationLogic') #these get affixed when user scrolls past a defined offset
+        .on 'affix.bs.affix', _.bind(@setAffix, this) # when applying affix
+        .on 'affix-top.bs.affix', _.bind(@unsetAffix, this) # when removing affix
+        .on 'affixed.bs.affix affixed-top.bs.affix', _.bind(@logicPagingUpdate, this) # right after affixing or unaffixing
+        .affix offset:
+          top: => return @$('.criteria-container').parent().offset().top # always apply affix at the top of the patient history
+
+      # setup to effectively page through the logic section
+      @$('.measure-viz').on 'shown.bs.collapse hidden.bs.collapse', (e) => @logicPagingUpdate()
+      @$('.logic-pager').hide()
+      $logic = @$("#populationLogic").find('.scrolling')
+        .on 'scroll', _.bind(@logicPagingUpdate, this) # update the up/down arrows
+      @$('.logic-pager.up').on 'click', ->
+        $logic.animate scrollTop: $logic.scrollTop() - $logic.height()
+      @$('.logic-pager.down').on 'click', ->
+        $logic.animate scrollTop: $logic.scrollTop() + $logic.height()
+
     serialize: (attr) ->
       birthdate = attr.birthdate if attr.birthdate
       birthdate += " #{attr.birthtime}" if attr.birthdate && attr.birthtime
@@ -176,6 +204,49 @@ class Thorax.Views.PatientBuilder extends Thorax.Views.BonnieView
     @model.set 'deathdate', null
     @model.set 'expired', false
     @$('#expired').focus()
+
+  setAffix: ->
+    @$('.criteria-container').css 'min-height': $(window).height() # in case patient history is too short to scroll, set height
+    @logicPagingUpdate()
+    @$('#criteriaElements, #populationLogic').each ->
+      # assign current width explicitly to affixed element $(@)
+      $(@).css width: $(@).width()
+      # the inner scrolling part - shift down so header can show.
+      # assumes unknown number of visible elements above the scrolling section
+      shiftDown = 0
+      $(@).find('.scrolling').prevAll(':visible').each -> shiftDown += $(@).outerHeight(true)
+      $(@).find('.scrolling').css
+        top: shiftDown
+        bottom: $(@).find('.logic-pager.down:visible').height() || 0 # leave room for button to scroll down
+
+  unsetAffix: ->
+    #revert each affixed element to default css styling
+    @$('.affix, .affix .scrolling').removeAttr('style').animate scrollTop: 0
+
+  logicPagingUpdate: ->
+    # we need to toggle the visibility and state of the up/down buttons, and adjust height if appropriate
+    $logic = @$("#populationLogic").find('.scrolling')
+    # hide arrows if not enough logic to scroll or if the logic is not affixed
+    if $logic.children().height() < $(window).height() or @$("#populationLogic").hasClass('affix-top')
+      @$('.logic-pager').removeClass('disabled').hide()
+    else
+      @$('.logic-pager').show()
+      # update the up/down arrows to show current state
+      if $logic.scrollTop() == 0
+        @$('.logic-pager.up').addClass('disabled')
+        @$('.logic-pager.down').removeClass('disabled')
+      else if $logic.scrollTop() >= $logic.prop('scrollHeight') - $logic.height()
+        @$('.logic-pager.down').addClass('disabled')
+        @$('.logic-pager.up').removeClass('disabled')
+      else
+        @$('.logic-pager').removeClass('disabled')
+    # change top/bottom position of the scrolling logic in case pagers got added/removed
+    shiftDown = 0
+    $logic.prevAll(':visible').each -> shiftDown += $(@).outerHeight(true)
+    $logic.css
+      top: shiftDown
+      bottom: $logic.nextAll(':visible').height() || 0
+
 
 class Thorax.Views.BuilderPopulationLogic extends Thorax.LayoutView
   template: JST['patient_builder/population_logic']
