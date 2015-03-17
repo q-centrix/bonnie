@@ -7,7 +7,7 @@
 {{/each}}
 {{#if hasChildren}}
   {{#if groupedVariableReference}}
-    {{view "DataCriteriaLogic" reference=dataCriteria.onlyChild measure=../measure tag="span"}}
+    {{view "DataCriteriaLogic" reference=firstChild measure=../measure tag="span"}}
     {{#if dataCriteria.temporal_references}}
           {{#each dataCriteria.temporal_references}}
               <span class="{{../dataCriteria.key}} rationale-target">

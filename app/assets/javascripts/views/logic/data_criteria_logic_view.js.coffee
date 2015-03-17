@@ -13,6 +13,7 @@ class Thorax.Views.DataCriteriaLogic extends Thorax.Views.BonnieView
     'mouseout .highlight-target': 'clearHighlightEntry'
 
   initialize: ->
+    console.log @reference
     @dataCriteria = @measure.get('data_criteria')[@reference]
     # handle reference to source data criteria (this is used for displaying variables)
     unless @dataCriteria
@@ -37,7 +38,7 @@ class Thorax.Views.DataCriteriaLogic extends Thorax.Views.BonnieView
     @dataCriteria.field_values = null if @dataCriteria && _.isEmpty(@dataCriteria.field_values)
     @isSatisfies = @dataCriteria.definition in @satisfiesDefinitions
     @isDerived = @dataCriteria.type == 'derived'
-
+    @firstChild = @dataCriteria.children_criteria[0] if @dataCriteria.children_criteria
     @hasChildren = @isDerived && (!@dataCriteria.variable || @expandVariable)
 
   groupedVariableReference: -> 
@@ -45,7 +46,7 @@ class Thorax.Views.DataCriteriaLogic extends Thorax.Views.BonnieView
     @measure.get('data_criteria')[@dataCriteria.children_criteria[0]].variable &&
     not @dataCriteria.derivation_operator?
 
-  onlyChild: -> @dataCriteria.children_criteria[0] 
+  
 
   isSetOp: => @dataCriteria.derivation_operator in _(@set_operator_map).keys()
 
