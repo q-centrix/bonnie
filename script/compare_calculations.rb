@@ -10,7 +10,10 @@ ARGV.each do |file|
   puts "=" * (file.length + 8)
   puts "Testing #{file}\n\n"
 
-  result = `bundle exec rake bonnie:parser_comparison:compare_calculation FILE=#{file}`
+  environment = ENV.select { |k, v| k.match(/VSAC/) }.map { |k, v| "#{k}=#{v}" }.join(' ')
+
+  result = `bundle exec rake bonnie:parser_comparison:compare_calculation FILE=#{file} #{environment}`
+
 
   if summary = result.match(/(\d+) tests, (\d+) passed, (\d+) failures, (\d+) errors/)
     tests += summary[1].to_i
@@ -20,7 +23,7 @@ ARGV.each do |file|
     nothing += 1 if summary[1].to_i == 0
     everything += 1 if summary[1].to_i > 0 && summary[1].to_i == summary[2].to_i
   end
-    
+
   puts result.split("\n").reject { |l| l.match(/no value set/) || l.match(/WARNING: Could not find metadata/) }.join("\n")
 
 end
