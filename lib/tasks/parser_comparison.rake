@@ -47,7 +47,7 @@ namespace :bonnie do
         return @value_set_models if @value_set_models
         raise "VSAC_USERNAME and VSAC_PASSWORD are required" unless @options[:vsac_username] && @options[:vsac_password]
         oids = extract_model(:simple_xml).all_code_set_oids
-        return @value_set_models = Measures::ValueSetLoader.load_value_sets_from_vsac(oids, @options[:vsac_username], @options[:vsac_password])
+        return @value_set_models = ENV['skip_vs_download'] ? HealthDataStandards::SVS::ValueSet.in({oid: oids, user_id: nil}) : Measures::ValueSetLoader.load_value_sets_from_vsac(oids, @options[:vsac_username], @options[:vsac_password])
       end
 
       def extract_model(type)
@@ -80,6 +80,19 @@ namespace :bonnie do
       end
 
     end
+
+    desc "Download all of the valuesets in a set of measures and save to the db"
+    task :cache_valuesets => :environment do
+      raise "Need to specify zip file using FILE" unless ENV['DIR']
+      Dir[ENV['DIR']].each do |f|
+         puts "extracting valuesets for #{f}"
+         zip_extractor = MeasureZipExtractor.new(f, vsac_username: ENV['VSAC_USERNAME'], vsac_password: ENV['VSAC_PASSWORD'])
+         zip_extractor.value_set_models
+         zip_extractor.close
+      end
+
+    end
+
 
     desc 'Given a zip file with SimpleXML and HQMF, create HTML that shows logic for each'
     task :create_html => :environment do
