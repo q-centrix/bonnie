@@ -5,6 +5,10 @@ class Thorax.Views.FinalizeMeasures extends Thorax.Views.BonnieView
     dataSize: 8
     token: $("meta[name='csrf-token']").attr('content')
 
+  measureContext: (measure) ->
+    _(measure.toJSON()).extend
+      episodes: @episodes(measure)
+
   events:
     'click #finalizeMeasureSubmit': 'submit'
     'ready': 'setup'
@@ -40,3 +44,12 @@ class Thorax.Views.FinalizeMeasures extends Thorax.Views.BonnieView
       "show" : true)
     @$('form').submit()
 
+  episodes: (measure) ->
+    specifics = measure.get('source_data_criteria').filter((sdc) -> sdc.has('specific_occurrence'))
+    consts = _(measure.get('source_data_criteria').pluck('specific_occurrence_const')).chain().compact().uniq().value()
+    _(specifics.map (sdc) ->
+      if sdc.get('specific_occurrence') && sdc.get('specific_occurrence_const')
+        if _(consts).contains sdc.get('specific_occurrence_const')
+          consts = _(consts).without(sdc.get('specific_occurrence_const'))
+          sdc
+      ).compact()
