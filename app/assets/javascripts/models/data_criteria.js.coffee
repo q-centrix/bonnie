@@ -56,6 +56,10 @@ class Thorax.Models.PatientDataCriteria extends Thorax.Model
       attrs.codes = new Thorax.Collections.Codes attrs.codes, parse: true
     if attrs.type == "medications" and attrs.fulfillments
       attrs.fulfillments = new Thorax.Collection attrs.fulfillments
+    if attrs.type == "care_goals"
+      attrs.related_to = new Thorax.Collection attrs.related_to
+      attrs.target_outcome = new Thorax.Collection attrs.target_outcome
+
     attrs
   measure: -> bonnie.measures.findWhere hqmf_set_id: @get('hqmf_set_id')
   valueSet: -> _(bonnie.measures.valueSets()).detect (vs) => vs.get('oid') is @get('code_list_id')
@@ -82,6 +86,7 @@ class Thorax.Models.PatientDataCriteria extends Thorax.Model
       physical_exams:            'fa-user-md'
       procedures:                'fa-scissors'
       risk_category_assessments: 'fa-user'
+      care_goals:                'fa-sliders'
     icons[@get('type')] || 'fa-question'
   canHaveResult: ->
     criteriaType = @get('definition')

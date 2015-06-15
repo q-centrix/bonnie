@@ -6,7 +6,7 @@ module HQMF
     # @return A Record with a blank slate.
     def self.create_base_patient(initial_attributes = nil)
       patient = Record.new
-      
+
       patient.gender = (Time.now.to_i % 2 == 0) ? ("M") : ("F")
       patient.birthdate = Randomizer.randomize_birthdate
 
@@ -15,7 +15,7 @@ module HQMF
       else
         initial_attributes.each {|attribute, value| patient.send("#{attribute}=", value)}
       end
-      
+
       patient
     end
 
@@ -47,6 +47,8 @@ module HQMF
         "conditions"
       when :allDevices
         "medical_equipment"
+			when :careGoals
+				"care_goals"
       else
         type.to_s
       end

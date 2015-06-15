@@ -10,9 +10,28 @@ GIT
       rubyzip (~> 0.9.9)
 
 GIT
-  remote: https://github.com/projectcypress/health-data-standards.git
-  revision: 8c0b7c4b6e800e2da78cd74c88d218d01d3c2405
-  branch: bonnie_master
+  remote: https://github.com/projecttacoma/bonnie_bundler.git
+  revision: 48d65f5fa45043c81b2b68ca0a232cbee8bdfc8a
+  branch: master
+  specs:
+    bonnie_bundler (1.0.0)
+
+GIT
+  remote: https://github.com/projecttacoma/hqmf2js.git
+  revision: b5de0430491b3136dc2219102090a99a487668ce
+  branch: master
+  specs:
+    hqmf2js (1.3.0)
+
+GIT
+  remote: https://github.com/projecttacoma/simplexml_parser.git
+  revision: aa27c6caa1952b915cc7a1645c18d5c476aefee3
+  branch: master
+  specs:
+    simplexml_parser (1.0.0)
+
+PATH
+  remote: ../../projectcypress/health-data-standards
   specs:
     health-data-standards (3.4.6)
       activesupport (~> 4.0.0)
@@ -28,33 +47,10 @@ GIT
       rubyzip (= 0.9.9)
       uuid (~> 2.3.7)
 
-GIT
-  remote: https://github.com/projecttacoma/bonnie_bundler.git
-  revision: 48d65f5fa45043c81b2b68ca0a232cbee8bdfc8a
-  branch: master
-  specs:
-    bonnie_bundler (1.0.0)
-
-GIT
-  remote: https://github.com/projecttacoma/hqmf2js.git
-  revision: b5de0430491b3136dc2219102090a99a487668ce
-  branch: master
-  specs:
-    hqmf2js (1.3.0)
-
-GIT
-  remote: https://github.com/projecttacoma/patientapi.git
-  revision: 3eeabaf73550ec6ac380724001ece6afe837bd5d
-  branch: master
+PATH
+  remote: ../patientapi
   specs:
     hquery-patient-api (1.0.4)
-
-GIT
-  remote: https://github.com/projecttacoma/simplexml_parser.git
-  revision: aa27c6caa1952b915cc7a1645c18d5c476aefee3
-  branch: master
-  specs:
-    simplexml_parser (1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -282,7 +278,7 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    uuid (2.3.7)
+    uuid (2.3.8)
       macaddr (~> 1.0)
     warden (1.2.3)
       rack (>= 1.0)

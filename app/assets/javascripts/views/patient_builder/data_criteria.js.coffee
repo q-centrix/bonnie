@@ -73,6 +73,20 @@ class Thorax.Views.EditCriteriaView extends Thorax.Views.BuilderChildView
     @editFulfillmentHistoryView = new Thorax.Views.MedicationFulfillmentsView
       model: new Thorax.Model
       criteria: @model
+    if @model.get('type') == 'care_goals'
+      @relatedValueView = new Thorax.Views.EditCriteriaValueView
+        model: new Thorax.Model
+        measure: @model.measure()
+        fieldValue: false
+        values: @model.get('related_to')
+        title: 'Related To'
+        explicitType: 'CD'
+      @targetOutcomeValueView = new Thorax.Views.EditCriteriaValueView
+        model: new Thorax.Model
+        measure: @model.measure()
+        fieldValue: false
+        values: @model.get('target_outcome')
+        title: 'Target Outcome'
 
     @model.on 'highlight', (type) =>
       @$('.criteria-data').addClass(type)

@@ -156,6 +156,38 @@
         </div>
       {{/ifCond}}
 
+      {{#ifCond definition "==" "care_goal"}}
+        <div class="form-group">
+          <label class="control-label"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Related To<input class="sr-only" disabled></label>
+
+          {{#collection related_to class="existing-values"}}
+            <span>
+              {{value}} {{unit}}
+              {{title}}
+              {{#button "removeValue" class="btn btn-link close delete"}}&times; <span class="sr-only">Delete</span>{{/button}}
+            </span>
+          {{else}}
+            {{view relatedValueView}}
+          {{/collection}}
+
+        </div>
+
+        <div class="form-group">
+          <label class="control-label"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Target Outcome<input class="sr-only" disabled></label>
+
+          {{#collection target_outcome class="existing-values"}}
+            <span>
+              {{value}} {{unit}}
+              {{title}}
+              {{#button "removeValue" class="btn btn-link close delete"}}&times; <span class="sr-only">Delete</span>{{/button}}
+            </span>
+          {{else}}
+            {{view targetOutcomeValueView}}
+          {{/collection}}
+
+        </div>
+      {{/ifCond}}
+
       <div class="form-group">
         <label class="control-label"><i class="fa fa-bar-chart-o" aria-hidden="true"></i> Field Value<input class="sr-only" disabled></label>
 

@@ -14,10 +14,24 @@
   <div class="col-md-3">
     <label class="sr-only" for="type_{{@cid}}">Value type dropdown</label>
     <select id="type_{{@cid}}" name="type" class="selectBoxIt-native">
-      <option value="PQ" data-icon="fa fa-pencil-square-o">Scalar</option>
-      <option value="CD" data-icon="fa fa-list">Coded</option>
-      {{#if fieldValue}}
-        <option value="TS" data-icon="fa fa-calendar">Time</option>
+      {{#if explicitType}}
+        {{#ifCond explicitType '==' 'PQ'}}
+          <option value="PQ" data-icon="fa fa-pencil-square-o">Scalar</option>
+        {{/ifCond}}
+        {{#ifCond explicitType '==' 'CD'}}
+          <option value="CD" data-icon="fa fa-list">Coded</option>
+        {{/ifCond}}
+        {{#ifCond explicitType '==' 'TS'}}
+          {{#if fieldValue}}
+            <option value="TS" data-icon="fa fa-calendar">Time</option>
+          {{/if}}
+        {{/ifCond}}
+      {{else}}
+        <option value="PQ" data-icon="fa fa-pencil-square-o">Scalar</option>
+        <option value="CD" data-icon="fa fa-list">Coded</option>
+        {{#if fieldValue}}
+          <option value="TS" data-icon="fa fa-calendar">Time</option>
+        {{/if}}
       {{/if}}
     </select>
   </div>

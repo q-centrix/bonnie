@@ -78,6 +78,38 @@ module Measures
               end
             end
             entry[:fulfillmentHistory] = fulfillments
+          elsif section_name == 'care_goals'
+            relatedTo = []
+            targetOutcome = []
+            related_to_value = source_criteria["related_to"].try(:first)
+            target_outcome_value = source_criteria["target_outcome"].try(:first)
+
+            if related_to_value
+              if related_to_value['type'] == 'CD'
+                oid = related_to_value['code_list_id']
+                codes = related_to_value['codes'] || Measures::PatientBuilder.select_codes(oid, value_sets)
+                vs = Measures::PatientBuilder.select_value_sets(oid, value_sets)
+                relatedTo << CodedResultValue.new({codes:codes, description: vs["display_name"]})
+              else
+                range = HQMF::Range.from_json('low' => {'value' => related_to_value['value'], 'unit' => related_to_value['unit']})
+                relatedTo << PhysicalQuantityResultValue.new(range.format)
+              end
+            end
+
+            if target_outcome_value
+              if target_outcome_value['type'] == 'CD'
+                oid = target_outcome_value['code_list_id']
+                codes = target_outcome_value['codes'] || Measures::PatientBuilder.select_codes(oid, value_sets)
+                vs = Measures::PatientBuilder.select_value_sets(oid, value_sets)
+                targetOutcome << CodedResultValue.new({codes:codes, description: vs["display_name"]})
+              else
+                range = HQMF::Range.from_json('low' => {'value' => target_outcome_value['value'], 'unit' => target_outcome_value['unit']})
+                targetOutcome << PhysicalQuantityResultValue.new(range.format)
+              end
+            end
+
+            entry.relatedTo = relatedTo.try(:first)
+            entry.targetOutcome = targetOutcome.try(:first)
           end
 
           # Add the updated section to this patient.
@@ -86,14 +118,13 @@ module Measures
         end
       end
 
-
-      # if the patient is persisted, monoid will send the updates at this point.
+      # if the patient is persisted, mongoid will send the updates at this point.
       Record::Sections.each do |section|
         patient.send(section).clear.concat(sections[section.to_s] || [])
       end
 
       # now handle all of the references -- this needs to be done after all of the entries have been materialized
-      # because there is no gaurentee of order in the source data criteria
+      # because there is no guarantee of order in the source data criteria
 
       patient.source_data_criteria.each  do |source_criteria|
         refs = nil
@@ -132,7 +163,7 @@ module Measures
 
 
 
-    # Determine the apporpriate coded entry type from this data criteria and create one to match.
+    # Determine the appropriate coded entry type from this data criteria and create one to match.
     #
     # @param [data_criteria]  The data_criteria object to create the entry for
     # @param [Range] time The period of time during which the entry happens.
@@ -159,7 +190,7 @@ module Measures
     end
 
 
-    # derive the values for the source data criteira
+    # derive the values for the source data criteria
     def self.derive_values(entry, values, value_sets)
       return if values.nil? || values.empty?
       derived = []
