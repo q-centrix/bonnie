@@ -65,9 +65,10 @@ class User
   field :dashboard, type:Boolean, :default => false
   field :dashboard_set, type:Boolean, :default => false
   field :approved, type:Boolean, :default => false
+  field :expert, type:Boolean, :default => false
 
   field :crosswalk_enabled,  type:Boolean, default: false
-  
+
   has_many :measures
   has_many :records
   belongs_to :bundle, class_name: 'HealthDataStandards::CQM::Bundle'
@@ -147,6 +148,18 @@ class User
     approved || false
   end
 
+  def is_expert?
+    expert || false
+  end
+
+  def grant_expert
+    update_attribute(:expert, true)
+  end
+
+  def revoke_expert
+    update_attribute(:expert, false)
+  end
+
   # Measure and patient counts can be pre-populated or just retrieved
   attr_writer :measure_count
   def measure_count
@@ -159,9 +172,9 @@ class User
   end
 
   protected
-  
+
   def ensure_bundle
-    unless self.bundle 
+    unless self.bundle
       b = HealthDataStandards::CQM::Bundle.new(title: "Bundle for user #{self.id}", version: "1")
       b.save
       self.bundle=b

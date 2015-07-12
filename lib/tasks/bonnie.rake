@@ -27,6 +27,32 @@ namespace :bonnie do
       puts "#{ENV['EMAIL']} is no longer an administrator."
     end
 
+    desc %{Grant an existing bonnie user expert status for sharing patients.
+
+    You must identify the user by USER_ID or EMAIL:
+
+    $ rake bonnie:users:grant_expert USER_ID=###
+    or
+    $ rake bonnie:users:grant_expert EMAIL=xxx}
+    task :grant_expert => :environment do
+      user = User.find_by email: ENV['EMAIL']
+      user.grant_expert()
+      puts "#{ENV['EMAIL']} is now an expert."
+    end
+
+    desc %{Remove the expert role from an existing bonnie user.
+
+    You must identify the user by USER_ID or EMAIL:
+
+    $ rake bonnie:users:revoke_expert USER_ID=###
+    or
+    $ rake bonnie:users:revoke_expert EMAIL=xxx}
+    task :revoke_expert => :environment do
+      user = User.find_by email: ENV['EMAIL']
+      user.revoke_expert()
+      puts "#{ENV['EMAIL']} is no longer an expert."
+    end
+
     desc %{Grant an existing bonnie user portfolio privileges.
 
     You must identify the user by USER_ID or EMAIL:
