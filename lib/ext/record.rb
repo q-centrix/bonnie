@@ -12,7 +12,7 @@ class Record
   belongs_to :bundle, class_name: "HealthDataStandards::CQM::Bundle"
   scope :by_user, ->(user) { where({'user_id'=>user.id}) }
 
-  # User email or measure CMS ID can be prepopulated (to solve 1+N performance issue) or just retrieved
+  # User email or measure CMS ID or shared by expert attribute can be prepopulated (to solve 1+N performance issue) or just retrieved
   attr_writer :user_email
   def user_email
     @user_email || user.try(:email)
@@ -25,6 +25,11 @@ class Record
                  measure = Measure.where(hqmf_set_id: measure_id, user_id: user_id).first # gets corresponding measure, for this user
                  measure.try(:cms_id)
                end
+  end
+
+  attr_writer :shared_by_expert
+  def shared_by_expert
+    @shared_by_expert || user.try(:expert)
   end
 
   def rebuild!(payer=nil)
