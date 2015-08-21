@@ -39,6 +39,9 @@ gem 'systemu'
 gem 'diffy'
 gem 'multi_json'
 
+# integrates ember-cli (and ember) with rails
+gem 'ember-cli-rails'
+
 # needed for parsing value sets (we need to use roo rather than rubyxl because the value sets are in xls rather than xlsx)
 gem 'roo'
 

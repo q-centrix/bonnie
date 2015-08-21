@@ -131,6 +131,9 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    ember-cli-rails (0.3.5)
+      railties (>= 3.1, < 5)
+      sprockets (>= 2.0)
     erubis (2.7.0)
     eventmachine (1.0.7)
     exception_notification (4.1.1)
@@ -300,6 +303,7 @@ DEPENDENCIES
   coffee-rails
   devise
   diffy
+  ember-cli-rails
   exception_notification
   foreman
   handlebars_assets (= 0.16)
