@@ -4,6 +4,15 @@ class MeasuresController < ApplicationController
 
   respond_to :json, :js, :html
 
+  def index
+    skippable_fields = [:map_fns, :record_ids, :measure_attributes]
+    @measures = Measure.by_user(current_user).without(*skippable_fields)
+    @patients = Record.by_user(current_user)
+    respond_with @measures do |format|
+      format.json { render json: MultiJson.encode(measures: @measures.as_json(except: skippable_fields), patients: @patients)) }
+    end
+  end
+
   def show
     skippable_fields = [:map_fns, :record_ids, :measure_attributes]
     @measure = Measure.by_user(current_user).without(*skippable_fields).find(params[:id])
@@ -66,7 +75,7 @@ class MeasuresController < ApplicationController
           measure_details['episode_ids'] = existing.episode_ids
         end
       end
- 
+
       measure_details['population_titles'] = existing.populations.map {|p| p['title']} if existing.populations.length > 1
     end
 
@@ -114,7 +123,7 @@ class MeasuresController < ApplicationController
         redirect_to "#{root_path}##{params[:redirect_route]}"
         return
       end
-      
+
 
       existing.delete if (existing && is_update)
     rescue Exception => e
@@ -166,7 +175,7 @@ class MeasuresController < ApplicationController
         keys = measure.data_criteria.values.map {|d| d['source_data_criteria'] if d['specific_occurrence']}.compact.uniq
         measure.needs_finalize = (measure.episode_ids & keys).length != measure.episode_ids.length
         if measure.needs_finalize
-          measure.episode_ids = [] 
+          measure.episode_ids = []
           params[:redirect_route] = ''
         end
       end
@@ -174,7 +183,7 @@ class MeasuresController < ApplicationController
       measure.needs_finalize = (measure_details['episode_of_care'] || measure.populations.size > 1)
       if measure.populations.size > 1
         strat_index = 1
-        measure.populations.each do |population| 
+        measure.populations.each do |population|
           if (population[HQMF::PopulationCriteria::STRAT])
             population['title'] = "Stratification #{strat_index}"
             strat_index += 1
@@ -193,7 +202,7 @@ class MeasuresController < ApplicationController
 
     # rebuild the users patients if set to do so
     if params[:rebuild_patients] == "true"
-      Record.by_user(current_user).each do |r| 
+      Record.by_user(current_user).each do |r|
         Measures::PatientBuilder.rebuild_patient(r)
         r.save!
       end

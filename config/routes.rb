@@ -6,14 +6,6 @@ Bonnie::Application.routes.draw do
     get "/users/bundle" => "users#bundle"
   end
 
-  authenticated do
-    root to: 'home#index', as: 'authenticated_root'
-  end
-
-  unauthenticated do
-    root to: 'home#show', as: 'unauthenticated_root'
-  end
-
   root to: 'home#index'
 
   resources :measures, defaults: { format: :json } do

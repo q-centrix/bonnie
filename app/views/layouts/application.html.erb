@@ -25,51 +25,66 @@
       <p id="ariaalerts" class="sr-only" role="log" aria-live="polite"></p>
     </div>
 
-    <%= javascript_include_tag "application" %>
-    <% if current_user.crosswalk_enabled %>
+    <%= include_ember_script_tags :frontend %>
+    <!-- < if current_user.crosswalk_enabled %>
       <script>
         <%= HQMF2JS::Generator::JS.crosswalk_functions.html_safe %>
       </script>
-    <% end %>
-    <script src="<%= value_sets_measures_url(format: :js) %>"></script>
-    <% @measures.each do |measure| %>
-      <script src="<%= measure_url(measure, format: :js) %>"></script>
-    <% end %>
-    <script>
-      bonnie.isPortfolio = <%= current_user.is_portfolio? %>;
-      bonnie.isDashboard = <%= current_user.is_dashboard? %>;
-      bonnie.isAdmin = <%= current_user.is_admin? %>;
-      bonnie.currentUserId = '<%= current_user.id %>';
-      bonnie.measurePeriod = <%= Time.zone.at(APP_CONFIG['measure_period_start']).year %>;
-      bonnie.applicationVersion = '<%=Bonnie::Version.current()%>';
-      <% @patients.each do |patient| %>
-        (function() {
-          var patient = new Thorax.Models.Patient(<%= MultiJson.encode(patient.as_json(except: :results)).html_safe %>, { parse: true });
-          bonnie.measures.each(function(measure) {
-            if (bonnie.isPortfolio) {
-              measure.get('patients').add(patient);
-            } else if(_(patient.get('measure_ids')).contains(measure.get('hqmf_set_id'))) {
-              measure.get('patients').add(patient);
-            }
-          });
-          // FIXME bonnie.patients is deprecated and will be going away shortly
-          bonnie.patients.add(patient);
-        })();
-       <% end %>
-      $(document).ready(function() {
-        Backbone.history.start();
-        <% if (flash[:error]) %>
-          bonnie.showError(<%= flash[:error].to_json.html_safe %>);
-        <% end %>
-        $('.skip-content').click(function(e) {
-          e.preventDefault();
-          $('#bonnie').attr('tabindex', -1).on('blur focusout', function() {
-            $(this).removeAttr('tabindex');
-          }).focus();
-        });
+    < end %> -->
+    <script type="text/javascript">
+      // Add x-csrf-token to all ajax request
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+          }
       });
-      // prevent fetching directly from server after bootstrapping measures
-      bonnie.measures._fetched = true;
+    </script>
+    <!-- <script src="<%= value_sets_measures_url(format: :js) %>"></script>
+    < @measures.each do |measure| %>
+      Creates the measure javascript to use
+      <script src="<= measure_url(measure, format: :js) %>"></script>
+    < end %> -->
+    <script>
+      // bonnie.isPortfolio = <= current_user.is_portfolio? %>;
+      // bonnie.isDashboard = <= current_user.is_dashboard? %>;
+      // bonnie.isAdmin = <= current_user.is_admin? %>;
+      // bonnie.currentUserId = '<= current_user.id %>';
+      // bonnie.measurePeriod = <%= Time.zone.at(APP_CONFIG['measure_period_start']).year %>;
+      // bonnie.applicationVersion = '<%=Bonnie::Version.current()%>';
+      // // For this, use a require statement to push data into a model
+      // // Or create a custom adapter that can read static json
+      // /*
+      //   Ignore what was here and apply the Devise token to actually use Ember Models
+      // */
+      // < @patients.each do |patient| %>
+      //   (function() {
+      //     var patient = new Thorax.Models.Patient(<= MultiJson.encode(patient.as_json(except: :results)).html_safe %>, { parse: true });
+      //     bonnie.measures.each(function(measure) {
+      //       if (bonnie.isPortfolio) {
+      //         measure.get('patients').add(patient);
+      //       } else if(_(patient.get('measure_ids')).contains(measure.get('hqmf_set_id'))) {
+      //         measure.get('patients').add(patient);
+      //       }
+      //     });
+      //     // FIXME bonnie.patients is deprecated and will be going away shortly
+      //     bonnie.patients.add(patient);
+      //   })();
+      //  < end %>
+      // $(document).ready(function() {
+      //   // Routing can begin in here after the data has been loaded.
+      //   Backbone.history.start();
+      //   <% if (flash[:error]) %>
+      //     bonnie.showError(<%= flash[:error].to_json.html_safe %>);
+      //   <% end %>
+      //   $('.skip-content').click(function(e) {
+      //     e.preventDefault();
+      //     $('#bonnie').attr('tabindex', -1).on('blur focusout', function() {
+      //       $(this).removeAttr('tabindex');
+      //     }).focus();
+      //   });
+      // });
+      // // prevent fetching directly from server after bootstrapping measures
+      // bonnie.measures._fetched = true;
     </script>
   </body>
 </html>
