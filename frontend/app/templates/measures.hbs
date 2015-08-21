@@ -1,0 +1,87 @@
+{{!-- <p>Total measures: {{measures.length}}</p> --}}
+
+<div class="dashboard-heading">
+  <div class="measure-col">
+    <div class="dashboard-title">
+      <h1><i class="fa fa-tasks" aria-hidden="true"></i> Measures</h1>
+      {{!-- {{#ifCond measures.length '||' patients.length}}
+        <div class="btn-wrapper-bundle">
+          {{#button "exportBundle" class="btn btn-primary"}}<i class="fa fa-download" aria-hidden="true"></i><span class="sr-only">bundle export</span>{{/button}}
+        </div>
+      {{/ifCond}} --}}
+    </div>
+    <div class="btn-wrapper pull-right">
+      {{!-- {{#button "importMeasure" class="btn btn-primary"}}<i class="fa fa-upload" aria-hidden="true"></i> Upload <span class="sr-only">new measure</span>{{/button}} --}}
+    </div>
+  </div>
+  <div class="expected-col">
+    <h2 aria-hidden="true">Expected</h2>
+  </div>
+  <div class="status-col">
+    <h2 aria-hidden="true">Status</h2>
+  </div>
+  <div class="patient-listing-col">
+    <h2 aria-hidden="true">Test Patients</h2>
+  </div>
+</div>
+
+{{!-- {{#collection class="dashboard-data" item-view='MeasureRowView'}}
+
+  <div class="measure">
+    <div class="measure-col">
+      <div class="measure-title">
+        {{#link "measures/{{hqmf_set_id}}" expand-tokens=true}}<span class="sr-only">{{cms_id}}, Measure Title: </span>{{title}}{{/link}}
+        <span class="nqf-listing">
+          <span class="sr-only">CMS ID: </span>
+          {{cms_id}}
+        </span>
+      </div>
+      <div class="btn-wrapper">
+        {{#button "updateMeasure" class="btn btn-primary"}}<i class="fa fa-refresh fa-fw" aria-hidden="true"></i><span class="sr-only">{{cms_id}}, </span> Update <span class="sr-only">existing measure</span>{{/button}}
+      </div>
+    </div>
+    <div class="expected-col">
+      {{#unless multiplePopulations}}
+        {{view "MeasurePercentageView" model=differences.summary cms_id=cms_id}}
+      {{/unless}}
+    </div>
+    <div class="status-col">
+      {{#unless multiplePopulations}}
+        {{view "MeasureStatusView" model=differences.summary cms_id=cms_id}}
+      {{/unless}}
+    </div>
+    <div class="patient-listing-col">
+      {{#if multiplePopulations}}
+        <span class="sr-only">{{cms_id}} has </span><span class="patient-listing">{{patients.length}}</span><span class="sr-only"> test patients</span>
+      {{else}}
+        {{view "MeasureFractionView" model=differences.summary cms_id=cms_id}}
+      {{/if}}
+      <a href="#measures/{{hqmf_set_id}}/patients/new" class="btn {{#unless patients.length}}btn-primary{{else}}btn-default{{/unless}}">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        <span class="sr-only">{{cms_id}}, add new patient to measure</span>
+      </a>
+    </div>
+  </div>
+
+  {{#if multiplePopulations}}
+    {{#collection populations item-view='PopulationView'}}
+      <div class="population">
+        <div class="population-col">
+          <div class="population-title">
+            {{view "PopulationTitle" model=this.model}}
+          </div>
+        </div>
+        <div class="expected-col">
+          {{view "MeasurePercentageView" model=differences.summary cms_id=../cms_id population=title}}
+        </div>
+        <div class="status-col">
+          {{view "MeasureStatusView" model=differences.summary cms_id=../cms_id population=title}}
+        </div>
+        <div class="patient-listing-col">
+          {{view "MeasureFractionView" model=differences.summary cms_id=../cms_id population=title}}
+        </div>
+      </div>
+    {{/collection}}
+  {{/if}}
+{{/collection}} --}}

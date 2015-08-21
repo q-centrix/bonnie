@@ -1,0 +1,33 @@
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+  bundleId: DS.attr('string'),
+  category: DS.attr('string'),
+  cmsId: DS.attr('string'),
+  complexity: DS.belongsTo('complexity'),
+  continuousVariable: DS.attr('boolean'),
+  createdAt: DS.attr('date'),
+  customFunctions: DS.attr(),
+  dataCriteria: DS.attr(),
+  description: DS.attr('string'),
+  episodeIds: DS.attr(),
+  episodeOfCare: DS.attr('boolean'),
+  forceSources: DS.attr(),
+  hqmfId: DS.attr(),
+  hqmfSetId: DS.attr(),
+  measureId: DS.attr('string'),
+  measureLogic: DS.attr(),
+  measurePeriod: DS.attr(),
+  needsFinalize: DS.attr('boolean'),
+  populationCriteria: DS.attr(),
+  populations: DS.attr(),
+  preconditions: DS.attr(),
+  publishDate: DS.attr(),
+  sourceDataCriteria: DS.attr(),
+  title: DS.attr('string'),
+  type: DS.attr('string'),
+  updatedAt: DS.attr('date'),
+  userId: DS.attr(),
+  valueSetOids: DS.attr(),
+  version: DS.attr('string')
+});

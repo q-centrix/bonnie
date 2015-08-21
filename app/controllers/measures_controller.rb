@@ -9,7 +9,7 @@ class MeasuresController < ApplicationController
     @measures = Measure.by_user(current_user).without(*skippable_fields)
     @patients = Record.by_user(current_user)
     respond_with @measures do |format|
-      format.json { render json: MultiJson.encode(measures: @measures.as_json(except: skippable_fields), patients: @patients)) }
+      format.json { render json: MultiJson.encode(measures: @measures.as_json(except: skippable_fields), patients: @patients) }
     end
   end
 
