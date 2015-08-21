@@ -6,7 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('measures', { path: '/' });
+  this.route('measures/index', { path: '/' });
+  this.route('measures/show', { path: '/measures/:id' });
   this.route('login');
 });
 
