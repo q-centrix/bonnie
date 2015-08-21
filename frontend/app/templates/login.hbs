@@ -1,0 +1,18 @@
+
+<div class="login">
+  {{!-- Should exist some mechanism to indicate failure or success --}}
+  <form {{action 'authenticate' on='submit'}}>
+    <div class="form-group input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></span>
+      <label for="user_email" class="sr-only">Email </label>
+      {{input class="form-control" value=identification placeholder='email@example.com'}}
+    </div>
+    <div class="form-group input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-lock fa-lg fa-fw" aria-hidden="true"></i></span>
+      <label for="user_password" class="sr-only">Password </label>
+      {{input class="form-control" value=password placeholder='Enter Password' type='password'}}
+    </div>
+    <button class="btn btn-login" type="submit">Login</button>
+    {{!-- Implement links for new and edit --}}
+  </form>
+</div>

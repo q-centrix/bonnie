@@ -187,6 +187,14 @@ namespace :bonnie do
 
       puts "Done!"
     end
+
+    desc 'Make sure all of the users in the system have an auth token'
+    task :ensure_users_have_authentication_tokens => :environment do
+      User.all.each do |user|
+        user.ensure_authentication_token
+        user.save!
+      end
+    end
   end
 
   namespace :db do

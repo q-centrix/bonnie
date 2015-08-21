@@ -1,5 +1,5 @@
 Bonnie::Application.routes.draw do
-  devise_for :users,:controllers => {:registrations => "registrations"}
+  devise_for :users,:controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   devise_scope :user do
     get "/needs_approval" => "registrations#needs_approval"

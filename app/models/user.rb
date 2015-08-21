@@ -3,6 +3,7 @@ class User
   include ActiveModel::MassAssignmentSecurity
   include Mongoid::Document
   include Mongoid::Attributes::Dynamic
+  before_save :ensure_authentication_token
   # Include default devise modules. Others available are:
   # :confirmable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :lockable,
@@ -67,7 +68,7 @@ class User
   field :approved, type:Boolean, :default => false
 
   field :crosswalk_enabled,  type:Boolean, default: false
-  
+
   has_many :measures
   has_many :records
   belongs_to :bundle, class_name: 'HealthDataStandards::CQM::Bundle'
@@ -86,7 +87,7 @@ class User
   # field :locked_at,       :type => Time
 
   ## Token authenticatable
-  # field :authentication_token, :type => String
+  field :authentication_token, :type => String
 
    #make sure that the use has a bundle associated with them
   after_create :ensure_bundle
@@ -158,14 +159,29 @@ class User
     @patient_count || records.count
   end
 
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+
   protected
-  
+
   def ensure_bundle
-    unless self.bundle 
+    unless self.bundle
       b = HealthDataStandards::CQM::Bundle.new(title: "Bundle for user #{self.id}", version: "1")
       b.save
       self.bundle=b
       self.save
+    end
+  end
+
+  private
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
     end
   end
 
