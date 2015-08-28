@@ -1,6 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+  measure_id: DS.belongsTo('hqmfSet', {async: false, inverse: 'expected_values'}),
+  population_index: DS.attr('number'),
   IPP: DS.attr('string'),
   STRAT: DS.attr('string'),
   DENOM: DS.attr('string'),
@@ -9,6 +11,5 @@ export default DS.Model.extend({
   DENEX: DS.attr('string'),
   MSRPOPL: DS.attr('string'),
   OBSERV: DS.attr('string'),
-  sub_id: DS.attr('string'),
-  measure: DS.belongsTo('measure', { async: false, inverse: 'populations' })
+  patient: DS.belongsTo('patient')
 });

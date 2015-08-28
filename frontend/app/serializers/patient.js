@@ -1,7 +1,17 @@
 import DS from 'ember-data';
-import { ActiveModelSerializer } from 'active-model-adapter';
 
-export default ActiveModelSerializer.extend({
+export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
   isNewSerializerAPI: true,
-  primaryKey: '_id'
+  primaryKey: '_id',
+  attrs: {
+    measureId: {
+      embedded : 'always'
+    },
+    measureIds: {
+      embedded : 'always'
+    },
+    expectedValues: {
+      embedded : 'always'
+    }
+  }
 });
