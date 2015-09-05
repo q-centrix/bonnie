@@ -6,7 +6,7 @@ class PopulationsController < ApplicationController
     measure = Measure.by_user(current_user).find(params[:measure_id])
     if stale? last_modified: measure.updated_at.try(:utc), etag: measure.cache_key
       options = params[:rationale] == 'false' ? { rationale: false } : { } # Only pass rationale if explicitly false
-      render js: BonnieMeasureJavascript.generate_for_population(measure, params[:id].to_i, options)
+      render js: MultiJson.encode(calculator: {calculator_str: BonnieMeasureJavascript.generate_for_population(measure, params[:id].to_i, options)})
     end
   end
 

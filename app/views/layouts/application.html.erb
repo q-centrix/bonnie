@@ -24,7 +24,9 @@
       <%= render 'layouts/footer' %>
       <p id="ariaalerts" class="sr-only" role="log" aria-live="polite"></p>
     </div>
-
+    <%= javascript_include_tag "underscore/underscore-min" %>
+    <%= javascript_include_tag "measure_libraries" %>
+    <%= javascript_include_tag "constants" %>
     <%= include_ember_script_tags :frontend %>
     <!-- < if current_user.crosswalk_enabled %>
       <script>
@@ -44,7 +46,7 @@
       Creates the measure javascript to use
       <script src="<= measure_url(measure, format: :js) %>"></script>
     < end %> -->
-    <script>
+    <script type="text/javascript">
       // bonnie.isPortfolio = <= current_user.is_portfolio? %>;
       // bonnie.isDashboard = <= current_user.is_dashboard? %>;
       // bonnie.isAdmin = <= current_user.is_admin? %>;

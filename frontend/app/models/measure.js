@@ -14,7 +14,7 @@ export default DS.Model.extend({
   episode_of_care: DS.attr('boolean'),
   force_sources: DS.attr(),
   hqmf_id: DS.attr(),
-  hqmf_set_id: DS.belongsTo('hqmfSet', { async: false, inverse: 'measures'}),
+  hqmf_set_id: DS.belongsTo('hqmfSet', { async: false, inverse: 'measure'}),
   measure_id: DS.attr('string'),
   measure_logic: DS.attr(),
   measure_period: DS.attr(),

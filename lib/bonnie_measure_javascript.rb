@@ -14,7 +14,7 @@ module BonnieMeasureJavascript
     options.reverse_merge! rationale: true # Generate rationale by default
     rationale = !!options[:rationale]
     population_javascript = measure.map_fn(population_index, options.except(:rationale))
-    JAVASCRIPT_TEMPLATE.result binding
+    (ERB.new File.read(__FILE__.gsub(/.rb$/, '.erb'))).result binding #JAVASCRIPT_TEMPLATE.result binding
   end
 
 end
