@@ -31,6 +31,6 @@ export default DS.Model.extend({
   value_set_oids: DS.attr(),
   version: DS.attr('string'),
   patients: function(){
-    return this.get('hqmf_set_id').get('patients');
+    return this.get('hqmf_set_id.patients');
   }.property('hqmf_set_id.patients')
 });
