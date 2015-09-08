@@ -1,8 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  population: DS.hasMany('population', {async: false}),
-  rationale: DS.attr(),
   IPP: DS.attr('string'),
   STRAT: DS.attr('string'),
   DENOM: DS.attr('string'),
@@ -21,13 +19,14 @@ export default DS.Model.extend({
   languages: DS.attr(),
   last: DS.attr('string'),
   logger: DS.attr(),
-  measure_id: DS.belongsTo('hqmfSet', {async: false}),
+  measure_id: DS.belongsTo('measure', {async: false}),
   medical_record_id: DS.attr('string'),
   nqf_id: DS.attr('string'),
   patient_id: DS.belongsTo('patient', {async: false}),
   payer: DS.attr(),
+  population: DS.belongsTo('population', {async: false}),
   provider_performances: DS.attr(),
-  race: DS.attr('string'),
+  race: DS.attr(),
   rationale: DS.attr(),
   sub_id: DS.attr(),
   test_id: DS.attr(),
@@ -36,10 +35,16 @@ export default DS.Model.extend({
     return (typeof rationale !== "undefined" && rationale !== null);
   }.property('rationale'),
   differenceFromExpected: function(){
-    let expected = this.get('patient').get('getExpectedValue')(this.get('population'));
-    // create new difference with given patient and population
-    let difference = {result: this, expected: expected};
-    // new Thorax.Models.Difference({}, result: this, expected: expected)
+    let expected = this.get('patient').get('expected_values').filter((expected)=>{
+      return expected.get('measure.id') === this.get('population.measure.id');
+    }).objectAt(0);
+    // TODO: create the expected value if it doesn't exist
+    // create new difference with given patient and population (use ids to prevent unnecessary duplication)
+    let difference = {difference:{result: this.get('id'), expected: expected.get('id')}};
+    this.store.pushPayload('difference', difference);
+    return this.store.filter('difference', (difference) => {
+      return difference.get('result').get('id') === this.get('id');
+    });
   }
 
 });

@@ -10,6 +10,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
           measure.populations.forEach(function(population, index){
             // Create the calculator json object with links object
             population.links = {calculator: `/measures/${measure.id}/populations/${index}/calculate_code.js`};
+            population.index = index;
           });
         }
       });

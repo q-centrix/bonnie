@@ -1,6 +1,9 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+  result: DS.belongsTo('result', {async: false}),
+  expectedValue: DS.belongsTo('expectedValue', {async: false})
+
 // initialize: (attrs, options) ->
 //   @result = options.result
 //   @expected = options.expected

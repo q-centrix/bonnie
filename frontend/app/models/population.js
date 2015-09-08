@@ -14,20 +14,32 @@ export default DS.Model.extend({
   // This is a "links" set in the measure serializer
   calculator: DS.belongsTo('calculator', { async: true, inverse:'population'}),
   differences: function() {
-    let calculator = this.get('calculator').get('calculator');
-    if(typeof calculator !== "function") return;
+    let calculator = this.get('calculator.calculator');
+    if(typeof calculator !== "function") {
+      return;
+    }
     // Should begin by clearing out the old patient results that don't exist
     // Then rerunning any changed occurrences
     // Then add new ones (may be convulted...)
     // stuff into a difference object population and calc models, it will use this to produce results
     // Create the result objects
-    this.get('measure').get('hqmf_set_id').get('patients').forEach((patient)=>{
-      let result = calculator(patient.toJSON());
-      console.log(patient);
-      console.log(result);
+    this.get('measure.hqmf_set_id.patients').forEach((patient)=>{
+      let resultPayload = {result: calculator(patient.toJSON())};
+      resultPayload.result.population = this.get('id');
+      this.store.pushPayload('result', resultPayload);
+    });
+    // Get all the result models for this population
+    let results = this.store.filter('result', (result) => {
+      return result.get('population.id') === this.get('id');
     });
     // Create the difference (using result function)
+    results.then(() => {
+      console.log(results.get('length'));
+      results.forEach((result) => {
 
+      });
+      // TODO: returns promise containing array of promises from results loop
+    });
     // return a peek on all difference for this population
   }.property('calculator.calculator', 'measure.hqmf_set_id.patients.@each'),
   summary: function() {
