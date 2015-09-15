@@ -40,12 +40,14 @@
       </div>
       <div class="expected-col">
         {{#unless multiplePopulations}}
-          {{!-- {{view "MeasurePercentageView" model=differences.summary cms_id=cms_id}} --}}
+          {{#each measure.populations key="@index" as |population|}}
+            {{measure-percentage-view summary=population.summary cms_id=measure.cms_id}}
+          {{/each}}
         {{/unless}}
       </div>
       <div class="status-col">
         {{#unless multiplePopulations}}
-          
+
           {{!-- {{view "MeasureStatusView" model=differences.summary cms_id=cms_id}} --}}
         {{/unless}}
       </div>

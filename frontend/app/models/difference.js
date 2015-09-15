@@ -2,7 +2,15 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   result: DS.belongsTo('result', {async: false}),
-  expectedValue: DS.belongsTo('expectedValue', {async: false})
+  expected: DS.belongsTo('expectedValue', {async: false}),
+  population: DS.belongsTo('population', {inverse:'differences'}),
+  match: function() {
+    let expectedValue = this.get('expected');
+    if(expectedValue !== null && typeof expectedValue !== 'undefined') {
+      return expectedValue.isMatch(this.get('result'));
+    }
+    return false;
+  }.property('expected', 'result')
 
 // initialize: (attrs, options) ->
 //   @result = options.result
