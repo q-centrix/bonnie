@@ -31,8 +31,8 @@ GIT
 
 GIT
   remote: https://github.com/projecttacoma/bonnie_bundler.git
-  revision: d29af95467665ad3440bdd530e5793cf1506b4a8
-  branch: master
+  revision: 972a613753704635fd7cd3223f05d68718fb610a
+  branch: qdm_update
   specs:
     bonnie_bundler (1.0.0)
 
