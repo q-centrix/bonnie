@@ -31,8 +31,10 @@ class Thorax.Views.ImportMeasure extends Thorax.Views.BonnieView
       @$('.effective-date').hide()
     'ready': 'setup'
     'change input:file':  'enableLoad'
-    'keypress input:text': 'enableLoadVsac'
-    'keypress input:password': 'enableLoadVsac'
+    'keyup input:text': 'enableLoadVsac'
+    'keyup input:password': 'enableLoadVsac'
+    'change input:text': 'enableLoadVsac'
+    'change input:password': 'enableLoadVsac'
     'change input[type=radio]': ->
       @$('input[type=radio]').each (index, element) =>
         if @$(element).prop("checked")
@@ -51,11 +53,14 @@ class Thorax.Views.ImportMeasure extends Thorax.Views.BonnieView
     if (password.val().length > 0) 
       password.closest('.form-group').removeClass('has-error')
       hasPassword = true
-    @$('#loadButton').prop('disabled', !(hasUser && hasPassword)) 
+    # Ensures that the button is not enabled if the fields are hidden
+    @$('#loadButton').prop('disabled', !(hasUser && hasPassword && !@$('#vsacSignIn').hasClass('hidden')))
 
   enableLoad: ->
     if @$('input:file').val().match /xml$/i
       @$('#vsacSignIn').removeClass('hidden')
+      # Checks the password in case of auto-loaded field
+      @enableLoadVsac()
     else
       @$('#vsacSignIn').addClass('hidden')
       @$('#loadButton').prop('disabled', !@$('input:file').val().length > 0)
