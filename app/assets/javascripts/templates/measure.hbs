@@ -37,7 +37,7 @@
     </div>
 
     {{view logicView}}
-    
+
   </div>
 
   <div class="right-sidebar">
@@ -57,10 +57,10 @@
 <div class="row">
   <h2>Data Criteria</h2>
   {{#each dataCriteria tag="ul"}}
-    <li><small>"{{attributes.description}}" using "{{attributes.title}} ({{attributes.code_list_id}})"</small></li>
+    <li>{{attributes.description}} <span class="pull-right" style="width: 700px;"><strong>{{attributes.title}}</strong> <span class="pull-right">{{attributes.code_list_id}}</span></span></li>
   {{/each}}
   <h2>Supplemental Data Elements</h2>
   {{#each supplementalDataElements tag="ul"}}
-    <li><small>"{{attributes.description}}" using "{{attributes.title}} ({{attributes.code_list_id}})"</small></li>
+    <li>{{attributes.description}} <span class="pull-right" style="width: 700px;"><strong>{{attributes.title}}</strong> <span class="pull-right">{{attributes.code_list_id}}</span></span></li>
   {{/each}}
 </div>

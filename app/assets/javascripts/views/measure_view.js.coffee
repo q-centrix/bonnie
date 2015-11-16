@@ -43,7 +43,14 @@ class Thorax.Views.Measure extends Thorax.Views.BonnieView
     @model.get('source_data_criteria').filter((sdc) => sdc.get('source_data_criteria') in @model.get('episode_ids'))
 
   dataCriteria: ->
-    @model.get('source_data_criteria').filter((sdc) => sdc.get('type') != "characteristic" && sdc.get('code_list_id'))
+    dcList = @model.get('source_data_criteria').filter((sdc) => sdc.get('type') != "characteristic" && sdc.get('code_list_id') && !sdc.get('negation'))
+
+    # sort by title, then description, then remove duplicate values
+    _.chain(dcList).sortBy((sdc) => sdc.get('title'))
+                   .sortBy((sdc) => sdc.get('description'))
+                   .uniq(true, (sdc) =>
+                     sdc.get('description') + sdc.get('title') + sdc.get('code_list_id'))
+                   .value()
 
   supplementalDataElements: ->
     @model.get('source_data_criteria').filter((sdc) => sdc.get('type') == "characteristic" && sdc.get('code_list_id'))
@@ -61,7 +68,7 @@ class Thorax.Views.Measure extends Thorax.Views.BonnieView
       @model.get('populations').each (population) ->
         differences.push(_(population.differencesFromExpected().toJSON()).extend(population.coverage().toJSON()))
 
-      $.fileDownload "patients/export?hqmf_set_id=#{@model.get('hqmf_set_id')}", 
+      $.fileDownload "patients/export?hqmf_set_id=#{@model.get('hqmf_set_id')}",
         successCallback: => @exportPatientsView.success()
         failCallback: => @exportPatientsView.fail()
         httpMethod: "POST"
@@ -90,6 +97,6 @@ class Thorax.Views.Measure extends Thorax.Views.BonnieView
   toggleVisualization: (e) ->
     @$('.btn-viz-chords, .btn-viz-text, .measure-viz, .d3-measure-viz').toggle()
     if @$('.d3-measure-viz').children().length == 0
-      d3.select(@el).select('.d3-measure-viz').datum(@model.get("population_criteria")).call(@measureViz) 
+      d3.select(@el).select('.d3-measure-viz').datum(@model.get("population_criteria")).call(@measureViz)
       @$('rect').popover()
       if @populationCalculation.toggledPatient? then @logicView.showRationale(@populationCalculation.toggledPatient) else @logicView.showCoverage()
