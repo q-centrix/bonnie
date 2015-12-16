@@ -1,6 +1,109 @@
 namespace :bonnie do
   namespace :measures do
 
+    desc "Delete Value Set indexes that are not needed in Bonnie"
+    task :delete_unnecessary_value_set_indexes => :environment do
+      HealthDataStandards::SVS::ValueSet.collection.indexes.drop({"concepts.code"=>1})
+      HealthDataStandards::SVS::ValueSet.collection.indexes.drop({"concepts.code_system"=>1})
+      HealthDataStandards::SVS::ValueSet.collection.indexes.drop({"concepts.code_system_name"=>1})
+      HealthDataStandards::SVS::ValueSet.collection.indexes.drop({"concepts.display_name"=>1})
+    end
+
+    desc "Delete unused value sets"
+    task :delete_unused_value_sets => :environment do
+      all_value_set_ids = HealthDataStandards::SVS::ValueSet.only(:id).map(&:id)
+      used_value_set_ids = []
+      Measure.each do |m|
+        used_value_set_ids.concat(m.value_sets.only(:id).map(&:id))
+      end
+      raise "No used value sets, something must be wrong" unless used_value_set_ids.size > 0
+      used_value_set_ids.uniq!
+      unused_value_set_ids = (all_value_set_ids - used_value_set_ids)
+      puts "Deleting #{unused_value_set_ids.size} unused value sets"
+      HealthDataStandards::SVS::ValueSet.where(:_id.in => unused_value_set_ids).delete_all
+    end
+
+    desc "Consolidate the value sets to unique entities and move away from user versioning"
+    task :consolidate_value_sets => :environment do
+
+      user_oid_to_version = Hash.new
+      seen_hashes = Set.new
+      to_delete = []
+      to_save = []
+      size = HealthDataStandards::SVS::ValueSet.count()
+      progress = 0
+
+      start_time = Time.now
+      puts "Looking for duplicate Value Sets"
+
+      HealthDataStandards::SVS::ValueSet.each do |vs|
+        progress += 1
+        if (progress % 500 == 0)
+          puts "\n#{progress} / #{size}"
+        end
+
+        vs.generate_bonnie_hash
+        user_oid_to_version[[vs.oid, vs.user_id]] = vs.bonnie_hash
+
+        if (seen_hashes.add?(vs.bonnie_hash))
+          to_save.push(vs)
+          print "."
+        else
+          to_delete.push(vs)
+          print "!"
+        end
+        $stdout.flush()
+
+      end
+
+      puts "\nFinished looking for duplicate Value Sets (elapsed time: #{Time.now - start_time})"
+
+      start_time = Time.now
+      puts "Updating measures with new value set versions"
+
+      size = Measure.count()
+      progress = 0
+
+      Measure.each do |m|
+        progress += 1
+        if (progress % 500 == 0)
+          puts "#{progress} / #{size}"
+        end
+
+        m.oid_to_version = []
+        m.value_set_oids.each do |oid|
+          m.oid_to_version.push(user_oid_to_version[[oid, m.user_id]])
+        end
+        m.save!
+      end
+
+      puts "\nFinished updating measures with new value set versions (elapsed time: #{Time.now - start_time})"
+
+      start_time = Time.now
+      puts "Deleting #{to_delete.size} duplicate value sets"
+
+      HealthDataStandards::SVS::ValueSet.where(:_id.in => to_delete.map(&:id)).delete_all
+
+      puts "\nFinished deleting duplicate value sets (elapsed time: #{Time.now - start_time})"
+
+      start_time = Time.now
+      puts "Saving value sets with hash information"
+
+      size = to_save.count()
+      progress = 0
+
+      to_save.each do |vs|
+        progress += 1
+        if (progress % 500 == 0)
+          puts "#{progress} / #{size}"
+        end
+        vs.save!
+      end
+
+      puts "\nFinished saving value sets with hash information (elapsed time: #{Time.now - start_time})"
+
+    end
+
     desc "Migrates measures and value_sets away from User versioning"
     task :apply_hash => :environment do
       
