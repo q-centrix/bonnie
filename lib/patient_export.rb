@@ -75,7 +75,7 @@ class PatientExport
           sheet["A4:#{headers.length.excel_column}#{records.length+3}"].each { |c| c.style = default }
         end
       end
-      package.serialize("#{measure.cms_id}.xlsx")
+       package
     end
   end
 
