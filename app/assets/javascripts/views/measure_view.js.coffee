@@ -47,7 +47,7 @@ class Thorax.Views.Measure extends Thorax.Views.BonnieView
     importMeasureView.appendTo(@$el)
     importMeasureView.display()
 
-  exportPatients: (e) ->
+  exportQrdaPatients: (e) ->
     @exportPatientsView.exporting()
 
     @model.get('populations').whenDifferencesComputed =>
