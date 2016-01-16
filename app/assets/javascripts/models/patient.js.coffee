@@ -94,6 +94,7 @@ class Thorax.Models.Patient extends Thorax.Model
       # We only want to overwrite certain fields; if the server doesn't provide them, we want them emptied
       defaults = {}
       defaults[section] = [] for section in Thorax.Models.Patient.sections
+      defaults['updated_at'] = null # We use updated_at for local storage caching of results
       @set _(data).chain().pick(_(defaults).keys()).defaults(defaults).value(), silent: true
       for criterium, i in @get('source_data_criteria').models
         criterium.set 'coded_entry_id', data['source_data_criteria'][i]['coded_entry_id'], silent: true

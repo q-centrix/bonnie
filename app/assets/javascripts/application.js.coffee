@@ -30,11 +30,13 @@
 #= require jquery-color/jquery.color
 #= require bootstrap-file-input/bootstrap.file-input
 #= require MutationObserver-shim/dist/mutationobserver.min
+#= require lz-string/libs/lz-string.min
 #
 #= require helpers
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views
+#= require calculation_local_storage
 #= require calculator
 #= require router
 #= require measure_libraries

@@ -146,6 +146,9 @@ private
 
     patient.rebuild!(params[:payer])
 
+    # Update the updated_at field, even if we're not saving the patient, to help with client side caching
+    patient.updated_at = Time.zone.now
+
     patient
   end
 

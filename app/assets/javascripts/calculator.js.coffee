@@ -45,6 +45,14 @@
     # Since we're going to start a calculation for this one, set the state to 'pending'
     result.state = 'pending'
 
+    # See if we have the result stashed in local storage
+    # NOTE: if we do this in the deferrecCalculation, we might get a tad better performance during the actual
+    # calculation, but then we need to load the code, so here is probably better
+    if resultData = CalculationLocalStorage.retrieve(population, patient)
+      result.set resultData
+      result.state = 'complete'
+      return result
+
     # Load the calculator code if not already loaded
     @calculatorLoaded[calcKey] ?= $.ajax(url: "#{population.url()}/calculate_code.js", dataType: "script", cache: true)
 
@@ -58,7 +66,9 @@
           return
         result.state = 'complete'
         try
-          result.set @calculator[calcKey](patient.toJSON())
+          resultData = @calculator[calcKey](patient.toJSON())
+          result.set resultData
+          CalculationLocalStorage.store(population, patient, resultData)
         catch error
           bonnie.showError({title: "Measure Calculation Error", summary: "There was an error calculating the measure #{result.measure.get('cms_id')}.", body: "One of the data elements associated with the measure is causing an issue.  Please review the elements associated with the measure to verify that they are all constructed properly.  Error message: #{error.message}."})
 
