@@ -3439,6 +3439,17 @@ var WalkontableTableRenderer = function WalkontableTableRenderer(wtTable) {
       this.wot.wtViewport.oversizedRows[sourceRow] = void 0;
     }
   },
+  getCellHeightAdjustment: function(element) {
+    var border;
+    var margin;
+    var padding;
+    
+    border = parseInt($(element).css("border-bottom-width")) + parseInt($(element).css("border-top-width"));
+    margin = parseInt($(element).css("margin-bottom-width")) + parseInt($(element).css("margin-top-width"));
+    padding = parseInt($(element).css("padding-bottom-width")) + parseInt($(element).css("padding-top-width"));
+    
+    return border + margin + padding;
+  },
   markOversizedRows: function() {
     if (this.wot.getSetting('externalRowCalculator')) {
       return;
@@ -3451,6 +3462,7 @@ var WalkontableTableRenderer = function WalkontableTableRenderer(wtTable) {
     var sourceRowIndex;
     var currentTr;
     var rowHeader;
+    var heightAdjustment;
     var totalRows = this.instance.getSetting('totalRows');
     if (expectedTableHeight === actualTableHeight && !this.instance.getSetting('fixedRowsBottom')) {
       return;
@@ -3464,7 +3476,8 @@ var WalkontableTableRenderer = function WalkontableTableRenderer(wtTable) {
       if (rowHeader) {
         rowInnerHeight = innerHeight(rowHeader);
       } else {
-        rowInnerHeight = innerHeight(currentTr) - 1;
+        heightAdjustment = this.getCellHeightAdjustment(currentTr.firstChild);
+        rowInnerHeight = innerHeight(currentTr) - heightAdjustment;
       }
       if ((!previousRowHeight && this.instance.wtSettings.settings.defaultRowHeight < rowInnerHeight || previousRowHeight < rowInnerHeight)) {
         this.instance.wtViewport.oversizedRows[sourceRowIndex] = ++rowInnerHeight;
