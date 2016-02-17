@@ -32,6 +32,8 @@
 #= require jquery-color/jquery.color
 #= require bootstrap-file-input/bootstrap.file-input
 #= require MutationObserver-shim/dist/mutationobserver.min
+# LDY: need to use the non-minified version because we've made a change.
+#= require handsontable/dist/handsontable.full
 #
 #= require helpers
 #= require_tree ./templates
