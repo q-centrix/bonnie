@@ -34,11 +34,19 @@
       {{#ifAdmin}}
         <a href="/measures/{{_id}}/debug" class="btn btn-danger">Debug</a>
       {{/ifAdmin}}
+      {{#if isPrimaryView}}
+      {{#button "patientDashboardToggle" class="btn btn-default btn-measure-viz"}}Patient Dashboard{{/button}}
+      {{else}}
+      {{#button "patientDashboardToggle" class="btn btn-default btn-measure-viz"}}Logic View{{/button}}
+      {{/if}}
     </div>
-
-    {{view logicView}}
-
-    {{view valueSetsView}}
+    
+    {{#if isPrimaryView}}
+      {{view logicView}}
+      {{view valueSetsView}}
+    {{else}}
+      {{view patientDashboardView}}
+    {{/if}}
   </div>
 
   <div class="right-sidebar">

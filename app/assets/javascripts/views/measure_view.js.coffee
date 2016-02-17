@@ -7,6 +7,10 @@ class Thorax.Views.Measure extends Thorax.Views.BonnieView
       @exportPatientsView.appendTo(@$el)
       @$('.d3-measure-viz, .btn-viz-text').hide()
 
+  context: ->
+    _(super).extend
+      isPrimaryView: @isPrimaryView
+
   initialize: ->
     populations = @model.get 'populations'
     population = @model.get 'displayedPopulation'
@@ -28,6 +32,8 @@ class Thorax.Views.Measure extends Thorax.Views.BonnieView
     @populationCalculation = new Thorax.Views.PopulationCalculation(model: population)
     @logicView.listenTo @populationCalculation, 'logicView:showCoverage', -> @showCoverage()
     @logicView.listenTo @populationCalculation, 'logicView:clearCoverage', -> @clearCoverage()
+    
+    @patientDashboardView = new Thorax.Views.MeasurePatientDashboard model: @model
 
     @populationCalculation.listenTo @logicView, 'population:update', (population) -> @updatePopulation(population)
     @listenTo @logicView, 'population:update', (population) =>
@@ -40,9 +46,14 @@ class Thorax.Views.Measure extends Thorax.Views.BonnieView
     @logicView.listenTo @populationCalculation, 'rationale:clear', -> @clearRationale()
     @logicView.listenTo @populationCalculation, 'rationale:show', (result) -> @showRationale(result)
     @measures = @model.collection
+    @isPrimaryView = false
 
   episodesOfCare: ->
     @model.get('source_data_criteria').filter((sdc) => sdc.get('source_data_criteria') in @model.get('episode_ids'))
+
+  patientDashboardToggle:(e) ->
+    @isPrimaryView = !@isPrimaryView
+    @render()
 
   updateMeasure: (e) ->
     importMeasureView = new Thorax.Views.ImportMeasure(model: @model)
