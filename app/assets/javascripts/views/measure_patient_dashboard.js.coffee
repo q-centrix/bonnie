@@ -40,20 +40,26 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         else
           cellProperties.renderer = @dataRenderer
         return cellProperties
-      # afterSelection: (rowIndexStart, colIndexStart, rowIndexEnd, colIndexEnd) =>
-      #   if colIndexStart == 0 && colIndexStart == colIndexEnd && rowIndexStart == rowIndexEnd)
-      #     @toggleExpandableRow(rowIndexStart)
+      ,
+      afterSelection: (rowIndexStart, colIndexStart, rowIndexEnd, colIndexEnd) =>
+        if colIndexStart == 0 && colIndexStart == colIndexEnd && rowIndexStart == rowIndexEnd
+          @toggleExpandableRow(rowIndexStart)
       })
+      
+    # adds a class onto all of the tables. Enables us to make changes to all tables at once easily
+    tables = container.querySelectorAll('table')
+    for table in tables
+      Handsontable.Dom.addClass(table, 'table-expandable-rows')
 
-  # toggleExpandableRow: (rowIndex) =>
-  #   if rowIndex > 1 && rowIndex%2 == 0
-  #     for table in $('table-expandable-rows')
-  #       tr = $(table).find('tr').eq(rowIndex + 1)[0]
-  #       if tr
-  #         if $(tr).hasClass('expandable-hidden')
-  #           Handsontable.Dom.removeClass(tr, 'expandable-hidden')
-  #         } else {
-  #           Handsontable.Dom.addClass(tr, 'expandable-hidden')
+  toggleExpandableRow: (rowIndex) =>
+    if rowIndex > 1 && rowIndex%2 == 0
+      for table in @$('.table-expandable-rows')
+        tr = $(table).find('tr').eq(rowIndex + 1)[0]
+        if tr
+          if $(tr).hasClass('expandable-hidden')
+            Handsontable.Dom.removeClass(tr, 'expandable-hidden')
+          else
+            Handsontable.Dom.addClass(tr, 'expandable-hidden')
 
   header1Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
