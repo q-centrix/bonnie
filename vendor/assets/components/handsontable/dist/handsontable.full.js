@@ -2867,6 +2867,7 @@ var WalkontableSettings = function WalkontableSettings(wotInstance, settings) {
     scrollbarWidth: 10,
     scrollbarHeight: 10,
     renderAllRows: false,
+    renderAllColumns: false,
     groups: false
   };
   this.settings = {};
@@ -3935,10 +3936,15 @@ var WalkontableViewport = function WalkontableViewport(wotInstance) {
   createColumnsCalculator: function() {
     var visible = arguments[0] !== (void 0) ? arguments[0] : false;
     var $__4 = this;
-    var width = this.getViewportWidth();
+    var width;
     var pos;
     var fixedColumnsLeft;
     this.columnHeaderHeight = NaN;
+    if (this.wot.wtSettings.settings.renderAllColumns) {
+      this.width = Infinity;
+    } else {
+      width = this.getViewportWidth();
+    }
     pos = this.wot.wtOverlays.leftOverlay.getScrollPosition() - this.wot.wtOverlays.leftOverlay.getTableParentOffset();
     if (pos < 0) {
       pos = 0;
@@ -5912,6 +5918,7 @@ DefaultSettings.prototype = {
   defaultDate: void 0,
   strict: void 0,
   renderAllRows: void 0,
+  renderAllColumns: void 0,
   preventOverflow: false
 };
 Handsontable.DefaultSettings = DefaultSettings;
@@ -13044,6 +13051,7 @@ var $Menu = Menu;
         })
       }],
       renderAllRows: true,
+      renderAllColumns: true,
       fragmentSelection: 'cell',
       beforeKeyDown: (function(event) {
         return $__10.onBeforeKeyDown(event);
@@ -18644,6 +18652,7 @@ function TableView(instance) {
       return that.settings.minSpareRows;
     },
     renderAllRows: that.settings.renderAllRows,
+    renderAllColumns: that.settings.renderAllColumns,
     rowHeaders: function() {
       var headerRenderers = [];
       if (instance.hasRowHeaders()) {
