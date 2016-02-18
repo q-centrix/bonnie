@@ -15,21 +15,28 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @numerColumns = []
     @denomColumns = []
     @denexcepColumns = []
+    
+    @FIXED_ROWS = 2
+    @FIXED_COLS = 6
+    
+    @COL_WIDTH_NAME = 140
+    @COL_WIDTH_POPULATION = 36
+    @COL_WIDTH_META = 100
+    @COL_WIDTH_FREETEXT = 240
+    @COL_WIDTH_CRITERIA = 180
 
   events:
     ready: ->
       @createTable()
   
   createTable: ->
-    data = @createData(@demoMeasure, @demoPatients)
-    mergedCells = @createMergedCells(@demoMeasure, @demoPatients);
-    container = @$('#patient_dashboard_table')[0]
+    container = @$('#patient_dashboard_table').get(0)
     hot = new Handsontable(container, {
-      data: data,
-      colWidths: [120, 140, 36, 36, 36, 36, 36, 36,36, 36, 200,100,100,100,200,240,100,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,180,],
-      fixedRowsTop: 2,
-      fixedColumnsLeft: 6,
-      mergeCells: mergedCells,
+      data: @createData(@demoMeasure, @demoPatients),
+      colWidths: @getColWidths()
+      fixedRowsTop: @FIXED_ROWS,
+      fixedColumnsLeft: @FIXED_COLS,
+      mergeCells: @createMergedCells(@demoMeasure, @demoPatients),
       readOnly: true,
       cells: (row, col, prop) =>
         cellProperties = {};
@@ -43,23 +50,19 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       ,
       afterSelection: (rowIndexStart, colIndexStart, rowIndexEnd, colIndexEnd) =>
         if colIndexStart == 0 && colIndexStart == colIndexEnd && rowIndexStart == rowIndexEnd
-          @toggleExpandableRow(rowIndexStart)
+          @toggleExpandableRow(container, rowIndexStart)
       })
-      
-    # adds a class onto all of the tables. Enables us to make changes to all tables at once easily
-    tables = container.querySelectorAll('table')
-    for table in tables
-      Handsontable.Dom.addClass(table, 'table-expandable-rows')
 
-  toggleExpandableRow: (rowIndex) =>
+  toggleExpandableRow: (container, rowIndex) =>
     if rowIndex > 1 && rowIndex%2 == 0
-      for table in @$('.table-expandable-rows')
-        tr = $(table).find('tr').eq(rowIndex + 1)[0]
-        if tr
-          if $(tr).hasClass('expandable-hidden')
-            Handsontable.Dom.removeClass(tr, 'expandable-hidden')
-          else
-            Handsontable.Dom.addClass(tr, 'expandable-hidden')
+      for table in $(container).find('table')
+        tr = $(table).find('tr#row' + (rowIndex + 1).toString()).get(0)
+        if $(tr).hasClass('expandable-hidden')
+          Handsontable.Dom.removeClass(tr, 'expandable-hidden')
+          Handsontable.Dom.addClass(tr, 'expandable-shown')
+        else
+          Handsontable.Dom.removeClass(tr, 'expandable-shown')
+          Handsontable.Dom.addClass(tr, 'expandable-hidden')
 
   header1Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
@@ -74,19 +77,19 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       Handsontable.Dom.addClass(td, 'rotate')
       @addDiv(td)
     else
-      text = td.textContent
-      td.firstChild.remove()
-      $(td).append('<div class="tableScrollContainer"><div class="tableScroll">' + text + '</div></div>')
-    @getColor(instance, td, row, col, value, cellProperties)
+      @addScroll(td)
   
   dataRenderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
     Handsontable.Dom.addClass(td, 'content')
     @addDiv(td)
+
+    # enabling expandable detail rows. Need to do by id because of how handsontable efficiently
+    # renders the table
+    tr = td.parentElement
+    tr.id = "row" + row
     if row%2 == 1
-      tr = td.parentElement
       Handsontable.Dom.addClass(tr, 'expandable-hidden')
-    @getColor(instance, td, row, col, value, cellProperties)
 
   getColor: (instance, td, row, col, value, cellProperties) =>
     if @ippColumns[0] <= col && @ippColumns[@ippColumns.length-1] >= col
@@ -104,7 +107,47 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     text = element.textContent
     element.firstChild.remove()
     $(element).append('<div>' + text + '</div>')
-  
+    
+  addScroll: (element) =>
+    text = element.textContent
+    element.firstChild.remove()
+    $(element).append('<div class="tableScrollContainer"><div class="tableScroll">' + text + '</div></div>')
+
+  # TODO: refactor the processing code below once we know what the patient data model will look like
+
+  getColWidths: ()  =>
+    colWidths = []
+    
+    # for first name and last name
+    colWidths.push(@COL_WIDTH_NAME)
+    colWidths.push(@COL_WIDTH_NAME)
+
+    # for the expected and actual populations
+    colWidths.push(@COL_WIDTH_POPULATION) for [0..7]
+
+    # for the notes
+    colWidths.push(@COL_WIDTH_FREETEXT)
+
+    # for birthdate, expired, deathdate
+    colWidths.push(@COL_WIDTH_META)
+    colWidths.push(@COL_WIDTH_META)
+    colWidths.push(@COL_WIDTH_META)
+
+    # for race and ethnicity
+    colWidths.push(@COL_WIDTH_FREETEXT)
+    colWidths.push(@COL_WIDTH_FREETEXT)
+
+    # for gender
+    colWidths.push(@COL_WIDTH_META)
+
+    # for criteria
+    colWidths.push(@COL_WIDTH_CRITERIA) for [0..@ippColumns.length-1]
+    colWidths.push(@COL_WIDTH_CRITERIA) for [0..@numerColumns.length-1]
+    colWidths.push(@COL_WIDTH_CRITERIA) for [0..@denomColumns.length-1]
+    colWidths.push(@COL_WIDTH_CRITERIA) for [0..@denexcepColumns.length-1]
+    
+    return colWidths
+
   createData: (measure,patients) =>
     @getOptionalRows()
     data = []
@@ -131,7 +174,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   createHeaderRows: (measure) =>
     row1 = ['','','Expected','','','','Actual','','','','','','','','','','']
-    row2 = ['First Name','Last Name','IPP','DENOM','NUMER','DENEXCEP','IPP','DENOM','NUMER','DENEXCEP','notes','birthdate','expired','deathdate','ethnicity','race','gender']
+    row2 = ['First Name','Last Name','IPP','DENOM','NUMER','DENEXCEP','IPP','DENOM','NUMER','DENEXCEP','Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
     
     curColIndex = row2.length
     @createHeaderSegment(row1, row2, @dispIppColumns, measure.ipp, @ippColumns, curColIndex, "IPP")

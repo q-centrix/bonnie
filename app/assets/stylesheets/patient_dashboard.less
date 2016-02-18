@@ -5,6 +5,7 @@
   overflow: hidden;
 }
 
+/* coloring population headers */
 /* the handsontable.bootstrap file is stupid and has !important so we need to use it also to override */
 td.basic {
   background-color: #fff !important;
@@ -28,35 +29,15 @@ tr:first-child td.header.denexcep {
   background-color: #ddeedd !important;
 }
 
+/* detail expand/hide */
 tr.expandable-hidden {
   display:none;
 }
 
+/* header styling */
 td.header {
   font-weight: bold;
   border-bottom: 2px solid #000;
-}
-
-td.rotate {
-  font-size: 90%;
-  height: 60px;
-  width: 40px;
-}
-
-td.rotate > div {
-  transform:
-    translate(-35px, 80px) /* magic numbers to get the text placement correct */
-    rotate(-90deg);
-  width: 80px;
-}
-
-td.content > div {
-  height: 20px;
-}
-
-td > div {
-  padding: 8px;
-  overflow: hidden;
 }
 
 td > div.tableScrollContainer {
@@ -72,4 +53,25 @@ td > div > div.tableScroll {
   position:absolute;
   bottom: 0;
   left: 0;
+}
+
+/* population header styling so text is vertical */
+td.rotate {
+  font-size: 90%;
+  height: 60px;
+  width: 40px;
+}
+
+td.rotate > div {
+  transform:
+    translate(-35px, 80px) /* magic numbers to get the text placement correct */
+    rotate(-90deg);
+  width: 80px;
+}
+
+/* basic cell styling. keeping in div because can managing text overflow more easily */
+td > div {
+  height: 20px;
+  padding: 8px;
+  overflow: hidden;
 }
