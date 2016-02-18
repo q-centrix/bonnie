@@ -38,6 +38,8 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       fixedColumnsLeft: @FIXED_COLS,
       mergeCells: @createMergedCells(@demoMeasure, @demoPatients),
       readOnly: true,
+      renderAllRows: true, # handsontable's optimizer for rendering doesn't manage hidden rows well. Rendering all to fix.
+      renderAllColumns: true, # partial rendering creates unpleasant jiltiness when scrolling horizontally. Rendering all to fix.
       cells: (row, col, prop) =>
         cellProperties = {};
         if row == 0
@@ -57,12 +59,13 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     if rowIndex > 1 && rowIndex%2 == 0
       for table in $(container).find('table')
         tr = $(table).find('tr#row' + (rowIndex + 1).toString()).get(0)
-        if $(tr).hasClass('expandable-hidden')
-          Handsontable.Dom.removeClass(tr, 'expandable-hidden')
-          Handsontable.Dom.addClass(tr, 'expandable-shown')
-        else
-          Handsontable.Dom.removeClass(tr, 'expandable-shown')
-          Handsontable.Dom.addClass(tr, 'expandable-hidden')
+        if tr
+          if $(tr).hasClass('expandable-hidden')
+            Handsontable.Dom.removeClass(tr, 'expandable-hidden')
+            Handsontable.Dom.addClass(tr, 'expandable-shown')
+          else
+            Handsontable.Dom.removeClass(tr, 'expandable-shown')
+            Handsontable.Dom.addClass(tr, 'expandable-hidden')
 
   header1Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
