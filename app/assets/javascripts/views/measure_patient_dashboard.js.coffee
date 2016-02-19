@@ -24,6 +24,8 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @COL_WIDTH_META = 100
     @COL_WIDTH_FREETEXT = 240
     @COL_WIDTH_CRITERIA = 180
+    
+    @expandedRows = [] # used to ensure that expanded rows stay expanded after re-render
 
   events:
     ready: ->
@@ -57,15 +59,18 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   toggleExpandableRow: (container, rowIndex) =>
     if rowIndex > 1 && rowIndex%2 == 0
+      expandableRowIndex = rowIndex + 1
       for table in $(container).find('table')
-        tr = $(table).find('tr#row' + (rowIndex + 1).toString()).get(0)
+        tr = $(table).find('tr#row' + expandableRowIndex.toString()).get(0)
         if tr
           if $(tr).hasClass('expandable-hidden')
             Handsontable.Dom.removeClass(tr, 'expandable-hidden')
             Handsontable.Dom.addClass(tr, 'expandable-shown')
+            @expandedRows.push(expandableRowIndex)
           else
             Handsontable.Dom.removeClass(tr, 'expandable-shown')
             Handsontable.Dom.addClass(tr, 'expandable-hidden')
+            @expandedRows = @expandedRows.filter (index) -> index != expandableRowIndex
 
   header1Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
@@ -91,8 +96,11 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     # renders the table
     tr = td.parentElement
     tr.id = "row" + row
-    if row%2 == 1
-      Handsontable.Dom.addClass(tr, 'expandable-hidden')
+    if row%2 == 1 
+      if row in @expandedRows
+        Handsontable.Dom.addClass(tr, 'expandable-shown')
+      else
+        Handsontable.Dom.addClass(tr, 'expandable-hidden')
 
   getColor: (instance, td, row, col, value, cellProperties) =>
     if @ippColumns[0] <= col && @ippColumns[@ippColumns.length-1] >= col
