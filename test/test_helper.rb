@@ -7,19 +7,19 @@ require './lib/ext/record'
 class ActiveSupport::TestCase
  
   def dump_database
-    Mongoid.default_session.collections.each do |c|
+    Mongoid.default_client.collections.each do |c|
       c.drop()
     end
   end
 
   def collection_fixtures(*collection_names)
     collection_names.each do |collection|
-      Mongoid.default_session[collection].drop
+      Mongoid.default_client[collection].drop
       Dir.glob(File.join(Rails.root, 'test', 'fixtures', collection, '*.json')).each do |json_fixture_file|
         fixture_json = JSON.parse(File.read(json_fixture_file))
         convert_times(fixture_json)
         set_mongoid_ids(fixture_json)
-        Mongoid.default_session[collection].insert(fixture_json)
+        Mongoid.default_client[collection].insert_one(fixture_json)
       end
     end
   end
