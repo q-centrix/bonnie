@@ -33,6 +33,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
   
   createTable: ->
     container = @$('#patient_dashboard_table').get(0)
+    patients = @model.get('patients')
     hot = new Handsontable(container, {
       data: @createData(@demoMeasure, @demoPatients),
       colWidths: @getColWidths()
@@ -53,8 +54,15 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         return cellProperties
       ,
       afterSelection: (rowIndexStart, colIndexStart, rowIndexEnd, colIndexEnd) =>
-        if colIndexStart == 0 && colIndexStart == colIndexEnd && rowIndexStart == rowIndexEnd
-          @toggleExpandableRow(container, rowIndexStart)
+        if colIndexStart == colIndexEnd && rowIndexStart == rowIndexEnd
+          if colIndexStart == 0
+            @toggleExpandableRow(container, rowIndexStart)
+          # TODO: figure out where people should actually click to have this pop up
+          if colIndexStart == 1
+            # TODO: figure out what actually needs to be passed into this view to appropraitely pass into the patient edit view
+            patientEditView = new Thorax.Views.MeasurePatientEditModal(model: @model.get('patients').models[0], measure: @model, patients: @model.get('patients'), measures = @model.collection)
+            patientEditView.appendTo(@$el)
+            patientEditView.display()
       })
 
   toggleExpandableRow: (container, rowIndex) =>
@@ -269,3 +277,32 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       @dispDenomColumns.push(key)
     for key, value of @demoMeasure.denexcep
       @dispDenexcepColumns.push(key)
+
+class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
+  template: JST['measure/patient_edit_modal']
+  
+  events:
+    'ready': 'setup'
+  
+  initialize: ->
+    @patientBuilderView = new Thorax.Views.PatientBuilder(model: @model, measure: @measure, patients: @patients, measures: @measures, showCompleteView: false)
+
+  setup: ->
+    @editDialog = @$("#patientEditModal")
+  
+  display: ->
+    @editDialog.modal(
+      "backdrop" : "static",
+      "keyboard" : true,
+      "show" : true).find('.modal-dialog').css('width','1000px') # TODO: figure out what the appropriate relative width should be
+
+  save: (e)-> 
+    status = @patientBuilderView.save(e)
+    if status
+      @editDialog.modal(
+        "backdrop" : "static",
+        "keyboard" : false,
+        "show" : true)
+      @editDialog.modal('hide')
+
+  close: -> ''
