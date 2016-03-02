@@ -7,22 +7,6 @@
   label {
     text-transform: uppercase;
   }
-  
-  .btn-danger {
-    .fa {
-      color: @btn-danger-color;
-    }
-  }
-  .btn-danger-inverse {
-    .fa {
-      color: @btn-danger-bg;
-    }
-  }
-  .btn-primary {
-    .fa {
-      color: white;
-    }
-  }
 
   .measure-ribbon {
     .pull-right;
@@ -198,9 +182,6 @@
       font-size: @font-size-base;
       padding: (@grid-gutter-width / 2);
       text-transform: uppercase;
-      .fa {
-        color: white;
-      };
       &[class*="-elements"] {
         .transition(all .35s ease);
         background-color: @blue-lighter;
@@ -243,10 +224,6 @@
 
       .criteriatype {
         color: @blue-lighter;
-        
-        .fa {
-          color: @blue-lighter;
-        }
       }
 
     }
@@ -254,12 +231,9 @@
       background-color: inherit;
       color: inherit;
       padding: 0;
-      
-      .fa {
-        color: inherit;
-      }
     }
   }
+
 
   .criteria-container {
     &.droppable {
@@ -284,16 +258,10 @@
         margin-left: -22px;
         margin-top: 10px;
         text-align: center;
-        .fa {
-          color: @brand-primary;
-        }
         &.open {
           background-color: @brand-primary;
           color: white;
-          .fa {
-            color: white;
-          }
-        };
+        }
       }
       .criteria-body {
         margin-left: (@grid-gutter-width / 2);
@@ -333,10 +301,6 @@
             margin-top: 10px;
             padding: @padding-base-vertical @padding-base-horizontal;
             margin-right: -(@grid-gutter-width / 2);
-            
-            .fa {
-              color: @gray-darker;
-            }
 
             .criteria-tag-cms {
               font-weight: 200;
@@ -353,9 +317,6 @@
 
           .control-label {
             color: @brand-primary;
-            .fa {
-              color: @brand-primary;
-            }
           }
           .input-group-addon {
             padding: 0;
