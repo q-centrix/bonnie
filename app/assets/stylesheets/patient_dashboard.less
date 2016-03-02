@@ -5,73 +5,80 @@
   overflow: hidden;
 }
 
-/* coloring population headers */
-/* the handsontable.bootstrap file is stupid and has !important so we need to use it also to override */
-td.basic {
-  background-color: #fff !important;
-}
-tr:first-child td.header.ipp {
-  background-color: #ddeeee !important;
-}
-tr:first-child td.header.denom {
-  background-color: #eeddee !important;
-}
-tr:first-child td.header.numer {
-  background-color: #aaeedd !important;
-}
-tr:first-child td.header.denex {
-  background-color: #eeeedd !important;
-}
-tr:first-child td.header.numex {
-  background-color: #aaeeee !important;
-}
-tr:first-child td.header.denexcep {
-  background-color: #ddeedd !important;
-}
+.handsontable {
+  td {
+    // border-right: inherit;
+    border-bottom: inherit;
+  }
 
-/* detail expand/hide */
-tr.expandable-hidden {
-  display:none;
-}
+  /* coloring population headers */
+  /* the handsontable.bootstrap file is stupid and has !important so we need to use it also to override */
+  td.basic {
+    background-color: #fff !important;
+  }
+  tr:first-child td.header.ipp {
+    background-color: #ddeeee !important;
+  }
+  tr:first-child td.header.denom {
+    background-color: #eeddee !important;
+  }
+  tr:first-child td.header.numer {
+    background-color: #aaeedd !important;
+  }
+  tr:first-child td.header.denex {
+    background-color: #eeeedd !important;
+  }
+  tr:first-child td.header.numex {
+    background-color: #aaeeee !important;
+  }
+  tr:first-child td.header.denexcep {
+    background-color: #ddeedd !important;
+  }
 
-/* header styling */
-td.header {
-  font-weight: bold;
-  border-bottom: 2px solid #000;
-}
+  /* detail expand/hide */
+  tr.expandable-hidden {
+    display:none;
+  }
 
-td > div.tableScrollContainer {
-  padding: 0px;
-  position: relative;
-  height: 150px;
-}
+  /* header styling */
+  td.header {
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+  }
 
-td > div > div.tableScroll {
-  padding:8px;
-  max-height:134px;
-  overflow-y:auto;
-  position:absolute;
-  bottom: 0;
-  left: 0;
-}
+  td > div.tableScrollContainer {
+    padding: 0px;
+    position: relative;
+    height: 150px;
+  }
 
-/* population header styling so text is vertical */
-td.rotate {
-  font-size: 90%;
-  height: 60px;
-  width: 40px;
-}
+  td > div > div.tableScroll {
+    padding:8px;
+    max-height:134px;
+    overflow-y:auto;
+    position:absolute;
+    bottom: 0;
+    left: 0;
+  }
 
-td.rotate > div {
-  transform:
-    translate(-35px, 80px) /* magic numbers to get the text placement correct */
-    rotate(-90deg);
-  width: 80px;
-}
+  /* population header styling so text is vertical */
+  td.rotate {
+    font-size: 90%;
+    height: 60px;
+    width: 40px;
+  }
 
-/* basic cell styling. keeping in div because can managing text overflow more easily */
-td > div {
-  height: 20px;
-  padding: 8px;
-  overflow: hidden;
+  td.rotate > div {
+    transform:
+      translate(-35px, 80px) /* magic numbers to get the text placement correct */
+      rotate(-90deg);
+    width: 80px;
+  }
+
+  /* basic cell styling. keeping in div because can managing text overflow more easily */
+  td > div {
+    height: 20px;
+    padding: 8px;
+    overflow: hidden;
+  }
 }
