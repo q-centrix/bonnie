@@ -41,6 +41,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       fixedColumnsLeft: @FIXED_COLS,
       mergeCells: @createMergedCells(@demoMeasure, @demoPatients),
       readOnly: true,
+      readOnlyCellClassName: '', # avoid using the default .htDimmed... it'll just make the whole table grey.
       renderAllRows: true, # handsontable's optimizer for rendering doesn't manage hidden rows well. Rendering all to fix.
       renderAllColumns: true, # partial rendering creates unpleasant jiltiness when scrolling horizontally. Rendering all to fix.
       cells: (row, col, prop) =>
@@ -64,6 +65,12 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
             patientEditView.appendTo(@$el)
             patientEditView.display()
       })
+
+    tableInstances = $(container).find('table')
+    i = 0
+    while i < tableInstances.length
+      Handsontable.Dom.addClass tableInstances[i], 'table' # adding table-striped or table-condensed doesn't work here
+      i++
 
   toggleExpandableRow: (container, rowIndex) =>
     if rowIndex > 1 && rowIndex%2 == 0
@@ -125,8 +132,15 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
   addDiv: (element) =>
     text = element.textContent
     element.firstChild.remove()
-    $(element).append('<div>' + text + '</div>')
-    
+    if text == 'FALSE'
+      $(element).append('<div class="text-danger"><i aria-hidden="true" class="fa fa-fw fa-times-circle"></i> ' + text + '</div>')
+    else if text == 'TRUE'
+      $(element).append('<div class="text-success"><i aria-hidden="true" class="fa fa-fw fa-check-circle"></i> ' + text + '</div>')
+    else if text.indexOf('SPECIFIC') >= 0
+      $(element).append('<div class="text-danger"><i aria-hidden="true" class="fa fa-fw fa-asterisk"></i> ' + text + '</div>')
+    else
+      $(element).append('<div>' + text + '</div>')
+
   addScroll: (element) =>
     text = element.textContent
     element.firstChild.remove()
