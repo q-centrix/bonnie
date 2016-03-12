@@ -77,7 +77,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     if rowIndex > 1 && rowIndex%2 == 0
       expandableRowIndex = rowIndex + 1
       for table in $(container).find('table')
-        tr = $(table).find('tr#row' + expandableRowIndex.toString()).get(0)
+        tr = $(table).find('tr[data-row="row' + expandableRowIndex.toString() + '"]').get(0)
         if tr
           if $(tr).hasClass('expandable-hidden')
             Handsontable.Dom.removeClass(tr, 'expandable-hidden')
@@ -108,11 +108,11 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     Handsontable.Dom.addClass(td, 'content')
     @addDiv(td)
 
-    # enabling expandable detail rows. Need to do by id because of how handsontable efficiently
-    # renders the table
+    # enabling expandable detail rows. Need to do by a custom data-attribute
+    # because of how handsontable efficiently renders the table
     tr = td.parentElement
-    tr.id = "row" + row
-    if row%2 == 1 
+    $(tr).attr('data-row', "row" + row)
+    if row%2 == 1
       if row in @expandedRows
         Handsontable.Dom.addClass(tr, 'expandable-shown')
       else
