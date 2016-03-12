@@ -36,7 +36,8 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     patients = @model.get('patients')
     hot = new Handsontable(container, {
       data: @createData(@demoMeasure, @demoPatients),
-      colWidths: @getColWidths()
+      colWidths: @getColWidths(),
+      copyPaste: false, # need this to avoid 508 issue
       fixedRowsTop: @FIXED_ROWS,
       fixedColumnsLeft: @FIXED_COLS,
       mergeCells: @createMergedCells(@demoMeasure, @demoPatients),
