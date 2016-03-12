@@ -30,7 +30,29 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
   events:
     ready: ->
       @createTable()
-  
+      # Some post-creation hacks
+      $('table').addClass('table')
+
+      # Make the headers accessible by replacing <tr> with <th>
+      # First header row
+      $('tr:not([data-row]):first-child td').each () ->
+        unless $(this).attr('colspan') is undefined
+          $(this).replaceWith(
+            '<th colspan='+$(this).attr('colspan')+
+            ' scope="col" class='+$(this).attr('class')+
+            '>'+$(this).html()+'</th>')
+        else if $(this).attr('style') is "display: none;"
+          $(this).detach()
+
+      # Second header row
+      $('table').each () ->
+        $(this).find('tr:not([data-row]):nth-child(2) td').each (i) ->
+          classes = $(this).attr('class')
+          if i >= 2 and i <= 9
+            classes = $(this).attr('class') + " rotate"
+
+          $(this).replaceWith('<th scope="col" class='+classes+'>'+$(this).html()+'</th>')
+
   createTable: ->
     container = @$('#patient_dashboard_table').get(0)
     patients = @model.get('patients')
@@ -67,12 +89,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
             patientEditView.display()
       })
 
-    tableInstances = $(container).find('table')
-    i = 0
-    while i < tableInstances.length
-      Handsontable.Dom.addClass tableInstances[i], 'table' # adding table-striped or table-condensed doesn't work here
-      i++
-
   toggleExpandableRow: (container, rowIndex) =>
     if rowIndex > 1 && rowIndex%2 == 0
       expandableRowIndex = rowIndex + 1
@@ -90,15 +106,12 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   header1Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    Handsontable.Dom.addClass(td, 'header')
     @addDiv(td)
     @getColor(instance, td, row, col, value, cellProperties)
 
   header2Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    Handsontable.Dom.addClass(td, 'header')
     if col >= 2 && col <= 9
-      Handsontable.Dom.addClass(td, 'rotate')
       @addDiv(td)
     else
       @addScroll(td)
@@ -194,7 +207,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return data
 
   createMergedCells: (measure, patients) =>
-    mergedCells = [{row:0, col:2, colspan:4, rowspan:1},{row:0, col:6, colspan:4, rowspan:1}]
+    mergedCells = [{row:0, col:0, colspan:2, rowspan:1},{row:0, col:2, colspan:4, rowspan:1},{row:0, col:6, colspan:4, rowspan:1},{row:0, col:10, colspan:7, rowspan:1}]
     if @ippColumns.length > 0
       mergedCells.push({row: 0, col: @ippColumns[0], colspan: @ippColumns.length, rowspan:1})
     if @numerColumns.length > 0
@@ -207,7 +220,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return mergedCells
 
   createHeaderRows: (measure) =>
-    row1 = ['','','Expected','','','','Actual','','','','','','','','','','']
+    row1 = ['Name','','Expected','','','','Actual','','','','Metadata','','','','','','']
     row2 = ['First Name','Last Name','IPP','DENOM','NUMER','DENEXCEP','IPP','DENOM','NUMER','DENEXCEP','Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
     
     curColIndex = row2.length
