@@ -51,7 +51,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       $('table').each () ->
         $(this).find('tr:not([data-row]):nth-child(2) td').each (i) ->
           classes = $(this).attr('class')
-          if i >= 2 and i <= 9
+          if i >= 5 and i <= 12
             classes = $(this).attr('class') + " rotate"
 
           $(this).replaceWith('<th scope="col" class='+classes+'>'+$(this).html()+'</th>')
@@ -132,9 +132,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   header2Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    # Handsontable.Dom.addClass(td, 'header')
     if col >= 5 && col <= 12
-      # Handsontable.Dom.addClass(td, 'rotate')
       @addDiv(td)
     else
       @addScroll(td)
