@@ -42,7 +42,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @denexcepColumns = []
 
     @FIXED_ROWS = 2
-    @FIXED_COLS = 5 + @populations.length
+    @FIXED_COLS = 3 + @populations.length
 
     @COL_WIDTH_NAME = 140
     @COL_WIDTH_POPULATION = 36
@@ -122,7 +122,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
           for cell, index in header_row2
             # replace <td> tags with <th> tags manually
             classes = $(cell).attr('class')
-            if index >= 5 and index < (5 + @populations.length*2)
+            if index >= 3 and index < (3 + @populations.length*2)
               classes = classes + " rotate"
 
             $(cell).replaceWith('<th scope="col" class='+classes+'>'+$(cell).html()+'</th>')
@@ -167,7 +167,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   header2Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    if col >= 5 && col < (@populations.length * 2) + 5
+    if col >= 3 && col < (@populations.length * 2) + 3
       @addDiv(td)
     else
       @addScroll(td)
@@ -230,8 +230,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
     # for edit/expand/modal fields
     colWidths.push(@COL_WIDTH_META)
-    colWidths.push(@COL_WIDTH_META)
-    colWidths.push(@COL_WIDTH_META)
 
     # for first name and last name
     colWidths.push(@COL_WIDTH_NAME)
@@ -275,8 +273,8 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   createMergedCells: (measure, patients) =>
     mergedCells = []
-    
-    currIndex = 3 # starting index for merged cells - ignores the 'button' cells like edit, modal, etc.
+
+    currIndex = 1 # starting index for merged cells - ignores the 'button' cells like edit, modal, etc.
     colspans = [2, @populations.length, @populations.length, 7] # name, populations, populations, metadata
     
     for colspan in colspans
@@ -293,8 +291,8 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   getEditableCols:() =>
     editableCols = []
-    
-    index = 3
+
+    index = 1
     editableCols.push(index++) # firstname
     editableCols.push(index++) # lastname
     
@@ -314,10 +312,10 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   createHeaderRows: (measure, patients) =>
 
-    row2 = ['EDIT','EXPAND','MODAL','First Name','Last Name']
+    row2 = ['Actions','First Name','Last Name']
     attributes = ['Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
 
-    row1 = ['','','','Name','']
+    row1 = ['','Name','']
     populations_array_placeholder = new Array(@populations.length-1).join(".").split(".")
 
     row1.push('Expected')
@@ -384,7 +382,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   createPatientRow: (patient) =>
 
-     patient_values = ['EDIT','EXPAND','MODAL']
+     patient_values = ['DO SOMETHING'] # how to put HTML into this one cell?
      patient_attributes = ['notes','birthdate','expired','deathdate','ethnicity','race','gender']
      #Match results to patients.
      patient_result = @match_patient_to_patient_id(patient.id)
