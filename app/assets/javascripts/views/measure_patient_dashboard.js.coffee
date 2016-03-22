@@ -53,7 +53,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @expandedRows = [] # used to ensure that expanded rows stay expanded after re-render
     @editableRows = [] # used to ensure rows marked for inline editing stay that way after re-render
 
-    @editableCols = [3,4,5,6,7,8,13,14] # these are the fields that should be inline editable
+    @editableCols = @getEditableCols() # these are the fields that should be inline editable
 
   events:
     rendered: ->
@@ -288,6 +288,27 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         currIndex += colspan
 
     return mergedCells
+
+  getEditableCols:() =>
+    editableCols = []
+    
+    index = 3
+    editableCols.push(index++) # firstname
+    editableCols.push(index++) # lastname
+    
+    # make expected population results editable
+    for population in @populations
+      editableCols.push(index++)
+    
+    # hop over the actual population results
+    for population in @populations
+      index++
+      
+    # TODO: these values are hard coded because the metadata values are hard coded. there is probably a better way to represent this.
+    editableCols.push(index++) # notes
+    editableCols.push(index++) # birthdate
+    
+    return editableCols
 
   createHeaderRows: (measure, patients) =>
 
