@@ -24,6 +24,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     for code in Thorax.Models.Measure.allPopulationCodes #TODO add multiple population_set support
       if code in Object.keys(@model.get('populations')['models'][0]['attributes'])
         @population_criteria[code] = @model.get('populations')['models'][0].get(code)['preconditions']
+        
+    @criteria_keys_by_population = @criteria_keys_by_population()
+    
     ##DEBUG of VIEWS####
     @view.appendTo('body') for @view in @views
     ###############
@@ -270,20 +273,20 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return data
 
   createMergedCells: (measure, patients) =>
-    mergedCells = [
-      {row:0, col:3, colspan:2, rowspan:1},
-      {row:0, col:5, colspan:@populations.length, rowspan:1},
-      {row:0, col:5+@populations.length, colspan:@populations.length, rowspan:1},
-      {row:0, col:5+@populations.length*2, colspan:7, rowspan:1}
-    ]
-    if @ippColumns.length > 0
-      mergedCells.push({row: 0, col: @ippColumns[0], colspan: @ippColumns.length, rowspan:1})
-    if @numerColumns.length > 0
-      mergedCells.push({row: 0, col: @numerColumns[0], colspan: @numerColumns.length, rowspan:1})
-    if @denomColumns.length > 0
-      mergedCells.push({row: 0, col: @denomColumns[0], colspan: @denomColumns.length, rowspan:1})
-    if @denexcepColumns.length > 0
-      mergedCells.push({row: 0, col: @denexcepColumns[0], colspan: @denexcepColumns.length, rowspan:1})
+    mergedCells = []
+    
+    currIndex = 3 # starting index for merged cells - ignores the 'button' cells like edit, modal, etc.
+    colspans = [2, @populations.length, @populations.length, 7] # name, populations, populations, metadata
+    
+    for colspan in colspans
+      mergedCells.push({row:0, col:currIndex, colspan:colspan, rowspan:1})
+      currIndex += colspan
+
+    for population in @populations
+      if @criteria_keys_by_population[population]
+        colspan = @criteria_keys_by_population[population].length
+        mergedCells.push({row: 0, col:currIndex, colspan:colspan, rowspan:1})
+        currIndex += colspan
 
     return mergedCells
 
@@ -301,6 +304,11 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     row1.push('Actual')
     row1 = row1.concat(populations_array_placeholder)
     row1 = row1.concat(['Metadata','','','','','',''])
+    
+    for population in @populations
+      if @criteria_keys_by_population[population]
+        row1.push(population)
+        row1.push('') for [1..@criteria_keys_by_population[population].length-1]
 
     #TODO There must be a better way to duplicate items in list.
     for population in @populations
@@ -310,14 +318,13 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     row2 = row2.concat(attributes)
 
     population_code_data_criteria_map = {}
-    criteria_keys_by_population = @criteria_keys_by_population()
 
     for @view in measure
       @criteria_text_hash[@view.dataCriteria.key] = @view.$el[0].outerText
 
     for code in Thorax.Models.Measure.allPopulationCodes
-      if criteria_keys_by_population[code]?
-        for criteria in criteria_keys_by_population[code]
+      if @criteria_keys_by_population[code]?
+        for criteria in @criteria_keys_by_population[code]
           row1.push(' ')
           row2.push(@criteria_text_hash[criteria])
           @criteria_order_list.push(criteria)
