@@ -254,11 +254,10 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     colWidths.push(@COL_WIDTH_META)
 
     # for criteria
-    colWidths.push(@COL_WIDTH_CRITERIA) for [0..@ippColumns.length-1]
-    colWidths.push(@COL_WIDTH_CRITERIA) for [0..@numerColumns.length-1]
-    colWidths.push(@COL_WIDTH_CRITERIA) for [0..@denomColumns.length-1]
-    colWidths.push(@COL_WIDTH_CRITERIA) for [0..@denexcepColumns.length-1]
-
+    for population, criteria_keys of @criteria_keys_by_population
+      if criteria_keys
+        colWidths.push(@COL_WIDTH_CRITERIA) for [1..criteria_keys.length]
+    
     return colWidths
 
   createData: (measure,patients) =>
@@ -325,7 +324,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     for code in Thorax.Models.Measure.allPopulationCodes
       if @criteria_keys_by_population[code]?
         for criteria in @criteria_keys_by_population[code]
-          row1.push(' ')
           row2.push(@criteria_text_hash[criteria])
           @criteria_order_list.push(criteria)
 
