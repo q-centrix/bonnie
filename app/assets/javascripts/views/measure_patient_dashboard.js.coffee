@@ -11,25 +11,35 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @criteria_text_hash = {}
     @criteria_order_list = []
 
+    #TODO Duplication of code for mapping code to race / ethnicity - See patient_builder.hbs
+    @race_map = {}
+    @race_map["1002-5"] = "American Indian or Alaska Native"
+    @race_map['2028-9'] = "Asian"
+    @race_map["2054-5"] = "Black or African American"
+    @race_map["2076-8"]= "Native Hawaiian or Other Pacific Islander"
+    @race_map["2106-3"] = "White"
+    @race_map["2131-1"] = "Other"
+
+    @ethnicity_map = {}
+    @ethnicity_map["2186-5"] = "Not Hispanic or Latino"
+    @ethnicity_map["2135-2"] = "Hispanic Or Latino"
+
     #Grab all populations related to this measure
     codes = (population['code'] for population in @model.get('measure_logic'))
     @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
 
     # Grab all data criteria and pass them into DataCriteriaLogic
     for reference in Object.keys(@model.get('data_criteria'))
-      @dataLogicView = new Thorax.Views.DataCriteriaLogic(reference: reference, measure: @model)
-      @views.push(@dataLogicView)
+      dataLogicView = new Thorax.Views.DataCriteriaLogic(reference: reference, measure: @model)
+      dataLogicView.appendTo(@$el)
+      @views.push(dataLogicView)
 
     @population_criteria = {} # "Type" => "Preconditions"
     for code in Thorax.Models.Measure.allPopulationCodes #TODO add multiple population_set support
       if code in Object.keys(@model.get('populations')['models'][0]['attributes'])
         @population_criteria[code] = @model.get('populations')['models'][0].get(code)['preconditions']
-        
+
     @criteria_keys_by_population = @criteria_keys_by_population()
-    
-    ##DEBUG of VIEWS####
-    @view.appendTo('body') for @view in @views
-    ###############
 
     @dispIppColumns = []
     @dispNumerColumns = []
@@ -257,7 +267,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     for population, criteria_keys of @criteria_keys_by_population
       if criteria_keys
         colWidths.push(@COL_WIDTH_CRITERIA) for [1..criteria_keys.length]
-    
+
     return colWidths
 
   createData: (measure,patients) =>
@@ -276,7 +286,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
     currIndex = 1 # starting index for merged cells - ignores the 'button' cells like edit, modal, etc.
     colspans = [2, @populations.length, @populations.length, 7] # name, populations, populations, metadata
-    
+
     for colspan in colspans
       mergedCells.push({row:0, col:currIndex, colspan:colspan, rowspan:1})
       currIndex += colspan
@@ -295,19 +305,19 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     index = 1
     editableCols.push(index++) # firstname
     editableCols.push(index++) # lastname
-    
+
     # make expected population results editable
     for population in @populations
       editableCols.push(index++)
-    
+
     # hop over the actual population results
     for population in @populations
       index++
-      
+
     # TODO: these values are hard coded because the metadata values are hard coded. there is probably a better way to represent this.
     editableCols.push(index++) # notes
     editableCols.push(index++) # birthdate
-    
+
     return editableCols
 
   createHeaderRows: (measure, patients) =>
@@ -324,7 +334,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     row1.push('Actual')
     row1 = row1.concat(populations_array_placeholder)
     row1 = row1.concat(['Metadata','','','','','',''])
-    
+
     for population in @populations
       if @criteria_keys_by_population[population]
         row1.push(population)
@@ -339,8 +349,8 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
     population_code_data_criteria_map = {}
 
-    for @view in measure
-      @criteria_text_hash[@view.dataCriteria.key] = @view.$el[0].outerText
+    for view in measure
+      @criteria_text_hash[view.dataCriteria.key] = view.$el[0].outerText
 
     for code in Thorax.Models.Measure.allPopulationCodes
       if @criteria_keys_by_population[code]?
@@ -381,7 +391,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       data.push(patientDetailRow);
 
   createPatientRow: (patient) =>
-
      patient_values = ['DO SOMETHING'] # how to put HTML into this one cell?
      patient_attributes = ['notes','birthdate','expired','deathdate','ethnicity','race','gender']
      #Match results to patients.
@@ -396,7 +405,17 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
      #Add patient attribute values to patient value array.
      for attribute in patient_attributes
-       patient_values.push(patient.get(attribute))
+       if attribute == 'ethnicity'
+         patient_values.push(@ethnicity_map[patient.get(attribute)])
+       else if attribute == 'race'
+         patient_values.push(@race_map[patient.get(attribute)])
+       else if attribute == 'expired'
+         value = if patient.get(attribute) != true then false else true
+         patient_values.push(value)
+       else if attribute == 'birthdate' || attribute == 'deathdate' && patient.get(attribute) != null
+         patient_values.push(moment.utc(patient.get(attribute)).format('L'))
+       else
+         patient_values.push(patient.get(attribute))
 
      data_criteria_values = @extract_data_criteria_value(patient_result)
      patient_values = patient_values.concat(data_criteria_values)
