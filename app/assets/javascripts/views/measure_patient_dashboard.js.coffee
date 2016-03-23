@@ -56,7 +56,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
     @COL_WIDTH_NAME = 140
     @COL_WIDTH_POPULATION = 36
-    @COL_WIDTH_META = 100
+    @COL_WIDTH_META = 150
     @COL_WIDTH_FREETEXT = 240
     @COL_WIDTH_CRITERIA = 180
 
@@ -186,7 +186,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     Handsontable.renderers.TextRenderer.apply(this, arguments)
     Handsontable.Dom.addClass(td, 'content')
     @addDiv(td)
-
     # enabling expandable detail rows. Need to do by a custom data-attribute
     # because of how handsontable efficiently renders the table
     tr = td.parentElement
@@ -391,7 +390,17 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       data.push(patientDetailRow);
 
   createPatientRow: (patient) =>
-     patient_values = ['DO SOMETHING'] # how to put HTML into this one cell?
+     patient_values = ['
+      <i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i>
+
+      <button class="btn btn-xs btn-primary">
+        <i aria-hidden="true" class="fa fa-fw fa-pencil"></i>
+        <span class="sr-only">Edit this patient inline</span>
+      </button>
+
+      <button class="btn btn-xs btn-default">Open...</button>
+     '] # TODO: How to make these buttons trigger events??
+     
      patient_attributes = ['notes','birthdate','expired','deathdate','ethnicity','race','gender']
      #Match results to patients.
      patient_result = @match_patient_to_patient_id(patient.id)
