@@ -41,16 +41,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
     @criteria_keys_by_population = @criteria_keys_by_population()
 
-    @dispIppColumns = []
-    @dispNumerColumns = []
-    @dispDenomColumns = []
-    @dispDenexcepColumns = []
-
-    @ippColumns = []
-    @numerColumns = []
-    @denomColumns = []
-    @denexcepColumns = []
-
     @FIXED_ROWS = 2
     @FIXED_COLS = 3 + @populations.length
 
@@ -201,18 +191,20 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         instance.setCellMeta(row, col, 'readOnly', false)
     if col in @editableCols
       Handsontable.Dom.addClass(td, 'editable')
-
+      
   getColor: (instance, td, row, col, value, cellProperties) =>
-    if @ippColumns[0] <= col && @ippColumns[@ippColumns.length-1] >= col
-      Handsontable.Dom.addClass(td, "ipp")
-    else if (@numerColumns[0] <= col && @numerColumns[@numerColumns.length-1] >= col)
-      Handsontable.Dom.addClass(td, "numer")
-    else if (@denomColumns[0] <= col && @denomColumns[@denomColumns.length-1] >= col)
-      Handsontable.Dom.addClass(td, "denom")
-    else if (@denexcepColumns[0] <= col && @denexcepColumns[@denexcepColumns.length-1] >= col)
-      Handsontable.Dom.addClass(td, "denexcep")
-    else
-      Handsontable.Dom.addClass(td, "basic")
+    # this method no longer does anything because we're using a different set of structures. want to rework so that the coloring works again.
+    return null
+    # if @ippColumns[0] <= col && @ippColumns[@ippColumns.length-1] >= col
+    #   Handsontable.Dom.addClass(td, "ipp")
+    # else if (@numerColumns[0] <= col && @numerColumns[@numerColumns.length-1] >= col)
+    #   Handsontable.Dom.addClass(td, "numer")
+    # else if (@denomColumns[0] <= col && @denomColumns[@denomColumns.length-1] >= col)
+    #   Handsontable.Dom.addClass(td, "denom")
+    # else if (@denexcepColumns[0] <= col && @denexcepColumns[@denexcepColumns.length-1] >= col)
+    #   Handsontable.Dom.addClass(td, "denexcep")
+    # else
+    #   Handsontable.Dom.addClass(td, "basic")
 
   addDiv: (element) =>
     text = element.textContent
@@ -269,7 +261,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return colWidths
 
   createData: (measure,patients) =>
-    #@getOptionalRows()
     data = []
     headers = @createHeaderRows(measure, patients)
     data.push(headers[0])
@@ -355,15 +346,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         for criteria in @criteria_keys_by_population[code]
           row2.push(@criteria_text_hash[criteria])
           @criteria_order_list.push(criteria)
-
-#    curColIndex = row2.length
-#    @createHeaderSegment(row1, row2, @dispIppColumns, @population_criteria['IPP'], @ippColumns, curColIndex, "IPP")
-#    curColIndex = row2.length
-#    @createHeaderSegment(row1, row2, @dispNumerColumns, @population_criteria['NUMER'], @numerColumns, curColIndex, "NUMER")
-#    curColIndex = row2.length
-#    @createHeaderSegment(row1, row2, @dispDenomColumns, @population_criteria['DENOM'], @denomColumns, curColIndex, "DENOM")
-#    curColIndex = row2.length
-#    @createHeaderSegment(row1, row2, @dispDenexcepColumns, @population_criteria['DENEXCEP'], @denexcepColumns, curColIndex, "DENEXCEP")
 
     [row1, row2]
 
@@ -541,31 +523,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     for value in patientSummaryRow
       row.push("DETAIL " + rowIndex.toString())
     return row
-
-    @createPatientSegment(ret, @dispIppColumns, patient.ipp);
-    @createPatientSegment(ret, @dispNumerColumns, patient.numer);
-    @createPatientSegment(ret, @dispDenomColumns, patient.denom);
-    @createPatientSegment(ret, @dispDenexcepColumns, patient.denexcep);
-
-    return ret;
-
-  createPatientSegment: (row, dispColumns, patientColumn) =>
-    for value in dispColumns
-      row.push(patientColumn[value])
-
-  getOptionalRows: ->
-    @dispIppColumns.length = 0
-    @dispNumerColumns.length = 0
-    @dispDenomColumns.length = 0
-    @dispDenexcepColumns.length = 0
-    for key, value of @demoMeasure.ipp
-      @dispIppColumns.push(key)
-    for key, value of @demoMeasure.numer
-      @dispNumerColumns.push(key)
-    for key, value of @demoMeasure.denom
-      @dispDenomColumns.push(key)
-    for key, value of @demoMeasure.denexcep
-      @dispDenexcepColumns.push(key)
 
 class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
   template: JST['measure/patient_edit_modal']
