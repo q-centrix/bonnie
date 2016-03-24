@@ -87,7 +87,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       readOnly: true,
       readOnlyCellClassName: '', # avoid using the default .htDimmed... it'll just make the whole table grey.
       renderAllRows: true, # handsontable's optimizer for rendering doesn't manage hidden rows well. Rendering all to fix.
-      renderAllColumns: true, # partial rendering creates unpleasant jiltiness when scrolling horizontally. Rendering all to fix.
       cells: (row, col, prop) =>
         cellProperties = {};
         if row == 0
