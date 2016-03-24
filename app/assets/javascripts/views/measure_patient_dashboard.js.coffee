@@ -7,9 +7,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @model.get('populations').each (population) =>
       @results.push(population.calculationResults().toJSON())
 
-    @views = []
-    @criteria_order_list = []
-
     #TODO Duplication of code for mapping code to race / ethnicity - See patient_builder.hbs
     @race_map = {}
     @race_map["1002-5"] = "American Indian or Alaska Native"
@@ -23,30 +20,16 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @ethnicity_map["2186-5"] = "Not Hispanic or Latino"
     @ethnicity_map["2135-2"] = "Hispanic Or Latino"
 
-    #Grab all populations related to this measure
-    @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, @model.get('displayedPopulation').keys())
-
-    # Grab all data criteria and pass them into DataCriteriaLogic
-    for reference in Object.keys(@model.get('data_criteria'))
-      dataLogicView = new Thorax.Views.DataCriteriaLogic(reference: reference, measure: @model)
-      dataLogicView.appendTo(@$el)
-      @views.push(dataLogicView)
-
-    @population_criteria = {} # "Type" => "Preconditions"
-    for code in Thorax.Models.Measure.allPopulationCodes #TODO add multiple population_set support
-      if code in Object.keys(@model.get('populations')['models'][0]['attributes'])
-        @population_criteria[code] = @model.get('populations')['models'][0].get(code)['preconditions']
-
-    @criteria_keys_by_population = @criteria_keys_by_population()
-
-    @FIXED_ROWS = 2
-    @FIXED_COLS = 3 + @populations.length
-
     @COL_WIDTH_NAME = 140
     @COL_WIDTH_POPULATION = 36
     @COL_WIDTH_META = 150
     @COL_WIDTH_FREETEXT = 240
     @COL_WIDTH_CRITERIA = 180
+      
+    @getData()
+
+    @FIXED_ROWS = 2
+    @FIXED_COLS = @getFixedColumnCount(@dataIndices, @populations)
 
     @expandedRows = [] # used to ensure that expanded rows stay expanded after re-render
     @editableRows = [] # used to ensure rows marked for inline editing stay that way after re-render
@@ -63,12 +46,11 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       @createTable()
 
 
-
   createTable: ->
     container = @$('#patient_dashboard_table').get(0)
     patients = @model.get('patients')
     hot = new Handsontable(container, {
-      data: @createData(@views, patients),
+      data: @createData(patients),
       colWidths: @getColWidths(),
       copyPaste: false, # need this to avoid 508 issue
       fixedRowsTop: @FIXED_ROWS,
@@ -121,7 +103,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
           for cell, index in header_row2
             # replace <td> tags with <th> tags manually
             classes = $(cell).attr('class')
-            if index >= 3 and index < (3 + @populations.length*2)
+            isExpectedValue = index >= @dataCollections['expected'].firstIndex && index <= @dataCollections['expected'].lastIndex
+            isActualValue = index >= @dataCollections['actual'].firstIndex && index <= @dataCollections['actual'].lastIndex
+            if (isExpectedValue || isActualValue)
               classes = classes + " rotate"
 
             $(cell).replaceWith('<th scope="col" class='+classes+'>'+$(cell).html()+'</th>')
@@ -166,7 +150,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   header2Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    if col >= 3 && col < (@populations.length * 2) + 3
+    isExpectedValue = col >= @dataCollections['expected'].firstIndex && col <= @dataCollections['expected'].lastIndex
+    isActualValue = col >= @dataCollections['actual'].firstIndex && col <= @dataCollections['actual'].lastIndex
+    if (isExpectedValue || isActualValue)
       @addDiv(td)
     else
       @addScroll(td)
@@ -193,18 +179,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       Handsontable.Dom.addClass(td, 'editable')
 
   getColor: (instance, td, row, col, value, cellProperties) =>
-    # this method no longer does anything because we're using a different set of structures. want to rework so that the coloring works again.
-    return null
-    # if @ippColumns[0] <= col && @ippColumns[@ippColumns.length-1] >= col
-    #   Handsontable.Dom.addClass(td, "ipp")
-    # else if (@numerColumns[0] <= col && @numerColumns[@numerColumns.length-1] >= col)
-    #   Handsontable.Dom.addClass(td, "numer")
-    # else if (@denomColumns[0] <= col && @denomColumns[@denomColumns.length-1] >= col)
-    #   Handsontable.Dom.addClass(td, "denom")
-    # else if (@denexcepColumns[0] <= col && @denexcepColumns[@denexcepColumns.length-1] >= col)
-    #   Handsontable.Dom.addClass(td, "denexcep")
-    # else
-    #   Handsontable.Dom.addClass(td, "basic")
+    for population in @populations
+      if col >= @dataCollections[population].firstIndex && col <= @dataCollections[population].lastIndex
+        Handsontable.Dom.addClass(td, population.toLowerCase())
 
   addDiv: (element) =>
     text = element.textContent
@@ -225,42 +202,16 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   getColWidths: ()  =>
     colWidths = []
+    
+    for data in @dataIndices
+      if data of @dataInfo
+        colWidths.push(@dataInfo[data].width)
 
-    # for edit/expand/modal fields
-    colWidths.push(@COL_WIDTH_META)
+     colWidths
 
-    # for first name and last name
-    colWidths.push(@COL_WIDTH_NAME)
-    colWidths.push(@COL_WIDTH_NAME)
-
-    # for the expected and actual populations
-    colWidths.push(@COL_WIDTH_POPULATION) for [1..@populations.length*2]
-
-    # for the notes
-    colWidths.push(@COL_WIDTH_FREETEXT)
-
-    # for birthdate, expired, deathdate
-    colWidths.push(@COL_WIDTH_META)
-    colWidths.push(@COL_WIDTH_META)
-    colWidths.push(@COL_WIDTH_META)
-
-    # for race and ethnicity
-    colWidths.push(@COL_WIDTH_FREETEXT)
-    colWidths.push(@COL_WIDTH_FREETEXT)
-
-    # for gender
-    colWidths.push(@COL_WIDTH_META)
-
-    # for criteria
-    for population, criteria_keys of @criteria_keys_by_population
-      if criteria_keys
-        colWidths.push(@COL_WIDTH_CRITERIA) for [1..criteria_keys.length]
-
-    return colWidths
-
-  createData: (views, patients) =>
+  createData: (patients) =>
     data = []
-    headers = @createHeaderRows(views, patients)
+    headers = @createHeaderRows(patients)
     data.push(headers[0])
     data.push(headers[1])
 
@@ -270,95 +221,40 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   createMergedCells: (measure, patients) =>
     mergedCells = []
-
-    currIndex = 1 # starting index for merged cells - ignores the 'button' cells like edit, modal, etc.
-    colspans = [2, @populations.length, @populations.length, 7] # name, populations, populations, metadata
-
-    for colspan in colspans
-      mergedCells.push({row:0, col:currIndex, colspan:colspan, rowspan:1})
-      currIndex += colspan
-
-    for population in @populations
-      if @criteria_keys_by_population[population]
-        colspan = @criteria_keys_by_population[population].length
-        mergedCells.push({row: 0, col:currIndex, colspan:colspan, rowspan:1})
-        currIndex += colspan
+    
+    for key, dataCollection of @dataCollections
+      if dataCollection.items.length > 0
+        length = dataCollection.items.length
+        mergedCells.push({row:0, col:dataCollection.firstIndex, colspan: length, rowspan: 1})
 
     return mergedCells
 
   getEditableCols:() =>
+    editableFields = ["first", "last", "notes", "birthdate", "ethnicity", "race", "gender", "expired", "deathdate"]
     editableCols = []
 
-    index = 1
-    editableCols.push(index++) # firstname
-    editableCols.push(index++) # lastname
+    for editableField in editableFields
+      editableCols.push(@dataIndices.indexOf(editableField))
 
     # make expected population results editable
     for population in @populations
-      editableCols.push(index++)
-
-    # hop over the actual population results
-    for population in @populations
-      index++
-
-    # TODO: these values are hard coded because the metadata values are hard coded. there is probably a better way to represent this.
-    editableCols.push(index++) # notes
-    editableCols.push(index++) # birthdate
+      editableCols.push(@dataIndices.indexOf('expected' + population))
 
     return editableCols
 
-  createHeaderRows: (views, patients) =>
+  createHeaderRows: (patients) =>
+    row1a = []
+    row2a = []
+    
+    for data in @dataIndices
+      row2a.push(@dataInfo[data].name)
+    
+    row1a.push('') for i in [1..row2a.length]
+    
+    for key, dataCollection of @dataCollections
+      row1a[dataCollection.firstIndex] = dataCollection.name
 
-    row2 = ['Actions','First Name','Last Name']
-    attributes = ['Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
-
-    row1 = ['','Name','']
-    populations_array_placeholder = new Array(@populations.length-1).join(".").split(".")
-
-    row1.push('Expected')
-    row1 = row1.concat(populations_array_placeholder)
-
-    row1.push('Actual')
-    row1 = row1.concat(populations_array_placeholder)
-    row1 = row1.concat(['Metadata','','','','','',''])
-
-    for population in @populations
-      if @criteria_keys_by_population[population]
-        row1.push(population)
-        row1.push('') for [1..@criteria_keys_by_population[population].length-1]
-
-    #TODO There must be a better way to duplicate items in list.
-    for population in @populations
-      row2.push(population)
-    for population in @populations
-      row2.push(population)
-    row2 = row2.concat(attributes)
-
-    criteria_text_hash = {}
-    for view in views
-      criteria_text_hash[view.dataCriteria.key] = view.$el[0].outerText
-
-    for code in Thorax.Models.Measure.allPopulationCodes
-      if @criteria_keys_by_population[code]?
-        for criteria in @criteria_keys_by_population[code]
-          row2.push(criteria_text_hash[criteria])
-          @criteria_order_list.push(criteria)
-
-    [row1, row2]
-
-  createHeaderSegment: (row1, row2, useColumnsArray, measureColumns, colIndexArray, curColIndex, headerString) =>
-    isFirstRow = true
-    colIndexArray.length = 0
-    for value in useColumnsArray
-      if isFirstRow
-        row1.push(headerString)
-      else
-        row1.push("")
-      row2.push(' ')
-      #row2.push(measureColumns[value])
-      colIndexArray.push(curColIndex)
-      curColIndex++
-      isFirstRow = false
+    [row1a, row2a]
 
   createPatientRows: (patients, data) =>
     for patient, i in patients.models
@@ -367,107 +263,237 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       data.push(patientRow);
       data.push(patientDetailRow);
 
+  # TODO: modify all cases where the actual "key" needs to be used to use @getKeyValueFromDataIndices
   createPatientRow: (patient) =>
-     patient_values = ['
-      <i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i>
+    patient_values = []
+     
+    patient_result = @match_patient_to_patient_id(patient.id)
+    
+    for dataType in @dataIndices
+      if dataType == 'actions' 
+        patient_values.push('
+          <i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i>
 
-      <button class="btn btn-xs btn-primary">
-        <i aria-hidden="true" class="fa fa-fw fa-pencil"></i>
-        <span class="sr-only">Edit this patient inline</span>
-      </button>
+          <button class="btn btn-xs btn-primary">
+            <i aria-hidden="true" class="fa fa-fw fa-pencil"></i>
+            <span class="sr-only">Edit this patient inline</span>
+          </button>
 
-      <button class="btn btn-xs btn-default">Open...</button>
-     '] # TODO: How to make these buttons trigger events??
-
-     patient_attributes = ['notes','birthdate','expired','deathdate','ethnicity','race','gender']
-     #Match results to patients.
-     patient_result = @match_patient_to_patient_id(patient.id)
-
-     patient_values.push(patient.get('first'))
-     patient_values.push(patient.get('last'))
-     #Get the expected values from patient object. First must match to measure_ids
-     patient_values = patient_values.concat(@extract_patient_expected_values(patient, @populations))
-     #Get the actual values from patient object.
-     patient_values = patient_values.concat(@extract_patient_actual_values(patient_result, @populations))
-
-     #Add patient attribute values to patient value array.
-     for attribute in patient_attributes
-       if attribute == 'ethnicity'
-         patient_values.push(@ethnicity_map[patient.get(attribute)])
-       else if attribute == 'race'
-         patient_values.push(@race_map[patient.get(attribute)])
-       else if attribute == 'expired'
-         value = if patient.get(attribute) != true then false else true
-         patient_values.push(value)
-       else if attribute == 'birthdate' || attribute == 'deathdate' && patient.get(attribute) != null
-         patient_values.push(moment.utc(patient.get(attribute), 'X').format('L'))
-       else
-         patient_values.push(patient.get(attribute))
-
-      # Generate a list of population types in order of the population_criteria_keys
-      population_list = []
-      for key, list of @criteria_keys_by_population
-        for value in list
-          population_list.push(key)
-
-     data_criteria_values = @extract_data_criteria_values(patient_result, population_list)
-     patient_values = patient_values.concat(data_criteria_values)
+          <button class="btn btn-xs btn-default">Open...</button>
+          ') # TODO: How to make these buttons trigger events??
+      else if @isExpectedValueFromDataIndices(dataType)
+        patient_values.push(@extract_patient_expected_value(patient, @getKeyValueFromDataIndices(dataType)))
+      else if @isActualValueFromDataIndices(dataType)
+        patient_values.push(@extract_value_for_population_type(patient_result, @getKeyValueFromDataIndices(dataType)))
+      else if dataType == 'ethnicity'
+        patient_values.push(@ethnicity_map[patient.get(dataType)])
+      else if dataType == 'race'
+        patient_values.push(@race_map[patient.get(dataType)])
+      else if dataType == 'expired'
+        value = if patient.get(dataType) != true then false else true
+        patient_values.push(value)
+      else if (dataType == 'birthdate' || dataType == 'deathdate') && patient.get(dataType) != null
+        patient_values.push(moment.utc(patient.get(dataType)).format('L'))
+      else if @isCriteriaKeyFromDataIndices(dataType)
+        criteriaKey = @getKeyValueFromDataIndices(dataType)
+        patient_values.push(@getPatientCriteriaResult(criteriaKey, patient_result))
+      else
+        patient_values.push(patient.get(dataType))
+        
+    patient_values
 
   match_patient_to_patient_id: (patient_id) =>
     patients = @results[0] #TODO will need to add population_set support
     # Iterate over each of the patients to match the patient_id
     patient = (patient for patient in patients when patient.patient_id == patient_id)[0]
 
-  extract_patient_expected_values: (patient, populations) =>
+  # TODO: rework the two functions below to reduce number of redundant calls (e.g. 'expected_model = ..' will get called each time this is called)
+  extract_patient_expected_value: (patient, population) =>
     expected_model = (model for model in patient.get('expected_values').models when model.get('measure_id') == @model.get('hqmf_set_id'))[0]
-    expected_values = []
-    for population in populations
-      if population not in expected_model.keys()
-        expected_values.push(0)
-      else
-        expected_values.push(expected_model.get(population))
-    return expected_values
+    if population not in expected_model.keys()
+      expected_value = 0
+    else
+      expected_value = expected_model.get(population)
+    expected_value
 
-  # populates the array with actual values for each population
-  extract_patient_actual_values: (patient_result, populations) =>
-    patient_actuals = []
-    for population in populations
-      if population == 'OBSERV'
-        if 'values' of patient_result && population of patient_result['rationale']
-          patient_actuals.push(patient_result['values'].toString())
+  extract_value_for_population_type: (patient_result, population) =>
+    # TODO: check this logic
+    if population == 'OBSERV'
+      if 'values' of patient_result && population of patient_result['rationale']
+        patient_actual = patient_result['values'].toString()
+      else
+        patient_actual = (0)
+    else if population of patient_result
+      patient_actual = patient_result[population]
+    else
+      patient_actual = 'X'
+    return patient_actual
+
+  getPatientCriteriaResult: (criteriaKey, patientResult) =>
+    # TODO: check this logic
+    if criteriaKey of patientResult['rationale']
+      value = patientResult['rationale'][criteriaKey]
+      if value != null && value != 'false' && value != false
+        result = 'TRUE'
+      else if value == 'false' || value == false
+        result = 'FALSE'
+      
+      # value = result
+      # 
+      # if 'specificsRationale' of patientResult && @populations[index] of patientResult['specificsRationale']
+      #   specific_value = patientResult['specificsRationale'][@populations[index]][criteria]
+      #   if specific_value == false  && value == 'TRUE'
+      #     result = 'SPECIFICALLY FALSE'
+      #   else if specific_value == true && value == 'FALSE'
+      #     result = 'SPECIFICALLY TRUE'
+
+    else
+      result = ''
+
+    result
+
+  ######################
+  ## TODO: this should go in its own model
+  ######################
+
+  getData: ->
+    #Grab all populations related to this measure
+    codes = (population['code'] for population in @model.get('measure_logic'))
+    @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
+
+    criteria_keys_by_population = {} # "Type" => "Preconditions"
+    for code in Thorax.Models.Measure.allPopulationCodes #TODO add multiple population_set support
+      if code in Object.keys(@model.get('populations')['models'][0]['attributes'])
+        preconditions = @model.get('populations')['models'][0].get(code)['preconditions']
+        if preconditions
+          criteria_keys_by_population[code] = @precondition_criteria_keys(preconditions[0]).filter (ck) -> ck != 'MeasurePeriod'
         else
-          patient_actuals.push(0)
+          criteria_keys_by_population[code] = []
+    
+    @dataIndices = @getDataIndices(@populations, criteria_keys_by_population)
+    @dataCollections = @getDataCollections(@populations, @dataIndices, criteria_keys_by_population)
+    @dataInfo = @getDataInfo(@populations, @dataCollections)
 
-      else if population of patient_result
-        patient_actuals.push(patient_result[population])
-      else
-        patient_actuals.push('X')
-    return patient_actuals
+  getDataIndices: (populations, criteria_keys_by_population) =>
+    dataIndices = []
+    
+    dataIndices.push("actions")
+    dataIndices.push("first")
+    dataIndices.push("last")
+    
+    for population in populations
+      dataIndices.push("expected" + population)
+    for population in populations
+      dataIndices.push("actual" + population)
+    
+    dataIndices.push("notes")
+    dataIndices.push("birthdate")
+    dataIndices.push("expired")
+    dataIndices.push("deathdate")
+    dataIndices.push("race")
+    dataIndices.push("ethnicity")
+    dataIndices.push("gender")
+    
+    for population in populations
+      criteria = criteria_keys_by_population[population]
+      for criterium in criteria
+        dataIndices.push(population + '_' + criterium)
+    
+    dataIndices
+    
+  getDataInfo: (populations, dataCollections) =>
+    dataInfo = {}
+    
+    dataInfo.actions = { name: "Actions", width: @COL_WIDTH_META }
+    dataInfo.first = { name: "First Name", width: @COL_WIDTH_NAME }
+    dataInfo.last = { name: "Last Name", width: @COL_WIDTH_NAME }
+    dataInfo.notes = { name: "Notes", width: @COL_WIDTH_FREETEXT }
+    dataInfo.birthdate = { name: "Birthdate", width: @COL_WIDTH_META }
+    dataInfo.expired = { name: "Expired?", width: @COL_WIDTH_META }
+    dataInfo.deathdate = { name: "Deathdate", width: @COL_WIDTH_META }
+    dataInfo.race = { name: "Race", width: @COL_WIDTH_META }
+    dataInfo.ethnicity = { name: "Ethnicity", width: @COL_WIDTH_META }
+    dataInfo.gender = { name: "Gender", width: @COL_WIDTH_META }
+    
+    # Grab all data criteria and pass them into DataCriteriaLogic
+    dataCriteriaText = {}
+    for reference in Object.keys(@model.get('data_criteria'))
+      dataLogicView = new Thorax.Views.DataCriteriaLogic(reference: reference, measure: @model)
+      dataLogicView.appendTo(@$el)
+      dataCriteriaText[dataLogicView.dataCriteria.key] = dataLogicView.$el[0].outerText
+    
+    for population in populations
+      dataInfo["expected" + population] = { name: population, width: @COL_WIDTH_POPULATION }
+      dataInfo["actual" + population] = { name: population, width: @COL_WIDTH_POPULATION }
+      
+      dataCollection = dataCollections[population]
+      for item in dataCollection.items
+        dataInfo[population + '_' + item] = { name: dataCriteriaText[item], width: @COL_WIDTH_CRITERIA }
 
-  # Extracts the data_criteria values for each patient.
-  extract_data_criteria_values: (patient_result, population_list) =>
-    data_criteria_values = []
-    for criteria, index in @criteria_order_list
-      if criteria of patient_result['rationale']
-        value = patient_result['rationale'][criteria]
-        if value != null && value != 'false' && value != false
-          value = 'TRUE'
-        else if value == 'false' || value == false
-          value = 'FALSE'
+    return dataInfo
+    
+  getDataCollections: (populations, dataIndices, criteria_keys_by_population) =>
+    # indices get added when defining the @dataIndices
+    dataCollections = {}
+    dataCollections.actions = {name: "", items: ["actions"] }
+    dataCollections.name = { name: "Names", items: ["first", "last"] }
+    dataCollections.expected = { name: "Expected", items: "expected" + pop for pop in populations }
+    dataCollections.actual = { name: "Actual", items: "actual" + pop for pop in populations }
+    dataCollections.metadata = {name: "Metadata", items: ["notes", "birthdate", "expired", "deathdate", "race", "ethnicity", "gender"]}
+    
+    for population in populations
+      dataCollections[population] = { name: population, items: criteria for criteria in criteria_keys_by_population[population] }
+    
+    for key, dataCollection of dataCollections
+      dataCollection.firstIndex = @_getFirstIndex(dataCollection.items, key)
+      dataCollection.lastIndex = dataCollection.firstIndex + dataCollection.items.length - 1
+    
+    return dataCollections
 
-        if 'specificsRationale' of patient_result && population_list[index] of patient_result['specificsRationale']
-          specific_value = patient_result['specificsRationale'][population_list[index]][criteria]
-          if specific_value == false  && value == 'TRUE'
-            value = 'SPECIFICALLY FALSE'
-          else if specific_value == true && value == 'FALSE'
-            value = 'SPECIFICALLY TRUE'
+  _getFirstIndex: (items, collectionKey) ->
+    for item in items
+      if collectionKey in @populations
+        item = collectionKey + '_' + item
+      itemIndex = @dataIndices.indexOf(item)
+      index = itemIndex if !index || index > itemIndex
+      
+    index
+    
+  # TODO: this doesn't seem like the right way to get this... needs to be more abstracted out or fed in from somewhere else
+  getFixedColumnCount: () =>
+    lastPop = @populations[@populations.length - 1]
+    @dataIndices.indexOf("expected" + lastPop) + 1
+        
+  getDataIndicesCriteriaStartIndex: () =>
+    for pop in @populations
+      if @dataCollections[pop].items.length > 0
+        index = @dataCollections[pop].firstIndex
+        break
+    index
+  
+  isExpectedValueFromDataIndices: (dataKey) =>
+    dataKey.startsWith('expected')
+    
+  isActualValueFromDataIndices: (dataKey) =>
+    dataKey.startsWith('actual')
+    
+  isCriteriaKeyFromDataIndices: (dataKey) =>
+    dataIndex = @dataIndices.indexOf(dataKey)
+    criteriaStartIndex = @getDataIndicesCriteriaStartIndex()
+    dataIndex >= criteriaStartIndex
+  
+  getKeyValueFromDataIndices: (dataKey) =>
+    if @isExpectedValueFromDataIndices(dataKey)
+      keyValue = dataKey.substring('expected'.length)
+    else if @isActualValueFromDataIndices(dataKey)
+      keyValue = dataKey.substring('actual'.length)
+    else if @isCriteriaKeyFromDataIndices(dataKey)
+      startIndex = dataKey.indexOf('_') + 1
+      keyValue = dataKey.substring(startIndex)
+    else
+      keyValue = dataKey
 
-        data_criteria_values.push(value)
-      else
-        data_criteria_values.push('')
-    return data_criteria_values
-
-############################## Measure Criteria Keys ##############################
+    return keyValue
 
   # Given a data criteria, return the list of all data criteria keys referenced within, either through
   # children criteria or temporal references; this includes the passed in criteria reference
@@ -492,14 +518,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       @data_criteria_criteria_keys(precondition['reference'])
     else
       []
-
-  # Return the list of all data criteria keys in this measure, indexed by population code
-  criteria_keys_by_population: () =>
-    criteria_keys_by_population = {}
-    for name, precondition of @population_criteria
-      if precondition?
-        criteria_keys_by_population[name] = @precondition_criteria_keys(precondition[0]).filter (ck) -> ck != 'MeasurePeriod'
-    criteria_keys_by_population
 
 #TODO Make this coffeescript. Or use underscore.js
   `function flatten(arr) {
