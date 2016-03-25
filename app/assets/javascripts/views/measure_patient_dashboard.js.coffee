@@ -58,6 +58,8 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
   events:
     rendered: ->
       $('.container').removeClass('container').addClass('container-fluid')
+    destroyed: ->
+      $('.container-fluid').removeClass('container-fluid').addClass('container')
 
     ready: ->
       @createTable()
