@@ -8,7 +8,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       @results.push(population.calculationResults().toJSON())
 
     @views = []
-    @criteria_text_hash = {}
     @criteria_order_list = []
 
     #TODO Duplication of code for mapping code to race / ethnicity - See patient_builder.hbs
@@ -25,8 +24,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @ethnicity_map["2135-2"] = "Hispanic Or Latino"
 
     #Grab all populations related to this measure
-    codes = (population['code'] for population in @model.get('measure_logic'))
-    @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
+    @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, @model.get('displayedPopulation').keys())
 
     # Grab all data criteria and pass them into DataCriteriaLogic
     for reference in Object.keys(@model.get('data_criteria'))
@@ -193,7 +191,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         instance.setCellMeta(row, col, 'readOnly', false)
     if col in @editableCols
       Handsontable.Dom.addClass(td, 'editable')
-      
+
   getColor: (instance, td, row, col, value, cellProperties) =>
     # this method no longer does anything because we're using a different set of structures. want to rework so that the coloring works again.
     return null
@@ -224,8 +222,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     text = element.textContent
     element.firstChild.remove()
     $(element).append('<div class="tableScrollContainer"><div class="tableScroll">' + text + '</div></div>')
-
-  # TODO: refactor the processing code below once we know what the patient data model will look like
 
   getColWidths: ()  =>
     colWidths = []
@@ -262,9 +258,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
     return colWidths
 
-  createData: (measure,patients) =>
+  createData: (views, patients) =>
     data = []
-    headers = @createHeaderRows(measure, patients)
+    headers = @createHeaderRows(views, patients)
     data.push(headers[0])
     data.push(headers[1])
 
@@ -311,7 +307,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
     return editableCols
 
-  createHeaderRows: (measure, patients) =>
+  createHeaderRows: (views, patients) =>
 
     row2 = ['Actions','First Name','Last Name']
     attributes = ['Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
@@ -338,15 +334,14 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       row2.push(population)
     row2 = row2.concat(attributes)
 
-    population_code_data_criteria_map = {}
-
-    for view in measure
-      @criteria_text_hash[view.dataCriteria.key] = view.$el[0].outerText
+    criteria_text_hash = {}
+    for view in views
+      criteria_text_hash[view.dataCriteria.key] = view.$el[0].outerText
 
     for code in Thorax.Models.Measure.allPopulationCodes
       if @criteria_keys_by_population[code]?
         for criteria in @criteria_keys_by_population[code]
-          row2.push(@criteria_text_hash[criteria])
+          row2.push(criteria_text_hash[criteria])
           @criteria_order_list.push(criteria)
 
     [row1, row2]
@@ -383,7 +378,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
       <button class="btn btn-xs btn-default">Open...</button>
      '] # TODO: How to make these buttons trigger events??
-     
+
      patient_attributes = ['notes','birthdate','expired','deathdate','ethnicity','race','gender']
      #Match results to patients.
      patient_result = @match_patient_to_patient_id(patient.id)
@@ -393,7 +388,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
      #Get the expected values from patient object. First must match to measure_ids
      patient_values = patient_values.concat(@extract_patient_expected_values(patient, @populations))
      #Get the actual values from patient object.
-     patient_values = patient_values.concat(@extract_value_for_population_type(patient_result, @populations))
+     patient_values = patient_values.concat(@extract_patient_actual_values(patient_result, @populations))
 
      #Add patient attribute values to patient value array.
      for attribute in patient_attributes
@@ -405,11 +400,17 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
          value = if patient.get(attribute) != true then false else true
          patient_values.push(value)
        else if attribute == 'birthdate' || attribute == 'deathdate' && patient.get(attribute) != null
-         patient_values.push(moment.utc(patient.get(attribute)).format('L'))
+         patient_values.push(moment.utc(patient.get(attribute), 'X').format('L'))
        else
          patient_values.push(patient.get(attribute))
 
-     data_criteria_values = @extract_data_criteria_value(patient_result)
+      # Generate a list of population types in order of the population_criteria_keys
+      population_list = []
+      for key, list of @criteria_keys_by_population
+        for value in list
+          population_list.push(key)
+
+     data_criteria_values = @extract_data_criteria_values(patient_result, population_list)
      patient_values = patient_values.concat(data_criteria_values)
 
   match_patient_to_patient_id: (patient_id) =>
@@ -428,14 +429,15 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return expected_values
 
   # populates the array with actual values for each population
-  extract_value_for_population_type: (patient_result, populations) =>
+  extract_patient_actual_values: (patient_result, populations) =>
     patient_actuals = []
     for population in populations
       if population == 'OBSERV'
-        if population of patient_result #TODO investigate observe
-          console.log("In Observ if statment")
+        if 'values' of patient_result && population of patient_result['rationale']
+          patient_actuals.push(patient_result['values'].toString())
         else
           patient_actuals.push(0)
+
       else if population of patient_result
         patient_actuals.push(patient_result[population])
       else
@@ -443,40 +445,27 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return patient_actuals
 
   # Extracts the data_criteria values for each patient.
-  extract_data_criteria_value: (patient_result) =>  #TODO Clean up
+  extract_data_criteria_values: (patient_result, population_list) =>
     data_criteria_values = []
-    for criteria in @criteria_order_list
+    for criteria, index in @criteria_order_list
       if criteria of patient_result['rationale']
         value = patient_result['rationale'][criteria]
         if value != null && value != 'false' && value != false
-          data_criteria_values.push('TRUE')
+          value = 'TRUE'
         else if value == 'false' || value == false
-          data_criteria_values.push('FALSE')
-        else
-          data_criteria_values.push(value)
+          value = 'FALSE'
+
+        if 'specificsRationale' of patient_result && population_list[index] of patient_result['specificsRationale']
+          specific_value = patient_result['specificsRationale'][population_list[index]][criteria]
+          if specific_value == false  && value == 'TRUE'
+            value = 'SPECIFICALLY FALSE'
+          else if specific_value == true && value == 'FALSE'
+            value = 'SPECIFICALLY TRUE'
+
+        data_criteria_values.push(value)
       else
         data_criteria_values.push('')
     return data_criteria_values
-
-#TODO Fill in headers correctly
-#TODO Specific occurrence code
-#TODO Observ code
-#TODO Fix all over TODOs
-
-    # Change value if specific rationale is involved.
-#    if @patient[:specificsRationale] && @patient[:specificsRationale][population_type]
-#      specific_value = @patient[:specificsRationale][population_type][criteria_key]
-
-      # value could be "false", nil, "true"
-#      if specific_value == "false" && value == "TRUE"
-#        value = "SPECIFICALLY FALSE"
-#      elsif specific_value == "true" && value == "FALSE"
-#        value = "SPECIFICALLY TRUE"
-#      end
-#    end
-
-#    return value
-#  end
 
 ############################## Measure Criteria Keys ##############################
 
