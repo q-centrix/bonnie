@@ -1,6 +1,7 @@
 class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   template: JST['measure/patient_dashboard']
+  className: 'patient-dashboard'
 
   initialize: ->
     @results = []
