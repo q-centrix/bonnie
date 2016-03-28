@@ -155,6 +155,12 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
       isCriteria = dataKey in @dataCollections[pop].items
       break if isCriteria
     isCriteria
+    
+  getCriteriaPopulation: (dataKey) =>
+    if @isCriteria(dataKey)
+      result = dataKey.substring(0, dataKey.indexOf('_'))
+
+    result
   
   getRealKey: (dataKey) =>
     if @isExpectedValue(dataKey)

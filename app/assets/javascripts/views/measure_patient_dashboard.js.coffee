@@ -296,8 +296,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       else if (dataType == 'birthdate' || dataType == 'deathdate') && patient.get(dataType) != null
         patient_values.push(moment.utc(patient.get(dataType)).format('L'))
       else if @pd.isCriteria(dataType)
+        population = @pd.getCriteriaPopulation(dataType)
         criteriaKey = @pd.getRealKey(dataType)
-        patient_values.push(@getPatientCriteriaResult(criteriaKey, patient_result))
+        patient_values.push(@getPatientCriteriaResult(criteriaKey, population, patient_result))
       else
         patient_values.push(patient.get(dataType))
         
@@ -330,7 +331,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       patient_actual = 'X'
     return patient_actual
 
-  getPatientCriteriaResult: (criteriaKey, patientResult) =>
+  getPatientCriteriaResult: (criteriaKey, population, patientResult) =>
     # TODO: check this logic
     if criteriaKey of patientResult['rationale']
       value = patientResult['rationale'][criteriaKey]
@@ -339,14 +340,14 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       else if value == 'false' || value == false
         result = 'FALSE'
       
-      # value = result
-      # 
-      # if 'specificsRationale' of patientResult && @populations[index] of patientResult['specificsRationale']
-      #   specific_value = patientResult['specificsRationale'][@populations[index]][criteria]
-      #   if specific_value == false  && value == 'TRUE'
-      #     result = 'SPECIFICALLY FALSE'
-      #   else if specific_value == true && value == 'FALSE'
-      #     result = 'SPECIFICALLY TRUE'
+      value = result
+      
+      if 'specificsRationale' of patientResult && population of patientResult['specificsRationale']
+        specific_value = patientResult['specificsRationale'][population][criteriaKey]
+        if specific_value == false  && value == 'TRUE'
+          result = 'SPECIFICALLY FALSE'
+        else if specific_value == true && value == 'FALSE'
+          result = 'SPECIFICALLY TRUE'
 
     else
       result = ''
