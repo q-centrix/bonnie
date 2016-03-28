@@ -154,7 +154,16 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
   dataRenderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
     Handsontable.Dom.addClass(td, 'content')
+    
+    # TODO: this is a hack to show discrepencies with expected/actual. work out better way to do this
+    cellText = td.textContent
+    if cellText.indexOf("__WARN__") == 0
+      cellText = cellText.substring("__WARN__".length)
+      td.textContent = cellText
+      Handsontable.Dom.addClass(td, 'warn')
+      
     @addDiv(td)
+    
     # enabling expandable detail rows. Need to do by a custom data-attribute
     # because of how handsontable efficiently renders the table
     tr = td.parentElement
@@ -268,6 +277,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     actualResults = @getActualResults(patient_result)
     
     for dataType in @pd.dataIndices
+      key = @pd.getRealKey(dataType)
       if dataType == 'actions' 
         patient_values.push('
           <i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i>
@@ -282,22 +292,27 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       else if dataType == 'result'
         patient_values.push(@isPatientPassing(expectedResults, actualResults))
       else if @pd.isExpectedValue(dataType)
-        patient_values.push(expectedResults[@pd.getRealKey(dataType)])
-      else if @pd.isActualValue(dataType)
-        patient_values.push(actualResults[@pd.getRealKey(dataType)])
-      else if dataType == 'ethnicity'
-        patient_values.push(@ethnicity_map[patient.get(dataType)])
-      else if dataType == 'race'
-        patient_values.push(@race_map[patient.get(dataType)])
-      else if dataType == 'expired'
-        value = if patient.get(dataType) != true then false else true
+        value = expectedResults[key]
+        if value != actualResults[key]
+          value = "__WARN__" + value # TODO: this is a hack to show discrepencies with expected/actual. work out better way to do this
         patient_values.push(value)
-      else if (dataType == 'birthdate' || dataType == 'deathdate') && patient.get(dataType) != null
-        patient_values.push(moment.utc(patient.get(dataType)).format('L'))
+      else if @pd.isActualValue(dataType)
+        value = actualResults[key]
+        if value != expectedResults[key]
+          value = "__WARN__" + value # TODO: this is a hack to show discrepencies with expected/actual. work out better way to do this
+        patient_values.push(value)
+      else if dataType == 'ethnicity'
+        patient_values.push(@ethnicity_map[patient.get(key)])
+      else if dataType == 'race'
+        patient_values.push(@race_map[patient.get(key)])
+      else if dataType == 'expired'
+        value = if patient.get(key) != true then false else true
+        patient_values.push(value)
+      else if (key == 'birthdate' || key == 'deathdate') && patient.get(key) != null
+        patient_values.push(moment.utc(patient.get(key)).format('L'))
       else if @pd.isCriteria(dataType)
         population = @pd.getCriteriaPopulation(dataType)
-        criteriaKey = @pd.getRealKey(dataType)
-        patient_values.push(@getPatientCriteriaResult(criteriaKey, population, patient_result))
+        patient_values.push(@getPatientCriteriaResult(key, population, patient_result))
       else
         patient_values.push(patient.get(dataType))
         
