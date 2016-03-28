@@ -357,28 +357,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         actualResults[population] = 'X'
     
     actualResults  
-        
-  # TODO: rework the two functions below to reduce number of redundant calls (e.g. 'expected_model = ..' will get called each time this is called)
-  extract_patient_expected_value: (patient, population) =>
-    expected_model = (model for model in patient.get('expected_values').models when model.get('measure_id') == @model.get('hqmf_set_id'))[0]
-    if population not in expected_model.keys()
-      expected_value = 0
-    else
-      expected_value = expected_model.get(population)
-    expected_value
-
-  extract_value_for_population_type: (patient_result, population) =>
-    # TODO: check this logic
-    if population == 'OBSERV'
-      if 'values' of patient_result && population of patient_result['rationale']
-        patient_actual = patient_result['values'].toString()
-      else
-        patient_actual = (0)
-    else if population of patient_result
-      patient_actual = patient_result[population]
-    else
-      patient_actual = 'X'
-    return patient_actual
 
   getPatientCriteriaResult: (criteriaKey, population, patientResult) =>
     # TODO: check this logic
