@@ -19,12 +19,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @ethnicity_map = {}
     @ethnicity_map["2186-5"] = "Not Hispanic or Latino"
     @ethnicity_map["2135-2"] = "Hispanic Or Latino"
-
-    @COL_WIDTH_NAME = 140
-    @COL_WIDTH_POPULATION = 36
-    @COL_WIDTH_META = 150
-    @COL_WIDTH_FREETEXT = 240
-    @COL_WIDTH_CRITERIA = 180
   
     #Grab all populations related to this measure
     codes = (population['code'] for population in @model.get('measure_logic'))
@@ -264,11 +258,14 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       data.push(patientRow);
       data.push(patientDetailRow);
 
-  # TODO: modify all cases where the actual "key" needs to be used to use @getKeyValueFromDataIndices
+  # TODO: modify all cases where the actual "key" needs to be used to use @pd.getRealKey
   createPatientRow: (patient) =>
     patient_values = []
      
     patient_result = @match_patient_to_patient_id(patient.id)
+    
+    expectedResults = @getExpectedResults(patient)
+    actualResults = @getActualResults(patient_result)
     
     for dataType in @pd.dataIndices
       if dataType == 'actions' 
@@ -282,10 +279,12 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
           <button class="btn btn-xs btn-default">Open...</button>
           ') # TODO: How to make these buttons trigger events??
+      else if dataType == 'result'
+        patient_values.push(@isPatientPassing(expectedResults, actualResults))
       else if @pd.isExpectedValue(dataType)
-        patient_values.push(@extract_patient_expected_value(patient, @pd.getRealKey(dataType)))
+        patient_values.push(expectedResults[@pd.getRealKey(dataType)])
       else if @pd.isActualValue(dataType)
-        patient_values.push(@extract_value_for_population_type(patient_result, @pd.getRealKey(dataType)))
+        patient_values.push(actualResults[@pd.getRealKey(dataType)])
       else if dataType == 'ethnicity'
         patient_values.push(@ethnicity_map[patient.get(dataType)])
       else if dataType == 'race'
@@ -309,6 +308,41 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     # Iterate over each of the patients to match the patient_id
     patient = (patient for patient in patients when patient.patient_id == patient_id)[0]
 
+  isPatientPassing: (expectedResults, actualResults) =>
+    for population in @populations
+      if expectedResults[population] != actualResults[population]
+        return 'FALSE'
+    return 'TRUE'
+
+  getExpectedResults: (patient) =>
+    expectedResults = {}
+    expected_model = (model for model in patient.get('expected_values').models when model.get('measure_id') == @model.get('hqmf_set_id'))[0]
+    
+    for population in @populations
+      if population not in expected_model.keys()
+        expectedResults[population] = 0
+      else
+        expectedResults[population] = expected_model.get(population)
+        
+    expectedResults
+    
+  getActualResults: (patient_result) =>
+    actualResults = {}
+    
+    for population in @populations
+      # TODO: check this logic
+      if population == 'OBSERV'
+        if 'values' of patient_result && population of patient_result['rationale']
+          actualResults[population] = patient_result['values'].toString()
+        else
+          actualResults[population] = (0)
+      else if population of patient_result
+        actualResults[population] = patient_result[population]
+      else
+        actualResults[population] = 'X'
+    
+    actualResults  
+        
   # TODO: rework the two functions below to reduce number of redundant calls (e.g. 'expected_model = ..' will get called each time this is called)
   extract_patient_expected_value: (patient, population) =>
     expected_model = (model for model in patient.get('expected_values').models when model.get('measure_id') == @model.get('hqmf_set_id'))[0]

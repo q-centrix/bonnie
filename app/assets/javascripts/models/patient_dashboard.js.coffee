@@ -1,9 +1,10 @@
 class Thorax.Models.PatientDashboard extends Thorax.Model
   @ACTIONS = "actions"
+  @RESULT = "result"
   @FIRST_NAME = "first"
   @LAST_NAME = "last"
   @NOTES = "notes"
-  @BIRTHDAY = "birthdate"
+  @BIRTHDATE = "birthdate"
   @EXPIRED = "expired"
   @DEATHDATE = "deathdate"
   @RACE = "race"
@@ -11,11 +12,14 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
   @GENDER = "gender"
   @EXPECTED = "expected"
   @ACTUAL = "actual"
-  
+  @NAME = "name"
+  @METADATA = "metadata"
+    
   @EXPECTED_PREFIX = PatientDashboard.EXPECTED
   @ACTUAL_PREFIX = PatientDashboard.ACTUAL
   
   initialize: (@measure, @populations) ->
+    # TODO: I don't think that the width stuff shoudl be in this class. it should be in the view only.
     @COL_WIDTH_NAME = 140
     @COL_WIDTH_POPULATION = 36
     @COL_WIDTH_META = 150
@@ -39,6 +43,7 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     dataIndices = []
     
     dataIndices.push(PatientDashboard.ACTIONS)
+    dataIndices.push(PatientDashboard.RESULT)
     dataIndices.push(PatientDashboard.FIRST_NAME)
     dataIndices.push(PatientDashboard.LAST_NAME)
     
@@ -47,13 +52,13 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     for population in populations
       dataIndices.push(PatientDashboard.ACTUAL_PREFIX + population)
     
-    dataIndices.push("notes")
-    dataIndices.push("birthdate")
-    dataIndices.push("expired")
-    dataIndices.push("deathdate")
-    dataIndices.push("race")
-    dataIndices.push("ethnicity")
-    dataIndices.push("gender")
+    dataIndices.push(PatientDashboard.NOTES)
+    dataIndices.push(PatientDashboard.BIRTHDATE)
+    dataIndices.push(PatientDashboard.EXPIRED)
+    dataIndices.push(PatientDashboard.DEATHDATE)
+    dataIndices.push(PatientDashboard.RACE)
+    dataIndices.push(PatientDashboard.ETHNICITY)
+    dataIndices.push(PatientDashboard.GENDER)
     
     for population in populations
       criteria = criteriaKeysByPopulation[population]
@@ -74,15 +79,16 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
 
     # include the metadata
     dataInfo[PatientDashboard.ACTIONS] = { name: "Actions", width: @COL_WIDTH_META }
+    dataInfo[PatientDashboard.RESULT] = { name: "Passes?", width: @COL_WIDTH_META }
     dataInfo[PatientDashboard.FIRST_NAME] = { name: "First Name", width: @COL_WIDTH_NAME }
     dataInfo[PatientDashboard.LAST_NAME] = { name: "Last Name", width: @COL_WIDTH_NAME }
-    dataInfo.notes = { name: "Notes", width: @COL_WIDTH_FREETEXT }
-    dataInfo.birthdate = { name: "Birthdate", width: @COL_WIDTH_META }
-    dataInfo.expired = { name: "Expired?", width: @COL_WIDTH_META }
-    dataInfo.deathdate = { name: "Deathdate", width: @COL_WIDTH_META }
-    dataInfo.race = { name: "Race", width: @COL_WIDTH_META }
-    dataInfo.ethnicity = { name: "Ethnicity", width: @COL_WIDTH_META }
-    dataInfo.gender = { name: "Gender", width: @COL_WIDTH_META }
+    dataInfo[PatientDashboard.NOTES] = { name: "Notes", width: @COL_WIDTH_FREETEXT }
+    dataInfo[PatientDashboard.BIRTHDATE] = { name: "Birthdate", width: @COL_WIDTH_META }
+    dataInfo[PatientDashboard.EXPIRED] = { name: "Expired?", width: @COL_WIDTH_META }
+    dataInfo[PatientDashboard.DEATHDATE] = { name: "Deathdate", width: @COL_WIDTH_META }
+    dataInfo[PatientDashboard.RACE] = { name: "Race", width: @COL_WIDTH_META }
+    dataInfo[PatientDashboard.ETHNICITY] = { name: "Ethnicity", width: @COL_WIDTH_META }
+    dataInfo[PatientDashboard.GENDER] = { name: "Gender", width: @COL_WIDTH_META }
 
     for population in populations
       # include the expected and actual values for each population (IPP/DENOM/etc.)
@@ -103,10 +109,11 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
   getDataCollections: (populations, dataIndices, criteria_keys_by_population) =>
     dataCollections = {}
     dataCollections[PatientDashboard.ACTIONS] = {name: "", items: [PatientDashboard.ACTIONS] }
-    dataCollections.name = { name: "Names", items: [PatientDashboard.FIRST_NAME, PatientDashboard.LAST_NAME] }
+    dataCollections[PatientDashboard.RESULT] = {name: "", items: [PatientDashboard.RESULT] }
+    dataCollections[PatientDashboard.NAME] = { name: "Names", items: [PatientDashboard.FIRST_NAME, PatientDashboard.LAST_NAME] }
     dataCollections[PatientDashboard.EXPECTED] = { name: "Expected", items: PatientDashboard.EXPECTED_PREFIX + pop for pop in populations }
     dataCollections[PatientDashboard.ACTUAL] = { name: "Actual", items: PatientDashboard.ACTUAL_PREFIX + pop for pop in populations }
-    dataCollections.metadata = {name: "Metadata", items: ["notes", "birthdate", "expired", "deathdate", "race", "ethnicity", "gender"]}
+    dataCollections[PatientDashboard.METADATA] = {name: "Metadata", items: [PatientDashboard.NOTES, PatientDashboard.BIRTHDATE, PatientDashboard.EXPIRED, PatientDashboard.DEATHDATE, PatientDashboard.RACE, PatientDashboard.ETHNICITY, PatientDashboard.GENDER]}
     
     for population in populations
       dataCollections[population] = { name: population, items: population + '_' + criteria for criteria in criteria_keys_by_population[population] }
