@@ -25,11 +25,15 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @COL_WIDTH_META = 150
     @COL_WIDTH_FREETEXT = 240
     @COL_WIDTH_CRITERIA = 180
-      
-    @getData()
+  
+    #Grab all populations related to this measure
+    codes = (population['code'] for population in @model.get('measure_logic'))
+    @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
+    
+    @pd = new Thorax.Models.PatientDashboard(@model, @populations)
 
     @FIXED_ROWS = 2
-    @FIXED_COLS = @getFixedColumnCount(@dataIndices, @populations)
+    @FIXED_COLS = @getFixedColumnCount()
 
     @expandedRows = [] # used to ensure that expanded rows stay expanded after re-render
     @editableRows = [] # used to ensure rows marked for inline editing stay that way after re-render
@@ -103,9 +107,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
           for cell, index in header_row2
             # replace <td> tags with <th> tags manually
             classes = $(cell).attr('class')
-            isExpectedValue = index >= @dataCollections['expected'].firstIndex && index <= @dataCollections['expected'].lastIndex
-            isActualValue = index >= @dataCollections['actual'].firstIndex && index <= @dataCollections['actual'].lastIndex
-            if (isExpectedValue || isActualValue)
+            if @pd.isIndexInCollection(index, 'expected') || @pd.isIndexInCollection(index, 'actual')
               classes = classes + " rotate"
 
             $(cell).replaceWith('<th scope="col" class='+classes+'>'+$(cell).html()+'</th>')
@@ -150,9 +152,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   header2Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    isExpectedValue = col >= @dataCollections['expected'].firstIndex && col <= @dataCollections['expected'].lastIndex
-    isActualValue = col >= @dataCollections['actual'].firstIndex && col <= @dataCollections['actual'].lastIndex
-    if (isExpectedValue || isActualValue)
+    if @pd.isIndexInCollection(col, 'expected') || @pd.isIndexInCollection(col, 'actual')
       @addDiv(td)
     else
       @addScroll(td)
@@ -180,7 +180,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   getColor: (instance, td, row, col, value, cellProperties) =>
     for population in @populations
-      if col >= @dataCollections[population].firstIndex && col <= @dataCollections[population].lastIndex
+      if @pd.isIndexInCollection(col, population)
         Handsontable.Dom.addClass(td, population.toLowerCase())
 
   addDiv: (element) =>
@@ -202,12 +202,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   getColWidths: ()  =>
     colWidths = []
-    
-    for data in @dataIndices
-      if data of @dataInfo
-        colWidths.push(@dataInfo[data].width)
-
-     colWidths
+    for dataKey in @pd.dataIndices
+      colWidths.push(@pd.getWidth(dataKey))
+    colWidths
 
   createData: (patients) =>
     data = []
@@ -222,39 +219,43 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
   createMergedCells: (measure, patients) =>
     mergedCells = []
     
-    for key, dataCollection of @dataCollections
+    for key, dataCollection of @pd.dataCollections
       if dataCollection.items.length > 0
         length = dataCollection.items.length
         mergedCells.push({row:0, col:dataCollection.firstIndex, colspan: length, rowspan: 1})
 
     return mergedCells
+  
+  # TODO: this should be done differently and more dynamically
+  getFixedColumnCount: () =>
+    @pd.getCollectionLastIndex('expected') + 1
 
   getEditableCols:() =>
     editableFields = ["first", "last", "notes", "birthdate", "ethnicity", "race", "gender", "expired", "deathdate"]
     editableCols = []
 
     for editableField in editableFields
-      editableCols.push(@dataIndices.indexOf(editableField))
+      editableCols.push(@pd.getIndex(editableField))
 
     # make expected population results editable
     for population in @populations
-      editableCols.push(@dataIndices.indexOf('expected' + population))
+      editableCols.push(@pd.getIndex('expected' + population))
 
     return editableCols
 
   createHeaderRows: (patients) =>
-    row1a = []
-    row2a = []
+    row1 = []
+    row2 = []
     
-    for data in @dataIndices
-      row2a.push(@dataInfo[data].name)
+    for data in @pd.dataIndices
+      row2.push(@pd.getName(data))
     
-    row1a.push('') for i in [1..row2a.length]
+    row1.push('') for i in [1..row2.length]
     
-    for key, dataCollection of @dataCollections
-      row1a[dataCollection.firstIndex] = dataCollection.name
+    for key, dataCollection of @pd.dataCollections
+      row1[dataCollection.firstIndex] = dataCollection.name
 
-    [row1a, row2a]
+    [row1, row2]
 
   createPatientRows: (patients, data) =>
     for patient, i in patients.models
@@ -269,7 +270,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
      
     patient_result = @match_patient_to_patient_id(patient.id)
     
-    for dataType in @dataIndices
+    for dataType in @pd.dataIndices
       if dataType == 'actions' 
         patient_values.push('
           <i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i>
@@ -281,10 +282,10 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
           <button class="btn btn-xs btn-default">Open...</button>
           ') # TODO: How to make these buttons trigger events??
-      else if @isExpectedValueFromDataIndices(dataType)
-        patient_values.push(@extract_patient_expected_value(patient, @getKeyValueFromDataIndices(dataType)))
-      else if @isActualValueFromDataIndices(dataType)
-        patient_values.push(@extract_value_for_population_type(patient_result, @getKeyValueFromDataIndices(dataType)))
+      else if @pd.isExpectedValue(dataType)
+        patient_values.push(@extract_patient_expected_value(patient, @pd.getRealKey(dataType)))
+      else if @pd.isActualValue(dataType)
+        patient_values.push(@extract_value_for_population_type(patient_result, @pd.getRealKey(dataType)))
       else if dataType == 'ethnicity'
         patient_values.push(@ethnicity_map[patient.get(dataType)])
       else if dataType == 'race'
@@ -294,8 +295,8 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         patient_values.push(value)
       else if (dataType == 'birthdate' || dataType == 'deathdate') && patient.get(dataType) != null
         patient_values.push(moment.utc(patient.get(dataType)).format('L'))
-      else if @isCriteriaKeyFromDataIndices(dataType)
-        criteriaKey = @getKeyValueFromDataIndices(dataType)
+      else if @pd.isCriteria(dataType)
+        criteriaKey = @pd.getRealKey(dataType)
         patient_values.push(@getPatientCriteriaResult(criteriaKey, patient_result))
       else
         patient_values.push(patient.get(dataType))
@@ -351,179 +352,6 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       result = ''
 
     result
-
-  ######################
-  ## TODO: this should go in its own model
-  ######################
-
-  getData: ->
-    #Grab all populations related to this measure
-    codes = (population['code'] for population in @model.get('measure_logic'))
-    @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
-
-    criteria_keys_by_population = {} # "Type" => "Preconditions"
-    for code in Thorax.Models.Measure.allPopulationCodes #TODO add multiple population_set support
-      if code in Object.keys(@model.get('populations')['models'][0]['attributes'])
-        preconditions = @model.get('populations')['models'][0].get(code)['preconditions']
-        if preconditions
-          criteria_keys_by_population[code] = @precondition_criteria_keys(preconditions[0]).filter (ck) -> ck != 'MeasurePeriod'
-        else
-          criteria_keys_by_population[code] = []
-    
-    @dataIndices = @getDataIndices(@populations, criteria_keys_by_population)
-    @dataCollections = @getDataCollections(@populations, @dataIndices, criteria_keys_by_population)
-    @dataInfo = @getDataInfo(@populations, @dataCollections)
-
-  getDataIndices: (populations, criteria_keys_by_population) =>
-    dataIndices = []
-    
-    dataIndices.push("actions")
-    dataIndices.push("first")
-    dataIndices.push("last")
-    
-    for population in populations
-      dataIndices.push("expected" + population)
-    for population in populations
-      dataIndices.push("actual" + population)
-    
-    dataIndices.push("notes")
-    dataIndices.push("birthdate")
-    dataIndices.push("expired")
-    dataIndices.push("deathdate")
-    dataIndices.push("race")
-    dataIndices.push("ethnicity")
-    dataIndices.push("gender")
-    
-    for population in populations
-      criteria = criteria_keys_by_population[population]
-      for criterium in criteria
-        dataIndices.push(population + '_' + criterium)
-    
-    dataIndices
-    
-  getDataInfo: (populations, dataCollections) =>
-    dataInfo = {}
-    
-    dataInfo.actions = { name: "Actions", width: @COL_WIDTH_META }
-    dataInfo.first = { name: "First Name", width: @COL_WIDTH_NAME }
-    dataInfo.last = { name: "Last Name", width: @COL_WIDTH_NAME }
-    dataInfo.notes = { name: "Notes", width: @COL_WIDTH_FREETEXT }
-    dataInfo.birthdate = { name: "Birthdate", width: @COL_WIDTH_META }
-    dataInfo.expired = { name: "Expired?", width: @COL_WIDTH_META }
-    dataInfo.deathdate = { name: "Deathdate", width: @COL_WIDTH_META }
-    dataInfo.race = { name: "Race", width: @COL_WIDTH_META }
-    dataInfo.ethnicity = { name: "Ethnicity", width: @COL_WIDTH_META }
-    dataInfo.gender = { name: "Gender", width: @COL_WIDTH_META }
-    
-    # Grab all data criteria and pass them into DataCriteriaLogic
-    dataCriteriaText = {}
-    for reference in Object.keys(@model.get('data_criteria'))
-      dataLogicView = new Thorax.Views.DataCriteriaLogic(reference: reference, measure: @model)
-      dataLogicView.appendTo(@$el)
-      dataCriteriaText[dataLogicView.dataCriteria.key] = dataLogicView.$el[0].outerText
-    
-    for population in populations
-      dataInfo["expected" + population] = { name: population, width: @COL_WIDTH_POPULATION }
-      dataInfo["actual" + population] = { name: population, width: @COL_WIDTH_POPULATION }
-      
-      dataCollection = dataCollections[population]
-      for item in dataCollection.items
-        dataInfo[population + '_' + item] = { name: dataCriteriaText[item], width: @COL_WIDTH_CRITERIA }
-
-    return dataInfo
-    
-  getDataCollections: (populations, dataIndices, criteria_keys_by_population) =>
-    # indices get added when defining the @dataIndices
-    dataCollections = {}
-    dataCollections.actions = {name: "", items: ["actions"] }
-    dataCollections.name = { name: "Names", items: ["first", "last"] }
-    dataCollections.expected = { name: "Expected", items: "expected" + pop for pop in populations }
-    dataCollections.actual = { name: "Actual", items: "actual" + pop for pop in populations }
-    dataCollections.metadata = {name: "Metadata", items: ["notes", "birthdate", "expired", "deathdate", "race", "ethnicity", "gender"]}
-    
-    for population in populations
-      dataCollections[population] = { name: population, items: criteria for criteria in criteria_keys_by_population[population] }
-    
-    for key, dataCollection of dataCollections
-      dataCollection.firstIndex = @_getFirstIndex(dataCollection.items, key)
-      dataCollection.lastIndex = dataCollection.firstIndex + dataCollection.items.length - 1
-    
-    return dataCollections
-
-  _getFirstIndex: (items, collectionKey) ->
-    for item in items
-      if collectionKey in @populations
-        item = collectionKey + '_' + item
-      itemIndex = @dataIndices.indexOf(item)
-      index = itemIndex if !index || index > itemIndex
-      
-    index
-    
-  # TODO: this doesn't seem like the right way to get this... needs to be more abstracted out or fed in from somewhere else
-  getFixedColumnCount: () =>
-    lastPop = @populations[@populations.length - 1]
-    @dataIndices.indexOf("expected" + lastPop) + 1
-        
-  getDataIndicesCriteriaStartIndex: () =>
-    for pop in @populations
-      if @dataCollections[pop].items.length > 0
-        index = @dataCollections[pop].firstIndex
-        break
-    index
-  
-  isExpectedValueFromDataIndices: (dataKey) =>
-    dataKey.startsWith('expected')
-    
-  isActualValueFromDataIndices: (dataKey) =>
-    dataKey.startsWith('actual')
-    
-  isCriteriaKeyFromDataIndices: (dataKey) =>
-    dataIndex = @dataIndices.indexOf(dataKey)
-    criteriaStartIndex = @getDataIndicesCriteriaStartIndex()
-    dataIndex >= criteriaStartIndex
-  
-  getKeyValueFromDataIndices: (dataKey) =>
-    if @isExpectedValueFromDataIndices(dataKey)
-      keyValue = dataKey.substring('expected'.length)
-    else if @isActualValueFromDataIndices(dataKey)
-      keyValue = dataKey.substring('actual'.length)
-    else if @isCriteriaKeyFromDataIndices(dataKey)
-      startIndex = dataKey.indexOf('_') + 1
-      keyValue = dataKey.substring(startIndex)
-    else
-      keyValue = dataKey
-
-    return keyValue
-
-  # Given a data criteria, return the list of all data criteria keys referenced within, either through
-  # children criteria or temporal references; this includes the passed in criteria reference
-  data_criteria_criteria_keys: (criteria_reference) =>
-    criteria_keys = [criteria_reference]
-    if criteria = @model.get('data_criteria')[criteria_reference]
-      if criteria['children_criteria']?
-        criteria_keys = criteria_keys.concat(@data_criteria_criteria_keys(criteria) for criteria in criteria['children_criteria'])
-        criteria_keys = flatten(criteria_keys)
-      if criteria['temporal_references']?
-        criteria_keys = criteria_keys.concat(@data_criteria_criteria_keys(temporal_reference['reference']) for temporal_reference in criteria['temporal_references'])
-        criteria_keys = flatten(criteria_keys)
-
-    return criteria_keys
-
-  # Given a precondition, return the list of all data criteria keys referenced within
-  precondition_criteria_keys: (precondition) =>
-    if precondition['preconditions'] && precondition['preconditions'].length > 0
-      results = (@precondition_criteria_keys(precondition) for precondition in precondition['preconditions'])
-      results = flatten(results)
-    else if precondition['reference']
-      @data_criteria_criteria_keys(precondition['reference'])
-    else
-      []
-
-#TODO Make this coffeescript. Or use underscore.js
-  `function flatten(arr) {
-    const flat = [].concat(...arr)
-    return flat.some(Array.isArray) ? flatten(flat) : flat;
-  }`
 
 ###################################################################################
 
