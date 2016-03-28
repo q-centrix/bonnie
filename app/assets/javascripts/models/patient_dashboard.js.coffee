@@ -144,10 +144,10 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     @_criteriaStartIndex
   
   isExpectedValue: (dataKey) =>
-    dataKey in @dataCollections[PatientDashboard.EXPECTED]
+    dataKey in @dataCollections[PatientDashboard.EXPECTED].items
     
   isActualValue: (dataKey) =>
-    dataKey in @dataCollections[PatientDashboard.ACTUAL]
+    dataKey in @dataCollections[PatientDashboard.ACTUAL].items
     
   isCriteria: (dataKey) =>
     isCriteria = false
