@@ -310,7 +310,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         value = if patient.get(key) != true then false else true
         patient_values.push(value)
       else if (key == 'birthdate' || key == 'deathdate') && patient.get(key) != null
-        patient_values.push(moment.utc(patient.get(key)).format('L'))
+        patient_values.push(moment.utc(patient.get(key), 'X').format('L'))
       else if @pd.isCriteria(dataType)
         population = @pd.getCriteriaPopulation(dataType)
         patient_values.push(@getPatientCriteriaResult(key, population, patient_result))
