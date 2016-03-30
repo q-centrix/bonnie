@@ -50,8 +50,9 @@
     @navigationSetup "Measure View", "dashboard"
     measure = @measures.findWhere({hqmf_set_id: hqmfSetId})
     document.title += " - #{measure.get('cms_id')}" if measure?
-    measureLayoutView = new Thorax.Views.MeasureLayout(model: measure, patients: @patients)
+    measureLayoutView = new Thorax.Views.MeasureLayout(measure: measure, patients: @patients)
     @mainView.setView(measureLayoutView)
+    measureLayoutView.showMeasure()
     @breadcrumb.addMeasure(measure)
 
   renderUsers: ->
