@@ -94,7 +94,11 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
               @toggleExpandableRow(container, rowIndexStart)
             if colIndexStart == 2
               # TODO: figure out what actually needs to be passed into this view to appropraitely pass into the patient edit view
-              patientEditView = new Thorax.Views.MeasurePatientEditModal(model: @measure.get('patients').models[0], measure: @measure, patients: @measure.get('patients'), measures = @measure.collection)
+              
+              # TODO: this is a temporary hack and very fragile
+              patientIndex = (rowIndexStart - @FIXED_ROWS)/2
+              
+              patientEditView = new Thorax.Views.MeasurePatientEditModal(model: @measure.get('patients').models[patientIndex], measure: @measure, patients: @measure.get('patients'), measures = @measure.collection)
               patientEditView.appendTo(@$el)
               patientEditView.display()
         ,
@@ -415,7 +419,7 @@ class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
     'ready': 'setup'
 
   initialize: ->
-    @patientBuilderView = new Thorax.Views.PatientBuilder(model: @measure, measure: @measure, patients: @patients, measures: @measures, showCompleteView: false)
+    @patientBuilderView = new Thorax.Views.PatientBuilder(model: @model, measure: @measure, patients: @patients, measures: @measures, showCompleteView: false)
 
   setup: ->
     @editDialog = @$("#patientEditModal")
