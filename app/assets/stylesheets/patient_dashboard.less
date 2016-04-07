@@ -44,6 +44,19 @@ html, body, .container-fluid, [role="main"], .measure-layout, .patient-dashboard
     background-color: #ddeedd !important;
   }
   
+  // makes sure there's an appropriate border line for the last two rows
+  tr:nth-last-child(2) > td {
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    border-bottom-color:rgb(204,204,204);
+  }
+  tr:nth-last-child(1) > td {
+    border-top-style:none;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    border-bottom-color:rgb(204,204,204);
+  }
+  
   tr.inline-edit-mode > td.editable {
     background-color: #ddeeee !important;
   }
@@ -107,6 +120,13 @@ html, body, .container-fluid, [role="main"], .measure-layout, .patient-dashboard
   td.action > div {
     height: 25px;
     padding: 0px;
+  }
+  
+  td.action:nth-child(1), td.action:nth-child(2)  {
+    border-right-style:none;
+  }
+  th.action:nth-child(1), th.action:nth-child(2)  {
+    border-right-style:none;
   }
 
   td.warn {
