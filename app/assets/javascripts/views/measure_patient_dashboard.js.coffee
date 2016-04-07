@@ -76,6 +76,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         readOnly: true,
         readOnlyCellClassName: '', # avoid using the default .htDimmed... it'll just make the whole table grey.
         renderAllRows: true, # handsontable's optimizer for rendering doesn't manage hidden rows well. Rendering all to fix.
+        renderAllColumns: true,
         cells: (row, col, prop) =>
           cellProperties = {};
           if row == 0
@@ -331,7 +332,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       # TODO: How to make these buttons trigger events??
       if dataType == 'expand'
         patient_values.push('
-          <i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i>')
+          <a href="#" onclick="return false;"><i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i></a>')
       else if dataType == 'edit'
         patient_values.push('
           <button class="btn btn-xs btn-primary">

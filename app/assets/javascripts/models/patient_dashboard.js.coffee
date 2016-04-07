@@ -48,16 +48,16 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     dataIndices.push(PatientDashboard.EXPAND)
     dataIndices.push(PatientDashboard.EDIT)
     dataIndices.push(PatientDashboard.OPEN)
-    dataIndices.push(PatientDashboard.RESULT)
     dataIndices.push(PatientDashboard.FIRST_NAME)
     dataIndices.push(PatientDashboard.LAST_NAME)
-    
+    dataIndices.push(PatientDashboard.NOTES)
+        
     for population in populations
       dataIndices.push(PatientDashboard.EXPECTED_PREFIX + population)
     for population in populations
       dataIndices.push(PatientDashboard.ACTUAL_PREFIX + population)
     
-    dataIndices.push(PatientDashboard.NOTES)
+    dataIndices.push(PatientDashboard.RESULT)
     dataIndices.push(PatientDashboard.BIRTHDATE)
     dataIndices.push(PatientDashboard.EXPIRED)
     dataIndices.push(PatientDashboard.DEATHDATE)
@@ -115,12 +115,12 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
 
   getDataCollections: (populations, dataIndices, criteria_keys_by_population) =>
     dataCollections = {}
-    dataCollections[PatientDashboard.ACTIONS] = {name: "Actions", items: [PatientDashboard.EXPAND, PatientDashboard.EDIT, PatientDashboard.OPEN] }
-    dataCollections[PatientDashboard.RESULT] = {name: "", items: [PatientDashboard.RESULT] }
+    dataCollections[PatientDashboard.ACTIONS] = {name: "", items: [PatientDashboard.EXPAND, PatientDashboard.EDIT, PatientDashboard.OPEN] }
+    dataCollections[PatientDashboard.NOTES] = {name: "", items: [PatientDashboard.NOTES] }
     dataCollections[PatientDashboard.NAME] = { name: "Names", items: [PatientDashboard.FIRST_NAME, PatientDashboard.LAST_NAME] }
     dataCollections[PatientDashboard.EXPECTED] = { name: "Expected", items: PatientDashboard.EXPECTED_PREFIX + pop for pop in populations }
     dataCollections[PatientDashboard.ACTUAL] = { name: "Actual", items: PatientDashboard.ACTUAL_PREFIX + pop for pop in populations }
-    dataCollections[PatientDashboard.METADATA] = {name: "Metadata", items: [PatientDashboard.NOTES, PatientDashboard.BIRTHDATE, PatientDashboard.EXPIRED, PatientDashboard.DEATHDATE, PatientDashboard.RACE, PatientDashboard.ETHNICITY, PatientDashboard.GENDER]}
+    dataCollections[PatientDashboard.METADATA] = {name: "Metadata", items: [PatientDashboard.RESULT, PatientDashboard.BIRTHDATE, PatientDashboard.EXPIRED, PatientDashboard.DEATHDATE, PatientDashboard.RACE, PatientDashboard.ETHNICITY, PatientDashboard.GENDER]}
     
     for population in populations
       dataCollections[population] = { name: population, items: population + '_' + criteria for criteria in criteria_keys_by_population[population] }

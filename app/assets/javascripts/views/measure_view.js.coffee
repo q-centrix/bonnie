@@ -4,6 +4,10 @@ class Thorax.Views.MeasureLayout extends Thorax.LayoutView
 
   initialize: ->
     @populations = @measure.get 'populations'
+  
+  context: ->
+    _(super).extend
+      cms_id: @measure.get 'cms_id'
 
   showDashboard:(e) ->
     # because of how thorax transitions between views (it removes the $el associated with the view - line 2080 thorax.js)
