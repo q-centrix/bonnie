@@ -1,5 +1,8 @@
 class Thorax.Models.PatientDashboard extends Thorax.Model
   @ACTIONS = "actions"
+  @EXPAND = "expand"
+  @OPEN = "open"
+  @EDIT = "edit"
   @RESULT = "result"
   @FIRST_NAME = "first"
   @LAST_NAME = "last"
@@ -42,7 +45,9 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
   getDataIndices: (populations, criteriaKeysByPopulation) =>
     dataIndices = []
     
-    dataIndices.push(PatientDashboard.ACTIONS)
+    dataIndices.push(PatientDashboard.EXPAND)
+    dataIndices.push(PatientDashboard.EDIT)
+    dataIndices.push(PatientDashboard.OPEN)
     dataIndices.push(PatientDashboard.RESULT)
     dataIndices.push(PatientDashboard.FIRST_NAME)
     dataIndices.push(PatientDashboard.LAST_NAME)
@@ -78,7 +83,9 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
       dataCriteriaText[dataLogicView.dataCriteria.key] = dataLogicView.$el[0].outerText
 
     # include the metadata
-    dataInfo[PatientDashboard.ACTIONS] = { name: "Actions", width: @COL_WIDTH_META }
+    dataInfo[PatientDashboard.EXPAND] = { name: "", width: 35 }
+    dataInfo[PatientDashboard.EDIT] = { name: "", width: 45 }
+    dataInfo[PatientDashboard.OPEN] = { name: "", width: 73 }
     dataInfo[PatientDashboard.RESULT] = { name: "Passes?", width: @COL_WIDTH_META }
     dataInfo[PatientDashboard.FIRST_NAME] = { name: "First Name", width: @COL_WIDTH_NAME }
     dataInfo[PatientDashboard.LAST_NAME] = { name: "Last Name", width: @COL_WIDTH_NAME }
@@ -108,7 +115,7 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
 
   getDataCollections: (populations, dataIndices, criteria_keys_by_population) =>
     dataCollections = {}
-    dataCollections[PatientDashboard.ACTIONS] = {name: "", items: [PatientDashboard.ACTIONS] }
+    dataCollections[PatientDashboard.ACTIONS] = {name: "Actions", items: [PatientDashboard.EXPAND, PatientDashboard.EDIT, PatientDashboard.OPEN] }
     dataCollections[PatientDashboard.RESULT] = {name: "", items: [PatientDashboard.RESULT] }
     dataCollections[PatientDashboard.NAME] = { name: "Names", items: [PatientDashboard.FIRST_NAME, PatientDashboard.LAST_NAME] }
     dataCollections[PatientDashboard.EXPECTED] = { name: "Expected", items: PatientDashboard.EXPECTED_PREFIX + pop for pop in populations }

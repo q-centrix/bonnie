@@ -88,11 +88,11 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         ,
         afterSelection: (rowIndexStart, colIndexStart, rowIndexEnd, colIndexEnd) =>
           if colIndexStart == colIndexEnd && rowIndexStart == rowIndexEnd
-            if colIndexStart == 0
+            if colIndexStart == @pd.getIndex('edit')
               @makeInlineEditable(container, @hot, rowIndexStart)
-            if colIndexStart == 1
+            if colIndexStart == @pd.getIndex('expand')
               @toggleExpandableRow(container, rowIndexStart)
-            if colIndexStart == 2
+            if colIndexStart == @pd.getIndex('open')
               # TODO: figure out what actually needs to be passed into this view to appropraitely pass into the patient edit view
               
               # TODO: this is a temporary hack and very fragile
@@ -164,11 +164,15 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
 
   header1Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
+    if @pd.isIndexInCollection(col, 'actions')
+      Handsontable.Dom.addClass(td, 'action')
     @addDiv(td)
     @getColor(instance, td, row, col, value, cellProperties)
 
   header2Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
+    if @pd.isIndexInCollection(col, 'actions')
+      Handsontable.Dom.addClass(td, 'action')
     if @pd.isIndexInCollection(col, 'expected') || @pd.isIndexInCollection(col, 'actual')
       @addDiv(td)
     else
@@ -177,13 +181,16 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   dataRenderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
     Handsontable.Dom.addClass(td, 'content')
-    
+    if @pd.isIndexInCollection(col, 'actions')
+      Handsontable.Dom.addClass(td, 'action')
+
     # TODO: this is a hack to show discrepencies with expected/actual. work out better way to do this
     cellText = td.textContent
     if cellText.indexOf("__WARN__") == 0
       cellText = cellText.substring("__WARN__".length)
       td.textContent = cellText
       Handsontable.Dom.addClass(td, 'warn')
+      
       
     @addDiv(td)
     
@@ -301,17 +308,19 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     
     for dataType in @pd.dataIndices
       key = @pd.getRealKey(dataType)
-      if dataType == 'actions' 
+      # TODO: How to make these buttons trigger events??
+      if dataType == 'expand'
         patient_values.push('
-          <i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i>
-
+          <i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i>')
+      else if dataType == 'edit'
+        patient_values.push('
           <button class="btn btn-xs btn-primary">
             <i aria-hidden="true" class="fa fa-fw fa-pencil"></i>
             <span class="sr-only">Edit this patient inline</span>
-          </button>
-
-          <button class="btn btn-xs btn-default">Open...</button>
-          ') # TODO: How to make these buttons trigger events??
+          </button>')
+      else if dataType == 'open'
+        patient_values.push('
+          <button class="btn btn-xs btn-default">Open...</button>')
       else if dataType == 'result'
         patient_values.push(@isPatientPassing(expectedResults, actualResults))
       else if @pd.isExpectedValue(dataType)
