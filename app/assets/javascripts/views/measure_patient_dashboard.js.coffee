@@ -151,21 +151,22 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     if rowIndex > 1 && rowIndex%2 == 0
       expandableRowIndex = rowIndex + 1
       for table in $(container).find('table')
-        tr = $(table).find('tr[data-row="row' + expandableRowIndex.toString() + '"]').get(0)
-        if tr
-          if $(tr).hasClass('expandable-hidden')
-            Handsontable.Dom.removeClass(tr, 'expandable-hidden')
-            Handsontable.Dom.addClass(tr, 'expandable-shown')
+        tr = $(table).find('tr[data-row="row' + rowIndex.toString() + '"]').get(0)
+        trExpandable = $(table).find('tr[data-row="row' + expandableRowIndex.toString() + '"]').get(0)
+        if tr && trExpandable
+          if $(trExpandable).hasClass('expandable-hidden')
+            Handsontable.Dom.removeClass(trExpandable, 'expandable-hidden')
+            Handsontable.Dom.addClass(trExpandable, 'expandable-shown')
             @expandedRows.push(expandableRowIndex)
+            @switchExpandIcon(tr, true, rowIndex)
           else
-            Handsontable.Dom.removeClass(tr, 'expandable-shown')
-            Handsontable.Dom.addClass(tr, 'expandable-hidden')
+            Handsontable.Dom.removeClass(trExpandable, 'expandable-shown')
+            Handsontable.Dom.addClass(trExpandable, 'expandable-hidden')
             @expandedRows = @expandedRows.filter (index) -> index != expandableRowIndex
+            @switchExpandIcon(tr, false, rowIndex)
 
   header1Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    if @pd.isIndexInCollection(col, 'actions')
-      Handsontable.Dom.addClass(td, 'action')
     @addDiv(td)
     @getColor(instance, td, row, col, value, cellProperties)
 
@@ -198,11 +199,19 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     # because of how handsontable efficiently renders the table
     tr = td.parentElement
     $(tr).attr('data-row', "row" + row)
-    if row%2 == 1
+
+    # expansion
+    if row%2 == 1 # managing showing or hiding expanded row
       if row in @expandedRows
         Handsontable.Dom.addClass(tr, 'expandable-shown')
       else
         Handsontable.Dom.addClass(tr, 'expandable-hidden')
+    else # managing the expand icon
+      if (row+1) in @expandedRows
+        @switchExpandIcon(tr, true, row)
+      else
+        @switchExpandIcon(tr, false, row)
+
     # enabling edit modes for the table
     if row in @editableRows
       Handsontable.Dom.addClass(tr, 'inline-edit-mode')
@@ -297,7 +306,18 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       data.push(patientRow);
       data.push(patientDetailRow);
 
-  # TODO: modify all cases where the actual "key" needs to be used to use @pd.getRealKey
+  switchExpandIcon: (tr, isExpanded, rowIndex) =>
+    colIndex = @pd.getIndex('expand')
+    cell = $(tr).children()[colIndex]
+    if cell
+      image = $(cell).find('i')[0]
+      if isExpanded
+        Handsontable.Dom.removeClass(image, 'fa-caret-right')
+        Handsontable.Dom.addClass(image, 'fa-caret-down')
+      else
+        Handsontable.Dom.removeClass(image, 'fa-caret-down')
+        Handsontable.Dom.addClass(image, 'fa-caret-right')
+
   createPatientRow: (patient) =>
     patient_values = []
      
