@@ -472,7 +472,7 @@ class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
     @editDialog.modal(
       "backdrop" : "static",
       "keyboard" : true,
-      "show" : true).find('.modal-dialog').css('width','900px') # The same width defined in $modal-lg
+      "show" : true).find('.modal-dialog').css('width','80%') # The same width defined in $modal-lg
 
   save: (e)->
     status = @patientBuilderView.save(e)
