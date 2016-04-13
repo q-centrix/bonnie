@@ -1,6 +1,5 @@
 class Thorax.Models.PatientDashboard extends Thorax.Model
   @ACTIONS = "actions"
-  @EXPAND = "expand"
   @OPEN = "open"
   @EDIT = "edit"
   @RESULT = "result"
@@ -45,7 +44,6 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
   getDataIndices: (populations, criteriaKeysByPopulation) =>
     dataIndices = []
     
-    dataIndices.push(PatientDashboard.EXPAND)
     dataIndices.push(PatientDashboard.EDIT)
     dataIndices.push(PatientDashboard.OPEN)
     dataIndices.push(PatientDashboard.FIRST_NAME)
@@ -83,7 +81,6 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
       dataCriteriaText[dataLogicView.dataCriteria.key] = dataLogicView.$el[0].outerText
 
     # include the metadata
-    dataInfo[PatientDashboard.EXPAND] = { name: "", width: 35 }
     dataInfo[PatientDashboard.EDIT] = { name: "", width: 45 }
     dataInfo[PatientDashboard.OPEN] = { name: "", width: 73 }
     dataInfo[PatientDashboard.RESULT] = { name: "Passes?", width: @COL_WIDTH_META }
@@ -115,7 +112,7 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
 
   getDataCollections: (populations, dataIndices, criteria_keys_by_population) =>
     dataCollections = {}
-    dataCollections[PatientDashboard.ACTIONS] = {name: "", items: [PatientDashboard.EXPAND, PatientDashboard.EDIT, PatientDashboard.OPEN] }
+    dataCollections[PatientDashboard.ACTIONS] = {name: "", items: [PatientDashboard.EDIT, PatientDashboard.OPEN] }
     dataCollections[PatientDashboard.NOTES] = {name: "", items: [PatientDashboard.NOTES] }
     dataCollections[PatientDashboard.NAME] = { name: "Names", items: [PatientDashboard.FIRST_NAME, PatientDashboard.LAST_NAME] }
     dataCollections[PatientDashboard.EXPECTED] = { name: "Expected", items: PatientDashboard.EXPECTED_PREFIX + pop for pop in populations }

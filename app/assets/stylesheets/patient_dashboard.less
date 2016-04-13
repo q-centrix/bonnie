@@ -61,11 +61,6 @@ html, body, .container-fluid, [role="main"], .measure-layout, .patient-dashboard
     background-color: #ddeeee !important;
   }
 
-  /* detail expand/hide */
-  tr.expandable-hidden {
-    display:none;
-  }
-
   /* header styling */
   th {
     font-weight: bold;
@@ -122,10 +117,11 @@ html, body, .container-fluid, [role="main"], .measure-layout, .patient-dashboard
     padding: 0px;
   }
   
-  td.action:nth-child(1), td.action:nth-child(2)  {
+  /* TODO: rework these so that they work for any number of actions */
+  td.action:nth-child(1)  {
     border-right-style:none;
   }
-  th.action:nth-child(1), th.action:nth-child(2)  {
+  th.action:nth-child(1) {
     border-right-style:none;
   }
 
@@ -133,6 +129,8 @@ html, body, .container-fluid, [role="main"], .measure-layout, .patient-dashboard
     background-color: pink;
   }
 
+  /* added to remove border when an action is selected */
+  /* TODO: make this so it ONLY removes the border for actions */
   .wtBorder {
     display: none !important;
   }

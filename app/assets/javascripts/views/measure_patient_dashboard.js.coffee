@@ -42,7 +42,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     @FIXED_ROWS = 2
     @FIXED_COLS = @getFixedColumnCount()
 
-    @expandedRows = [] # used to ensure that expanded rows stay expanded after re-render
     @editableRows = [] # used to ensure rows marked for inline editing stay that way after re-render
 
     @editableCols = @getEditableCols() # these are the fields that should be inline editable
@@ -92,8 +91,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
           if colIndexStart == colIndexEnd && rowIndexStart == rowIndexEnd
             if colIndexStart == @pd.getIndex('edit')
               @makeInlineEditable(container, @hot, rowIndexStart)
-            if colIndexStart == @pd.getIndex('expand')
-              @toggleExpandableRow(container, rowIndexStart)
             if colIndexStart == @pd.getIndex('open')
               # TODO: figure out what actually needs to be passed into this view to appropraitely pass into the patient edit view
               
@@ -162,24 +159,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       else
         hot.setCellMeta(rowIndex, col, 'readOnly', true)
 
-  toggleExpandableRow: (container, rowIndex) =>
-    if rowIndex > 1 && rowIndex%2 == 0
-      expandableRowIndex = rowIndex + 1
-      for table in $(container).find('table')
-        tr = $(table).find('tr[data-row="row' + rowIndex.toString() + '"]').get(0)
-        trExpandable = $(table).find('tr[data-row="row' + expandableRowIndex.toString() + '"]').get(0)
-        if tr && trExpandable
-          if $(trExpandable).hasClass('expandable-hidden')
-            Handsontable.Dom.removeClass(trExpandable, 'expandable-hidden')
-            Handsontable.Dom.addClass(trExpandable, 'expandable-shown')
-            @expandedRows.push(expandableRowIndex)
-            @switchExpandIcon(tr, true, rowIndex)
-          else
-            Handsontable.Dom.removeClass(trExpandable, 'expandable-shown')
-            Handsontable.Dom.addClass(trExpandable, 'expandable-hidden')
-            @expandedRows = @expandedRows.filter (index) -> index != expandableRowIndex
-            @switchExpandIcon(tr, false, rowIndex)
-
   header1Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
     @addDiv(td)
@@ -210,22 +189,10 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       
     @addDiv(td)
     
-    # enabling expandable detail rows. Need to do by a custom data-attribute
-    # because of how handsontable efficiently renders the table
+    # add row index identifier
+    # TODO: is this still necessary without the expandable rows?
     tr = td.parentElement
     $(tr).attr('data-row', "row" + row)
-
-    # expansion
-    if row%2 == 1 # managing showing or hiding expanded row
-      if row in @expandedRows
-        Handsontable.Dom.addClass(tr, 'expandable-shown')
-      else
-        Handsontable.Dom.addClass(tr, 'expandable-hidden')
-    else # managing the expand icon
-      if (row+1) in @expandedRows
-        @switchExpandIcon(tr, true, row)
-      else
-        @switchExpandIcon(tr, false, row)
 
     # enabling edit modes for the table
     if row in @editableRows
@@ -317,21 +284,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   createPatientRows: (patients, data) =>
     for patient, i in patients.models
       patientRow = @createPatientRow(patient);
-      patientDetailRow = @createPatientDetailRow(patient, i, patientRow);
       data.push(patientRow);
-      data.push(patientDetailRow);
-
-  switchExpandIcon: (tr, isExpanded, rowIndex) =>
-    colIndex = @pd.getIndex('expand')
-    cell = $(tr).children()[colIndex]
-    if cell
-      image = $(cell).find('i')[0]
-      if isExpanded
-        Handsontable.Dom.removeClass(image, 'fa-caret-right')
-        Handsontable.Dom.addClass(image, 'fa-caret-down')
-      else
-        Handsontable.Dom.removeClass(image, 'fa-caret-down')
-        Handsontable.Dom.addClass(image, 'fa-caret-right')
 
   createPatientRow: (patient) =>
     patient_values = []
@@ -344,10 +297,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     for dataType in @pd.dataIndices
       key = @pd.getRealKey(dataType)
       # TODO: How to make these buttons trigger events??
-      if dataType == 'expand'
-        patient_values.push('
-          <a href="#" onclick="return false;"><i aria-hidden="true" class="fa fa-fw fa-caret-right text-primary"><span class="sr-only">Expand row</span></i></a>')
-      else if dataType == 'edit'
+      if dataType == 'edit'
         patient_values.push('
           <button class="btn btn-xs btn-primary">
             <i aria-hidden="true" class="fa fa-fw fa-pencil"></i>
