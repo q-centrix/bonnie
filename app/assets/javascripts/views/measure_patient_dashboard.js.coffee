@@ -255,7 +255,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     @pd.getCollectionLastIndex('expected') + 1
 
   getEditableCols:() =>
-    editableFields = ["first", "last", "notes", "birthdate", "ethnicity", "race", "gender", "expired", "deathdate"]
+    editableFields = ["first", "last", "notes", "birthdate", "ethnicity", "race", "gender", "deathdate"]
     editableCols = []
 
     for editableField in editableFields
@@ -322,9 +322,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         patient_values.push(@ethnicity_map[patient.get(key)])
       else if dataType == 'race'
         patient_values.push(@race_map[patient.get(key)])
-      else if dataType == 'expired'
-        value = if patient.get(key) != true then false else true
-        patient_values.push(value)
       else if (key == 'birthdate' || key == 'deathdate') && patient.get(key) != null
         patient_values.push(moment.utc(patient.get(key), 'X').format('L'))
       else if @pd.isCriteria(dataType)
