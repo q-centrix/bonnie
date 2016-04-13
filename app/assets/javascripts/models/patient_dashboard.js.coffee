@@ -89,7 +89,7 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     dataInfo[PatientDashboard.RESULT] = { name: "Passes?", width: @COL_WIDTH_META }
     dataInfo[PatientDashboard.FIRST_NAME] = { name: "First Name", width: @COL_WIDTH_NAME }
     dataInfo[PatientDashboard.LAST_NAME] = { name: "Last Name", width: @COL_WIDTH_NAME }
-    dataInfo[PatientDashboard.NOTES] = { name: "Notes", width: @COL_WIDTH_FREETEXT }
+    dataInfo[PatientDashboard.NOTES] = { name: "Description", width: @COL_WIDTH_FREETEXT }
     dataInfo[PatientDashboard.BIRTHDATE] = { name: "Birthdate", width: @COL_WIDTH_META }
     dataInfo[PatientDashboard.EXPIRED] = { name: "Expired?", width: @COL_WIDTH_META }
     dataInfo[PatientDashboard.DEATHDATE] = { name: "Deathdate", width: @COL_WIDTH_META }
