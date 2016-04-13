@@ -8,8 +8,8 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
   @NOTES = "notes"
   @BIRTHDATE = "birthdate"
   @DEATHDATE = "deathdate"
-  @RACE = "race"
-  @ETHNICITY = "ethnicity"
+  #@RACE = "race"
+  #@ETHNICITY = "ethnicity"
   @GENDER = "gender"
   @EXPECTED = "expected"
   @ACTUAL = "actual"
@@ -57,8 +57,8 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     dataIndices.push(PatientDashboard.RESULT)
     dataIndices.push(PatientDashboard.BIRTHDATE)
     dataIndices.push(PatientDashboard.DEATHDATE)
-    dataIndices.push(PatientDashboard.RACE)
-    dataIndices.push(PatientDashboard.ETHNICITY)
+    #dataIndices.push(PatientDashboard.RACE)
+    #dataIndices.push(PatientDashboard.ETHNICITY)
     dataIndices.push(PatientDashboard.GENDER)
     
     for population in populations
@@ -87,8 +87,8 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     dataInfo[PatientDashboard.NOTES] = { name: "Description", width: @COL_WIDTH_FREETEXT }
     dataInfo[PatientDashboard.BIRTHDATE] = { name: "Birthdate", width: @COL_WIDTH_META }
     dataInfo[PatientDashboard.DEATHDATE] = { name: "Deathdate", width: @COL_WIDTH_META }
-    dataInfo[PatientDashboard.RACE] = { name: "Race", width: @COL_WIDTH_META }
-    dataInfo[PatientDashboard.ETHNICITY] = { name: "Ethnicity", width: @COL_WIDTH_META }
+    #dataInfo[PatientDashboard.RACE] = { name: "Race", width: @COL_WIDTH_META }
+    #dataInfo[PatientDashboard.ETHNICITY] = { name: "Ethnicity", width: @COL_WIDTH_META }
     dataInfo[PatientDashboard.GENDER] = { name: "Gender", width: @COL_WIDTH_META }
 
     for population in populations
@@ -114,7 +114,8 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     dataCollections[PatientDashboard.NAME] = { name: "Names", items: [PatientDashboard.FIRST_NAME, PatientDashboard.LAST_NAME] }
     dataCollections[PatientDashboard.EXPECTED] = { name: "Expected", items: PatientDashboard.EXPECTED_PREFIX + pop for pop in populations }
     dataCollections[PatientDashboard.ACTUAL] = { name: "Actual", items: PatientDashboard.ACTUAL_PREFIX + pop for pop in populations }
-    dataCollections[PatientDashboard.METADATA] = {name: "Metadata", items: [PatientDashboard.RESULT, PatientDashboard.BIRTHDATE, PatientDashboard.DEATHDATE, PatientDashboard.RACE, PatientDashboard.ETHNICITY, PatientDashboard.GENDER]}
+    #dataCollections[PatientDashboard.METADATA] = {name: "Metadata", items: [PatientDashboard.RESULT, PatientDashboard.BIRTHDATE, PatientDashboard.DEATHDATE, PatientDashboard.RACE, PatientDashboard.ETHNICITY, PatientDashboard.GENDER]}
+    dataCollections[PatientDashboard.METADATA] = {name: "Metadata", items: [PatientDashboard.RESULT, PatientDashboard.BIRTHDATE, PatientDashboard.DEATHDATE, PatientDashboard.GENDER]}
     
     for population in populations
       dataCollections[population] = { name: population, items: population + '_' + criteria for criteria in criteria_keys_by_population[population] }

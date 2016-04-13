@@ -20,18 +20,19 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   initialize: ->
     @results = @population.calculationResults()
 
-    #TODO Duplication of code for mapping code to race / ethnicity - See patient_builder.hbs
-    @race_map = {}
-    @race_map["1002-5"] = "American Indian or Alaska Native"
-    @race_map['2028-9'] = "Asian"
-    @race_map["2054-5"] = "Black or African American"
-    @race_map["2076-8"]= "Native Hawaiian or Other Pacific Islander"
-    @race_map["2106-3"] = "White"
-    @race_map["2131-1"] = "Other"
-
-    @ethnicity_map = {}
-    @ethnicity_map["2186-5"] = "Not Hispanic or Latino"
-    @ethnicity_map["2135-2"] = "Hispanic Or Latino"
+    # commenting out race and ethinicity becuase these are not measured in eCQMs
+    # #TODO Duplication of code for mapping code to race / ethnicity - See patient_builder.hbs
+    # @race_map = {}
+    # @race_map["1002-5"] = "American Indian or Alaska Native"
+    # @race_map['2028-9'] = "Asian"
+    # @race_map["2054-5"] = "Black or African American"
+    # @race_map["2076-8"]= "Native Hawaiian or Other Pacific Islander"
+    # @race_map["2106-3"] = "White"
+    # @race_map["2131-1"] = "Other"
+    # 
+    # @ethnicity_map = {}
+    # @ethnicity_map["2186-5"] = "Not Hispanic or Latino"
+    # @ethnicity_map["2135-2"] = "Hispanic Or Latino"
   
     #Grab all populations related to this measure
     codes = (population['code'] for population in @measure.get('measure_logic'))
@@ -255,7 +256,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     @pd.getCollectionLastIndex('expected') + 1
 
   getEditableCols:() =>
-    editableFields = ["first", "last", "notes", "birthdate", "ethnicity", "race", "gender", "deathdate"]
+    #editableFields = ["first", "last", "notes", "birthdate", "ethnicity", "race", "gender", "deathdate"]
+    editableFields = ["first", "last", "notes", "birthdate", "gender", "deathdate"]
     editableCols = []
 
     for editableField in editableFields
@@ -318,10 +320,10 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         if value != expectedResults[key]
           value = "__WARN__" + value # TODO: this is a hack to show discrepencies with expected/actual. work out better way to do this
         patient_values.push(value)
-      else if dataType == 'ethnicity'
-        patient_values.push(@ethnicity_map[patient.get(key)])
-      else if dataType == 'race'
-        patient_values.push(@race_map[patient.get(key)])
+      # else if dataType == 'ethnicity'
+      #   patient_values.push(@ethnicity_map[patient.get(key)])
+      # else if dataType == 'race'
+      #   patient_values.push(@race_map[patient.get(key)])
       else if (key == 'birthdate' || key == 'deathdate') && patient.get(key) != null
         patient_values.push(moment.utc(patient.get(key), 'X').format('L'))
       else if @pd.isCriteria(dataType)
