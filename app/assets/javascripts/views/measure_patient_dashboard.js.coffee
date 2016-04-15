@@ -18,8 +18,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   className: 'patient-dashboard'
 
   initialize: ->
-    @results = @population.calculationResults()
-
     # commenting out race and ethinicity becuase these are not measured in eCQMs
     # #TODO Duplication of code for mapping code to race / ethnicity - See patient_builder.hbs
     # @race_map = {}
@@ -96,7 +94,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
             if colIndexStart == @pd.getIndex('open')
               # TODO: figure out what actually needs to be passed into this view to appropraitely pass into the patient edit view
               # TODO: this is a temporary hack and very fragile
-              patientIndex = (rowIndexStart - @FIXED_ROWS)/2
+              patientIndex = rowIndexStart - @FIXED_ROWS
 
               patientEditView = new Thorax.Views.MeasurePatientEditModal(dashboard: this, populations: @populations, model: @measure.get('patients').models[patientIndex], measure: @measure, patients: @measure.get('patients'), measures = @measure.collection)
               patientEditView.appendTo(@$el)
@@ -188,7 +186,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       Handsontable.Dom.addClass(td, 'warn')
 
     @addDiv(td)
-    
+
     # add row index identifier
     # TODO: is this still necessary without the expandable rows?
     tr = td.parentElement
@@ -426,6 +424,5 @@ class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
     @editDialog.modal('hide')
     @patientBuilderView.save(e)
     @dashboard.createTable()
-    @dashboard.render()
 
   close: -> ''
