@@ -3,8 +3,31 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
   template: JST['measure/patient_dashboard']
 
   initialize: ->
-    @demoMeasure = {"ipp":{"ippCol_0":"Patient Characteristic Birthdate: Birth Date >= 18 years starts before start of \"Measurement Period\"","ippCol_1":"Diagnosis: Primary Open-Angle Glaucoma overlaps Occurrence A: $EyeCareEncounters","ippCol_2":"Occurrence A: $EyeCareEncounters","ippCol_3":"Union of: Encounter, Performed: Ophthalmological Services Encounter, Performed: Care Services in Long-Term Residential Facility Encounter, Performed: Nursing Facility Visit Encounter, Performed: Office Visit Encounter, Performed: Outpatient Consultation Encounter, Performed: Face-to-Face Interaction during \"Measurement Period\"","ippCol_4":"Encounter, Performed: Ophthalmological Services","ippCol_5":"Encounter, Performed: Care Services in Long-Term Residential Facility","ippCol_6":"Encounter, Performed: Nursing Facility Visit","ippCol_7":"Encounter, Performed: Office Visit","ippCol_8":"Encounter, Performed: Outpatient Consultation","ippCol_9":"Encounter, Performed: Face-to-Face Interaction"},"numer":{"numerCol_0":"Diagnostic Study, Performed: Cup to Disc Ratio(result) during Occurrence A: $EyeCareEncounters","numerCol_1":"Occurrence A: $EyeCareEncounters","numerCol_2":"Union of: Encounter, Performed: Ophthalmological Services Encounter, Performed: Care Services in Long-Term Residential Facility Encounter, Performed: Nursing Facility Visit Encounter, Performed: Office Visit Encounter, Performed: Outpatient Consultation Encounter, Performed: Face-to-Face Interaction during \"Measurement Period\"","numerCol_3":"Encounter, Performed: Ophthalmological Services","numerCol_4":"Encounter, Performed: Care Services in Long-Term Residential Facility","numerCol_5":"Encounter, Performed: Nursing Facility Visit","numerCol_6":"Encounter, Performed: Office Visit","numerCol_7":"Encounter, Performed: Outpatient Consultation","numerCol_8":"Encounter, Performed: Face-to-Face Interaction","numerCol_9":"Diagnostic Study, Performed: Optic Disc Exam for Structural Abnormalities(result) during Occurrence A: $EyeCareEncounters","numerCol_10":"Occurrence A: $EyeCareEncounters","numerCol_11":"Union of: Encounter, Performed: Ophthalmological Services Encounter, Performed: Care Services in Long-Term Residential Facility Encounter, Performed: Nursing Facility Visit Encounter, Performed: Office Visit Encounter, Performed: Outpatient Consultation Encounter, Performed: Face-to-Face Interaction during \"Measurement Period\"","numerCol_12":"Encounter, Performed: Ophthalmological Services","numerCol_13":"Encounter, Performed: Care Services in Long-Term Residential Facility","numerCol_14":"Encounter, Performed: Nursing Facility Visit","numerCol_15":"Encounter, Performed: Office Visit","numerCol_16":"Encounter, Performed: Outpatient Consultation","numerCol_17":"Encounter, Performed: Face-to-Face Interaction","numerCol_18":"Union of: Diagnostic Study, Performed: Cup to Disc Ratio ( Not Done : Medical Reason ) Diagnostic Study, Performed: Optic Disc Exam for Structural Abnormalities ( Not Done : Medical Reason ) starts during Occurrence A: $EyeCareEncounters","numerCol_19":"Diagnostic Study, Performed: Cup to Disc Ratio ( Not Done : Medical Reason )"},"denexcep":{"denexcepCol_0":"Diagnostic Study, Performed: Optic Disc Exam for Structural Abnormalities ( Not Done : Medical Reason )","denexcepCol_1":"Occurrence A: $EyeCareEncounters","denexcepCol_2":"Union of: Encounter, Performed: Ophthalmological Services Encounter, Performed: Care Services in Long-Term Residential Facility Encounter, Performed: Nursing Facility Visit Encounter, Performed: Office Visit Encounter, Performed: Outpatient Consultation Encounter, Performed: Face-to-Face Interaction during \"Measurement Period\"","denexcepCol_3":"Encounter, Performed: Ophthalmological Services","denexcepCol_4":"Encounter, Performed: Care Services in Long-Term Residential Facility","denexcepCol_5":"Encounter, Performed: Nursing Facility Visit","denexcepCol_6":"Encounter, Performed: Office Visit","denexcepCol_7":"Encounter, Performed: Outpatient Consultation","denexcepCol_8":"Encounter, Performed: Face-to-Face Interaction"},"denom":{}};
-    @demoPatients = [{"firstName":"Zelda","lastName":"TESTArnold","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"12/31/1994","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"FALSE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Xander","lastName":"TESTClay","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"04/13/1986","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"FALSE","ippCol_3":"FALSE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"FALSE","numerCol_2":"FALSE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"FALSE","numerCol_11":"FALSE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"FALSE","denexcepCol_2":"FALSE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Veronica","lastName":"TESTEldridge","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"04/13/1976","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"FALSE","ippCol_3":"FALSE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"TRUE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"FALSE","numerCol_2":"FALSE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"TRUE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"FALSE","numerCol_11":"FALSE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"TRUE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"FALSE","denexcepCol_2":"FALSE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"TRUE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Udi","lastName":"TESTFranklin","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"05/14/1971","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"TRUE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"TRUE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"TRUE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"TRUE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Trudie","lastName":"TESTGermaine","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"06/14/1966","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Penelope","lastName":"TESTKessington","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"09/18/1946","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"TRUE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"TRUE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"TRUE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"TRUE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Hilda","lastName":"TESTSalinger","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"03/11/1981","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"George","lastName":"TESTTrotsky","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"04/12/1976","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"TRUE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Quin","lastName":"TESTJackson","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"09/18/1951","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"TRUE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"TRUE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"TRUE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"TRUE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Otis","lastName":"TESTLightner","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"09/17/1941","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"TRUE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"TRUE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"TRUE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"TRUE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Manny","lastName":"TESTNolan","expected":{"IPP":"1","DENOM":"1","NUMER":"1","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"1","DENEXCEP":"0"},"notes":"","birthdate":"10/17/1937","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"TRUE"},"numer":{"numerCol_0":"TRUE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"TRUE","numerCol_9":"TRUE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"TRUE","numerCol_18":"TRUE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"TRUE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"TRUE"},"denom":{},"DENEXCEP":{}},{"firstName":"Jane","lastName":"TESTQuasay","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"notes":"","birthdate":"01/10/1992","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"TRUE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"TRUE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"TRUE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"TRUE","numerCol_19":"TRUE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"TRUE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Fergie","lastName":"TESTUnderhill","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"05/13/1971","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Edward","lastName":"TESTVance","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"notes":"","birthdate":"06/14/1966","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"TRUE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"TRUE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Denise","lastName":"TESTWest","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"notes":"","birthdate":"08/16/1956","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"TRUE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"TRUE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"TRUE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"TRUE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"TRUE","numerCol_19":"TRUE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"TRUE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Keith","lastName":"TESTPaulson","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"notes":"","birthdate":"11/18/1927","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"TRUE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"TRUE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"TRUE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"TRUE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"TRUE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"TRUE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Ian","lastName":"TESTRutenbeck","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"04/13/1986","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"TRUE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Curtis","lastName":"TESTXiao","expected":{"IPP":"1","DENOM":"1","NUMER":"1","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"1","DENEXCEP":"0"},"notes":"","birthdate":"08/16/1951","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"TRUE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"TRUE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Linda","lastName":"TESTOppenheimer","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"11/18/1932","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"TRUE"},"denexcep":{"denexcepCol_0":"TRUE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Zelda","lastName":"TESTArnold","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"12/31/1994","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"FALSE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Xander","lastName":"TESTClay","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"04/13/1986","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"FALSE","ippCol_3":"FALSE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"FALSE","numerCol_2":"FALSE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"FALSE","numerCol_11":"FALSE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"FALSE","denexcepCol_2":"FALSE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Veronica","lastName":"TESTEldridge","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"04/13/1976","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"FALSE","ippCol_3":"FALSE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"TRUE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"FALSE","numerCol_2":"FALSE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"TRUE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"FALSE","numerCol_11":"FALSE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"TRUE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"FALSE","denexcepCol_2":"FALSE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"TRUE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Udi","lastName":"TESTFranklin","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"05/14/1971","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"TRUE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"TRUE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"TRUE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"TRUE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Trudie","lastName":"TESTGermaine","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"06/14/1966","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Penelope","lastName":"TESTKessington","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"09/18/1946","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"TRUE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"TRUE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"TRUE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"TRUE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Hilda","lastName":"TESTSalinger","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"03/11/1981","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"George","lastName":"TESTTrotsky","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"04/12/1976","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"TRUE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Quin","lastName":"TESTJackson","expected":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"0","DENOM":"0","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"09/18/1951","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"FALSE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"TRUE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"TRUE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"TRUE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"","numerCol_19":""},"denexcep":{"denexcepCol_0":"","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"TRUE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Otis","lastName":"TESTLightner","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"09/17/1941","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"TRUE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"TRUE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"TRUE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"TRUE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Manny","lastName":"TESTNolan","expected":{"IPP":"1","DENOM":"1","NUMER":"1","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"1","DENEXCEP":"0"},"notes":"","birthdate":"10/17/1937","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"TRUE"},"numer":{"numerCol_0":"TRUE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"TRUE","numerCol_9":"TRUE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"TRUE","numerCol_18":"TRUE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"TRUE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"TRUE"},"denom":{},"DENEXCEP":{}},{"firstName":"Jane","lastName":"TESTQuasay","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"notes":"","birthdate":"01/10/1992","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"TRUE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"TRUE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"TRUE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"TRUE","numerCol_19":"TRUE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"TRUE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Fergie","lastName":"TESTUnderhill","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"05/13/1971","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Edward","lastName":"TESTVance","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"notes":"","birthdate":"06/14/1966","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"TRUE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"TRUE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Denise","lastName":"TESTWest","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"notes":"","birthdate":"08/16/1956","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"TRUE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"TRUE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"TRUE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"TRUE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"TRUE","numerCol_19":"TRUE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"TRUE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Keith","lastName":"TESTPaulson","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"1"},"notes":"","birthdate":"11/18/1927","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"TRUE","ippCol_7":"FALSE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"TRUE","numerCol_6":"FALSE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"TRUE","numerCol_15":"FALSE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"TRUE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"TRUE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"TRUE","denexcepCol_6":"FALSE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Ian","lastName":"TESTRutenbeck","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"04/13/1986","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"TRUE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Curtis","lastName":"TESTXiao","expected":{"IPP":"1","DENOM":"1","NUMER":"1","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"1","DENEXCEP":"0"},"notes":"","birthdate":"08/16/1951","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"M","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"TRUE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"TRUE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"FALSE"},"denexcep":{"denexcepCol_0":"FALSE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}},{"firstName":"Linda","lastName":"TESTOppenheimer","expected":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"actual":{"IPP":"1","DENOM":"1","NUMER":"0","DENEXCEP":"0"},"notes":"","birthdate":"11/18/1932","expired":"","deathdate":"","ethnicity":"Not Hispanic or Latino","race":"American Indian or Alaska Native","gender":"F","ipp":{"ippCol_0":"TRUE","ippCol_1":"TRUE","ippCol_2":"TRUE","ippCol_3":"TRUE","ippCol_4":"FALSE","ippCol_5":"FALSE","ippCol_6":"FALSE","ippCol_7":"TRUE","ippCol_8":"FALSE","ippCol_9":"FALSE"},"numer":{"numerCol_0":"FALSE","numerCol_1":"TRUE","numerCol_2":"TRUE","numerCol_3":"FALSE","numerCol_4":"FALSE","numerCol_5":"FALSE","numerCol_6":"TRUE","numerCol_7":"FALSE","numerCol_8":"FALSE","numerCol_9":"FALSE","numerCol_10":"TRUE","numerCol_11":"TRUE","numerCol_12":"FALSE","numerCol_13":"FALSE","numerCol_14":"FALSE","numerCol_15":"TRUE","numerCol_16":"FALSE","numerCol_17":"FALSE","numerCol_18":"FALSE","numerCol_19":"TRUE"},"denexcep":{"denexcepCol_0":"TRUE","denexcepCol_1":"TRUE","denexcepCol_2":"TRUE","denexcepCol_3":"FALSE","denexcepCol_4":"FALSE","denexcepCol_5":"FALSE","denexcepCol_6":"TRUE","denexcepCol_7":"FALSE","denexcepCol_8":"FALSE"},"denom":{},"DENEXCEP":{}}];
+    calculationResults = []
+    @model.get('populations').each (population) ->
+      calculationResults.push(population.calculationResults().toJSON())
+    @results = calculationResults
+
+    @views = []
+    @criteria_text_hash = {}
+    @criteria_order_list = []
+
+    #Grab all populations related to this measure
+    codes = (population['code'] for population in @model.get('measure_logic'))
+    @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
+
+    # Grab all data criteria and pass them into DataCriteriaLogic
+    for reference in Object.keys(@model.get('data_criteria'))
+      @dataLogicView = new Thorax.Views.DataCriteriaLogic(reference: reference, measure: @model)
+      @views.push(@dataLogicView)
+
+    @population_criteria = {} # "Type" => "Preconditions"
+    for code in Thorax.Models.Measure.allPopulationCodes #TODO add multiple population_set support
+      if code in Object.keys(@model.get('populations')['models'][0]['attributes'])
+        @population_criteria[code] = @model.get('populations')['models'][0].get(code)['preconditions']
+    ##DEBUG of VIEWS####
+    @view.appendTo('body') for @view in @views
+    ###############
 
     @dispIppColumns = []
     @dispNumerColumns = []
@@ -17,7 +40,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @denexcepColumns = []
 
     @FIXED_ROWS = 2
-    @FIXED_COLS = 9
+    @FIXED_COLS = 5 + @populations.length
 
     @COL_WIDTH_NAME = 140
     @COL_WIDTH_POPULATION = 36
@@ -60,12 +83,12 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     container = @$('#patient_dashboard_table').get(0)
     patients = @model.get('patients')
     hot = new Handsontable(container, {
-      data: @createData(@demoMeasure, @demoPatients),
+      data: @createData(@views, patients),
       colWidths: @getColWidths(),
       copyPaste: false, # need this to avoid 508 issue
       fixedRowsTop: @FIXED_ROWS,
       fixedColumnsLeft: @FIXED_COLS,
-      mergeCells: @createMergedCells(@demoMeasure, @demoPatients),
+      mergeCells: @createMergedCells(@model, patients),
       readOnly: true,
       readOnlyCellClassName: '', # avoid using the default .htDimmed... it'll just make the whole table grey.
       renderAllRows: true, # handsontable's optimizer for rendering doesn't manage hidden rows well. Rendering all to fix.
@@ -132,7 +155,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   header2Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    if col >= 5 && col <= 12
+    if col >= 5 && col <= (@populations.length * 2) + 1
       @addDiv(td)
     else
       @addScroll(td)
@@ -203,7 +226,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     colWidths.push(@COL_WIDTH_NAME)
 
     # for the expected and actual populations
-    colWidths.push(@COL_WIDTH_POPULATION) for [0..7]
+    colWidths.push(@COL_WIDTH_POPULATION) for [1..@populations.length*2]
 
     # for the notes
     colWidths.push(@COL_WIDTH_FREETEXT)
@@ -229,9 +252,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return colWidths
 
   createData: (measure,patients) =>
-    @getOptionalRows()
+    #@getOptionalRows()
     data = []
-    headers = @createHeaderRows(measure)
+    headers = @createHeaderRows(measure, patients)
     data.push(headers[0])
     data.push(headers[1])
 
@@ -240,7 +263,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return data
 
   createMergedCells: (measure, patients) =>
-    mergedCells = [{row:0, col:3, colspan:2, rowspan:1},{row:0, col:5, colspan:4, rowspan:1},{row:0, col:9, colspan:4, rowspan:1},{row:0, col:13, colspan:7, rowspan:1}]
+    mergedCells = [{row:0, col:3, colspan:2, rowspan:1},{row:0, col:5, colspan:@populations.length, rowspan:1},{row:0, col:9, colspan:@populations.length, rowspan:1},{row:0, col:13, colspan:7, rowspan:1}]
     if @ippColumns.length > 0
       mergedCells.push({row: 0, col: @ippColumns[0], colspan: @ippColumns.length, rowspan:1})
     if @numerColumns.length > 0
@@ -252,18 +275,41 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
     return mergedCells
 
-  createHeaderRows: (measure) =>
-    row1 = ['','','','Name','','Expected','','','','Actual','','','','Metadata','','','','','','']
-    row2 = ['EDIT','EXPAND','MODAL', 'First Name','Last Name','IPP','DENOM','NUMER','DENEXCEP','IPP','DENOM','NUMER','DENEXCEP','Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
+  createHeaderRows: (measure, patients) =>
 
-    curColIndex = row2.length
-    @createHeaderSegment(row1, row2, @dispIppColumns, measure.ipp, @ippColumns, curColIndex, "IPP")
-    curColIndex = row2.length
-    @createHeaderSegment(row1, row2, @dispNumerColumns, measure.numer, @numerColumns, curColIndex, "NUMER")
-    curColIndex = row2.length
-    @createHeaderSegment(row1, row2, @dispDenomColumns, measure.denom, @denomColumns, curColIndex, "DENOM")
-    curColIndex = row2.length
-    @createHeaderSegment(row1, row2, @dispDenexcepColumns, measure.denexcep, @denexcepColumns, curColIndex, "DENEXCEP")
+    row1 = ['','','','Name','','Expected','','','','Actual','','','','Metadata','','','','','',''] #TODO Make this dynamic.
+    row2 = ['EDIT','EXPAND','MODAL','First Name','Last Name']
+    attributes = ['Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
+
+    #TODO There must be a better way to duplicate items in list.
+    for population in @populations
+      row2.push(population)
+    for population in @populations
+      row2.push(population)
+
+    row2 = row2.concat(attributes)
+
+    population_code_data_criteria_map = {}
+    criteria_keys_by_population = @criteria_keys_by_population()
+
+    for @view in measure
+      @criteria_text_hash[@view.dataCriteria.key] = @view.$el[0].outerText
+
+    for code in Thorax.Models.Measure.allPopulationCodes
+      if criteria_keys_by_population[code]?
+        for criteria in criteria_keys_by_population[code]
+          row1.push(' ')
+          row2.push(@criteria_text_hash[criteria])
+          @criteria_order_list.push(criteria)
+
+#    curColIndex = row2.length
+#    @createHeaderSegment(row1, row2, @dispIppColumns, @population_criteria['IPP'], @ippColumns, curColIndex, "IPP")
+#    curColIndex = row2.length
+#    @createHeaderSegment(row1, row2, @dispNumerColumns, @population_criteria['NUMER'], @numerColumns, curColIndex, "NUMER")
+#    curColIndex = row2.length
+#    @createHeaderSegment(row1, row2, @dispDenomColumns, @population_criteria['DENOM'], @denomColumns, curColIndex, "DENOM")
+#    curColIndex = row2.length
+#    @createHeaderSegment(row1, row2, @dispDenexcepColumns, @population_criteria['DENEXCEP'], @denexcepColumns, curColIndex, "DENEXCEP")
 
     [row1, row2]
 
@@ -275,47 +321,153 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         row1.push(headerString)
       else
         row1.push("")
-      row2.push(measureColumns[value])
+      row2.push(' ')
+      #row2.push(measureColumns[value])
       colIndexArray.push(curColIndex)
       curColIndex++
       isFirstRow = false
 
   createPatientRows: (patients, data) =>
-    for patient, i in patients
-      patientRow = @createSinglePatientRow(patient);
+    for patient, i in patients.models
+      patientRow = @createPatientRow(patient);
       patientDetailRow = @createPatientDetailRow(patient, i, patientRow);
       data.push(patientRow);
       data.push(patientDetailRow);
+
+  createPatientRow: (patient) =>
+
+     patient_values = ['EDIT','EXPAND','MODAL']
+     patient_attributes = ['notes','birthdate','expired','deathdate','ethnicity','race','gender']
+     #Match results to patients.
+     patient_result = @match_patient_to_patient_id(patient.id)
+
+     patient_values.push(patient.get('first'))
+     patient_values.push(patient.get('last'))
+     #Get the expected values from patient object. First must match to measure_ids
+     patient_values = patient_values.concat(@extract_patient_expected_values(patient, @populations))
+     #Get the actual values from patient object.
+     patient_values = patient_values.concat(@extract_value_for_population_type(patient_result, @populations))
+
+     #Add patient attribute values to patient value array.
+     for attribute in patient_attributes
+       patient_values.push(patient.get(attribute))
+
+     data_criteria_values = @extract_data_criteria_value(patient_result)
+     patient_values = patient_values.concat(data_criteria_values)
+
+  match_patient_to_patient_id: (patient_id) =>
+    patients = @results[0] #TODO will need to add population_set support
+    # Iterate over each of the patients to match the patient_id
+    patient = (patient for patient in patients when patient.patient_id == patient_id)[0]
+
+  extract_patient_expected_values: (patient, populations) =>
+    expected_model = (model for model in patient.get('expected_values').models when model.get('measure_id') == @model.get('hqmf_set_id'))[0]
+    expected_values = []
+    for population in populations
+      if population not in expected_model.keys()
+        expected_values.push(0)
+      else
+        expected_values.push(expected_model.get(population))
+    return expected_values
+
+  # populates the array with actual values for each population
+  extract_value_for_population_type: (patient_result, populations) =>
+    patient_actuals = []
+    for population in populations
+      if population == 'OBSERV'
+        if population of patient_result #TODO investigate observe
+          console.log("In Observ if statment")
+        else
+          patient_actuals.push(0)
+      else if population of patient_result
+        patient_actuals.push(patient_result[population])
+      else
+        patient_actuals.push('X')
+    return patient_actuals
+
+  # Extracts the data_criteria values for each patient.
+  extract_data_criteria_value: (patient_result) =>  #TODO Clean up
+    data_criteria_values = []
+    for criteria in @criteria_order_list
+      if criteria of patient_result['rationale']
+        value = patient_result['rationale'][criteria]
+        if value != null && value != 'false' && value != false
+          data_criteria_values.push('TRUE')
+        else if value == 'false' || value == false
+          data_criteria_values.push('FALSE')
+        else
+          data_criteria_values.push(value)
+      else
+        data_criteria_values.push('')
+    return data_criteria_values
+
+#TODO Fill in headers correctly
+#TODO Specific occurrence code
+#TODO Observ code
+#TODO Fix all over TODOs
+
+    # Change value if specific rationale is involved.
+#    if @patient[:specificsRationale] && @patient[:specificsRationale][population_type]
+#      specific_value = @patient[:specificsRationale][population_type][criteria_key]
+
+      # value could be "false", nil, "true"
+#      if specific_value == "false" && value == "TRUE"
+#        value = "SPECIFICALLY FALSE"
+#      elsif specific_value == "true" && value == "FALSE"
+#        value = "SPECIFICALLY TRUE"
+#      end
+#    end
+
+#    return value
+#  end
+
+############################## Measure Criteria Keys ##############################
+
+  # Given a data criteria, return the list of all data criteria keys referenced within, either through
+  # children criteria or temporal references; this includes the passed in criteria reference
+  data_criteria_criteria_keys: (criteria_reference) =>
+    criteria_keys = [criteria_reference]
+    if criteria = @model.get('data_criteria')[criteria_reference]
+      if criteria['children_criteria']?
+        criteria_keys = criteria_keys.concat(@data_criteria_criteria_keys(criteria) for criteria in criteria['children_criteria'])
+        criteria_keys = flatten(criteria_keys)
+      if criteria['temporal_references']?
+        criteria_keys = criteria_keys.concat(@data_criteria_criteria_keys(temporal_reference['reference']) for temporal_reference in criteria['temporal_references'])
+        criteria_keys = flatten(criteria_keys)
+
+    return criteria_keys
+
+  # Given a precondition, return the list of all data criteria keys referenced within
+  precondition_criteria_keys: (precondition) =>
+    if precondition['preconditions'] && precondition['preconditions'].length > 0
+      results = (@precondition_criteria_keys(precondition) for precondition in precondition['preconditions'])
+      results = flatten(results)
+    else if precondition['reference']
+      @data_criteria_criteria_keys(precondition['reference'])
+    else
+      []
+
+  # Return the list of all data criteria keys in this measure, indexed by population code
+  criteria_keys_by_population: () =>
+    criteria_keys_by_population = {}
+    for name, precondition of @population_criteria
+      if precondition?
+        criteria_keys_by_population[name] = @precondition_criteria_keys(precondition[0]).filter (ck) -> ck != 'MeasurePeriod'
+    criteria_keys_by_population
+
+#TODO Make this coffeescript. Or use underscore.js
+  `function flatten(arr) {
+    const flat = [].concat(...arr)
+    return flat.some(Array.isArray) ? flatten(flat) : flat;
+  }`
+
+###################################################################################
 
   createPatientDetailRow: (patient, rowIndex, patientSummaryRow) =>
     row = [];
     for value in patientSummaryRow
       row.push("DETAIL " + rowIndex.toString())
     return row
-
-  createSinglePatientRow: (patient) =>
-    ret = [
-      "EDIT",
-      "EXPAND",
-      "MODAL",
-      patient.firstName,
-      patient.lastName,
-      patient.expected.IPP,
-      patient.expected.DENOM,
-      patient.expected.NUMER,
-      patient.expected.DENEXCEP,
-      patient.actual.IPP,
-      patient.actual.DENOM,
-      patient.actual.NUMER,
-      patient.actual.DENEXCEP,
-      patient.notes,
-      patient.birthdate,
-      patient.expired,
-      patient.deathdate,
-      patient.ethnicity,
-      patient.race,
-      patient.gender
-    ];
 
     @createPatientSegment(ret, @dispIppColumns, patient.ipp);
     @createPatientSegment(ret, @dispNumerColumns, patient.numer);
