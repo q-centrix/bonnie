@@ -15,17 +15,20 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @numerColumns = []
     @denomColumns = []
     @denexcepColumns = []
-    
+
     @FIXED_ROWS = 2
-    @FIXED_COLS = 6
-    
+    @FIXED_COLS = 9
+
     @COL_WIDTH_NAME = 140
     @COL_WIDTH_POPULATION = 36
     @COL_WIDTH_META = 100
     @COL_WIDTH_FREETEXT = 240
     @COL_WIDTH_CRITERIA = 180
-    
+
     @expandedRows = [] # used to ensure that expanded rows stay expanded after re-render
+    @editableRows = [] # used to ensure rows marked for inline editing stay that way after re-render
+
+    @editableCols = [3,4,5,6,7,8,13,14] # these are the fields that should be inline editable
 
   events:
     ready: ->
@@ -80,14 +83,32 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       afterSelection: (rowIndexStart, colIndexStart, rowIndexEnd, colIndexEnd) =>
         if colIndexStart == colIndexEnd && rowIndexStart == rowIndexEnd
           if colIndexStart == 0
-            @toggleExpandableRow(container, rowIndexStart)
-          # TODO: figure out where people should actually click to have this pop up
+            @makeInlineEditable(container, hot, rowIndexStart)
           if colIndexStart == 1
+            @toggleExpandableRow(container, rowIndexStart)
+          if colIndexStart == 2
             # TODO: figure out what actually needs to be passed into this view to appropraitely pass into the patient edit view
             patientEditView = new Thorax.Views.MeasurePatientEditModal(model: @model.get('patients').models[0], measure: @model, patients: @model.get('patients'), measures = @model.collection)
             patientEditView.appendTo(@$el)
             patientEditView.display()
       })
+
+  makeInlineEditable: (container, hot, rowIndex) =>
+    for table in $(container).find('table')
+      tr = $(table).find('tr#row' + rowIndex.toString()).get(0)
+      if tr
+        if $(tr).hasClass('inline-edit-mode')
+          Handsontable.Dom.removeClass(tr, 'inline-edit-mode')
+          @editableRows = @editableRows.filter (index) -> index != rowIndex
+        else
+          Handsontable.Dom.addClass(tr, 'inline-edit-mode')
+          @editableRows.push(rowIndex)
+
+    for col in @editableCols
+      if rowIndex in @editableRows
+        hot.setCellMeta(rowIndex, col, 'readOnly', false)
+      else
+        hot.setCellMeta(rowIndex, col, 'readOnly', true)
 
   toggleExpandableRow: (container, rowIndex) =>
     if rowIndex > 1 && rowIndex%2 == 0
@@ -111,11 +132,13 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   header2Renderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
-    if col >= 2 && col <= 9
+    # Handsontable.Dom.addClass(td, 'header')
+    if col >= 5 && col <= 12
+      # Handsontable.Dom.addClass(td, 'rotate')
       @addDiv(td)
     else
       @addScroll(td)
-  
+
   dataRenderer: (instance, td, row, col, value, cellProperties) =>
     Handsontable.renderers.TextRenderer.apply(this, arguments)
     Handsontable.Dom.addClass(td, 'content')
@@ -130,6 +153,13 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
         Handsontable.Dom.addClass(tr, 'expandable-shown')
       else
         Handsontable.Dom.addClass(tr, 'expandable-hidden')
+    # enabling edit modes for the table
+    if row in @editableRows
+      Handsontable.Dom.addClass(tr, 'inline-edit-mode')
+      if col in @editableCols
+        instance.setCellMeta(row, col, 'readOnly', false)
+    if col in @editableCols
+      Handsontable.Dom.addClass(td, 'editable')
 
   getColor: (instance, td, row, col, value, cellProperties) =>
     if @ippColumns[0] <= col && @ippColumns[@ippColumns.length-1] >= col
@@ -142,7 +172,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       Handsontable.Dom.addClass(td, "denexcep")
     else
       Handsontable.Dom.addClass(td, "basic")
-  
+
   addDiv: (element) =>
     text = element.textContent
     element.firstChild.remove()
@@ -164,7 +194,12 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   getColWidths: ()  =>
     colWidths = []
-    
+
+    # for edit/expand/modal fields
+    colWidths.push(@COL_WIDTH_META)
+    colWidths.push(@COL_WIDTH_META)
+    colWidths.push(@COL_WIDTH_META)
+
     # for first name and last name
     colWidths.push(@COL_WIDTH_NAME)
     colWidths.push(@COL_WIDTH_NAME)
@@ -192,7 +227,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     colWidths.push(@COL_WIDTH_CRITERIA) for [0..@numerColumns.length-1]
     colWidths.push(@COL_WIDTH_CRITERIA) for [0..@denomColumns.length-1]
     colWidths.push(@COL_WIDTH_CRITERIA) for [0..@denexcepColumns.length-1]
-    
+
     return colWidths
 
   createData: (measure,patients) =>
@@ -201,13 +236,13 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     headers = @createHeaderRows(measure)
     data.push(headers[0])
     data.push(headers[1])
-    
+
     @createPatientRows(patients, data)
-    
+
     return data
 
   createMergedCells: (measure, patients) =>
-    mergedCells = [{row:0, col:0, colspan:2, rowspan:1},{row:0, col:2, colspan:4, rowspan:1},{row:0, col:6, colspan:4, rowspan:1},{row:0, col:10, colspan:7, rowspan:1}]
+    mergedCells = [{row:0, col:3, colspan:2, rowspan:1},{row:0, col:5, colspan:4, rowspan:1},{row:0, col:9, colspan:4, rowspan:1},{row:0, col:13, colspan:7, rowspan:1}]
     if @ippColumns.length > 0
       mergedCells.push({row: 0, col: @ippColumns[0], colspan: @ippColumns.length, rowspan:1})
     if @numerColumns.length > 0
@@ -220,9 +255,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     return mergedCells
 
   createHeaderRows: (measure) =>
-    row1 = ['Name','','Expected','','','','Actual','','','','Metadata','','','','','','']
-    row2 = ['First Name','Last Name','IPP','DENOM','NUMER','DENEXCEP','IPP','DENOM','NUMER','DENEXCEP','Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
-    
+    row1 = ['','','','Name','','Expected','','','','Actual','','','','Metadata','','','','','','']
+    row2 = ['EDIT','EXPAND','MODAL', 'First Name','Last Name','IPP','DENOM','NUMER','DENEXCEP','IPP','DENOM','NUMER','DENEXCEP','Notes','Birthdate','Expired','Deathdate','Ethnicity','Race','Gender']
+
     curColIndex = row2.length
     @createHeaderSegment(row1, row2, @dispIppColumns, measure.ipp, @ippColumns, curColIndex, "IPP")
     curColIndex = row2.length
@@ -231,7 +266,7 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
     @createHeaderSegment(row1, row2, @dispDenomColumns, measure.denom, @denomColumns, curColIndex, "DENOM")
     curColIndex = row2.length
     @createHeaderSegment(row1, row2, @dispDenexcepColumns, measure.denexcep, @denexcepColumns, curColIndex, "DENEXCEP")
-    
+
     [row1, row2]
 
   createHeaderSegment: (row1, row2, useColumnsArray, measureColumns, colIndexArray, curColIndex, headerString) =>
@@ -262,6 +297,9 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
   createSinglePatientRow: (patient) =>
     ret = [
+      "EDIT",
+      "EXPAND",
+      "MODAL",
       patient.firstName,
       patient.lastName,
       patient.expected.IPP,
@@ -280,12 +318,12 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
       patient.race,
       patient.gender
     ];
-    
+
     @createPatientSegment(ret, @dispIppColumns, patient.ipp);
     @createPatientSegment(ret, @dispNumerColumns, patient.numer);
     @createPatientSegment(ret, @dispDenomColumns, patient.denom);
     @createPatientSegment(ret, @dispDenexcepColumns, patient.denexcep);
-    
+
     return ret;
 
   createPatientSegment: (row, dispColumns, patientColumn) =>
@@ -308,23 +346,23 @@ class Thorax.Views.MeasurePatientDashboard extends Thorax.Views.BonnieView
 
 class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
   template: JST['measure/patient_edit_modal']
-  
+
   events:
     'ready': 'setup'
-  
+
   initialize: ->
     @patientBuilderView = new Thorax.Views.PatientBuilder(model: @model, measure: @measure, patients: @patients, measures: @measures, showCompleteView: false)
 
   setup: ->
     @editDialog = @$("#patientEditModal")
-  
+
   display: ->
     @editDialog.modal(
       "backdrop" : "static",
       "keyboard" : true,
       "show" : true).find('.modal-dialog').css('width','900px') # The same width defined in $modal-lg
 
-  save: (e)-> 
+  save: (e)->
     status = @patientBuilderView.save(e)
     if status
       @editDialog.modal(
