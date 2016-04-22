@@ -185,7 +185,10 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       td.textContent = cellText
       Handsontable.Dom.addClass(td, 'warn')
 
-    @addDiv(td)
+    if @pd.isIndexDataCriteria(col)
+      @addDataCriteriaDiv(td)
+    else
+      @addDiv(td)
 
     # add row index identifier
     # TODO: is this still necessary without the expandable rows?
@@ -205,7 +208,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       if @pd.isIndexInCollection(col, population)
         Handsontable.Dom.addClass(td, population.toLowerCase())
 
-  addDiv: (element) =>
+  addDataCriteriaDiv: (element) =>
     text = element.textContent
     element.firstChild.remove()
     if text == 'FALSE'
@@ -214,8 +217,11 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       $(element).append('<div class="text-success"><i aria-hidden="true" class="fa fa-fw fa-check-circle"></i> ' + text + '</div>')
     else if text.indexOf('SPECIFIC') >= 0
       $(element).append('<div class="text-danger"><i aria-hidden="true" class="fa fa-fw fa-asterisk"></i> ' + text + '</div>')
-    else
-      $(element).append('<div>' + text + '</div>')
+
+  addDiv: (element) =>
+    text = element.textContent
+    element.firstChild.remove()
+    $(element).append('<div>' + text + '</div>')
 
   addScroll: (element) =>
     text = element.textContent

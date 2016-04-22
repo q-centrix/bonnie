@@ -138,6 +138,11 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
   isIndexInCollection: (index, collectionKey) =>
     index >= @dataCollections[collectionKey].firstIndex && index <= @dataCollections[collectionKey].lastIndex
   
+  isIndexDataCriteria: (index) =>
+    for population in @populations
+      return true if @isIndexInCollection(index, population)
+    return false
+  
   getCollectionStartIndex: (collectionKey) =>
     @dataCollections[collectionKey].firstIndex
 
