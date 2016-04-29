@@ -351,7 +351,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
 
     for population in @populations
       if population not in expected_model.keys()
-        expectedResults[population] = 0
+        expectedResults[population] = ' '
       else
         expectedResults[population] = expected_model.get(population)
 
@@ -375,7 +375,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       else if population of patient_result
         actualResults[population] = patient_result[population]
       else
-        actualResults[population] = 'X'
+        actualResults[population] = ' '
 
     actualResults
 
