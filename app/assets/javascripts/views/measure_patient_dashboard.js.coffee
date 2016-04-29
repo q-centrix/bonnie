@@ -33,6 +33,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     # @ethnicity_map["2135-2"] = "Hispanic Or Latino"
 
     #Grab all populations related to this measure
+    @patientEditView = new Thorax.Views.MeasurePatientEditModal(dashboard: this)
+    
     codes = (population['code'] for population in @measure.get('measure_logic'))
     @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
 
@@ -51,6 +53,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   events:
     rendered: ->
       $('.container').removeClass('container').addClass('container-fluid')
+      @patientEditView.appendTo(@$el)
     destroyed: ->
       $('.container-fluid').removeClass('container-fluid').addClass('container')
 
@@ -131,10 +134,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   openEditDialog: (e) =>
     rowIndex = @hot.getSelected()[0]
     patientIndex = rowIndex - @FIXED_ROWS
-
-    patientEditView = new Thorax.Views.MeasurePatientEditModal(dashboard: this, populations: @populations, model: @measure.get('patients').models[patientIndex], measure: @measure, patients: @measure.get('patients'), measures = @measure.collection)
-    patientEditView.appendTo(@$el)
-    patientEditView.display()
+    patient = @measure.get('patients').models[patientIndex]
+    @patientEditView.display(patient, @measure, @measure.get('patients'), @measure.collection)
 
   makeInlineEditable: (e) =>
     container = $(@hot.container).parent()
@@ -416,21 +417,22 @@ class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
   events:
     'ready': 'setup'
 
-  initialize: ->
-    @patientBuilderView = new Thorax.Views.PatientBuilder(model: @model, measure: @measure, patients: @patients, measures: @measures, showCompleteView: false)
-
   setup: ->
     @editDialog = @$("#patientEditModal")
 
-  display: ->
+  display: (model, measure, patients, measures) ->
+    @patientBuilderView = new Thorax.Views.PatientBuilder(model: model, measure: measure, patients: patients, measures: measures, showCompleteView: false)
+    @patientBuilderView.appendTo(@$('.modal-body'))
     @editDialog.modal(
       "backdrop" : "static",
       "keyboard" : true,
       "show" : true).find('.modal-dialog').css('width','80%') # The same width defined in $modal-lg
 
   save: (e)->
-    @editDialog.modal('hide')
     @patientBuilderView.save(e)
+    @editDialog.modal('hide')
+    @$('.modal-body').empty() # clear out patientBuilderView
     @dashboard.createTable()
 
-  close: -> ''
+  close: -> 
+    @$('.modal-body').empty() # clear out patientBuilderView
