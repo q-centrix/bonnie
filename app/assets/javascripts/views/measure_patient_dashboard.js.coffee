@@ -36,7 +36,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     codes = (population['code'] for population in @measure.get('measure_logic'))
     @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
 
-    @pd = new Thorax.Models.PatientDashboard(@measure, @populations)
+    @pd = new Thorax.Models.PatientDashboard(@measure,@populations,@population)
 
     @FIXED_ROWS = 2
     @FIXED_COLS = @getFixedColumnCount()
@@ -366,7 +366,12 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         if 'values' of patient_result && population of patient_result['rationale']
           actualResults[population] = patient_result['values'].toString()
         else
-          actualResults[population] = (0)
+          actualResults[population] = 0
+        if !actualResults[population]
+          # TODO: if the OBSERV value was undefined, the rendering messed up previously.
+          # this fixes that but we should potentially take another approach.
+          # e.g. make it so a cell can better handle an empty value. Put something other than a blank here. Etc.
+          actualResults[population] = " "
       else if population of patient_result
         actualResults[population] = patient_result[population]
       else

@@ -19,7 +19,7 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
   @EXPECTED_PREFIX = PatientDashboard.EXPECTED
   @ACTUAL_PREFIX = PatientDashboard.ACTUAL
   
-  initialize: (@measure, @populations) ->
+  initialize: (@measure, @populations, @populationSet) ->
     # TODO: I don't think that the width stuff shoudl be in this class. it should be in the view only.
     @COL_WIDTH_NAME = 140
     @COL_WIDTH_POPULATION = 36
@@ -28,13 +28,12 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     @COL_WIDTH_CRITERIA = 180
     
     criteriaKeysByPopulation = {} # "Type" => "Preconditions"
-    for code in Thorax.Models.Measure.allPopulationCodes #TODO add multiple population_set support
-      if code in Object.keys(@measure.get('populations')['models'][0]['attributes'])
-        preconditions = @measure.get('populations')['models'][0].get(code)['preconditions']
-        if preconditions
-          criteriaKeysByPopulation[code] = @_preconditionCriteriaKeys(preconditions[0]).filter (ck) -> ck != 'MeasurePeriod'
-        else
-          criteriaKeysByPopulation[code] = []
+    for population in @populations
+      preconditions = @populationSet.get(population)?['preconditions']
+      if preconditions
+        criteriaKeysByPopulation[population] = @_preconditionCriteriaKeys(preconditions[0]).filter (ck) -> ck != 'MeasurePeriod'
+      else
+        criteriaKeysByPopulation[population] = []
     
     @dataIndices = @getDataIndices(@populations, criteriaKeysByPopulation)
     @dataCollections = @getDataCollections(@populations, @dataIndices, criteriaKeysByPopulation)
