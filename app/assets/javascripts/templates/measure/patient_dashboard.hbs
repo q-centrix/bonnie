@@ -1,1 +1,12 @@
+<table id="patientDashboardTable">
+  <tbody>
+    {{#each patients}}
+    <tr>
+      {{#each this}}
+      <td>{{{this}}}</td>
+      {{/each}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
 <div class="scroll-container fixed-container" id="patient_dashboard_table"></div>

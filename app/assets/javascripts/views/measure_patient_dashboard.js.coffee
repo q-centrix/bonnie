@@ -3,15 +3,21 @@ class Thorax.Views.MeasurePatientDashboardLayout extends Thorax.LayoutView
   className: 'patient-dashboard-layout'
 
   switchPopulation: (e) ->
-    population = $(e.target).model()
-    population.measure().set('displayedPopulation', population)
-    @setView new Thorax.Views.MeasurePopulationPatientDashboard(measure: population.measure(), population: population)
-    @trigger 'population:update', population
+    @population = $(e.target).model()
+    @population.measure().set('displayedPopulation', @population)
+    @setView new Thorax.Views.MeasurePopulationPatientDashboard(measure: population.measure(), population: @population)
+    @trigger 'population:update', @population
 
   populationContext: (population) ->
     _(population.toJSON()).extend
       isActive:  population is population.measure().get('displayedPopulation')
       populationTitle: population.get('title') || population.get('sub_id')
+  
+  setView: (view) ->
+    results = @population.calculationResults()
+    results.calculationsComplete =>
+      view.results = results
+      super(view)
 
 class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.BonnieView
   template: JST['measure/patient_dashboard']
@@ -46,20 +52,35 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     @editableRows = [] # used to ensure rows marked for inline editing stay that way after re-render
 
     @editableCols = @getEditableCols() # these are the fields that should be inline editable
+    
+    @results = @population.calculationResults()
+    @results.calculationsComplete =>
+      @patientResults = @results.toJSON()
+
+      container = @$('#patient_dashboard_table').get(0)
+      patients = @measure.get('patients')
+      @data = @createData(patients)
 
   context: ->
     _(super).extend
+      patients: @data
 
   events:
     rendered: ->
       $('.container').removeClass('container').addClass('container-fluid')
       @patientEditView.appendTo(@$el)
+      $('#patientDashboardTable').DataTable();
     destroyed: ->
       $('.container-fluid').removeClass('container-fluid').addClass('container')
 
     ready: ->
-      @createTable()
+      #@createTable()
 
+  getPatientData: ->
+    @patientResults = @results.toJSON()
+    container = @$('#patient_dashboard_table').get(0)
+    patients = @measure.get('patients')
+    @data = @createData(patients)
 
   createTable: ->
     @results = @population.calculationResults()
@@ -68,9 +89,10 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
 
       container = @$('#patient_dashboard_table').get(0)
       patients = @measure.get('patients')
+      @data = @createData(patients)
       that = this
       @hot = new Handsontable(container, {
-        data: @createData(patients),
+        data: @data,
         colWidths: @getColWidths(),
         copyPaste: false, # need this to avoid 508 issue
         fixedRowsTop: @FIXED_ROWS,
