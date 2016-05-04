@@ -22,7 +22,7 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
   initialize: (@measure, @populations, @populationSet) ->
     # TODO: I don't think that the width stuff shoudl be in this class. it should be in the view only.
     @COL_WIDTH_NAME = 140
-    @COL_WIDTH_POPULATION = 36
+    @COL_WIDTH_POPULATION = 25
     @COL_WIDTH_META = 150
     @COL_WIDTH_FREETEXT = 240
     @COL_WIDTH_CRITERIA = 180

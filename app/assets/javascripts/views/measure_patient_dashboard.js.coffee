@@ -56,24 +56,54 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     @results = @population.calculationResults()
     @results.calculationsComplete =>
       @patientResults = @results.toJSON()
-
       container = @$('#patient_dashboard_table').get(0)
       patients = @measure.get('patients')
-      @data = @createData(patients)
+      patientData = @createData(patients)
+      @widths = @getColWidths()
+      @head1 = patientData.slice(0,1)[0]
+      @head2 = patientData.slice(1,2)[0]
+      @data = patientData.slice(2)
 
   context: ->
     _(super).extend
       patients: @data
+      head1: @head1
+      head2: @head2
+      widths: @widths
 
   events:
     rendered: ->
       $('.container').removeClass('container').addClass('container-fluid')
       @patientEditView.appendTo(@$el)
-      $('#patientDashboardTable').DataTable();
     destroyed: ->
       $('.container-fluid').removeClass('container-fluid').addClass('container')
 
     ready: ->
+      # $('#example').DataTable( {
+      #   columnDefs: [
+      #     {targets: [0,1], width:"90px"}
+      #   ]
+      #   });
+      totalWidth = 0
+      for width in @widths
+        totalWidth += width
+        
+      # $('#patientDashboardTable').css("width", totalWidth)
+      table = $('#patientDashboardTable').DataTable( {
+        autoWidth: false,
+        columns: @getColWidths2(),
+        scrollX: true,
+        fixedColumns: { leftColumns: 5 },
+        headerCallback: (thead, data, start, end, display) =>
+          row = thead # TODO: will this change if we have multiple rows in the header?
+          $(row).children().each (colIndex, element) =>
+            if @pd.isIndexInCollection(colIndex, 'expected') || @pd.isIndexInCollection(colIndex, 'actual')
+              $(element).addClass('rotate')
+        # columnDefs: [
+        #   {targets: [0,1], width:"90px"}
+        # ]
+        })
+      blah = "blah"
       #@createTable()
 
   getPatientData: ->
@@ -248,6 +278,12 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     element.firstChild.remove()
     $(element).append('<div class="tableScrollContainer"><div class="tableScroll">' + text + '</div></div>')
 
+  getColWidths2: ()  =>
+    colWidths = []
+    for dataKey in @pd.dataIndices
+      colWidths.push({"width": @pd.getWidth(dataKey).toString() + "px"})
+    colWidths
+    
   getColWidths: ()  =>
     colWidths = []
     for dataKey in @pd.dataIndices

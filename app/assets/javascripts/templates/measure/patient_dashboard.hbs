@@ -1,12 +1,23 @@
-<table id="patientDashboardTable">
+<table id="patientDashboardTable" class="cell-border" cellspacing="0" width="100%">
+  <thead>
+    <!--tr>
+      {{#each head1}}
+      <th style="width: {{lookup ../widths @index}}px;"><div>{{{this}}}</div></th>
+      {{/each}}
+    </tr-->
+    <tr>
+      {{#each head2}}
+      <th><div class="tableScrollContainer"><div class="tableScroll">{{{this}}}</div></div></th>
+      {{/each}}
+    </tr>
+  </thead>
   <tbody>
     {{#each patients}}
     <tr>
       {{#each this}}
-      <td>{{{this}}}</td>
+      <td><div>{{{this}}}</div></td>
       {{/each}}
     </tr>
     {{/each}}
   </tbody>
 </table>
-<div class="scroll-container fixed-container" id="patient_dashboard_table"></div>

@@ -34,6 +34,7 @@
 #= require MutationObserver-shim/dist/mutationobserver.min
 #= require datatables.net/js/jquery.dataTables
 #= require datatables.net-bs/js/dataTables.bootstrap
+#= require datatables.net-fixedColumns/js/dataTables.fixedColumns
 # LDY: need to use the non-minified version because we've made a change.
 #= require handsontable/dist/handsontable.full
 #
