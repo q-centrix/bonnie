@@ -93,6 +93,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         autoWidth: false,
         columns: @getColWidths2(),
         scrollX: true,
+        scrollY: "500px",
+        paging: false,
         fixedColumns: { leftColumns: 5 },
         headerCallback: (thead, data, start, end, display) =>
           row = thead # TODO: will this change if we have multiple rows in the header?
