@@ -1,13 +1,13 @@
 <table id="patientDashboardTable" class="cell-border" cellspacing="0" width="100%">
   <thead>
-    <!--tr>
+    <tr>
       {{#each head1}}
-      <th style="width: {{lookup ../widths @index}}px;"><div>{{{this}}}</div></th>
+      <th scope="col" style="width: {{lookup ../widths @index}}px;"><div>{{{this}}}</div></th>
       {{/each}}
-    </tr-->
+    </tr
     <tr>
       {{#each head2}}
-      <th><div class="tableScrollContainer"><div class="tableScroll">{{{this}}}</div></div></th>
+      <th scope="col">{{{this}}}</th>
       {{/each}}
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     {{#each patients}}
     <tr>
       {{#each this}}
-      <td><div>{{{this}}}</div></td>
+      <td>{{{this}}}</td>
       {{/each}}
     </tr>
     {{/each}}
