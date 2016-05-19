@@ -110,9 +110,11 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
 
   makeInlineEditable: ->
     console.log 'edit'
+    # do something here
 
   openEditDialog: ->
     console.log 'open'
+    # show @patientEditView
 
   createHeaderRows: (patients) =>
     row1 = []
@@ -244,14 +246,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       result = ''
 
     result
-
-###################################################################################
-
-  createPatientDetailRow: (patient, rowIndex, patientSummaryRow) =>
-    row = [];
-    for value in patientSummaryRow
-      row.push("DETAIL " + rowIndex.toString())
-    return row
 
 class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
   template: JST['measure/patient_edit_modal']
