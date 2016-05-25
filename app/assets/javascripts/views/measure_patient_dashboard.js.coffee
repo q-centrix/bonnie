@@ -65,14 +65,47 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       $('.container-fluid').removeClass('container-fluid').addClass('container')
 
     ready: ->
+      @patientData = []
+      for patient in @measure.get('patients').models
+        @patientData.push new Thorax.Models.PatientDashboardPatient patient, @pd, @measure, @matchPatientToPatientId(patient.id), @populations, @population
       table = $('#patientDashboardTable').DataTable({
-        autoWidth: false,
-        columns: @getColWidths(),
+        data: @patientData,
+        columns: @getTableColumns(@patientData[2]),
+        #autoWidth: false,
+        #columns: @getColWidths(),
         scrollX: true,
         scrollY: "500px",
         paging: false,
         fixedColumns: { leftColumns: 5 }
-        })
+      })
+
+  getTableColumns: (patient) ->
+    column = []
+    column.push data: 'editButtonDiv' # Inline edit button
+    column.push data: 'openButtonDiv' # Patient editing modal button
+    column.push data: 'firstname'
+    column.push data: 'lastname'
+    column.push data: 'description'
+    for k, v of patient._expected
+      column.push data: 'expected_' + k
+    for k, v of patient._actual
+      column.push data: 'actual_' + k
+    column.push data: 'passes'
+    column.push data: 'birthdate'
+    column.push data: 'deathdate'
+    column.push data: 'gender'
+    # Collect all actual data criteria a sort to make sure patient dashboard
+    # displays dc in the correct order.
+    dcStartIndex = @pd._dataInfo['gender'].index + 1
+    dc = []
+    for k, v of @pd._dataInfo
+      if v.index >= dcStartIndex
+        v['name'] = k
+        dc.push v
+    dc.sort (a, b) -> a.index - b.index
+    for entry in dc
+      column.push data: entry.name
+    column
 
   getColWidths: ()  =>
     colWidths = []
@@ -85,8 +118,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     headers = @createHeaderRows(patients)
     data.push(headers[0])
     data.push(headers[1])
-
-    @createPatientRows(patients, data)
 
     return data
 
@@ -130,122 +161,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
 
     [row1, row2]
 
-  createPatientRows: (patients, data) =>
-    for patient, i in patients.models
-      patientRow = @createPatientRow(patient);
-      data.push(patientRow);
-
-  createPatientRow: (patient) =>
-    patient_values = []
-
-    patient_result = @matchPatientToPatientId(patient.id)
-
-    expectedResults = @getExpectedResults(patient)
-    actualResults = @getActualResults(patient_result)
-
-    for dataType in @pd.dataIndices
-      key = @pd.getRealKey(dataType)
-      # TODO: How to make these buttons trigger events??
-      if dataType == 'edit'
-        patient_values.push('
-          <button class="btn btn-xs btn-primary" data-call-method="makeInlineEditable">
-            <i aria-hidden="true" class="fa fa-fw fa-pencil"></i>
-            <span class="sr-only">Edit this patient inline</span>
-          </button>')
-      else if dataType == 'open'
-        patient_values.push('
-          <button class="btn btn-xs btn-default" data-call-method="openEditDialog">Open...</button>')
-      else if dataType == 'result'
-        patient_values.push(@isPatientPassing(expectedResults, actualResults))
-      else if @pd.isExpectedValue(dataType)
-        value = expectedResults[key]
-        if value != actualResults[key]
-          value = "__WARN__" + value # TODO: this is a hack to show discrepencies with expected/actual. work out better way to do this
-        patient_values.push(value)
-      else if @pd.isActualValue(dataType)
-        value = actualResults[key]
-        if value != expectedResults[key]
-          value = "__WARN__" + value # TODO: this is a hack to show discrepencies with expected/actual. work out better way to do this
-        patient_values.push(value)
-      # else if dataType == 'ethnicity'
-      #   patient_values.push(@ethnicity_map[patient.get(key)])
-      # else if dataType == 'race'
-      #   patient_values.push(@race_map[patient.get(key)])
-      else if (key == 'birthdate' || key == 'deathdate') && patient.get(key) != null
-        patient_values.push(moment.utc(patient.get(key), 'X').format('L'))
-      else if @pd.isCriteria(dataType)
-        population = @pd.getCriteriaPopulation(dataType)
-        patient_values.push(@getPatientCriteriaResult(key, population, patient_result))
-      else
-        patient_values.push(patient.get(dataType))
-
-    patient_values
-
   matchPatientToPatientId: (patient_id) =>
     patient = @results.findWhere({patient_id: patient_id}).toJSON()
-
-  isPatientPassing: (expectedResults, actualResults) =>
-    for population in @populations
-      if expectedResults[population] != actualResults[population]
-        return 'FALSE'
-    return 'TRUE'
-
-  getExpectedResults: (patient) =>
-    expectedResults = {}
-    expected_model = (model for model in patient.get('expected_values').models when model.get('measure_id') == @measure.get('hqmf_set_id') && model.get('population_index') == @population.get('index'))[0]
-
-    for population in @populations
-      if population not in expected_model.keys()
-        expectedResults[population] = ' '
-      else
-        expectedResults[population] = expected_model.get(population)
-
-    expectedResults
-
-  getActualResults: (patient_result) =>
-    actualResults = {}
-
-    for population in @populations
-      # TODO: check this logic
-      if population == 'OBSERV'
-        if 'values' of patient_result && population of patient_result['rationale']
-          actualResults[population] = patient_result['values'].toString()
-        else
-          actualResults[population] = 0
-        if !actualResults[population]
-          # TODO: if the OBSERV value was undefined, the rendering messed up previously.
-          # this fixes that but we should potentially take another approach.
-          # e.g. make it so a cell can better handle an empty value. Put something other than a blank here. Etc.
-          actualResults[population] = " "
-      else if population of patient_result
-        actualResults[population] = patient_result[population]
-      else
-        actualResults[population] = ' '
-
-    actualResults
-
-  getPatientCriteriaResult: (criteriaKey, population, patientResult) =>
-    # TODO: check this logic
-    if criteriaKey of patientResult['rationale']
-      value = patientResult['rationale'][criteriaKey]
-      if value != null && value != 'false' && value != false
-        result = 'TRUE'
-      else if value == 'false' || value == false
-        result = 'FALSE'
-
-      value = result
-
-      if 'specificsRationale' of patientResult && population of patientResult['specificsRationale']
-        specific_value = patientResult['specificsRationale'][population][criteriaKey]
-        if specific_value == false  && value == 'TRUE'
-          result = 'SPECIFICALLY FALSE'
-        else if specific_value == true && value == 'FALSE'
-          result = 'SPECIFICALLY TRUE'
-
-    else
-      result = ''
-
-    result
 
 class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
   template: JST['measure/patient_edit_modal']
