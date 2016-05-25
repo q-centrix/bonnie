@@ -70,7 +70,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         @patientData.push new Thorax.Models.PatientDashboardPatient patient, @pd, @measure, @matchPatientToPatientId(patient.id), @populations, @population
       table = $('#patientDashboardTable').DataTable({
         data: @patientData,
-        columns: @getTableColumns(@patientData[2]),
+        columns: @getTableColumns(@patientData[0]),
         #autoWidth: false,
         #columns: @getColWidths(),
         scrollX: true,
@@ -81,6 +81,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
 
   getTableColumns: (patient) ->
     column = []
+    if patient == null
+      return column
     column.push data: 'editButtonDiv' # Inline edit button
     column.push data: 'openButtonDiv' # Patient editing modal button
     column.push data: 'firstname'
