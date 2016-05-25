@@ -2,9 +2,7 @@ class Thorax.Views.MeasureUploadSummaryDialog extends Thorax.Views.BonnieView
   template: JST['measure_upload_summary_dialog']
 
   initialize: ->
-    #TODO: Load measure summary using the @summaryId
-    console.log(@summaryId)
-
+    @uploadSummaryView = new Thorax.Views.MeasureUploadSummary(summaryId:@summaryId)
   display: ->
     @$('#measureUploadSummaryDialog').modal(
       "backdrop" : "static",
@@ -12,4 +10,4 @@ class Thorax.Views.MeasureUploadSummaryDialog extends Thorax.Views.BonnieView
       "show" : true)
   events:
     rendered: -> 
-      @$el.on 'hidden.bs.modal', -> @remove()
+      @$el.on 'hidden.bs.modal', -> @remove() 

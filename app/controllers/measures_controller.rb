@@ -5,7 +5,49 @@ class MeasuresController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:show, :value_sets]
 
   respond_to :json, :js, :html
+  
+  def upload_summary
+    list_of_patients = Array.new
+    #Variables to help calculate the percent who pass before && after
+    number_who_pass_before = 0 
+    number_who_pass_after = 0
+    #-----------------------------
+    general_upload_summary = TestCaseMeasureHistory::MeasureUploadPatientSummary.where(id: BSON::ObjectId(params[:id])).first
+    all_patient_info = ((general_upload_summary[:measure_upload_population_summaries].first))[:patients]
+    all_patient_info.each do |patientOID, _value|
 
+      #Finding the number/percent of patients who pass before && after (The percent is calculated in the hash below)
+      if (_value[:before_status].eql? "pass")
+        number_who_pass_before += 1
+      end  
+      if (_value[:after_status].eql? "pass")
+        number_who_pass_after += 1
+      end
+      if (_value[:before_status] != _value[:after_status])
+        #creates a patient hash and stores 1. firstname, 2. lastname, 3.before_status, 4.after_status, 5. patientOID number
+        patientInfo = Record.where(id: patientOID).first
+        currentPatient = {
+          first_name: patientInfo[:first],
+          last_name: patientInfo[:last],
+          before_status: _value[:before_status],
+          after_status: _value[:after_status],
+          oid_number: patientOID
+        }
+        #stores each patient hash in an array
+        list_of_patients << currentPatient
+      end
+    end
+    
+    upload_Summary = {
+        hqmf_set_id: general_upload_summary[:hqmf_set_id],
+        array_of_patient_info: list_of_patients,
+        percent_passed_before: (number_who_pass_before.to_f/all_patient_info.size.to_f*100),
+        percent_passed_after: (number_who_pass_after.to_f/all_patient_info.size.to_f*100),
+    }    
+    render :json => upload_Summary
+  end
+  
+  
   def show
     skippable_fields = [:map_fns, :record_ids, :measure_attributes]
     @measure = Measure.by_user(current_user).without(*skippable_fields).find(params[:id])

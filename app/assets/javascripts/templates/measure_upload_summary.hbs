@@ -1,0 +1,11 @@
+{{log this}}
+{{#if upload_data}}
+  <p>
+    Your measure has uploaded sucessfully! <br/> Percent who passed before: {{upload_data.percent_passed_before}}
+    <br/> Percent who passed after: {{upload_data.percent_passed_after}}
+  </p>
+{{else}}
+  <p>
+    Uploading Data....
+  </p>
+{{/if}}
