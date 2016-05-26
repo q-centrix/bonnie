@@ -1,12 +1,6 @@
 class Thorax.Models.PatientDashboardPatient extends Thorax.Model
   
   initialize: (@patient, @pd, @measure, @patientResult, @populations, @population) ->
-    # Create divs for patient inline edit and patient builder modal
-    @edit_button_div = document.createElement('div')
-    @edit_button_div.id = 'editButtonDiv'
-    @open_button_div = document.createElement('div')
-    @open_button_div.id = 'openButtonDiv'
-    
     # Set known patient attributes
     @_id = @patient.get('_id')
     @firstname = @patient.get('first')
@@ -120,15 +114,3 @@ class Thorax.Models.PatientDashboardPatient extends Thorax.Model
       if @_expected[population] != @_actual[population]
         return "FALSE"
     return "TRUE"
-  
-  ###
-  @returns {String} html for the div button to edit this patient
-  ###
-  editButtonDiv: ->
-    @edit_button_div.innerHTML
-  
-  ###
-  @returns {String} html for the div button to open this patient
-  ###
-  openButtonDiv: ->
-    @open_button_div.innerHTML
