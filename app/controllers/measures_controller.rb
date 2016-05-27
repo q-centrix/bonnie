@@ -5,17 +5,19 @@ class MeasuresController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:show, :value_sets]
 
   respond_to :json, :js, :html
-  
   def upload_summary
     list_of_patients = Array.new
     #Variables to help calculate the percent who pass before && after
     number_who_pass_before = 0 
     number_who_pass_after = 0
     #-----------------------------
+    #if two patients swap, from pass to fail and fail to pass
+    #you can't detect it by just subtracting those who pass from total
+    number_who_change = 0;
     general_upload_summary = TestCaseMeasureHistory::MeasureUploadPatientSummary.where(id: BSON::ObjectId(params[:id])).first
     all_patient_info = ((general_upload_summary[:measure_upload_population_summaries].first))[:patients]
+    #loops through for the number of patients
     all_patient_info.each do |patientOID, _value|
-
       #Finding the number/percent of patients who pass before && after (The percent is calculated in the hash below)
       if (_value[:before_status].eql? "pass")
         number_who_pass_before += 1
@@ -24,25 +26,37 @@ class MeasuresController < ApplicationController
         number_who_pass_after += 1
       end
       if (_value[:before_status] != _value[:after_status])
+        number_who_change += 1
         #creates a patient hash and stores 1. firstname, 2. lastname, 3.before_status, 4.after_status, 5. patientOID number
         patientInfo = Record.where(id: patientOID).first
         currentPatient = {
           first_name: patientInfo[:first],
           last_name: patientInfo[:last],
-          before_status: _value[:before_status],
-          after_status: _value[:after_status],
+          full_name: (patientInfo[:first]+" "+patientInfo[:last]),
+          before_status: _value[:before_status].to_s.capitalize,
+          after_status: _value[:after_status].to_s.capitalize,
           oid_number: patientOID
         }
         #stores each patient hash in an array
         list_of_patients << currentPatient
       end
     end
+
+    #All of this data was similiar so I stored it as a hash,
+    #rather than individual hash values (in the upload_Summary hash below)
+    patient_numbers_hash = {
+      number_of_patients_passed_before_measure_update: number_who_pass_before.to_i,
+      number_of_patients_passed_after_measure_update: number_who_pass_after.to_i,
+      percent_passed_before: (number_who_pass_before.to_f/all_patient_info.size.to_f*100).round(2),
+      percent_passed_after: (number_who_pass_after.to_f/all_patient_info.size.to_f*100).round(2),
+      total_patient_size: all_patient_info.size,      
+      number_of_patients_who_change: number_who_change
+    }
     
     upload_Summary = {
-        hqmf_set_id: general_upload_summary[:hqmf_set_id],
+        hqmf_set_id: general_upload_summary[:hqmf_set_id].to_s,
         array_of_patient_info: list_of_patients,
-        percent_passed_before: (number_who_pass_before.to_f/all_patient_info.size.to_f*100),
-        percent_passed_after: (number_who_pass_after.to_f/all_patient_info.size.to_f*100),
+        patient_numbers_information: patient_numbers_hash
     }    
     render :json => upload_Summary
   end

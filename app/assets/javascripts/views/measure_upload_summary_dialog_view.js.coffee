@@ -3,11 +3,14 @@ class Thorax.Views.MeasureUploadSummaryDialog extends Thorax.Views.BonnieView
 
   initialize: ->
     @uploadSummaryView = new Thorax.Views.MeasureUploadSummary(summaryId:@summaryId)
+    @listenTo(@uploadSummaryView, "patient:selected", ->
+      @$('#measureUploadSummaryDialog').modal('hide'))
   display: ->
     @$('#measureUploadSummaryDialog').modal(
       "backdrop" : "static",
       "keyboard" : true,
       "show" : true)
-  events:
+    
+  events:  
     rendered: -> 
-      @$el.on 'hidden.bs.modal', -> @remove() 
+      @$el.on 'hidden.bs.modal', -> @remove()

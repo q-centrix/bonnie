@@ -1,11 +1,40 @@
-{{log this}}
-{{#if upload_data}}
-  <p>
-    Your measure has uploaded sucessfully! <br/> Percent who passed before: {{upload_data.percent_passed_before}}
-    <br/> Percent who passed after: {{upload_data.percent_passed_after}}
-  </p>
-{{else}}
-  <p>
-    Uploading Data....
-  </p>
-{{/if}}
+  {{#if upload_data}}
+    <table class="table-striped table-condensed ">
+      <tr>
+        <th width="1500px" class="centered">Your measure has uploaded sucessfully!</th>
+        <th width="200px" class="centered">&emsp;Before</th>
+        <th width="200px" class="centered">&emsp;&ensp;After</th>
+      </tr>
+      <tr>
+        <td> Number of Patients who Changed: {{upload_data.patient_numbers_information.number_of_patients_who_change}} </td>
+        <td rowspan="3">{{view "MeasurePercentageView" done=graphicDifferences.before.done percent=graphicDifferences.before.percent status=graphicDifferences.before.status}}</td>
+        <td rowspan="3">{{view "MeasurePercentageView" done=graphicDifferences.after.done percent=graphicDifferences.after.percent status=graphicDifferences.after.status}}</td>
+      </tr>
+      <tr>
+        <td>Percent of Patients who Passed Before: {{upload_data.patient_numbers_information.percent_passed_before}}% <td>
+      </tr>
+      <tr>
+        <td>Percent of Patients who Passed After: {{upload_data.patient_numbers_information.percent_passed_after}}% <td>
+      </tr>
+      {{#if upload_data.patient_numbers_information.number_of_patients_who_change}}
+    <table class="table table-condensed table-striped table-hover">
+      <tr>
+        <th>Patient name</th>
+        <th>Before Status</th>
+        <th>After Status</th>
+      </tr>
+    {{/if}}
+    <tr>  
+      {{#each upload_data.array_of_patient_info}}
+      <td><a class="patient-link" href="/#measures/{{../upload_data.hqmf_set_id}}/patients/{{oid_number}}/edit">{{full_name}}</a></td>
+      <td>{{before_status}}ing  </td>
+      <td>{{after_status}}ing</td>
+        </tr>
+      {{/each}} 
+      </table>
+    </p>
+    {{else}}
+      <p>
+        Loading....  
+    </p>
+    {{/if}}
