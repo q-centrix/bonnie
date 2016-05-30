@@ -167,6 +167,20 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     $.fn.dataTable.tables(visible: true, api: true).columns.adjust().fixedColumns().update()
 
   ###
+  Disables the patient builder modal button for the given row
+  ###
+  disableOpenButton: (row) ->
+    openButton = $('#openButton').clone()
+    $(':first-child', openButton).attr("disabled", true)
+    row['open'] = openButton.html()
+
+  ###
+  Enables the patient builder modal button for the given row
+  ###
+  enableOpenButton: (row) ->
+    row['open'] = $('#openButton').html()
+
+  ###
   Makes a patient row inline editable
   ###
   makeInlineEditable: (sender) ->
@@ -199,6 +213,9 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
 
     # Change edit button to save and cancel buttons
     row['edit'] = $('#saveEditButton').html() + $('#closeEditButton').html()
+
+    # Disable open button
+    @disableOpenButton(row)
 
     # Update row
     @setRow(rowIndex, row)
@@ -252,7 +269,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     patient = _.findWhere(@measure.get('patients').models, id: row.id)
     for k, v of @editableCols
       if k == 'birthdate'
-        debugger
         patient.set(k, parseInt(moment.utc(row[k], 'L LT').format('X')) + row['birthtime'])
       else if k == 'deathdate'
         patient.set(k, parseInt(moment.utc(row[k], 'L LT').format('X')) + row['deathtime'])
@@ -263,6 +279,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     result = @population.calculateResult patient
     result.calculationsComplete =>
       row['edit'] = $('#editButton').html()
+      @enableOpenButton(row)
       @patientData[rowIndex] = row
       @setRow(rowIndex, row)
       @deselectRow(rowIndex)
