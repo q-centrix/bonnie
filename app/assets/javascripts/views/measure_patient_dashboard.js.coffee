@@ -281,6 +281,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     # Make datepickers active
     $('.birthdate' + rowIndex).datepicker()
     $('.deathdate' + rowIndex).datepicker()
+    # Attaches popover to datacriteria class.
+    $('.table-popover-div').popover({delay: {"show": 500, "hide": 100}})
 
 
   ###
@@ -336,6 +338,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       @patientData[rowIndex] = row
       @setRow(rowIndex, row)
       @deselectRow(rowIndex)
+      # Attaches popover to datacriteria class.
+      $('.table-popover-div').popover({delay: {"show": 500, "hide": 100}})
 
   ###
   Cancels the edits made to an inline patient
@@ -351,6 +355,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
 
     # Remove row selection
     @deselectRow(rowIndex)
+    # Attaches popover to datacriteria class.
+    $('.table-popover-div').popover({delay: {"show": 500, "hide": 100}})
 
   ###
   Opens the full patient builder modal for more advanced patient editing
