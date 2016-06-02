@@ -132,16 +132,16 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       children_criteria = row.pd.getChildrenCriteria dataCriteriaKey
 
       if Object.keys(children_criteria).length > 0
-        formatCriteria = '<div class="tableScrollContainerList"><ul>'
+        formatCriteria = '<div class="tableScrollContainerList"><ul class="popover-ul">'
         for childDataCriteriaKey, childDataCriteriaText of children_criteria
           if row.patientResult.rationale[childDataCriteriaKey]? && childDataCriteriaKey != dataCriteriaKey
             result = row.getPatientCriteriaResult childDataCriteriaKey, populationKey
             if result == "SPECIFICALLY FALSE"
-              formatCriteria += '<li class="popover-eval-specifics">' + childDataCriteriaText + '</li>'
+              formatCriteria += '<li class="popover-eval-specifics-li">' + childDataCriteriaText + '</li>'
             else if result == 'TRUE'
-              formatCriteria += '<li class="popover-eval-true">' + childDataCriteriaText + '</li>'
+              formatCriteria += '<li class="popover-eval-true-li">' + childDataCriteriaText + '</li>'
             else if result == 'FALSE'
-              formatCriteria += '<li class="popover-eval-false">' + childDataCriteriaText + '</li>'
+              formatCriteria += '<li class="popover-eval-false-li">' + childDataCriteriaText + '</li>'
         formatCriteria += '</ul></div>'
       else
         formatCriteria = "No Children Data Criteria"

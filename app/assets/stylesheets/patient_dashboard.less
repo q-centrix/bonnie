@@ -4,35 +4,47 @@ html, body, .container-fluid, [role="main"], .measure-layout, .patient-dashboard
 
 .tableScrollContainerList {
   overflow-y: scroll;
-  height: 200px;
+  max-height: 300px !important;
+  height: auto;
 }
 
-.popover-eval-true {
-  list-style-image: @fa-var-check;
-  list-style-type: none;
+.popover-ul {
+  list-style: none;
+  marging-left: 0;
+  padding-left: 0;
+}
+
+.popover-eval-true-li {
+  padding-left: 1em;
+  text-indent: -1em;
   background-color: @state-success-bg;
   color: @state-success-text;
   &:before {
+      padding-left: 2px;
       content: @fa-var-check;
       font-family: FontAwesome;
   }
 }
 
-.popover-eval-false {
-  list-style-type: none;
+.popover-eval-false-li {
+  padding-left: 1em;
+  text-indent: -1em;
   background-color: @state-danger-bg;
   color: @state-danger-text;
   &:before {
+      padding-left: 2px;
       content: @fa-var-times;
       font-family: FontAwesome;
   }
 }
 
-.popover-eval-specifics {
-  list-style-type: none;
+.popover-eval-specifics-li {
+  padding-left: 1em;
+  text-indent: -1em;
   background-color: @state-danger-bg;
   color: @state-danger-text;
   &:before {
+    padding-left: 2px;
     content: @fa-var-asterisk;
     font-family: FontAwesome;
   }
