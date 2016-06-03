@@ -341,6 +341,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     # Update row on recalculation
     result = @population.calculateResult patient
     result.calculationsComplete =>
+      patient.save patient.toJSON()
       @updateActualWarnings(rowIndex)
       row['edit'] = $('#editButton').html()
       @enableOpenButton(row)
