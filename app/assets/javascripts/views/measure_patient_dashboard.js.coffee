@@ -81,8 +81,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
           $('.dataTables_scrollBody thead tr').css(visibility: 'collapse')
       )
       # Update actual warnings
-      for i in [0..@patientData.length-1]
-        @updateActualWarnings(i)
+      @updateAllActualWarnings()
 
       # Attaches popover to datacriteria class.
       $('.table-popover-div').popover({delay: {"show": 500, "hide": 100}})
@@ -234,6 +233,13 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         td.addClass('pdwarn')
       else
         td.removeClass('pdwarn')
+
+  ###
+  Updates actual warnings for all rows
+  ###
+  updateAllActualWarnings: ->
+    for i in [0..@patientData.length-1]
+      @updateActualWarnings(i)
 
   ###
   Makes a patient row inline editable
@@ -429,6 +435,7 @@ class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
       @patientData = new Thorax.Models.PatientDashboardPatient @patient, @dashboard.pd, @measure, @patientResult, @populations, @population
       $('#patientDashboardTable').DataTable().row(@rowIndex).data(@patientData).draw()
       $('.table-popover-div').popover({delay: {"show": 500, "hide": 100}})
+      @dashboard.updateAllActualWarnings()
 
   close: ->
     @$('.modal-body').empty() # clear out patientBuilderView
