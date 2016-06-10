@@ -36,6 +36,10 @@ Bonnie::Application.routes.draw do
       end
     end
   end
+  
+  resources :archived_measures, defaults: { format: :json } do
+
+  end
 
   resources :patients do
     collection do
