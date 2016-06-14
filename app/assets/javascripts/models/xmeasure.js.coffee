@@ -1,4 +1,4 @@
-class Thorax.Models.ArchivedMeasure extends Thorax.Model
+class Thorax.Models.ArchivedMeasure extends Thorax.Models.Measure
   idAttribute: '_id'
   initialize: ->
     # Becasue we bootstrap patients we mark them as _fetched, so isEmpty() will be sensible
@@ -6,5 +6,5 @@ class Thorax.Models.ArchivedMeasure extends Thorax.Model
   
 
 class Thorax.Collections.ArchivedMeasures extends Thorax.Collection
-  url: '/measures'
+  url: '/archived_measures'
   model: Thorax.Models.ArchivedMeasure
