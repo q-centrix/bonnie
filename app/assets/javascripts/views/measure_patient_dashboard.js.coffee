@@ -32,6 +32,11 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     @patientEditView = new Thorax.Views.MeasurePatientEditModal(dashboard: this)
     @pd = new Thorax.Models.PatientDashboard @measure, @populations, @population
 
+    @nonEmptyPopulations = []
+    for pop in @populations
+      if @pd.criteriaKeysByPopulation[pop].length > 0
+        @nonEmptyPopulations.push pop
+
     # Keep track of editable rows and columns
     @editableRows = []
     @editableCols = @getEditableCols()
