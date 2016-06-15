@@ -6,7 +6,6 @@
     # This measure collection gets populated as measures are loaded via their individual JS
     # files (see app/views/measures/show.js.erb)
     @measures = new Thorax.Collections.Measures()
-    @archived_measures = new Thorax.Collections.ArchivedMeasures();
 
     @calculator = new Calculator()
 

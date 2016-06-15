@@ -6,5 +6,13 @@ class Thorax.Models.ArchivedMeasure extends Thorax.Models.Measure
   
 
 class Thorax.Collections.ArchivedMeasures extends Thorax.Collection
-  url: '/archived_measures'
+  initialize: (models, options) ->
+    @measure_id = options.measure_id
+    
+  url: -> "/measures/#{@measure_id}/archived_measures"
+    
   model: Thorax.Models.ArchivedMeasure
+  
+  parse: (response, options) ->
+    return _(response).map (arch_measure) ->
+       new Thorax.Models.ArchivedMeasure {_id: arch_measure.measure_db_id}, _fetched: false
