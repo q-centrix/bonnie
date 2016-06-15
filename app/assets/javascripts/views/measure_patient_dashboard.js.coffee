@@ -73,7 +73,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         columns: @tableColumns,
         deferRender: true,
         scrollX: true,
-        scrollY: "500px",
+        scrollY: "700px",
         paging: false,
         fixedColumns:
           leftColumns: 5
@@ -93,7 +93,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   getTableColumns: (patient) ->
     column = []
     width_index = 0
-    if patient == null
+    if patient == undefined
       return column
     column.push data: 'edit', orderable: false, width: @widths[width_index++], defaultContent: $('#editButton').html()
     column.push data: 'open', orderable: false, width: @widths[width_index++], defaultContent: $('#openButton').html()
@@ -112,13 +112,11 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     # displays dc in the correct order.
     dcStartIndex = @pd._dataInfo['gender'].index + 1
     dc = []
-    for k, v of @pd._dataInfo
-      if v.index >= dcStartIndex
-        v['name'] = k
-        dc.push v
-    dc.sort (a, b) -> a.index - b.index
+    for k, v of @pd.dataCollections
+      if v.firstIndex >= dcStartIndex
+          dc = dc.concat v.items
     for entry in dc
-      column.push data: entry.name, width: @widths[width_index++], render: @insertTextAndPatientData
+      column.push data: entry, width: @widths[width_index++], render: @insertTextAndPatientData
     column
 
   ###
@@ -487,7 +485,7 @@ class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
       @result.calculationsComplete =>
         @patientResult = @result.toJSON()[0] #Grab the first and only item from collection
         @patientData = new Thorax.Models.PatientDashboardPatient patient, @dashboard.pd, @measure, @patientResult, @populations, @population
-        if rowIndex?
+        if @rowIndex?
           $('#patientDashboardTable').DataTable().row(@rowIndex).data(@patientData).draw()
         else
           $('#patientDashboardTable').DataTable().row.add(@patientData).draw()
