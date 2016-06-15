@@ -440,19 +440,18 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   Updates the results object and patientData array with new patient data or updated patient data.
   ###
   updatePatientDataSources: (currentResult, currentPatient) =>
-    isNewPatient = true
-    for result, index in @results.models
-      if result.get('patient_id') == currentResult.get('patient_id')
-        @results.models[index] = currentResult.models[0]
-        isNewPatient = false
+    # Add result to results collection
+    @results.add currentResult.models
+
+    # Add patient to patient data
+    hasPatient = false
+    for patient, index in @patientData
+      if patient.id == currentPatient.id
+        @patientData[index] = currentPatient
+        hasPatient = true
         break
-    if isNewPatient
-      @results.models.push currentResult.models[0]
-      @patientData.push(currentPatient)
-    else
-      for patient, index in @patientData
-        if patient.id == currentPatient.id
-          @patientData[index] = currentPatient
+    unless hasPatient
+      @patientData.push currentPatient
 
 
 class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
@@ -495,8 +494,8 @@ class Thorax.Views.MeasurePatientEditModal extends Thorax.Views.BonnieView
         else
           $('#patientDashboardTable').DataTable().row.add(@patientData).draw()
         $('.table-popover-div').popover({delay: {"show": 500, "hide": 100}})
-        @dashboard.updateAllActualWarnings()
         @dashboard.updatePatientDataSources @result, @patientData
 
   close: ->
     @$('.modal-body').empty() # clear out patientBuilderView
+    @dashboard.updateAllActualWarnings()
