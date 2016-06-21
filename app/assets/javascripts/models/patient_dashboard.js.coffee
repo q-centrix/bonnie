@@ -34,7 +34,7 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
     @_dataInfo = @getDataInfo(@populations, @dataIndices, @dataCollections)
 
   getHorizontalScrollOffset: ->
-    100 + @COL_WIDTH_FREETEXT + @COL_WIDTH_CRITERIA
+    @COL_WIDTH_CRITERIA
 
   getDataIndices: (populations, @criteriaKeysByPopulation) =>
     dataIndices = []
@@ -70,8 +70,8 @@ class Thorax.Models.PatientDashboard extends Thorax.Model
       dataCriteriaText[dataLogicView.dataCriteria.key] = dataLogicView.$el[0].outerText
 
     # include the metadata
-    dataInfo[PatientDashboard.ACTIONS] = { name: "", width: "" }
-    dataInfo[PatientDashboard.RESULT] = { name: "Passes?", width: @COL_WIDTH_META_MEDIUM }
+    dataInfo[PatientDashboard.ACTIONS] = { name: "Options", width: @COL_WIDTH_META_MEDIUM }
+    dataInfo[PatientDashboard.RESULT] = { name: "Result", width: @COL_WIDTH_META_MEDIUM }
     dataInfo[PatientDashboard.DESCRIPTION] = { name: "Description", width: @COL_WIDTH_FREETEXT }
     dataInfo[PatientDashboard.BIRTHDATE] = { name: "Birthdate", width: @COL_WIDTH_META_LARGE }
     dataInfo[PatientDashboard.DEATHDATE] = { name: "Deathdate", width: @COL_WIDTH_META_LARGE }
