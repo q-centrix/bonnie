@@ -82,7 +82,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         paging: false,
         autoWidth: false,
         fixedColumns:
-          leftColumns: 5
+          leftColumns: 2
       )
       # Update actual warnings
       @updateAllActualWarnings()
@@ -96,20 +96,22 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   ###
   getTableColumns: (patient) ->
     column = []
-    width_index = 0
-    column.push data: 'edit', orderable: false, defaultContent: $('#editButton').html()
-    column.push data: 'open', orderable: false, defaultContent: $('#openButton').html()
-    column.push data: 'first', className: 'limited'
-    column.push data: 'last', className: 'limited'
-    column.push data: 'description', className: 'limited'
+    width_index = 2
+    column.push data: 'actions', orderable: false, width: '100px', defaultContent: $('#actionDropdown').html()
+    # column.push data: 'edit', orderable: false, width: @widths[width_index++] + 'px', defaultContent: $('#editButton').html()
+    # column.push data: 'open', orderable: false, width: @widths[width_index++] + 'px', defaultContent: $('#openButton').html()
+    # column.push data: 'first', width: @widths[width_index++] + 'px', className: 'limited'
+    # column.push data: 'last', width: @widths[width_index++] + 'px', className: 'limited'
+    column.push data: 'description', width: @widths[width_index++] + 'px', className: 'limited'
+    column.push data: 'passes', width: @widths[width_index++] + 'px', render: @insertHighlightedText
+
     for population in @populations
        column.push data: 'expected' + population
      for population in @populations
-       column.push data: 'actual' + population
-    column.push data: 'passes', render: @insertHighlightedText
-    column.push data: 'birthdate'
-    column.push data: 'deathdate'
-    column.push data: 'gender'
+       column.push data: 'actual' + population, width: @widths[width_index++] + 'px'
+    column.push data: 'birthdate', width: @widths[width_index++] + 'px'
+    column.push data: 'deathdate', width: @widths[width_index++] + 'px'
+    column.push data: 'gender', width: @widths[width_index++] + 'px'
     # Collect all actual data criteria and sort to make sure patient dashboard
     # displays dc in the correct order.
     dcStartIndex = @pd._dataInfo['gender'].index + 1
@@ -177,7 +179,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   @returns {Object} a mapping of editable column field names to row indices
   ###
   getEditableCols: ->
-    editableFields = ['first', 'last', 'description', 'birthdate', 'gender', 'deathdate']
+    editableFields = ['description', 'birthdate', 'gender', 'deathdate']
     editableCols = {}
     # Add patient characteristics to editable fields
     for editableField in editableFields
@@ -299,7 +301,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         row[k] = inputGenderDiv.html()
 
     # Change edit button to save and cancel buttons
-    row['edit'] = $('#saveEditButton').html() + $('#closeEditButton').html()
+    row['actions'] = $('#saveEditButton').html() + $('#closeEditButton').html()
 
     # Disable open button
     @disableOpenButton(row)
@@ -367,7 +369,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     result.calculationsComplete =>
       patient.save patient.toJSON()
       @updateActualWarnings(rowIndex)
-      row['edit'] = $('#editButton').html()
+      row['actions'] = $('#actionDropdown').html()
       @enableOpenButton(row)
       @patientData[rowIndex] = row
       @setRowData(rowIndex, row)
@@ -441,8 +443,6 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     row1_full.push('') for i in [1..row2.length]
     for key, dataCollection of @pd.dataCollections
       row1_full[dataCollection.firstIndex] = dataCollection.name
-    # Add bumper to beggining of first header
-    row1.push title: "", colspan: 2, width: (@pd.COL_WIDTH_EDIT + @pd.COL_WIDTH_EDIT)
     # Construct the top header using colspans for the number of columns
     # they should cover
     for header, index in row1_full

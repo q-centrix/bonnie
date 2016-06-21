@@ -138,7 +138,7 @@ table.dataTable {
 
   /* basic cell styling. keeping in div because can managing text overflow more easily */
   th > div,
-  td > div {
+  td > div:not(.btn-group) {
     height: 20px;
     overflow: hidden;
   }
@@ -168,5 +168,14 @@ table.dataTable {
   /* TODO: make this so it ONLY removes the border for actions */
   .wtBorder {
     display: none !important;
+  }
+}
+
+.patient-dashboard .dropdown-menu {
+  min-width: initial; // removes min-width: 160px from bootstrap
+  width: 100%;
+
+  & > li > .btn-danger {
+    color: @red-darker;
   }
 }
