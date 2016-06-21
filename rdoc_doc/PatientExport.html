@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class PatientExport - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-create_criteria_key_header_lookup">::create_criteria_key_header_lookup</a>
+    
+    <li ><a href="#method-c-excel_column">::excel_column</a>
+    
+    <li ><a href="#method-c-export_excel_file">::export_excel_file</a>
+    
+    <li ><a href="#method-c-generate_rows">::generate_rows</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-PatientExport">
+  <h1 id="class-PatientExport" class="class">
+    class PatientExport
+  </h1>
+
+  <section class="description">
+    
+<p>Generates a formatted Excel document of Patients for the given measure and
+records.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DISPLAYED_ATTRIBUTES">DISPLAYED_ATTRIBUTES
+        
+        <dd><p>List of attributes we want to print to excel</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-create_criteria_key_header_lookup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_criteria_key_header_lookup</span><span
+            class="method-args">(measure, criteria_keys_by_population)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given a measure and the criteria keys, return a lookup hash for the human
+readable name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_criteria_key_header_lookup-source">
+            <pre><span class="ruby-comment"># File lib/patient_export.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create_criteria_key_header_lookup</span>(<span class="ruby-identifier">measure</span>, <span class="ruby-identifier">criteria_keys_by_population</span>)
+  <span class="ruby-identifier">logic_extractor</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">Measure</span><span class="ruby-operator">::</span><span class="ruby-constant">LogicExtractor</span>.<span class="ruby-identifier">new</span>()
+  <span class="ruby-identifier">logic_extractor</span>.<span class="ruby-identifier">population_logic</span>(<span class="ruby-identifier">measure</span>)
+  <span class="ruby-identifier">criteria_key_header_lookup</span> = {}
+  <span class="ruby-identifier">criteria_keys_by_population</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">population_code</span>, <span class="ruby-identifier">criteria_keys</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">criteria_keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ck</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">criteria_key_header_lookup</span>[<span class="ruby-identifier">ck</span>] = <span class="ruby-identifier">logic_extractor</span>.<span class="ruby-identifier">data_criteria_logic</span>(<span class="ruby-identifier">ck</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:strip</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">criteria_key_header_lookup</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-excel_column" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">excel_column</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given a number, calculate the textual column name in excel (ie 1 -&gt; A,
+27 -&gt; AA)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="excel_column-source">
+            <pre><span class="ruby-comment"># File lib/patient_export.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">excel_column</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">number</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-string">&#39;A&#39;</span>
+  (<span class="ruby-identifier">number</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">times</span> { <span class="ruby-identifier">result</span>.<span class="ruby-identifier">next!</span> }
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-export_excel_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">export_excel_file</span><span
+            class="method-args">(measure, records, results)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Records cannot be less than 1</p>
+          
+          
+
+          
+          <div class="method-source-code" id="export_excel_file-source">
+            <pre><span class="ruby-comment"># File lib/patient_export.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">export_excel_file</span>(<span class="ruby-identifier">measure</span>, <span class="ruby-identifier">records</span>, <span class="ruby-identifier">results</span>)
+
+  <span class="ruby-identifier">criteria_keys_by_population</span> = <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">criteria_keys_by_population</span>
+
+  <span class="ruby-comment"># COMMENTED OUT -- until we decide whether or not we want duplicate data.</span>
+  <span class="ruby-comment"># Remove duplicates by population type</span>
+  <span class="ruby-comment">#criteria_keys_by_population.each do | population_type, values | </span>
+  <span class="ruby-comment">#  values.uniq!</span>
+  <span class="ruby-comment">#end</span>
+
+  <span class="ruby-identifier">criteria_key_header_lookup</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create_criteria_key_header_lookup</span>(<span class="ruby-identifier">measure</span>, <span class="ruby-identifier">criteria_keys_by_population</span>)
+
+  <span class="ruby-constant">Axlsx</span><span class="ruby-operator">::</span><span class="ruby-constant">Package</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">package</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">package</span>.<span class="ruby-identifier">workbook</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">workbook</span><span class="ruby-operator">|</span>
+
+      <span class="ruby-comment"># Styles</span>
+      <span class="ruby-identifier">fg_color</span> = <span class="ruby-string">&quot;000033&quot;</span>
+      <span class="ruby-identifier">header_border</span> = { <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:thick</span>, <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;000066&quot;</span>, <span class="ruby-value">:edges</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">:bottom</span>] }
+      <span class="ruby-identifier">styles</span> = <span class="ruby-identifier">workbook</span>.<span class="ruby-identifier">styles</span>
+      <span class="ruby-identifier">default</span> = <span class="ruby-identifier">styles</span>.<span class="ruby-identifier">add_style</span>(<span class="ruby-value">:sz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">14</span>,
+                                 <span class="ruby-value">:bg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FFFFFFF&quot;</span>,
+                                 <span class="ruby-value">:border</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:thin</span>,
+                                              <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;DDDDDD&quot;</span>,
+                                              <span class="ruby-value">:edges</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">:bottom</span>] })
+      <span class="ruby-identifier">rotated_style</span> = <span class="ruby-identifier">styles</span>.<span class="ruby-identifier">add_style</span>(<span class="ruby-value">:b</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
+                                       <span class="ruby-value">:sz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>,
+                                       <span class="ruby-value">:alignment</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:textRotation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">90</span> },
+                                       <span class="ruby-value">:border</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">header_border</span>,
+                                       <span class="ruby-value">:fg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fg_color</span>,
+                                       <span class="ruby-value">:bg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FFFFFFF&quot;</span>)
+      <span class="ruby-identifier">text_center</span> = <span class="ruby-identifier">styles</span>.<span class="ruby-identifier">add_style</span>(<span class="ruby-value">:b</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
+                                     <span class="ruby-value">:sz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">14</span>,
+                                     <span class="ruby-value">:border</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:thin</span>, <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;000066&quot;</span> },
+                                     <span class="ruby-value">:alignment</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:horizontal</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:center</span>, <span class="ruby-value">:vertical</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:center</span> })
+      <span class="ruby-identifier">header</span> = <span class="ruby-identifier">styles</span>.<span class="ruby-identifier">add_style</span>(<span class="ruby-value">:b</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
+                                <span class="ruby-value">:sz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">14</span>,
+                                <span class="ruby-value">:alignment</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:wrap_text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span> },
+                                <span class="ruby-value">:border</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">header_border</span>,
+                                <span class="ruby-value">:fg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fg_color</span>,
+                                <span class="ruby-value">:bg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FFFFFFF&quot;</span>)
+      <span class="ruby-identifier">header_dc</span> = <span class="ruby-identifier">styles</span>.<span class="ruby-identifier">add_style</span>(<span class="ruby-value">:sz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>,
+                                   <span class="ruby-value">:alignment</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:wrap_text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span> },
+                                   <span class="ruby-value">:border</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">header_border</span>,
+                                   <span class="ruby-value">:fg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fg_color</span>,
+                                   <span class="ruby-value">:bg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FFFFFFF&quot;</span>)
+      <span class="ruby-identifier">needs_fix</span> = <span class="ruby-identifier">styles</span>.<span class="ruby-identifier">add_style</span>(<span class="ruby-value">:sz</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">14</span>,
+                                   <span class="ruby-value">:bg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FFFFFFF&quot;</span>,
+                                   <span class="ruby-value">:border</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:thin</span>,
+                                                <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;DDDDDD&quot;</span>,
+                                                <span class="ruby-value">:edges</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">:bottom</span>] },
+                                   <span class="ruby-value">:fg_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FF0000&quot;</span>)
+
+      <span class="ruby-comment"># Adding a new sheet per population</span>
+      <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">populations</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">population</span>, <span class="ruby-identifier">population_index</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">population_criteria</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">PopulationCriteria</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL_POPULATION_CODES</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">population</span>.<span class="ruby-identifier">keys</span>
+        <span class="ruby-comment"># Find the data criteria keys that are associated with this particular population</span>
+        <span class="ruby-identifier">population_criteria_keys</span> = []
+        <span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pc</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">population_criteria_keys</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">criteria_keys_by_population</span>[<span class="ruby-identifier">population</span>[<span class="ruby-identifier">pc</span>]])
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># Sheet name cannot be longer than 31 characters long. Replace with generic name if too long or not present.</span>
+        <span class="ruby-identifier">worksheet_title</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">population</span>[<span class="ruby-string">&#39;title&#39;</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{population[&#39;title&#39;]} Patients&quot;</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">31</span>
+                            <span class="ruby-node">&quot;Population #{population_index+1}&quot;</span>
+                          <span class="ruby-keyword">else</span>
+                            <span class="ruby-node">&quot;#{population[&#39;title&#39;]} Patients&quot;</span>
+                          <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">workbook</span>.<span class="ruby-identifier">add_worksheet</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">worksheet_title</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sheet</span><span class="ruby-operator">|</span>
+          <span class="ruby-comment"># Generate a list of all the headers we want, translating criteria keys to their human readable form</span>
+          <span class="ruby-identifier">headers</span> = <span class="ruby-identifier">population_criteria</span><span class="ruby-operator">*</span><span class="ruby-value">2</span> <span class="ruby-operator">+</span> <span class="ruby-constant">DISPLAYED_ATTRIBUTES</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">population_criteria_keys</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ck</span><span class="ruby-operator">|</span> <span class="ruby-identifier">criteria_key_header_lookup</span>[<span class="ruby-identifier">ck</span>] }
+
+          <span class="ruby-comment"># Add top row with the &quot;Expected Value&quot; and &quot;Actual Value&quot; labels</span>
+          <span class="ruby-identifier">toplevel_headings</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">headers</span>.<span class="ruby-identifier">length</span>, <span class="ruby-keyword">nil</span>)
+          <span class="ruby-identifier">toplevel_headings</span>[<span class="ruby-value">0</span>] = <span class="ruby-string">&#39;Expected&#39;</span>
+          <span class="ruby-identifier">toplevel_headings</span>[<span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span>] = <span class="ruby-string">&#39;Actual&#39;</span>
+
+          <span class="ruby-identifier">heading_positions</span> = {}
+          <span class="ruby-identifier">previous_length</span> = <span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span> <span class="ruby-operator">+</span> <span class="ruby-constant">DISPLAYED_ATTRIBUTES</span>.<span class="ruby-identifier">length</span>
+        
+          <span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pc</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">criteria_keys_by_population</span>[<span class="ruby-identifier">population</span>[<span class="ruby-identifier">pc</span>]].<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+              <span class="ruby-identifier">toplevel_headings</span>[<span class="ruby-identifier">previous_length</span>] = <span class="ruby-identifier">pc</span>
+              <span class="ruby-identifier">heading_positions</span>[<span class="ruby-identifier">pc</span>] = <span class="ruby-identifier">previous_length</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+              <span class="ruby-identifier">previous_length</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">criteria_keys_by_population</span>[<span class="ruby-identifier">population</span>[<span class="ruby-identifier">pc</span>]].<span class="ruby-identifier">length</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+
+          <span class="ruby-comment"># Adds first header column</span>
+          <span class="ruby-identifier">sheet</span>.<span class="ruby-identifier">add_row</span>(<span class="ruby-identifier">toplevel_headings</span>, <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> <span class="ruby-identifier">text_center</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-value">30</span>)
+          <span class="ruby-identifier">sheet</span>.<span class="ruby-identifier">merge_cells</span> <span class="ruby-node">&quot;A1:#{excel_column(population_criteria.length)}1&quot;</span>
+          <span class="ruby-identifier">sheet</span>.<span class="ruby-identifier">merge_cells</span> <span class="ruby-node">&quot;#{excel_column(population_criteria.length+1)}1:#{excel_column(population_criteria.length*2)}1&quot;</span>
+    
+          <span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pc</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">criteria_keys_by_population</span>[<span class="ruby-identifier">population</span>[<span class="ruby-identifier">pc</span>]].<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+              <span class="ruby-identifier">start_position</span> = <span class="ruby-identifier">heading_positions</span>[<span class="ruby-identifier">pc</span>]
+              <span class="ruby-identifier">start_column</span> = <span class="ruby-identifier">excel_column</span>(<span class="ruby-identifier">start_position</span>)
+              <span class="ruby-identifier">end_column</span> = <span class="ruby-identifier">excel_column</span>(<span class="ruby-identifier">start_position</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">criteria_keys_by_population</span>[<span class="ruby-identifier">population</span>[<span class="ruby-identifier">pc</span>]].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
+              <span class="ruby-identifier">sheet</span>.<span class="ruby-identifier">merge_cells</span> <span class="ruby-node">&quot;#{start_column}1:#{end_column}1&quot;</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+
+          <span class="ruby-comment"># Adds second header column</span>
+          <span class="ruby-identifier">header_column_styles</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">headers</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">+</span><span class="ruby-value">2</span>, <span class="ruby-identifier">header_dc</span>)
+          <span class="ruby-identifier">header_column_styles</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>, <span class="ruby-identifier">rotated_style</span>) <span class="ruby-comment"># Rotated style for population columns</span>
+          <span class="ruby-identifier">header_column_styles</span>[<span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span><span class="ruby-operator">+</span><span class="ruby-constant">DISPLAYED_ATTRIBUTES</span>.<span class="ruby-identifier">length</span>)] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">DISPLAYED_ATTRIBUTES</span>.<span class="ruby-identifier">length</span>, <span class="ruby-identifier">header</span>) <span class="ruby-comment"># Style with larger text for attributes</span>
+          <span class="ruby-identifier">sheet</span>.<span class="ruby-identifier">add_row</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> <span class="ruby-identifier">header_column_styles</span>)
+
+          <span class="ruby-comment"># Writes one row per record</span>
+          <span class="ruby-identifier">generate_rows</span>(<span class="ruby-identifier">sheet</span>, <span class="ruby-identifier">records</span>, <span class="ruby-identifier">measure</span>, <span class="ruby-identifier">population_index</span>, <span class="ruby-identifier">population_criteria</span>, <span class="ruby-identifier">population_criteria_keys</span>, <span class="ruby-identifier">results</span>, <span class="ruby-identifier">criteria_keys_by_population</span>)
+
+          <span class="ruby-comment"># Specifies column widths</span>
+          <span class="ruby-identifier">column_widths</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">headers</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">+</span><span class="ruby-value">2</span>, <span class="ruby-value">25</span>)
+          <span class="ruby-identifier">column_widths</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>, <span class="ruby-value">6</span>) <span class="ruby-comment"># Narrower width for the population columns</span>
+          <span class="ruby-identifier">column_widths</span>[<span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">*</span><span class="ruby-value">2</span><span class="ruby-operator">+</span><span class="ruby-constant">DISPLAYED_ATTRIBUTES</span>.<span class="ruby-identifier">length</span>)] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">DISPLAYED_ATTRIBUTES</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">16</span>) <span class="ruby-comment"># Width for attributes</span>
+          <span class="ruby-identifier">sheet</span>.<span class="ruby-identifier">column_widths</span> <span class="ruby-operator">*</span><span class="ruby-identifier">column_widths</span>
+
+          <span class="ruby-comment"># If not meeting expectations, make row red. else use default style</span>
+          <span class="ruby-identifier">records</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+
+            <span class="ruby-identifier">row</span> = <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">3</span> <span class="ruby-comment"># account for the two header rows</span>
+
+            <span class="ruby-comment"># See if any of the expectations don&#39;t match</span>
+            <span class="ruby-identifier">mismatch</span> = <span class="ruby-keyword">false</span>
+            <span class="ruby-identifier">population_criteria</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">sheet</span>[<span class="ruby-node">&quot;#{excel_column(j+1)}#{row}&quot;</span>].<span class="ruby-identifier">value</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">sheet</span>[<span class="ruby-node">&quot;#{excel_column(population_criteria.length+j+1)}#{row}&quot;</span>].<span class="ruby-identifier">value</span>
+                <span class="ruby-identifier">mismatch</span> = <span class="ruby-keyword">true</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">mismatch</span>
+              <span class="ruby-identifier">sheet</span>[<span class="ruby-node">&quot;A#{row}:#{excel_column(headers.length)}#{row}&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">style</span> = <span class="ruby-identifier">needs_fix</span> }
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">sheet</span>[<span class="ruby-node">&quot;A#{row}:#{excel_column(headers.length)}#{row}&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">style</span> = <span class="ruby-identifier">default</span> }
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+     <span class="ruby-identifier">package</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-generate_rows" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_rows</span><span
+            class="method-args">(sheet, records, measure, population_index, population_categories, population_criteria_keys, results, criteria_keys_by_population)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="generate_rows-source">
+            <pre><span class="ruby-comment"># File lib/patient_export.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generate_rows</span>(<span class="ruby-identifier">sheet</span>, <span class="ruby-identifier">records</span>, <span class="ruby-identifier">measure</span>, <span class="ruby-identifier">population_index</span>, <span class="ruby-identifier">population_categories</span>, <span class="ruby-identifier">population_criteria_keys</span>, <span class="ruby-identifier">results</span>, <span class="ruby-identifier">criteria_keys_by_population</span>)
+  <span class="ruby-comment"># Populates the patient data</span>
+  <span class="ruby-identifier">records</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment"># Removes \&quot; from beignning and end of the patient_id string </span>
+    <span class="ruby-identifier">exported_results</span> = <span class="ruby-constant">MeasureExportedResults</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">patient</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_json</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39;\&quot;&#39;</span>,<span class="ruby-string">&#39;&#39;</span>), <span class="ruby-identifier">population_index</span>, <span class="ruby-identifier">results</span>)
+    <span class="ruby-identifier">patient_row</span> = []
+
+    <span class="ruby-comment"># populates the array with expected values for each population</span>
+    <span class="ruby-identifier">population_categories</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">population_category</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment"># Filter out the expected values that match the measure hqmf_set_id. Return the first object in the array.</span>
+      <span class="ruby-identifier">expected_values</span> = <span class="ruby-identifier">patient</span>[<span class="ruby-value">:expected_values</span>].<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">expected_values</span><span class="ruby-operator">|</span> <span class="ruby-identifier">expected_values</span>[<span class="ruby-value">:measure_id</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">hqmf_set_id</span> <span class="ruby-operator">&amp;&amp;</span> 
+                                                                            <span class="ruby-identifier">expected_values</span>[<span class="ruby-value">:population_index</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">population_index</span> }.<span class="ruby-identifier">try</span>(<span class="ruby-value">:first</span>)
+      <span class="ruby-comment"># populate array with expected values</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">expected_values</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">expected_values</span>[<span class="ruby-identifier">population_category</span>]  
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">expected_values</span>[<span class="ruby-identifier">population_category</span>])
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-value">0</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># populates the array with actual values for each population</span>
+    <span class="ruby-identifier">population_categories</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">population_category</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">value</span> = <span class="ruby-identifier">exported_results</span>.<span class="ruby-identifier">value_for_population_type</span>(<span class="ruby-identifier">population_category</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&#39;X&#39;</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">value</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-constant">DISPLAYED_ATTRIBUTES</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;ethnicity&#39;</span>
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">patient</span>[<span class="ruby-identifier">value</span>][<span class="ruby-string">&#39;name&#39;</span>])
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;race&#39;</span>
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">patient</span>[<span class="ruby-identifier">value</span>][<span class="ruby-string">&#39;name&#39;</span>])
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;birthdate&#39;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;deathdate&#39;</span>
+        <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">patient</span>[<span class="ruby-identifier">value</span>]).<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%m/%d/%Y&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">patient</span>[<span class="ruby-identifier">value</span>].<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">time</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;expired&#39;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">patient</span>[<span class="ruby-identifier">value</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-keyword">false</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">patient</span>[<span class="ruby-identifier">value</span>])
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Generate a list of population types in order of the population_criteria_keys</span>
+    <span class="ruby-identifier">population_list</span> = []
+    <span class="ruby-identifier">criteria_keys_by_population</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">list</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> 
+        <span class="ruby-identifier">population_list</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">key</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Populate the values of each row, in the order that the headers were generated.</span>
+    <span class="ruby-identifier">population_criteria_keys</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">value</span> = <span class="ruby-identifier">exported_results</span>.<span class="ruby-identifier">get_criteria_value</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">population_list</span>[<span class="ruby-identifier">index</span>]) 
+      <span class="ruby-identifier">patient_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">value</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">sheet</span>.<span class="ruby-identifier">add_row</span> <span class="ruby-identifier">patient_row</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-value">24</span>
+
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

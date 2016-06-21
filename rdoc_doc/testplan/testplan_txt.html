@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>testplan - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Capfile.html">Capfile</a>
+  
+    <li><a href="../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../Procfile.html">Procfile</a>
+  
+    <li><a href="../README_md.html">README</a>
+  
+    <li><a href="../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Black-Italic/Roboto-BlackItalic-webfont_svg.html">Roboto-BlackItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Black/Roboto-Black-webfont_svg.html">Roboto-Black-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Condensed-Italic/RobotoCondensed-BoldItalic-webfont_svg.html">RobotoCondensed-BoldItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Condensed/RobotoCondensed-Bold-webfont_svg.html">RobotoCondensed-Bold-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Italic/Roboto-BoldItalic-webfont_svg.html">Roboto-BoldItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold/Roboto-Bold-webfont_svg.html">Roboto-Bold-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Condensed-Italic/RobotoCondensed-Italic-webfont_svg.html">RobotoCondensed-Italic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Condensed/RobotoCondensed-Regular-webfont_svg.html">RobotoCondensed-Regular-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Italic/Roboto-Italic-webfont_svg.html">Roboto-Italic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Condensed-Italic/RobotoCondensed-LightItalic-webfont_svg.html">RobotoCondensed-LightItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Condensed/RobotoCondensed-Light-webfont_svg.html">RobotoCondensed-Light-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Italic/Roboto-LightItalic-webfont_svg.html">Roboto-LightItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light/Roboto-Light-webfont_svg.html">Roboto-Light-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Medium-Italic/Roboto-MediumItalic-webfont_svg.html">Roboto-MediumItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Medium/Roboto-Medium-webfont_svg.html">Roboto-Medium-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Regular/Roboto-Regular-webfont_svg.html">Roboto-Regular-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Thin-Italic/Roboto-ThinItalic-webfont_svg.html">Roboto-ThinItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Thin/Roboto-Thin-webfont_svg.html">Roboto-Thin-webfont.svg</a>
+  
+    <li><a href="../app/assets/javascripts/templates/breadcrumb_hbs.html">breadcrumb.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/complexity_popover_hbs.html">complexity_popover.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/setup_hbs.html">setup.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/viz_hbs.html">viz.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/import/finalize_measures_hbs.html">finalize_measures.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/import/import_measure_hbs.html">import_measure.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/matrix_hbs.html">matrix.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure_hbs.html">measure.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/complexity_hbs.html">complexity.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/complexity_popover_hbs.html">complexity_popover.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/coverage_hbs.html">coverage.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/export_patients_hbs.html">export_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/fraction_hbs.html">fraction.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/percentage_hbs.html">percentage.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/population_hbs.html">population.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/population_edit_hbs.html">population_edit.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/status_hbs.html">status.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/codes_items_hbs.html">codes_items.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/codes_list_hbs.html">codes_list.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/value_sets_hbs.html">value_sets.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure_debug_hbs.html">measure_debug.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measures_hbs.html">measures.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/filters_hbs.html">filters.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/measure_patients_hbs.html">measure_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/patient_bank_hbs.html">patient_bank.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/selected_patients_hbs.html">selected_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_codes_hbs.html">edit_codes.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_criteria_hbs.html">edit_criteria.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_fulfillments_hbs.html">edit_fulfillments.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_reference_hbs.html">edit_reference.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_value_hbs.html">edit_value.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/expected_value_hbs.html">expected_value.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/expected_values_hbs.html">expected_values.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/measure_ribbon_hbs.html">measure_ribbon.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/patient_builder_hbs.html">patient_builder.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/select_criteria_hbs.html">select_criteria.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/value_set_code_checker_hbs.html">value_set_code_checker.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/patients_hbs.html">patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_hbs.html">record.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_entry_hbs.html">record_entry.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_header_hbs.html">record_header.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_section_hbs.html">record_section.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/population_calculation_hbs.html">population_calculation.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/population_calculation_results_hbs.html">population_calculation_results.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/edit_user_hbs.html">edit_user.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/email_users_hbs.html">email_users.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/export_bundle_hbs.html">export_bundle.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/table_header_hbs.html">table_header.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/user_hbs.html">user.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/user_summary_hbs.html">user_summary.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/users_hbs.html">users.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/value_sets_builder/value_set_hbs.html">value_set.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/value_sets_builder/value_sets_builder_hbs.html">value_sets_builder.hbs</a>
+  
+    <li><a href="../app/assets/stylesheets/application_css_less.html">application.css.less</a>
+  
+    <li><a href="../app/assets/stylesheets/bank_less.html">bank.less</a>
+  
+    <li><a href="../app/assets/stylesheets/bootstrap3_less.html">bootstrap3.less</a>
+  
+    <li><a href="../app/assets/stylesheets/builder_less.html">builder.less</a>
+  
+    <li><a href="../app/assets/stylesheets/dashboard_less.html">dashboard.less</a>
+  
+    <li><a href="../app/assets/stylesheets/errors_less.html">errors.less</a>
+  
+    <li><a href="../app/assets/stylesheets/landing_less.html">landing.less</a>
+  
+    <li><a href="../app/assets/stylesheets/matrix_less.html">matrix.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measure_less.html">measure.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measure_calculation_less.html">measure_calculation.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measures_less.html">measures.less</a>
+  
+    <li><a href="../app/assets/stylesheets/mixins_less.html">mixins.less</a>
+  
+    <li><a href="../app/assets/stylesheets/rationale_less.html">rationale.less</a>
+  
+    <li><a href="../app/assets/stylesheets/users_less.html">users.less</a>
+  
+    <li><a href="../app/assets/stylesheets/value_sets_less.html">value_sets.less</a>
+  
+    <li><a href="../app/assets/stylesheets/variables_less.html">variables.less</a>
+  
+    <li><a href="../app/assets/stylesheets/vsbuilder_less.html">vsbuilder.less</a>
+  
+    <li><a href="../bower_json.html">bower.json</a>
+  
+    <li><a href="../config_ru.html">config.ru</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_css.html">application.css</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_js.html">application.js</a>
+  
+    <li><a href="../coverage/covered_percent.html">covered_percent</a>
+  
+    <li><a href="../coverage/index_html.html">index.html</a>
+  
+    <li><a href="../demo_script_txt.html">demo_script</a>
+  
+    <li><a href="../deployment/ec2-deployment-steps_txt.html">ec2-deployment-steps</a>
+  
+    <li><a href="../deployment/maintenance_html.html">maintenance.html</a>
+  
+    <li><a href="../deployment/ubuntu-deployment-steps_txt.html">ubuntu-deployment-steps</a>
+  
+    <li><a href="../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+    <li><a href="../doc/bonnie_test_eMeasure_xml.html">bonnie_test_eMeasure.xml</a>
+  
+    <li><a href="../lib/assets/hqmf_template_oid_map_json.html">hqmf_template_oid_map.json</a>
+  
+    <li><a href="../lib/tasks/bonnie_rake.html">bonnie.rake</a>
+  
+    <li><a href="../lib/tasks/bonnie_run_once_rake.html">bonnie_run_once.rake</a>
+  
+    <li><a href="../lib/tasks/calculation_tests_rake.html">calculation_tests.rake</a>
+  
+    <li><a href="../lib/tasks/dashboard_rake.html">dashboard.rake</a>
+  
+    <li><a href="../lib/tasks/exporting/bundle_rake.html">bundle.rake</a>
+  
+    <li><a href="../lib/tasks/loading/bundle_rake.html">bundle.rake</a>
+  
+    <li><a href="../lib/tasks/loading/mat_rake.html">mat.rake</a>
+  
+    <li><a href="../lib/tasks/loading/sources_rake.html">sources.rake</a>
+  
+    <li><a href="../lib/tasks/loading/white_black_list_rake.html">white_black_list.rake</a>
+  
+    <li><a href="../lib/tasks/parser_comparison_rake.html">parser_comparison.rake</a>
+  
+    <li><a href="../lib/tasks/vsac_rake.html">vsac.rake</a>
+  
+    <li><a href="../public/favicon_ico.html">favicon.ico</a>
+  
+    <li><a href="../public/robots_txt.html">robots</a>
+  
+    <li><a href="../rdoc_help_txt.html">rdoc_help</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/README.html">README</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measure_diff_json.html">measure_diff.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measure_sets_json.html">measure_sets.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measures_json.html">measures.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/patients_json.html">patients.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/value_sets_json.html">value_sets.json</a>
+  
+    <li><a href="../spec/javascripts/helpers/jasmine-jquery-2_1_0_js.html">jasmine-jquery-2.1.0.js</a>
+  
+    <li><a href="../spec/javascripts/helpers/waitsForAndRuns_js.html">waitsForAndRuns.js</a>
+  
+    <li><a href="../spec/javascripts/spec_js.html">spec.js</a>
+  
+    <li><a href="../test/fixtures/draft_measures/CMS104v2_json.html">CMS104v2.json</a>
+  
+    <li><a href="../test/fixtures/draft_measures/CMS138v2_json.html">CMS138v2.json</a>
+  
+    <li><a href="../test/fixtures/patient_builder/source_data_criteria_json.html">source_data_criteria.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_A_json.html">BH_Adult_A.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_B_json.html">BH_Adult_B.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_C_json.html">BH_Adult_C.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_D_json.html">BH_Adult_D.json</a>
+  
+    <li><a href="../test/fixtures/users/bonnie_json.html">bonnie.json</a>
+  
+    <li><a href="../test/fixtures/users/user_admin_json.html">user_admin.json</a>
+  
+    <li><a href="../test/fixtures/users/user_plain_json.html">user_plain.json</a>
+  
+    <li><a href="../test/fixtures/users/user_unapproved_json.html">user_unapproved.json</a>
+  
+    <li><a href="../testplan/435ComplexV2_v4_SimpleXML_xml.html">435ComplexV2_v4_SimpleXML.xml</a>
+  
+    <li><a href="../testplan/DischargedOnAntithrombotic_eMeasure_xml.html">DischargedOnAntithrombotic_eMeasure.xml</a>
+  
+    <li><a href="../testplan/testplan_txt.html">testplan</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page testplan/testplan.txt">
+
+<p>Create a new account (will need to be approved)</p>
+
+<p>Log in</p>
+
+<p>Load DischargedOnAntithrombotic.zip as EP / Patient Based</p>
+
+<pre>logic renders correctly in measure view
+logic sections can be expanded and contracted</pre>
+
+<p>Create a passing patient born 1970 that qualifies for IPP and DEN</p>
+
+<pre class="ruby"><span class="ruby-identifier">logic</span> <span class="ruby-identifier">highlighting</span> <span class="ruby-identifier">works</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">creating</span>
+<span class="ruby-constant">ELEMENTS</span> <span class="ruby-keyword">and</span> <span class="ruby-constant">PATIENT</span> <span class="ruby-constant">HISTORY</span> <span class="ruby-identifier">items</span> <span class="ruby-identifier">can</span> <span class="ruby-identifier">expand</span><span class="ruby-operator">/</span><span class="ruby-identifier">contract</span>
+<span class="ruby-identifier">coverage</span> <span class="ruby-identifier">amount</span> <span class="ruby-identifier">has</span> <span class="ruby-identifier">increased</span> <span class="ruby-identifier">after</span> <span class="ruby-identifier">saving</span>
+</pre>
+
+<p>Update measure using DischargedOnAntithrombotic_eMeasure.xml</p>
+
+<pre class="ruby"><span class="ruby-identifier">patient</span> <span class="ruby-identifier">still</span> <span class="ruby-identifier">passes</span> <span class="ruby-identifier">after</span> <span class="ruby-identifier">update</span>
+</pre>
+
+<p>Clone existing patient, create passing patient that qualifies for IPP, DEN,
+NUM</p>
+
+<pre class="ruby"><span class="ruby-identifier">coverage</span> <span class="ruby-identifier">amount</span> <span class="ruby-identifier">went</span> <span class="ruby-identifier">up</span> <span class="ruby-identifier">after</span> <span class="ruby-identifier">saving</span>
+</pre>
+
+<p>Clone existing patient, create failing patient that qualifies for IPP, DEN,
+NUM</p>
+
+<pre class="ruby"><span class="ruby-identifier">patient</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">listed</span> <span class="ruby-identifier">as</span> <span class="ruby-identifier">failing</span>
+</pre>
+
+<p>In measure view select each patient</p>
+
+<pre>patient expected/actual boxes checked correctly
+highlighting changes correctly in logic</pre>
+
+<p>In measure view, while patient selected, click “show” next to coverage</p>
+
+<pre class="ruby"><span class="ruby-identifier">highliging</span> <span class="ruby-identifier">changes</span> <span class="ruby-identifier">correctly</span>
+<span class="ruby-identifier">patient</span> <span class="ruby-identifier">sections</span> <span class="ruby-identifier">close</span>
+</pre>
+
+<p>In measure view, export patients</p>
+
+<pre class="ruby"><span class="ruby-identifier">summary</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">correct</span>
+<span class="ruby-identifier">individual</span> <span class="ruby-identifier">patient</span> <span class="ruby-identifier">records</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">correct</span> <span class="ruby-identifier">criteria</span>
+</pre>
+
+<p>Load 435ComplexV2_v4_Artifacts.zip as EP / Episode of Care (episode is
+Inpatient Encounter)</p>
+
+<p>From first measure, copy first and third patient into new measure</p>
+
+<p>In new measure, in measure view: select each patient and, for each, select
+population and stratification tabs</p>
+
+<pre>patient values match first measure, but expected likely not set; probably failing
+highlighting is correct</pre>
+
+<p>Update second measure using 435ComplexV2_v4_SimpleXML.xml</p>
+
+<p>Delete all patients from second measure</p>
+
+<p>Change email address</p>
+
+<p>Change password</p>
+
+<p>Log out</p>
+
+<p>Log back in using new password</p>
+
+<p>Delete account</p>
+
+<p>With an admin account:</p>
+
+<pre>Download a users&#39;s bundle
+Disable and re-enable a user account
+Change a user&#39;s email address
+Log in as another user
+Delete a user account</pre>
+
+<p>With a complexity dashboard account:</p>
+
+<pre>Select 2013 and 2014 EP measures and click go
+Hover over the bubbles
+Select the complexity grid
+Select differences by size
+Hover over the added / removed lines
+Select differences by amount</pre>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

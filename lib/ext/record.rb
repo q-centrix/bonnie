@@ -19,6 +19,11 @@ class Record
   end
 
   attr_writer :cms_id
+  ##
+  # Sets the *CMS* *ID* of the measure. <br>
+  # Bold <b>text</b> using html tags.
+  #
+  #
   def cms_id
     @cms_id || begin
                  measure_id = measure_ids.first # gets the primary measure ID

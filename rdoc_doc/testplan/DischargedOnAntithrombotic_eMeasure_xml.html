@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>DischargedOnAntithrombotic_eMeasure.xml - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Capfile.html">Capfile</a>
+  
+    <li><a href="../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../Procfile.html">Procfile</a>
+  
+    <li><a href="../README_md.html">README</a>
+  
+    <li><a href="../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Black-Italic/Roboto-BlackItalic-webfont_svg.html">Roboto-BlackItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Black/Roboto-Black-webfont_svg.html">Roboto-Black-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Condensed-Italic/RobotoCondensed-BoldItalic-webfont_svg.html">RobotoCondensed-BoldItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Condensed/RobotoCondensed-Bold-webfont_svg.html">RobotoCondensed-Bold-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Italic/Roboto-BoldItalic-webfont_svg.html">Roboto-BoldItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold/Roboto-Bold-webfont_svg.html">Roboto-Bold-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Condensed-Italic/RobotoCondensed-Italic-webfont_svg.html">RobotoCondensed-Italic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Condensed/RobotoCondensed-Regular-webfont_svg.html">RobotoCondensed-Regular-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Italic/Roboto-Italic-webfont_svg.html">Roboto-Italic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Condensed-Italic/RobotoCondensed-LightItalic-webfont_svg.html">RobotoCondensed-LightItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Condensed/RobotoCondensed-Light-webfont_svg.html">RobotoCondensed-Light-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Italic/Roboto-LightItalic-webfont_svg.html">Roboto-LightItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light/Roboto-Light-webfont_svg.html">Roboto-Light-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Medium-Italic/Roboto-MediumItalic-webfont_svg.html">Roboto-MediumItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Medium/Roboto-Medium-webfont_svg.html">Roboto-Medium-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Regular/Roboto-Regular-webfont_svg.html">Roboto-Regular-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Thin-Italic/Roboto-ThinItalic-webfont_svg.html">Roboto-ThinItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Thin/Roboto-Thin-webfont_svg.html">Roboto-Thin-webfont.svg</a>
+  
+    <li><a href="../app/assets/javascripts/templates/breadcrumb_hbs.html">breadcrumb.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/complexity_popover_hbs.html">complexity_popover.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/setup_hbs.html">setup.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/viz_hbs.html">viz.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/import/finalize_measures_hbs.html">finalize_measures.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/import/import_measure_hbs.html">import_measure.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/matrix_hbs.html">matrix.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure_hbs.html">measure.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/complexity_hbs.html">complexity.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/complexity_popover_hbs.html">complexity_popover.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/coverage_hbs.html">coverage.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/export_patients_hbs.html">export_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/fraction_hbs.html">fraction.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/percentage_hbs.html">percentage.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/population_hbs.html">population.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/population_edit_hbs.html">population_edit.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/status_hbs.html">status.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/codes_items_hbs.html">codes_items.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/codes_list_hbs.html">codes_list.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/value_sets_hbs.html">value_sets.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure_debug_hbs.html">measure_debug.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measures_hbs.html">measures.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/filters_hbs.html">filters.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/measure_patients_hbs.html">measure_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/patient_bank_hbs.html">patient_bank.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/selected_patients_hbs.html">selected_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_codes_hbs.html">edit_codes.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_criteria_hbs.html">edit_criteria.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_fulfillments_hbs.html">edit_fulfillments.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_reference_hbs.html">edit_reference.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_value_hbs.html">edit_value.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/expected_value_hbs.html">expected_value.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/expected_values_hbs.html">expected_values.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/measure_ribbon_hbs.html">measure_ribbon.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/patient_builder_hbs.html">patient_builder.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/select_criteria_hbs.html">select_criteria.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/value_set_code_checker_hbs.html">value_set_code_checker.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/patients_hbs.html">patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_hbs.html">record.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_entry_hbs.html">record_entry.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_header_hbs.html">record_header.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_section_hbs.html">record_section.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/population_calculation_hbs.html">population_calculation.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/population_calculation_results_hbs.html">population_calculation_results.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/edit_user_hbs.html">edit_user.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/email_users_hbs.html">email_users.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/export_bundle_hbs.html">export_bundle.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/table_header_hbs.html">table_header.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/user_hbs.html">user.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/user_summary_hbs.html">user_summary.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/users_hbs.html">users.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/value_sets_builder/value_set_hbs.html">value_set.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/value_sets_builder/value_sets_builder_hbs.html">value_sets_builder.hbs</a>
+  
+    <li><a href="../app/assets/stylesheets/application_css_less.html">application.css.less</a>
+  
+    <li><a href="../app/assets/stylesheets/bank_less.html">bank.less</a>
+  
+    <li><a href="../app/assets/stylesheets/bootstrap3_less.html">bootstrap3.less</a>
+  
+    <li><a href="../app/assets/stylesheets/builder_less.html">builder.less</a>
+  
+    <li><a href="../app/assets/stylesheets/dashboard_less.html">dashboard.less</a>
+  
+    <li><a href="../app/assets/stylesheets/errors_less.html">errors.less</a>
+  
+    <li><a href="../app/assets/stylesheets/landing_less.html">landing.less</a>
+  
+    <li><a href="../app/assets/stylesheets/matrix_less.html">matrix.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measure_less.html">measure.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measure_calculation_less.html">measure_calculation.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measures_less.html">measures.less</a>
+  
+    <li><a href="../app/assets/stylesheets/mixins_less.html">mixins.less</a>
+  
+    <li><a href="../app/assets/stylesheets/rationale_less.html">rationale.less</a>
+  
+    <li><a href="../app/assets/stylesheets/users_less.html">users.less</a>
+  
+    <li><a href="../app/assets/stylesheets/value_sets_less.html">value_sets.less</a>
+  
+    <li><a href="../app/assets/stylesheets/variables_less.html">variables.less</a>
+  
+    <li><a href="../app/assets/stylesheets/vsbuilder_less.html">vsbuilder.less</a>
+  
+    <li><a href="../bower_json.html">bower.json</a>
+  
+    <li><a href="../config_ru.html">config.ru</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_css.html">application.css</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_js.html">application.js</a>
+  
+    <li><a href="../coverage/covered_percent.html">covered_percent</a>
+  
+    <li><a href="../coverage/index_html.html">index.html</a>
+  
+    <li><a href="../demo_script_txt.html">demo_script</a>
+  
+    <li><a href="../deployment/ec2-deployment-steps_txt.html">ec2-deployment-steps</a>
+  
+    <li><a href="../deployment/maintenance_html.html">maintenance.html</a>
+  
+    <li><a href="../deployment/ubuntu-deployment-steps_txt.html">ubuntu-deployment-steps</a>
+  
+    <li><a href="../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+    <li><a href="../doc/bonnie_test_eMeasure_xml.html">bonnie_test_eMeasure.xml</a>
+  
+    <li><a href="../lib/assets/hqmf_template_oid_map_json.html">hqmf_template_oid_map.json</a>
+  
+    <li><a href="../lib/tasks/bonnie_rake.html">bonnie.rake</a>
+  
+    <li><a href="../lib/tasks/bonnie_run_once_rake.html">bonnie_run_once.rake</a>
+  
+    <li><a href="../lib/tasks/calculation_tests_rake.html">calculation_tests.rake</a>
+  
+    <li><a href="../lib/tasks/dashboard_rake.html">dashboard.rake</a>
+  
+    <li><a href="../lib/tasks/exporting/bundle_rake.html">bundle.rake</a>
+  
+    <li><a href="../lib/tasks/loading/bundle_rake.html">bundle.rake</a>
+  
+    <li><a href="../lib/tasks/loading/mat_rake.html">mat.rake</a>
+  
+    <li><a href="../lib/tasks/loading/sources_rake.html">sources.rake</a>
+  
+    <li><a href="../lib/tasks/loading/white_black_list_rake.html">white_black_list.rake</a>
+  
+    <li><a href="../lib/tasks/parser_comparison_rake.html">parser_comparison.rake</a>
+  
+    <li><a href="../lib/tasks/vsac_rake.html">vsac.rake</a>
+  
+    <li><a href="../public/favicon_ico.html">favicon.ico</a>
+  
+    <li><a href="../public/robots_txt.html">robots</a>
+  
+    <li><a href="../rdoc_help_txt.html">rdoc_help</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/README.html">README</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measure_diff_json.html">measure_diff.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measure_sets_json.html">measure_sets.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measures_json.html">measures.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/patients_json.html">patients.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/value_sets_json.html">value_sets.json</a>
+  
+    <li><a href="../spec/javascripts/helpers/jasmine-jquery-2_1_0_js.html">jasmine-jquery-2.1.0.js</a>
+  
+    <li><a href="../spec/javascripts/helpers/waitsForAndRuns_js.html">waitsForAndRuns.js</a>
+  
+    <li><a href="../spec/javascripts/spec_js.html">spec.js</a>
+  
+    <li><a href="../test/fixtures/draft_measures/CMS104v2_json.html">CMS104v2.json</a>
+  
+    <li><a href="../test/fixtures/draft_measures/CMS138v2_json.html">CMS138v2.json</a>
+  
+    <li><a href="../test/fixtures/patient_builder/source_data_criteria_json.html">source_data_criteria.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_A_json.html">BH_Adult_A.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_B_json.html">BH_Adult_B.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_C_json.html">BH_Adult_C.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_D_json.html">BH_Adult_D.json</a>
+  
+    <li><a href="../test/fixtures/users/bonnie_json.html">bonnie.json</a>
+  
+    <li><a href="../test/fixtures/users/user_admin_json.html">user_admin.json</a>
+  
+    <li><a href="../test/fixtures/users/user_plain_json.html">user_plain.json</a>
+  
+    <li><a href="../test/fixtures/users/user_unapproved_json.html">user_unapproved.json</a>
+  
+    <li><a href="../testplan/435ComplexV2_v4_SimpleXML_xml.html">435ComplexV2_v4_SimpleXML.xml</a>
+  
+    <li><a href="../testplan/DischargedOnAntithrombotic_eMeasure_xml.html">DischargedOnAntithrombotic_eMeasure.xml</a>
+  
+    <li><a href="../testplan/testplan_txt.html">testplan</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page testplan/DischargedOnAntithrombotic_eMeasure.xml">
+
+<p>&lt;?xml-stylesheet type=“text/xsl” href=“xslt/eMeasure.xsl”?&gt;
+&lt;QualityMeasureDocument xmlns=“urn:hl7-org:v3” xmlns:xsi=“<a
+href="http://www.w3.org/2001/XMLSchema-instance">www.w3.org/2001/XMLSchema-instance</a>”&gt;</p>
+
+<pre>   &lt;!--
+      **************************************************************   
+      Measure Header Section
+      **************************************************************
+   --&gt;&lt;typeId root=&quot;2.16.840.1.113883.1.3&quot; extension=&quot;POQM_HD000001&quot;/&gt;
+&lt;id root=&quot;40280381-3d27-5493-013d-4dca4b826ae4&quot;/&gt;
+&lt;code code=&quot;57024-2&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+      displayName=&quot;Health Quality Measure Document&quot;/&gt;
+&lt;title&gt;Discharged on Antithrombotic Therapy&lt;/title&gt;
+&lt;text&gt;Ischemic stroke patients prescribed antithrombotic therapy at hospital discharge&lt;/text&gt;
+&lt;statusCode code=&quot;Complete&quot;/&gt;
+&lt;setId root=&quot;42bf391f-38a3-4c0f-9ece-dcd47e9609d9&quot;/&gt;
+&lt;versionNumber value=&quot;2&quot;/&gt;
+&lt;author typeCode=&quot;AUT&quot;&gt;
+   &lt;assignedPerson classCode=&quot;ASSIGNED&quot;&gt;
+      &lt;representedOrganization classCode=&quot;ORG&quot; determinerCode=&quot;INSTANCE&quot;&gt;
+         &lt;id root=&quot;ea756c10-5b71-4748-b494-d19ea9efcd3a&quot;/&gt;
+         &lt;name&gt;The Joint Commission&lt;/name&gt;
+         &lt;contactParty classCode=&quot;CON&quot; nullFlavor=&quot;UNK&quot;/&gt;
+      &lt;/representedOrganization&gt;
+   &lt;/assignedPerson&gt;
+&lt;/author&gt;
+&lt;custodian&gt;
+   &lt;assignedPerson classCode=&quot;ASSIGNED&quot;&gt;
+      &lt;representedOrganization classCode=&quot;ORG&quot; determinerCode=&quot;INSTANCE&quot;&gt;
+         &lt;id root=&quot;68778c6a-e3fe-4f8f-a42d-780db822d7af&quot;/&gt;
+         &lt;name&gt;The Joint Commission&lt;/name&gt;
+         &lt;contactParty classCode=&quot;CON&quot; nullFlavor=&quot;UNK&quot;/&gt;
+      &lt;/representedOrganization&gt;
+   &lt;/assignedPerson&gt;
+&lt;/custodian&gt;
+&lt;verifier typeCode=&quot;VRF&quot;&gt;
+   &lt;assignedPerson classCode=&quot;ASSIGNED&quot;&gt;
+      &lt;representedOrganization classCode=&quot;ORG&quot; determinerCode=&quot;INSTANCE&quot;&gt;
+         &lt;name&gt;National Quality Forum&lt;/name&gt;
+         &lt;contactParty classCode=&quot;CON&quot; nullFlavor=&quot;UNK&quot;/&gt;
+      &lt;/representedOrganization&gt;
+   &lt;/assignedPerson&gt;
+&lt;/verifier&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;COPY&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Copyright&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Measure specifications are in the Public Domain&amp;#xD;</pre>
+
+<p>&amp;#xD; LOINC(R) is a registered trademark of the Regenstrief
+Institute.&amp;#xD; &amp;#xD; This material contains SNOMED Clinical Terms
+(R) (SNOMED CT© ) copyright 2004-–2010 International Health Terminology
+Standards Development Organization. All rights reserved.&lt;/value&gt;</p>
+
+<pre>   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRSCORE&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;
+            displayName=&quot;Measure Scoring&quot;/&gt;
+      &lt;value xsi:type=&quot;CD&quot; code=&quot;PROPOR&quot; codeSystem=&quot;2.16.840.1.113883.1.11.20367&quot;
+             displayName=&quot;Proportion&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRTYPE&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Measure Type&quot;/&gt;
+      &lt;value xsi:type=&quot;CD&quot; code=&quot;PROCESS&quot; codeSystem=&quot;2.16.840.1.113883.1.11.20368&quot;
+             displayName=&quot;Process&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;STRAT&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Stratification&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRADJ&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Risk Adjustment&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRAGG&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Rate Aggregation&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;RAT&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Rationale&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;The effectiveness of antithrombotic agents in reducing stroke mortality, stroke- related morbidity and recurrence rates has been studied in several large clinical trials. While the use of these agents for patients with acute ischemic stroke and transient ischemic attacks continues to be the subject of study, substantial evidence is available from completed studies. Data at this time suggest that antithrombotic therapy should be prescribed at discharge following acute ischemic stroke to reduce stroke mortality and morbidity as long as no contraindications exist. For patients with a stroke due to a cardioembolic source (e.g., atrial fibrillation, mechanical heart valve), warfarin is recommended unless contraindicated. Warfarin is not generally recommended for secondary stroke prevention in patients presumed to have a non-cardioembolic stroke.&amp;#xD;</pre>
+
+<p>Anticoagulants at doses to prevent venous thromboembolism are insufficient
+antithrombotic therapy to prevent recurrent ischemic stroke or
+TIA.&lt;/value&gt;</p>
+
+<pre>   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;CRS&quot; codeSystem=&quot;2.16.840.1.113883.3.560&quot;
+            displayName=&quot;Clinical Recommendation Statement&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Clinical trial results suggest that antithrombotic therapy should be prescribed at discharge following acute ischemic stroke to reduce stroke mortality and morbidity as long as no contraindications exist.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;IDUR&quot; codeSystem=&quot;2.16.840.1.113883.3.560&quot;
+            displayName=&quot;Improvement Notation&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;An increase in rate&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;NQF ID Number&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;II&quot; root=&quot;2.16.840.1.113883.3.560.1&quot; extension=&quot;0435&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;DISC&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Disclaimer&quot;&gt;
+         &lt;originalText&gt;Disclaimer&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;eMeasure Identifier&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;104&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.74&quot;/&gt;
+      &lt;id root=&quot;2bb7eeed-2f7f-4b5a-951b-42502b1dfb2c&quot;/&gt;
+      &lt;code code=&quot;MSRTP&quot; displayName=&quot;Measurement period&quot;
+            codeSystem=&quot;2.16.840.1.113883.3.560&quot;/&gt;
+      &lt;value xsi:type=&quot;IVL_TS&quot;&gt;
+         &lt;low value=&quot;00000101&quot;/&gt;
+         &lt;high value=&quot;00001231&quot;/&gt;
+      &lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;localVariableName&gt;measureStartDate&lt;/localVariableName&gt;
+   &lt;measureAttribute&gt;
+      &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.75&quot;/&gt;
+      &lt;id root=&quot;fa351767-d576-478a-a18c-73d582360ee6&quot;/&gt;
+      &lt;code code=&quot;MSRSD&quot; displayName=&quot;Measurement start date&quot;
+            codeSystem=&quot;2.16.840.1.113883.3.560&quot;/&gt;
+      &lt;value xsi:type=&quot;TS&quot; value=&quot;00000101&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;localVariableName&gt;measureEndDate&lt;/localVariableName&gt;
+   &lt;measureAttribute&gt;
+      &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.75&quot;/&gt;
+      &lt;id root=&quot;ce0b042f-a895-41bd-868f-f6818fe78356&quot;/&gt;
+      &lt;code code=&quot;MSRED&quot; displayName=&quot;Measurement end date&quot;
+            codeSystem=&quot;2.16.840.1.113883.3.560&quot;/&gt;
+      &lt;value xsi:type=&quot;TS&quot; value=&quot;00001231&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Adams HP, del Zoppo G, Alberts MJ, Bhatt DL, Brass L, Furlan A, Grubb RL, Higashida RT, Jauch EC, Kidwell C, Lyden PD, Morgenstern LB, Qureshi AI, Rosenwasser RH, Scott PA, Wijdicks E. Guidelines for the Early Management of Adults with Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association Stroke Council, Clinical CardiologyCouncil, Cardiovascular Radiology and Intervention Council, and the Atherosclerotic Peripheral Vascular Disease and Quality of Care Outcomes in Research Interdisciplinary Working Groups. Stroke. 2007;38:1655-1711.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Adams H, Adams R, Del Zoppo G, Goldstein LB. Guidelines for the Early Management of Patients With Ischemic Stroke: Guidelines Update A Scientific Statement From the Stroke Council of the American Heart Association/American Stroke Association. Stroke Vol. 36, 2005: 916:923.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Albers GW, Amarenco P, Easton JD, Sacco RL, Teal P. Antithrombotic and Thrombolytic Therapy for Ischemic Stroke. Chest Vol. 119, 2001: 300-320.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Brott TG, Clark WM, Grotta JC, et al. Stroke the first hours. Guidelines for acute treatment. Consensus Statement. National Stroke Association. 2000.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Chen ZM, Sandercock P, Pan HC, et al. Indications for early aspirin use in acute ischemic stroke: a combined analysis of 40,000 randomized patients from the Chinese acute stroke trial and the international stroke trial. On behalf of the CAST and IST collaborative groups, Stroke 2000;31:1240-1249.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Coull BM, Williams LS, Goldstein LB, et al. Anticoagulants and Antiplatelet Agents in Acute Ischemic Stroke. Report of the Joint Stroke Guideline Development Committee of the American Academy of Neurology and the American Stroke Association (a Division of the American Heart Association) Stroke. 2002;33:1934 - 1942.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Guideline on the Use of Aspirin as Secondary Prophylaxis for Vascular Disease in Primary Care, Centre for Health Services Research University of Newcastle upon Tyne, &amp;amp; Centre for Health Economics of York, 1998.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Sacco RL, Adams R, Albers G, Alberts MJ, Benavente O, Furie K, Goldstein LB, Gorelick P, Halperin J, Harbaugh R, Johnston SC, Katzan I, Kelly-Hayes M, Kenton EJ, Marks M, Schwamm LH, Tomsick T. Guidelines for Prevention of Stroke in Patients With Ischemic Stroke or Transient Ischemic Attack: A Statement for Healthcare Professionals From the American Heart Association/American Stroke Association Council on Stroke: Co-Sponsored by the Council on Cardiovascular Radiology and Intervention. Stroke. Vol. 37, 2006:577.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;DEF&quot; codeSystem=&quot;2.16.840.1.113883.3.560&quot; displayName=&quot;Definition&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;GUIDE&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Guidance&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;The unit of measurement for this measure is an inpatient episode of care. Each distinct hospitalization should be reported, regardless of whether the same patient is admitted for inpatient care more than once during the measurement period. In addition, the eMeasure logic intends to represent events within or surrounding a single occurrence of an inpatient hospitalization.&amp;#xD;</pre>
+
+<p>&amp;#xD; The facility location arrival datetime and facility location
+departure datetime are coupled with the emergency department visit value
+set. They intend to represent arrival date/time at the emergency department
+and the discharge date/time from the emergency department,
+respectively.&lt;/value&gt;</p>
+
+<pre>   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Transmission Format&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;IPP&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Initial Patient Population&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Patients admitted to the hospital for inpatient acute care with a principal diagnosis code for ischemic or hemorrhagic stroke with hospital stays &amp;lt;= 120 days during the measurement period for patients age 18 and older at the time of hospital admission.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;DENOM&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Denominator&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Ischemic stroke patients&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Denominator Exclusions&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Patients with comfort measures only documented&amp;#xD;</pre>
+
+<p>Patients admitted for elective carotid intervention&amp;#xD; Patients
+discharged to another hospital&amp;#xD; Patients who left against medical
+advice&amp;#xD; Patients who expired&amp;#xD; Patients discharged to home
+for hospice care&amp;#xD; Patients discharged to a health care facility for
+hospice care&lt;/value&gt;</p>
+
+<pre>   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;NUMER&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Numerator&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Ischemic stroke patients prescribed antithrombotic therapy at hospital discharge.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Numerator Exclusions&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Not Applicable&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;DENEXCEP&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Denominator Exceptions&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Patients with a documented reason for not prescribing antithrombotic therapy at discharge&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRPOPL&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Measure Population&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Not Applicable&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Measure Observations&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;Not Applicable&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Supplemental Data Elements&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;For every patient evaluated by this measure also identify payer, race, ethnicity, and sex.&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;componentOf&gt;
+   &lt;qualityMeasureSet classCode=&quot;ACT&quot;&gt;
+      &lt;id root=&quot;c121c175-764b-4588-a0d1-362bb18a58ae&quot;/&gt;
+      &lt;title&gt;eMeasure Stroke (eSTK)&lt;/title&gt;
+   &lt;/qualityMeasureSet&gt;
+&lt;/componentOf&gt;
+
+   &lt;!--
+      **************************************************************   
+      Population Criteria Section
+      **************************************************************
+   --&gt;&lt;component typeCode=&quot;COMP&quot;&gt;
+   &lt;section&gt;
+      &lt;code code=&quot;57026-7&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+            displayName=&quot;Population criteria&quot;/&gt;
+      &lt;title&gt;Population criteria&lt;/title&gt;
+      &lt;text&gt;
+         &lt;list&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Initial Patient Population =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &quot;Patient Characteristic Birthdate: birth date&quot;  &amp;gt;= 18 year(s) starts before start of &quot;Occurrence A of Encounter, Performed: Inpatient Encounter&quot;&lt;/item&gt;
+                  &lt;item&gt;AND: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (length of stay &amp;lt;= 120 day(s))&quot;&lt;/item&gt;
+                  &lt;item&gt;AND: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge datetime)&quot; during &quot;Measurement Period&quot;&lt;/item&gt;
+                  &lt;item&gt;AND: &lt;list&gt;
+                        &lt;item&gt;OR: &quot;Diagnosis, Active: Hemorrhagic Stroke (ordinality: &#39;Principal Diagnosis&#39;)&quot;&lt;/item&gt;
+                        &lt;item&gt;OR: &quot;Diagnosis, Active: Ischemic Stroke (ordinality: &#39;Principal Diagnosis&#39;)&quot;&lt;/item&gt;
+                        &lt;item&gt; starts during &quot;Occurrence A of Encounter, Performed: Inpatient Encounter&quot;&lt;/item&gt;
+                     &lt;/list&gt;
+                  &lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Denominator =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &quot;Initial Patient Population&quot;&lt;/item&gt;
+                  &lt;item&gt;AND: &quot;Diagnosis, Active: Ischemic Stroke (ordinality: &#39;Principal Diagnosis&#39;)&quot; starts during &quot;Occurrence A of Encounter, Performed: Inpatient Encounter&quot;&lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Denominator Exclusions =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &lt;list&gt;
+                        &lt;item&gt;OR: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (reason: &#39;Carotid Intervention&#39;)&quot;&lt;/item&gt;
+                        &lt;item&gt;OR: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Discharge To Another Hospital&#39;)&quot;&lt;/item&gt;
+                        &lt;item&gt;OR: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Left Against Medical Advice&#39;)&quot;&lt;/item&gt;
+                        &lt;item&gt;OR: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Discharged to Home for Hospice Care&#39;)&quot;&lt;/item&gt;
+                        &lt;item&gt;OR: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Patient Expired&#39;)&quot;&lt;/item&gt;
+                        &lt;item&gt;OR: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Discharged to Health Care Facility for Hospice Care&#39;)&quot;&lt;/item&gt;
+                        &lt;item&gt;OR: &lt;list&gt;
+                              &lt;item&gt;AND: &quot;Occurrence A of Encounter, Performed: Inpatient Encounter (admission datetime)&quot;  &amp;lt;= 1 hour(s) starts after end of &quot;Occurrence A of Encounter, Performed: Emergency Department Visit (facility location departure datetime)&quot;&lt;/item&gt;
+                              &lt;item&gt;AND: &lt;list&gt;
+                                    &lt;item&gt;OR: &lt;list&gt;
+                                          &lt;item&gt;AND: &quot;Occurrence A of Intervention, Order: Palliative Care&quot; starts after start of &quot;Occurrence A of Encounter, Performed: Emergency Department Visit (facility location arrival datetime)&quot;&lt;/item&gt;
+                                          &lt;item&gt;AND: &quot;Occurrence A of Intervention, Order: Palliative Care&quot; starts before or during &quot;Occurrence A of Encounter, Performed: Inpatient Encounter&quot;&lt;/item&gt;
+                                       &lt;/list&gt;
+                                    &lt;/item&gt;
+                                    &lt;item&gt;OR: &lt;list&gt;
+                                          &lt;item&gt;AND: &quot;Occurrence A of Intervention, Performed: Palliative Care&quot; starts after start of &quot;Occurrence A of Encounter, Performed: Emergency Department Visit (facility location arrival datetime)&quot;&lt;/item&gt;
+                                          &lt;item&gt;AND: &quot;Occurrence A of Intervention, Performed: Palliative Care&quot; starts before or during &quot;Occurrence A of Encounter, Performed: Inpatient Encounter&quot;&lt;/item&gt;
+                                       &lt;/list&gt;
+                                    &lt;/item&gt;
+                                 &lt;/list&gt;
+                              &lt;/item&gt;
+                           &lt;/list&gt;
+                        &lt;/item&gt;
+                        &lt;item&gt;OR: &lt;list&gt;
+                              &lt;item&gt;OR: &quot;Intervention, Order: Palliative Care&quot;&lt;/item&gt;
+                              &lt;item&gt;OR: &quot;Intervention, Performed: Palliative Care&quot;&lt;/item&gt;
+                              &lt;item&gt; starts during &quot;Occurrence A of Encounter, Performed: Inpatient Encounter&quot;&lt;/item&gt;
+                           &lt;/list&gt;
+                        &lt;/item&gt;
+                     &lt;/list&gt;
+                  &lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Numerator =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &quot;Medication, Discharge: Antithrombotic Therapy&quot; during &quot;Occurrence A of Encounter, Performed: Inpatient Encounter&quot;&lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Denominator Exceptions =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &lt;list&gt;
+                        &lt;item&gt;OR: &quot;Medication, Order not done: Medical Reason&quot; for &quot;Antithrombotic Therapy RxNorm Value Set&quot;&lt;/item&gt;
+                        &lt;item&gt;OR: &quot;Medication, Order not done: Patient Refusal&quot; for &quot;Antithrombotic Therapy RxNorm Value Set&quot;&lt;/item&gt;
+                        &lt;item&gt; starts during &quot;Occurrence A of Encounter, Performed: Inpatient Encounter&quot;&lt;/item&gt;
+                     &lt;/list&gt;
+                  &lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+         &lt;/list&gt;
+      &lt;/text&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: exceptions 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;2BA67FAD-51BA-4DDD-8D65-823A69576248&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;DENEXCEP&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Denominator Exception&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot; actionNegationInd=&quot;true&quot;&gt;&lt;!-- Medication, Order pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.78&quot;/&gt;
+                        &lt;id root=&quot;e3d24059-58bc-4897-a4f7-2290bd4a5c70&quot;/&gt;
+                        &lt;code code=&quot;10160-0&quot; displayName=&quot;Medications&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;title&gt;Medication, Order not done: Medical Reason&lt;/title&gt;
+                              &lt;participant typeCode=&quot;CSM&quot;&gt;
+                                 &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                                    &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                                       &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.201&quot;
+                                             displayName=&quot;Antithrombotic Therapy RxNorm Value Set&quot;
+                                             codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                    &lt;/playingMaterial&gt;
+                                 &lt;/roleParticipant&gt;
+                              &lt;/participant&gt;
+                              &lt;sourceOf typeCode=&quot;RSON&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.473&quot;
+                                           displayName=&quot;Medical Reason SNOMED-CT Value Set&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/substanceAdministration&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot; actionNegationInd=&quot;true&quot;&gt;&lt;!-- Medication, Order pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.78&quot;/&gt;
+                        &lt;id root=&quot;e3d24059-58bc-4897-a4f7-2290bd4a5c70&quot;/&gt;
+                        &lt;code code=&quot;10160-0&quot; displayName=&quot;Medications&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;title&gt;Medication, Order not done: Patient Refusal&lt;/title&gt;
+                              &lt;participant typeCode=&quot;CSM&quot;&gt;
+                                 &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                                    &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                                       &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.201&quot;
+                                             displayName=&quot;Antithrombotic Therapy RxNorm Value Set&quot;
+                                             codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                    &lt;/playingMaterial&gt;
+                                 &lt;/roleParticipant&gt;
+                              &lt;/participant&gt;
+                              &lt;sourceOf typeCode=&quot;RSON&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.93&quot;
+                                           displayName=&quot;Patient Refusal SNOMED-CT Value Set&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/substanceAdministration&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;SDU&quot;&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                        &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                        &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                    displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                    codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                              &lt;statusCode code=&quot;completed&quot;/&gt;
+                           &lt;/encounter&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: exclusions 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot; actionNegationInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;725DFAF3-18A8-4667-BE34-2E1A9D32DB34&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;DENOM&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Denominator&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                        &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                        &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                    displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                    codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (reason: &#39;Carotid Intervention&#39;)&lt;/title&gt;
+                              &lt;statusCode code=&quot;completed&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1017.2&quot;/&gt;
+                                    &lt;code code=&quot;410666004&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;reason&quot;
+                                          codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.204&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                           displayName=&quot;Carotid Intervention&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/encounter&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                        &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                        &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                    displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                    codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Discharge To Another Hospital&#39;)&lt;/title&gt;
+                              &lt;statusCode code=&quot;completed&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1003.2&quot;/&gt;
+                                    &lt;code code=&quot;309039003&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot;
+                                          displayName=&quot;discharge status&quot;
+                                          codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.87&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                           displayName=&quot;Discharge To Another Hospital&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/encounter&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                        &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                        &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                    displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                    codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Left Against Medical Advice&#39;)&lt;/title&gt;
+                              &lt;statusCode code=&quot;completed&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1003.2&quot;/&gt;
+                                    &lt;code code=&quot;309039003&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot;
+                                          displayName=&quot;discharge status&quot;
+                                          codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.308&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                           displayName=&quot;Left Against Medical Advice&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/encounter&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                        &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                        &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                    displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                    codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Discharged to Home for Hospice Care&#39;)&lt;/title&gt;
+                              &lt;statusCode code=&quot;completed&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1003.2&quot;/&gt;
+                                    &lt;code code=&quot;309039003&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot;
+                                          displayName=&quot;discharge status&quot;
+                                          codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.209&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                           displayName=&quot;Discharged to Home for Hospice Care&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/encounter&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                        &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                        &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                    displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                    codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Patient Expired&#39;)&lt;/title&gt;
+                              &lt;statusCode code=&quot;completed&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1003.2&quot;/&gt;
+                                    &lt;code code=&quot;309039003&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot;
+                                          displayName=&quot;discharge status&quot;
+                                          codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.309&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                           displayName=&quot;Patient Expired&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/encounter&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                        &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                        &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                    displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                    codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge status: &#39;Discharged to Health Care Facility for Hospice Care&#39;)&lt;/title&gt;
+                              &lt;statusCode code=&quot;completed&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1003.2&quot;/&gt;
+                                    &lt;code code=&quot;309039003&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot;
+                                          displayName=&quot;discharge status&quot;
+                                          codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.207&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                           displayName=&quot;Discharged to Health Care Facility for Hospice Care&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/encounter&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                           &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+                           &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                              &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                              &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                 &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                          displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                          codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                    &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (admission datetime)&lt;/title&gt;
+                                    &lt;statusCode code=&quot;completed&quot;/&gt;
+                                    &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                       &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                          &lt;code code=&quot;399423000&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot;
+                                                displayName=&quot;admission datetime&quot;
+                                                codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                          &lt;value xsi:type=&quot;ANYNonNull&quot;/&gt;
+                                       &lt;/observation&gt;
+                                    &lt;/sourceOf&gt;
+                                    &lt;sourceOf typeCode=&quot;SAE&quot;&gt;
+                                       &lt;pauseQuantity xsi:type=&quot;IVL_PQ&quot;&gt;
+                                          &lt;high value=&quot;1&quot; unit=&quot;h&quot; inclusive=&quot;true&quot;/&gt;
+                                       &lt;/pauseQuantity&gt;
+                                       &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                                          &lt;id root=&quot;5308d302-69e2-4a0d-b34e-5a47ff94e14c&quot;/&gt;
+                                          &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                                          &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                             &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.292&quot;
+                                                      displayName=&quot;Emergency Department Visit SNOMED-CT Value Set&quot;
+                                                      codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                                &lt;title&gt;Occurrence A of Encounter, Performed: Emergency Department Visit (facility location departure datetime)&lt;/title&gt;
+                                                &lt;statusCode code=&quot;completed&quot;/&gt;
+                                                &lt;sourceOf typeCode=&quot;SUBJ&quot;&gt;
+                                                   &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                      &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1036.1&quot;/&gt;
+                                                      &lt;participant typeCode=&quot;LOC&quot;&gt;
+                                                         &lt;roleParticipant classCode=&quot;SDLOC&quot;&gt;
+                                                            &lt;code/&gt;
+                                                            &lt;effectiveTime xsi:type=&quot;IVL_TS&quot;&gt;
+                                                               &lt;high/&gt;
+                                                            &lt;/effectiveTime&gt;
+                                                         &lt;/roleParticipant&gt;
+                                                      &lt;/participant&gt;
+                                                   &lt;/encounter&gt;
+                                                &lt;/sourceOf&gt;
+                                             &lt;/encounter&gt;
+                                          &lt;/sourceOf&gt;
+                                       &lt;/act&gt;
+                                    &lt;/sourceOf&gt;
+                                 &lt;/encounter&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/act&gt;
+                        &lt;/sourceOf&gt;
+                        &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                           &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+                           &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                                 &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                                 &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                                       &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+                                       &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Order pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.45&quot;/&gt;
+                                          &lt;id root=&quot;2d096939-d2b5-4d63-96a8-16926392055e&quot;/&gt;
+                                          &lt;code code=&quot;18776-5&quot; displayName=&quot;Plan of care&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                                          &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                             &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                &lt;code code=&quot;2.16.840.1.113883.3.526.2.1076&quot;
+                                                      displayName=&quot;Palliative Care SNOMED-CT Value Set&quot;
+                                                      codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                                &lt;title&gt;Occurrence A of Intervention, Order: Palliative Care&lt;/title&gt;
+                                                &lt;sourceOf typeCode=&quot;SAS&quot;&gt;
+                                                   &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                                                      &lt;id root=&quot;5308d302-69e2-4a0d-b34e-5a47ff94e14c&quot;/&gt;
+                                                      &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                                                      &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                                         &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                            &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.292&quot;
+                                                                  displayName=&quot;Emergency Department Visit SNOMED-CT Value Set&quot;
+                                                                  codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                                            &lt;title&gt;Occurrence A of Encounter, Performed: Emergency Department Visit (facility location arrival datetime)&lt;/title&gt;
+                                                            &lt;statusCode code=&quot;completed&quot;/&gt;
+                                                            &lt;sourceOf typeCode=&quot;SUBJ&quot;&gt;
+                                                               &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                                  &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1035.1&quot;/&gt;
+                                                                  &lt;participant typeCode=&quot;LOC&quot;&gt;
+                                                                     &lt;roleParticipant classCode=&quot;SDLOC&quot;&gt;
+                                                                        &lt;code/&gt;
+                                                                        &lt;effectiveTime xsi:type=&quot;IVL_TS&quot;&gt;
+                                                                           &lt;low/&gt;
+                                                                        &lt;/effectiveTime&gt;
+                                                                     &lt;/roleParticipant&gt;
+                                                                  &lt;/participant&gt;
+                                                               &lt;/encounter&gt;
+                                                            &lt;/sourceOf&gt;
+                                                         &lt;/encounter&gt;
+                                                      &lt;/sourceOf&gt;
+                                                   &lt;/act&gt;
+                                                &lt;/sourceOf&gt;
+                                             &lt;/procedure&gt;
+                                          &lt;/sourceOf&gt;
+                                       &lt;/act&gt;
+                                    &lt;/sourceOf&gt;
+                                    &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                                       &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+                                       &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Order pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.45&quot;/&gt;
+                                          &lt;id root=&quot;2d096939-d2b5-4d63-96a8-16926392055e&quot;/&gt;
+                                          &lt;code code=&quot;18776-5&quot; displayName=&quot;Plan of care&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                                          &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                             &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                &lt;code code=&quot;2.16.840.1.113883.3.526.2.1076&quot;
+                                                      displayName=&quot;Palliative Care SNOMED-CT Value Set&quot;
+                                                      codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                                &lt;title&gt;Occurrence A of Intervention, Order: Palliative Care&lt;/title&gt;
+                                                &lt;sourceOf typeCode=&quot;EAS&quot; inversionInd=&quot;true&quot;&gt;
+                                                   &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                      &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                                                      &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                                                   &lt;/observation&gt;
+                                                &lt;/sourceOf&gt;
+                                             &lt;/procedure&gt;
+                                          &lt;/sourceOf&gt;
+                                       &lt;/act&gt;
+                                    &lt;/sourceOf&gt;
+                                 &lt;/act&gt;
+                              &lt;/sourceOf&gt;
+                              &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                                 &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                                 &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                                       &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+                                       &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.46&quot;/&gt;
+                                          &lt;id root=&quot;1481cc85-d86f-414e-aaf7-21ab79ecf7b2&quot;/&gt;
+                                          &lt;code code=&quot;47519-4&quot; displayName=&quot;Procedures&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                                          &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                             &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                &lt;code code=&quot;2.16.840.1.113883.3.526.2.1076&quot;
+                                                      displayName=&quot;Palliative Care SNOMED-CT Value Set&quot;
+                                                      codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                                &lt;title&gt;Occurrence A of Intervention, Performed: Palliative Care&lt;/title&gt;
+                                                &lt;statusCode code=&quot;completed&quot;/&gt;
+                                                &lt;sourceOf typeCode=&quot;SAS&quot;&gt;
+                                                   &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                                                      &lt;id root=&quot;5308d302-69e2-4a0d-b34e-5a47ff94e14c&quot;/&gt;
+                                                      &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                                                      &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                                         &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                            &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.292&quot;
+                                                                  displayName=&quot;Emergency Department Visit SNOMED-CT Value Set&quot;
+                                                                  codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                                            &lt;title&gt;Occurrence A of Encounter, Performed: Emergency Department Visit (facility location arrival datetime)&lt;/title&gt;
+                                                            &lt;statusCode code=&quot;completed&quot;/&gt;
+                                                            &lt;sourceOf typeCode=&quot;SUBJ&quot;&gt;
+                                                               &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                                  &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1035.1&quot;/&gt;
+                                                                  &lt;participant typeCode=&quot;LOC&quot;&gt;
+                                                                     &lt;roleParticipant classCode=&quot;SDLOC&quot;&gt;
+                                                                        &lt;code/&gt;
+                                                                        &lt;effectiveTime xsi:type=&quot;IVL_TS&quot;&gt;
+                                                                           &lt;low/&gt;
+                                                                        &lt;/effectiveTime&gt;
+                                                                     &lt;/roleParticipant&gt;
+                                                                  &lt;/participant&gt;
+                                                               &lt;/encounter&gt;
+                                                            &lt;/sourceOf&gt;
+                                                         &lt;/encounter&gt;
+                                                      &lt;/sourceOf&gt;
+                                                   &lt;/act&gt;
+                                                &lt;/sourceOf&gt;
+                                             &lt;/procedure&gt;
+                                          &lt;/sourceOf&gt;
+                                       &lt;/act&gt;
+                                    &lt;/sourceOf&gt;
+                                    &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                                       &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+                                       &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.46&quot;/&gt;
+                                          &lt;id root=&quot;1481cc85-d86f-414e-aaf7-21ab79ecf7b2&quot;/&gt;
+                                          &lt;code code=&quot;47519-4&quot; displayName=&quot;Procedures&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                                          &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                             &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                &lt;code code=&quot;2.16.840.1.113883.3.526.2.1076&quot;
+                                                      displayName=&quot;Palliative Care SNOMED-CT Value Set&quot;
+                                                      codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                                &lt;title&gt;Occurrence A of Intervention, Performed: Palliative Care&lt;/title&gt;
+                                                &lt;statusCode code=&quot;completed&quot;/&gt;
+                                                &lt;sourceOf typeCode=&quot;EAS&quot; inversionInd=&quot;true&quot;&gt;
+                                                   &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                                      &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                                                      &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                                                   &lt;/observation&gt;
+                                                &lt;/sourceOf&gt;
+                                             &lt;/procedure&gt;
+                                          &lt;/sourceOf&gt;
+                                       &lt;/act&gt;
+                                    &lt;/sourceOf&gt;
+                                 &lt;/act&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/act&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                           &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                           &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Order pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.45&quot;/&gt;
+                              &lt;id root=&quot;f70a75ec-f167-474a-a21f-59ba7b50a512&quot;/&gt;
+                              &lt;code code=&quot;18776-5&quot; displayName=&quot;Plan of care&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                 &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;code code=&quot;2.16.840.1.113883.3.526.2.1076&quot;
+                                          displayName=&quot;Palliative Care SNOMED-CT Value Set&quot;
+                                          codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                    &lt;title&gt;Intervention, Order: Palliative Care&lt;/title&gt;
+                                 &lt;/procedure&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/act&gt;
+                        &lt;/sourceOf&gt;
+                        &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                           &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                           &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.46&quot;/&gt;
+                              &lt;id root=&quot;115c642f-e9bc-4125-baf1-3b2537aa8c42&quot;/&gt;
+                              &lt;code code=&quot;47519-4&quot; displayName=&quot;Procedures&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                 &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;code code=&quot;2.16.840.1.113883.3.526.2.1076&quot;
+                                          displayName=&quot;Palliative Care SNOMED-CT Value Set&quot;
+                                          codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                    &lt;title&gt;Intervention, Performed: Palliative Care&lt;/title&gt;
+                                    &lt;statusCode code=&quot;completed&quot;/&gt;
+                                 &lt;/procedure&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/act&gt;
+                        &lt;/sourceOf&gt;
+                        &lt;sourceOf typeCode=&quot;SDU&quot;&gt;
+                           &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                              &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                              &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                                 &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                          displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                          codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                                    &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                                    &lt;statusCode code=&quot;completed&quot;/&gt;
+                                 &lt;/encounter&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/act&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: numerator 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;87237C88-DC17-41D8-AAB1-69A6190CF3F5&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;NUMER&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Numerator&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Medication, Discharge pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.199&quot;/&gt;
+                  &lt;id root=&quot;c102c997-6c5c-42ba-bf4f-9bdf3c30135e&quot;/&gt;
+                  &lt;code code=&quot;10183-2&quot; displayName=&quot;Discharge Medications&quot;
+                        codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;title&gt;Medication, Discharge: Antithrombotic Therapy&lt;/title&gt;
+                        &lt;participant typeCode=&quot;CSM&quot;&gt;
+                           &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                              &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                                 &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.201&quot;
+                                       displayName=&quot;Antithrombotic Therapy RxNorm Value Set&quot;
+                                       codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;/playingMaterial&gt;
+                           &lt;/roleParticipant&gt;
+                        &lt;/participant&gt;
+                        &lt;sourceOf typeCode=&quot;DURING&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/substanceAdministration&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: denominator 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;158FD105-574F-4F41-9F00-43467246785C&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;DENOM&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Denominator&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;F4D54B23-BF1A-4E82-8855-6EC1F67A4194&quot;/&gt;
+                  &lt;title&gt;Initial Patient Population&lt;/title&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+            &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Diagnosis, Active pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.2&quot;/&gt;
+                  &lt;id root=&quot;61c83a17-3d10-49a4-bb43-1127e95caffd&quot;/&gt;
+                  &lt;code code=&quot;11450-4&quot; displayName=&quot;Problem&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;55607006&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;Problem&quot;/&gt;
+                        &lt;title&gt;Diagnosis, Active: Ischemic Stroke (ordinality: &#39;Principal Diagnosis&#39;)&lt;/title&gt;
+                        &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.247&quot;
+                               displayName=&quot;Ischemic Stroke Grouping Value Set&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;33999-4&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Status&quot;/&gt;
+                              &lt;value xsi:type=&quot;CD&quot; code=&quot;55561003&quot; displayName=&quot;active&quot;
+                                     codeSystem=&quot;2.16.840.1.113883.6.96&quot;/&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                        &lt;sourceOf typeCode=&quot;SUBJ&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1012.2&quot;/&gt;
+                              &lt;code code=&quot;117363000&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;ordinality&quot;
+                                    codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                              &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.2.7.1.14&quot;
+                                     codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                     displayName=&quot;Principal Diagnosis&quot;/&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                        &lt;sourceOf typeCode=&quot;SDU&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/observation&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: population 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;F4D54B23-BF1A-4E82-8855-6EC1F67A4194&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;IPP&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Initial Patient Population&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Birthdate pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.400&quot;/&gt;
+                  &lt;id root=&quot;8ade2f1b-ba76-441f-810f-0a1dbfb397c9&quot;/&gt;
+                  &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;21112-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Birth date&quot;/&gt;
+                        &lt;title&gt;Patient Characteristic Birthdate: birth date&lt;/title&gt;
+                        &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.560.100.4&quot;
+                               codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                               displayName=&quot;birth date LOINC Value Set&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;SBS&quot;&gt;
+                           &lt;pauseQuantity xsi:type=&quot;IVL_PQ&quot;&gt;
+                              &lt;low value=&quot;18&quot; unit=&quot;a&quot; inclusive=&quot;true&quot;/&gt;
+                           &lt;/pauseQuantity&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/observation&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+            &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                  &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                  &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                              displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                              codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (length of stay &amp;lt;= 120  day(s))&lt;/title&gt;
+                        &lt;statusCode code=&quot;completed&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;SUBJ&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1029.3&quot;/&gt;
+                              &lt;code code=&quot;183797002&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot;
+                                    displayName=&quot;length of stay&quot;
+                                    codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                              &lt;value xsi:type=&quot;IVL_PQ&quot;&gt;
+                                 &lt;high value=&quot;120&quot; unit=&quot;d&quot; inclusive=&quot;true&quot;/&gt;
+                              &lt;/value&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/encounter&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+            &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                  &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                  &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                              displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                              codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter (discharge datetime)&lt;/title&gt;
+                        &lt;statusCode code=&quot;completed&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1025.1&quot;/&gt;
+                              &lt;code code=&quot;442864001&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot;
+                                    displayName=&quot;discharge datetime&quot;
+                                    codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                              &lt;value xsi:type=&quot;ANYNonNull&quot;/&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                        &lt;sourceOf typeCode=&quot;DURING&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;id root=&quot;2bb7eeed-2f7f-4b5a-951b-42502b1dfb2c&quot;/&gt;
+                              &lt;title&gt;Measurement Period&lt;/title&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/encounter&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+            &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Diagnosis, Active pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.2&quot;/&gt;
+                        &lt;id root=&quot;23bcafde-992f-4db3-9df6-8e2b7874efe9&quot;/&gt;
+                        &lt;code code=&quot;11450-4&quot; displayName=&quot;Problem&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;55607006&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;Problem&quot;/&gt;
+                              &lt;title&gt;Diagnosis, Active: Hemorrhagic Stroke (ordinality: &#39;Principal Diagnosis&#39;)&lt;/title&gt;
+                              &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.212&quot;
+                                     displayName=&quot;Hemorrhagic Stroke Grouping Value Set&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;code code=&quot;33999-4&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Status&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;55561003&quot; displayName=&quot;active&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.6.96&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                              &lt;sourceOf typeCode=&quot;SUBJ&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1012.2&quot;/&gt;
+                                    &lt;code code=&quot;117363000&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;ordinality&quot;
+                                          codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.2.7.1.14&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                           displayName=&quot;Principal Diagnosis&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+                     &lt;conjunctionCode code=&quot;OR&quot;/&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Diagnosis, Active pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.2&quot;/&gt;
+                        &lt;id root=&quot;61c83a17-3d10-49a4-bb43-1127e95caffd&quot;/&gt;
+                        &lt;code code=&quot;11450-4&quot; displayName=&quot;Problem&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;55607006&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;Problem&quot;/&gt;
+                              &lt;title&gt;Diagnosis, Active: Ischemic Stroke (ordinality: &#39;Principal Diagnosis&#39;)&lt;/title&gt;
+                              &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.247&quot;
+                                     displayName=&quot;Ischemic Stroke Grouping Value Set&quot;/&gt;
+                              &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;code code=&quot;33999-4&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Status&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;55561003&quot; displayName=&quot;active&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.6.96&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                              &lt;sourceOf typeCode=&quot;SUBJ&quot;&gt;
+                                 &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                                    &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.1012.2&quot;/&gt;
+                                    &lt;code code=&quot;117363000&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;ordinality&quot;
+                                          codeSystemName=&quot;SNOMED-CT&quot;/&gt;
+                                    &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.2.7.1.14&quot;
+                                           codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                                           displayName=&quot;Principal Diagnosis&quot;/&gt;
+                                 &lt;/observation&gt;
+                              &lt;/sourceOf&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+                  &lt;sourceOf typeCode=&quot;SDU&quot;&gt;
+                     &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                        &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+                        &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                           &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                                    displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                                    codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                              &lt;statusCode code=&quot;completed&quot;/&gt;
+                           &lt;/encounter&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/act&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+   &lt;/section&gt;
+&lt;/component&gt;
+
+   &lt;!--
+      ******************************************   
+      Data Criteria Section
+      ******************************************
+   --&gt;&lt;component typeCode=&quot;COMP&quot;&gt;
+   &lt;section&gt;
+      &lt;code code=&quot;57025-9&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+            displayName=&quot;Data criteria (QDM Data Elements)&quot;/&gt;
+      &lt;title&gt;Data criteria (QDM Data Elements)&lt;/title&gt;
+      &lt;text&gt;
+         &lt;list&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Diagnosis, Active: Hemorrhagic Stroke&quot;&lt;/content&gt; using &quot;Hemorrhagic Stroke Grouping Value Set (2.16.840.1.113883.3.117.1.7.1.212)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Diagnosis, Active: Ischemic Stroke&quot;&lt;/content&gt; using &quot;Ischemic Stroke Grouping Value Set (2.16.840.1.113883.3.117.1.7.1.247)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Encounter, Performed: Emergency Department Visit&quot;&lt;/content&gt; using &quot;Emergency Department Visit SNOMED-CT Value Set (2.16.840.1.113883.3.117.1.7.1.292)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Encounter, Performed: Inpatient Encounter&quot;&lt;/content&gt; using &quot;Inpatient Encounter SNOMED-CT Value Set (2.16.840.1.113883.3.117.1.7.1.23)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Intervention, Order: Palliative Care&quot;&lt;/content&gt; using &quot;Palliative Care SNOMED-CT Value Set (2.16.840.1.113883.3.526.2.1076)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Intervention, Performed: Palliative Care&quot;&lt;/content&gt; using &quot;Palliative Care SNOMED-CT Value Set (2.16.840.1.113883.3.526.2.1076)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Medication, Discharge: Antithrombotic Therapy&quot;&lt;/content&gt; using &quot;Antithrombotic Therapy RxNorm Value Set (2.16.840.1.113883.3.117.1.7.1.201)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Medication, Order not done: Medical Reason&quot;&lt;/content&gt; using &quot;Medical Reason SNOMED-CT Value Set (2.16.840.1.113883.3.117.1.7.1.473)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Medication, Order not done: Patient Refusal&quot;&lt;/content&gt; using &quot;Patient Refusal SNOMED-CT Value Set (2.16.840.1.113883.3.117.1.7.1.93)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Medication, Order: Antithrombotic Therapy&quot;&lt;/content&gt; using &quot;Antithrombotic Therapy RxNorm Value Set (2.16.840.1.113883.3.117.1.7.1.201)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Birthdate: birth date&quot;&lt;/content&gt; using &quot;birth date LOINC Value Set (2.16.840.1.113883.3.560.100.4)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;Attribute: &quot;Ordinality: Principal Diagnosis&quot;&lt;/content&gt; using &quot;Principal Diagnosis SNOMED-CT Value Set  (2.16.840.1.113883.3.117.2.7.1.14)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;Attribute: &quot;Reason: Carotid Intervention&quot;&lt;/content&gt; using &quot;Carotid Intervention Grouping Value Set  (2.16.840.1.113883.3.117.1.7.1.204)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;Attribute: &quot;Discharge status: Discharge To Another Hospital&quot;&lt;/content&gt; using &quot;Discharge To Another Hospital SNOMED-CT Value Set  (2.16.840.1.113883.3.117.1.7.1.87)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;Attribute: &quot;Discharge status: Left Against Medical Advice&quot;&lt;/content&gt; using &quot;Left Against Medical Advice SNOMED-CT Value Set  (2.16.840.1.113883.3.117.1.7.1.308)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;Attribute: &quot;Discharge status: Discharged to Home for Hospice Care&quot;&lt;/content&gt; using &quot;Discharged to Home for Hospice Care SNOMED-CT Value Set  (2.16.840.1.113883.3.117.1.7.1.209)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;Attribute: &quot;Discharge status: Patient Expired&quot;&lt;/content&gt; using &quot;Patient Expired SNOMED-CT Value Set  (2.16.840.1.113883.3.117.1.7.1.309)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;Attribute: &quot;Discharge status: Discharged to Health Care Facility for Hospice Care&quot;&lt;/content&gt; using &quot;Discharged to Health Care Facility for Hospice Care SNOMED-CT Value Set  (2.16.840.1.113883.3.117.1.7.1.207)&quot;&lt;/item&gt;
+         &lt;/list&gt;
+      &lt;/text&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Birthdate pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.400&quot;/&gt;
+            &lt;id root=&quot;8ade2f1b-ba76-441f-810f-0a1dbfb397c9&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;21112-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Birth date&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Birthdate: birth date&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.560.100.4&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;birth date LOINC Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Diagnosis, Active pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.2&quot;/&gt;
+            &lt;id root=&quot;23bcafde-992f-4db3-9df6-8e2b7874efe9&quot;/&gt;
+            &lt;code code=&quot;11450-4&quot; displayName=&quot;Problem&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;55607006&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;Problem&quot;/&gt;
+                  &lt;title&gt;Diagnosis, Active: Hemorrhagic Stroke&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.212&quot;
+                         displayName=&quot;Hemorrhagic Stroke Grouping Value Set&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                     &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;33999-4&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Status&quot;/&gt;
+                        &lt;value xsi:type=&quot;CD&quot; code=&quot;55561003&quot; displayName=&quot;active&quot;
+                               codeSystem=&quot;2.16.840.1.113883.6.96&quot;/&gt;
+                     &lt;/observation&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Order pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.45&quot;/&gt;
+            &lt;id root=&quot;f70a75ec-f167-474a-a21f-59ba7b50a512&quot;/&gt;
+            &lt;code code=&quot;18776-5&quot; displayName=&quot;Plan of care&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;2.16.840.1.113883.3.526.2.1076&quot;
+                        displayName=&quot;Palliative Care SNOMED-CT Value Set&quot;
+                        codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                  &lt;title&gt;Intervention, Order: Palliative Care&lt;/title&gt;
+               &lt;/procedure&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.46&quot;/&gt;
+            &lt;id root=&quot;115c642f-e9bc-4125-baf1-3b2537aa8c42&quot;/&gt;
+            &lt;code code=&quot;47519-4&quot; displayName=&quot;Procedures&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;2.16.840.1.113883.3.526.2.1076&quot;
+                        displayName=&quot;Palliative Care SNOMED-CT Value Set&quot;
+                        codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                  &lt;title&gt;Intervention, Performed: Palliative Care&lt;/title&gt;
+                  &lt;statusCode code=&quot;completed&quot;/&gt;
+               &lt;/procedure&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Diagnosis, Active pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.2&quot;/&gt;
+            &lt;id root=&quot;61c83a17-3d10-49a4-bb43-1127e95caffd&quot;/&gt;
+            &lt;code code=&quot;11450-4&quot; displayName=&quot;Problem&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;55607006&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;Problem&quot;/&gt;
+                  &lt;title&gt;Diagnosis, Active: Ischemic Stroke&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.117.1.7.1.247&quot;
+                         displayName=&quot;Ischemic Stroke Grouping Value Set&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;REFR&quot;&gt;
+                     &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;33999-4&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Status&quot;/&gt;
+                        &lt;value xsi:type=&quot;CD&quot; code=&quot;55561003&quot; displayName=&quot;active&quot;
+                               codeSystem=&quot;2.16.840.1.113883.6.96&quot;/&gt;
+                     &lt;/observation&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+            &lt;id root=&quot;6f2d30a5-f91a-4e91-859f-5ed7a01e57c5&quot;/&gt;
+            &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.23&quot;
+                        displayName=&quot;Inpatient Encounter SNOMED-CT Value Set&quot;
+                        codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                  &lt;title&gt;Encounter, Performed: Inpatient Encounter&lt;/title&gt;
+                  &lt;statusCode code=&quot;completed&quot;/&gt;
+               &lt;/encounter&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Medication, Order pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.17&quot;/&gt;
+            &lt;id root=&quot;e3d24059-58bc-4897-a4f7-2290bd4a5c70&quot;/&gt;
+            &lt;code code=&quot;10160-0&quot; displayName=&quot;Medications&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;title&gt;Medication, Order: Antithrombotic Therapy&lt;/title&gt;
+                  &lt;participant typeCode=&quot;CSM&quot;&gt;
+                     &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                        &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                           &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.201&quot;
+                                 displayName=&quot;Antithrombotic Therapy RxNorm Value Set&quot;
+                                 codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;/playingMaterial&gt;
+                     &lt;/roleParticipant&gt;
+                  &lt;/participant&gt;
+               &lt;/substanceAdministration&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Medication, Discharge pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.199&quot;/&gt;
+            &lt;id root=&quot;c102c997-6c5c-42ba-bf4f-9bdf3c30135e&quot;/&gt;
+            &lt;code code=&quot;10183-2&quot; displayName=&quot;Discharge Medications&quot;
+                  codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;title&gt;Medication, Discharge: Antithrombotic Therapy&lt;/title&gt;
+                  &lt;participant typeCode=&quot;CSM&quot;&gt;
+                     &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                        &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                           &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.201&quot;
+                                 displayName=&quot;Antithrombotic Therapy RxNorm Value Set&quot;
+                                 codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;/playingMaterial&gt;
+                     &lt;/roleParticipant&gt;
+                  &lt;/participant&gt;
+               &lt;/substanceAdministration&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+            &lt;id root=&quot;b9ca6a3d-31ec-4d8f-8890-469759218e44&quot;/&gt;
+            &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.292&quot;
+                        displayName=&quot;Emergency Department Visit SNOMED-CT Value Set&quot;
+                        codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                  &lt;title&gt;Encounter, Performed: Emergency Department Visit&lt;/title&gt;
+                  &lt;statusCode code=&quot;completed&quot;/&gt;
+               &lt;/encounter&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Medication, Order not done pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.78&quot;/&gt;
+            &lt;id root=&quot;38a918c6-7547-4b7c-be5c-bd3c2c2f4400&quot;/&gt;
+            &lt;code code=&quot;10160-0&quot; displayName=&quot;Medications&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;title&gt;Medication, Order not done: Medical Reason&lt;/title&gt;
+                  &lt;participant typeCode=&quot;CSM&quot;&gt;
+                     &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                        &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                           &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.473&quot;
+                                 displayName=&quot;Medical Reason SNOMED-CT Value Set&quot;
+                                 codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;/playingMaterial&gt;
+                     &lt;/roleParticipant&gt;
+                  &lt;/participant&gt;
+               &lt;/substanceAdministration&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Medication, Order not done pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.78&quot;/&gt;
+            &lt;id root=&quot;57fa19c9-f8de-4ae2-8b15-8ca42b63522d&quot;/&gt;
+            &lt;code code=&quot;10160-0&quot; displayName=&quot;Medications&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;RQO&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;title&gt;Medication, Order not done: Patient Refusal&lt;/title&gt;
+                  &lt;participant typeCode=&quot;CSM&quot;&gt;
+                     &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                        &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                           &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.93&quot;
+                                 displayName=&quot;Patient Refusal SNOMED-CT Value Set&quot;
+                                 codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;/playingMaterial&gt;
+                     &lt;/roleParticipant&gt;
+                  &lt;/participant&gt;
+               &lt;/substanceAdministration&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;COMP&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;DEF&quot;&gt;
+            &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+            &lt;id root=&quot;b5243a3d-1c8e-410a-9fbd-b42f2baafe3a&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;DRIV&quot;&gt;
+               &lt;localVariableName&gt;Inpatient Encounter&lt;/localVariableName&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;6f2d30a5-f91a-4e91-859f-5ed7a01e57c5&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;COMP&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;DEF&quot;&gt;
+            &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+            &lt;id root=&quot;5308d302-69e2-4a0d-b34e-5a47ff94e14c&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;DRIV&quot;&gt;
+               &lt;localVariableName&gt;Emergency Department Visit&lt;/localVariableName&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;b9ca6a3d-31ec-4d8f-8890-469759218e44&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;COMP&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;DEF&quot;&gt;
+            &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.45&quot;/&gt;
+            &lt;id root=&quot;2d096939-d2b5-4d63-96a8-16926392055e&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;DRIV&quot;&gt;
+               &lt;localVariableName&gt;Palliative Care&lt;/localVariableName&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;f70a75ec-f167-474a-a21f-59ba7b50a512&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;COMP&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;DEF&quot;&gt;
+            &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.46&quot;/&gt;
+            &lt;id root=&quot;1481cc85-d86f-414e-aaf7-21ab79ecf7b2&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;DRIV&quot;&gt;
+               &lt;localVariableName&gt;Palliative Care&lt;/localVariableName&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;115c642f-e9bc-4125-baf1-3b2537aa8c42&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+   &lt;/section&gt;
+&lt;/component&gt;
+
+      &lt;!--
+         **************************************************************   
+         Stratification Section
+         **************************************************************
+      --&gt;&lt;component typeCode=&quot;COMP&quot;&gt;
+   &lt;section&gt;
+      &lt;code code=&quot;69669-0&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+            displayName=&quot;Population stratification description&quot;/&gt;
+      &lt;title&gt;Reporting Stratification&lt;/title&gt;
+      &lt;text&gt;
+         &lt;list&gt;
+            &lt;item&gt;None&lt;/item&gt;
+         &lt;/list&gt;
+      &lt;/text&gt;
+   &lt;/section&gt;
+&lt;/component&gt;
+
+   &lt;!--
+      ******************************************   
+      Supplemental Data Elements Section
+      ******************************************
+   --&gt;&lt;component typeCode=&quot;COMP&quot;&gt;
+   &lt;section&gt;
+      &lt;code code=&quot;69670-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+            displayName=&quot;Supplemental Data Elements&quot;/&gt;
+      &lt;title&gt;Supplemental Data Elements&lt;/title&gt;
+      &lt;text&gt;
+         &lt;list&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Ethnicity: Ethnicity&quot;&lt;/content&gt; using &quot;Ethnicity CDC Value Set (2.16.840.1.114222.4.11.837)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Payer: Payer&quot;&lt;/content&gt; using &quot;Payer Source of Payment Typology Value Set (2.16.840.1.114222.4.11.3591)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Race: Race&quot;&lt;/content&gt; using &quot;Race CDC Value Set (2.16.840.1.114222.4.11.836)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Sex: ONC Administrative Sex&quot;&lt;/content&gt; using &quot;ONC Administrative Sex Administrative Sex Value Set (2.16.840.1.113762.1.4.1)&quot;&lt;/item&gt;
+         &lt;/list&gt;
+      &lt;/text&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Sex pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.402&quot;/&gt;
+            &lt;id root=&quot;01a13441-e6a5-44d2-8c61-b23dbb2d5623&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;263495000&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;Sex&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Sex: ONC Administrative Sex&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113762.1.4.1&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;ONC Administrative Sex Administrative Sex Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Race pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.406&quot;/&gt;
+            &lt;id root=&quot;cae440e6-eaf0-49c0-8a32-6c8d6f0d82b5&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;32624-9&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Race&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Race: Race&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.114222.4.11.836&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;Race CDC Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Ethnicity pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.403&quot;/&gt;
+            &lt;id root=&quot;1bb3c38f-0c4c-4503-9e23-a8f216c8398e&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;54133-4&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Ethnicity&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Ethnicity: Ethnicity&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.114222.4.11.837&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;Ethnicity CDC Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Payer pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.405&quot;/&gt;
+            &lt;id root=&quot;1cb2edd6-4a95-4b57-8d30-b09e638773f9&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;48768-6&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Payer&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Payer: Payer&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.114222.4.11.3591&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;Payer Source of Payment Typology Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+   &lt;/section&gt;
+&lt;/component&gt;</pre>
+
+<p>&lt;/QualityMeasureDocument&gt;</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

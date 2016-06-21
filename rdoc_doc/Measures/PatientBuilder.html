@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Measures::PatientBuilder - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-derive_entry">::derive_entry</a>
+    
+    <li ><a href="#method-c-derive_field_values">::derive_field_values</a>
+    
+    <li ><a href="#method-c-derive_negation">::derive_negation</a>
+    
+    <li ><a href="#method-c-derive_time_range">::derive_time_range</a>
+    
+    <li ><a href="#method-c-derive_values">::derive_values</a>
+    
+    <li ><a href="#method-c-get_vs_oids">::get_vs_oids</a>
+    
+    <li ><a href="#method-c-rebuild_patient">::rebuild_patient</a>
+    
+    <li ><a href="#method-c-select_code">::select_code</a>
+    
+    <li ><a href="#method-c-select_codes">::select_codes</a>
+    
+    <li ><a href="#method-c-select_value_sets">::select_value_sets</a>
+    
+    <li ><a href="#method-c-white_list_black_list-3F">::white_list_black_list?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Measures::PatientBuilder">
+  <h1 id="class-Measures::PatientBuilder" class="class">
+    class Measures::PatientBuilder
+  </h1>
+
+  <section class="description">
+    
+<p>Utility class for building test patients</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="CODE_SOURCE">CODE_SOURCE
+        
+        <dd>
+        
+      
+        <dt id="INSURANCE_CODES">INSURANCE_CODES
+        
+        <dd>
+        
+      
+        <dt id="INSURANCE_TYPES">INSURANCE_TYPES
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-derive_entry" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">derive_entry</span><span
+            class="method-args">(data_criteria,source_criteria, value_sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Determine the appropriate coded entry type from this data criteria and
+create one to match.</p>
+
+<p>@param [data_criteria]  The data_criteria object to create the entry for
+@param [Range] time The period of time during which the entry happens.
+@param [source_criteria] the hash that represents the patients
+sopurce_data_criteria @param [Hash] value_sets The value sets that this
+data criteria references. @return A coded entry with basic data defined by
+this data criteria.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="derive_entry-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">derive_entry</span>(<span class="ruby-identifier">data_criteria</span>,<span class="ruby-identifier">source_criteria</span>, <span class="ruby-identifier">value_sets</span>)
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">data_criteria</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">data_criteria</span>[<span class="ruby-string">&#39;type&#39;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;characteristic&#39;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">data_criteria</span>[<span class="ruby-string">&#39;patient_api_function&#39;</span>].<span class="ruby-identifier">nil?</span>)
+  <span class="ruby-identifier">time</span> = <span class="ruby-identifier">derive_time_range</span>(<span class="ruby-identifier">source_criteria</span>)
+  <span class="ruby-identifier">entry_type</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">Generator</span>.<span class="ruby-identifier">classify_entry</span>(<span class="ruby-identifier">data_criteria</span>[<span class="ruby-string">&#39;patient_api_function&#39;</span>].<span class="ruby-identifier">to_sym</span>)
+  <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">entry_type</span>.<span class="ruby-identifier">classify</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&quot;description&quot;</span>]
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">start_time</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">low</span>.<span class="ruby-identifier">to_seconds</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">low</span>
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">end_time</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">high</span>.<span class="ruby-identifier">to_seconds</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">high</span>
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">status</span> = <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;status&#39;</span>]
+  <span class="ruby-comment"># If there are no source criteria codes or a white list is used, select new codes, otherwise use existing codes</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;codes&#39;</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span>
+     (<span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">white_list_black_list?</span>(<span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;code_list_id&#39;</span>], <span class="ruby-identifier">value_sets</span>) <span class="ruby-operator">&amp;&amp;</span>
+      <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;code_source&#39;</span>] <span class="ruby-operator">!=</span> <span class="ruby-constant">CODE_SOURCE</span>[<span class="ruby-value">:USER_DEFINED</span>])
+    <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">codes</span> = <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">select_codes</span>(<span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;code_list_id&#39;</span>], <span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">codes</span> = <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;codes&#39;</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">oid</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">DataCriteria</span>.<span class="ruby-identifier">template_id_for_definition</span>(<span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;definition&#39;</span>], <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;status&#39;</span>], <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;negation&#39;</span>])
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">oid</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">DataCriteria</span>.<span class="ruby-identifier">template_id_for_definition</span>(<span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;definition&#39;</span>], <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;status&#39;</span>], <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;negation&#39;</span>], <span class="ruby-string">&#39;r2&#39;</span>)
+  <span class="ruby-identifier">entry</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-derive_field_values" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">derive_field_values</span><span
+            class="method-args">(entry, values, value_sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add this data criteria&#39;s field related data to a coded entry.</p>
+
+<p>@param [Entry] entry The coded entry that this data criteria is modifying.
+@param [Array] values An array of values to create entries for @param
+[Hash] value_sets The value sets that this data criteria references.
+@return The modified coded entry.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="derive_field_values-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 208</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">derive_field_values</span>(<span class="ruby-identifier">entry</span>, <span class="ruby-identifier">values</span>, <span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+
+    <span class="ruby-identifier">converted_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;value&#39;</span>]<span class="ruby-operator">/</span><span class="ruby-value">1000</span>).<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%Y%m%d%H%M%S&#39;</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;type&#39;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;TS&#39;</span>)
+    <span class="ruby-identifier">field</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">DataCriteria</span>.<span class="ruby-identifier">convert_value</span>(<span class="ruby-identifier">value</span>)
+    <span class="ruby-identifier">field</span>.<span class="ruby-identifier">value</span> = <span class="ruby-identifier">converted_time</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted_time</span>
+
+    <span class="ruby-comment"># Format the field to be stored in a Record.</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">field</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;CD&quot;</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>[<span class="ruby-string">&quot;codes&quot;</span>]
+        <span class="ruby-comment"># Multiple codes were specified</span>
+        <span class="ruby-identifier">field_value</span> = {}
+        <span class="ruby-identifier">field_value</span>[<span class="ruby-string">&quot;codes&quot;</span>] = <span class="ruby-identifier">value</span>[<span class="ruby-string">&quot;codes&quot;</span>]
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">value</span>[<span class="ruby-string">&quot;code&quot;</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>[<span class="ruby-string">&quot;code&quot;</span>].<span class="ruby-identifier">empty?</span>
+        <span class="ruby-comment"># A single code was specified</span>
+        <span class="ruby-identifier">field_value</span> = <span class="ruby-identifier">value</span>[<span class="ruby-string">&quot;code&quot;</span>]
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-comment"># No codes specified, default to first possible code</span>
+        <span class="ruby-identifier">field_value</span> = <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">select_code</span>(<span class="ruby-identifier">field</span>.<span class="ruby-identifier">code_list_id</span>, <span class="ruby-identifier">value_sets</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">field_value</span>[<span class="ruby-string">&quot;title&quot;</span>] = <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">select_value_sets</span>(<span class="ruby-identifier">field</span>.<span class="ruby-identifier">code_list_id</span>, <span class="ruby-identifier">value_sets</span>)[<span class="ruby-string">&quot;display_name&quot;</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">field_value</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">field_value</span> = <span class="ruby-identifier">field</span>.<span class="ruby-identifier">format</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">field_accessor</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-comment"># Facilities are a special case where we store a whole object on the entry in Record. Create or augment the existing facility with this piece of data.</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;FACILITY&quot;</span>
+      <span class="ruby-identifier">facility</span> = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">facility</span>
+      <span class="ruby-identifier">facility</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Facility</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">facility_map</span> = {<span class="ruby-string">&quot;FACILITY_LOCATION&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:code</span>, <span class="ruby-string">&quot;FACILITY_LOCATION_ARRIVAL_DATETIME&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:start_time</span>, <span class="ruby-string">&quot;FACILITY_LOCATION_DEPARTURE_DATETIME&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:end_time</span>}
+
+      <span class="ruby-identifier">facility</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">field</span>.<span class="ruby-identifier">title</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">field</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;CD&quot;</span>
+      <span class="ruby-identifier">facility_accessor</span> = <span class="ruby-identifier">facility_map</span>[<span class="ruby-identifier">name</span>]
+      <span class="ruby-identifier">facility</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{facility_accessor}=&quot;</span>, <span class="ruby-identifier">field_value</span>)
+
+      <span class="ruby-identifier">field_accessor</span> = <span class="ruby-value">:facility</span>
+      <span class="ruby-identifier">field_value</span> = <span class="ruby-identifier">facility</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;TRANSFER&quot;</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">starts_with?</span> <span class="ruby-string">&quot;TRANSFER_FROM&quot;</span>
+        <span class="ruby-identifier">transfer</span> = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">transfer_from</span>
+        <span class="ruby-identifier">field_accessor</span> = <span class="ruby-value">:transfer_from</span>
+        <span class="ruby-identifier">default_time</span> = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">start_time</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">transfer</span> = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">transfer_to</span>
+        <span class="ruby-identifier">field_accessor</span> = <span class="ruby-value">:transfer_to</span>
+        <span class="ruby-identifier">default_time</span> = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">end_time</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">transfer</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Transfer</span>.<span class="ruby-identifier">new</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">field</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;CD&quot;</span>
+        <span class="ruby-identifier">transfer</span> = <span class="ruby-constant">Transfer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">transfer</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">field_value</span>))
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">transfer</span>.<span class="ruby-identifier">time</span> = <span class="ruby-identifier">field_value</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">transfer</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">default_time</span>
+
+      <span class="ruby-identifier">field_value</span> = <span class="ruby-identifier">transfer</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">field_accessor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">DataCriteria</span><span class="ruby-operator">::</span><span class="ruby-constant">FIELDS</span>[<span class="ruby-identifier">name</span>][<span class="ruby-value">:coded_entry_method</span>]
+      <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{field_accessor}=&quot;</span>, <span class="ruby-identifier">field_value</span>)
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-comment"># Give some feedback if we hit an unexpected error. Some fields have no action expected, so we&#39;ll suppress those messages.</span>
+      <span class="ruby-identifier">noop_fields</span> = [<span class="ruby-string">&quot;LENGTH_OF_STAY&quot;</span>, <span class="ruby-string">&quot;START_DATETIME&quot;</span>, <span class="ruby-string">&quot;STOP_DATETIME&quot;</span>]
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">noop_fields</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">name</span>
+        <span class="ruby-identifier">field_accessor</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">DataCriteria</span><span class="ruby-operator">::</span><span class="ruby-constant">FIELDS</span>[<span class="ruby-identifier">name</span>][<span class="ruby-value">:coded_entry_method</span>]
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Unknown field #{name} was unable to be added via #{field_accessor} to the patient&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-derive_negation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">derive_negation</span><span
+            class="method-args">(entry,value,value_sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>derive the negation for the source_data_criteria entry if it is negated</p>
+          
+          
+
+          
+          <div class="method-source-code" id="derive_negation-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">derive_negation</span>(<span class="ruby-identifier">entry</span>,<span class="ruby-identifier">value</span>,<span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;negation&#39;</span>]
+    <span class="ruby-identifier">codes</span> = <span class="ruby-identifier">value</span>[<span class="ruby-string">&quot;negation_code&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">select_code</span>(<span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;negation_code_list_id&#39;</span>], <span class="ruby-identifier">value_sets</span>)
+    <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">negation_ind</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">negation_reason</span> = <span class="ruby-identifier">codes</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-derive_time_range" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">derive_time_range</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="derive_time_range-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">derive_time_range</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">low</span> = {<span class="ruby-string">&#39;value&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;start_date&#39;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">/</span> <span class="ruby-value">1000</span>).<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%Y%m%d%H%M%S&#39;</span>), <span class="ruby-string">&#39;type&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;TS&#39;</span> } <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;start_date&#39;</span>].<span class="ruby-identifier">blank?</span>
+  <span class="ruby-identifier">high</span> = {<span class="ruby-string">&#39;value&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;end_date&#39;</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">/</span> <span class="ruby-value">1000</span>).<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%Y%m%d%H%M%S&#39;</span>), <span class="ruby-string">&#39;type&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;TS&#39;</span> } <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;end_date&#39;</span>].<span class="ruby-identifier">blank?</span>
+  <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">Range</span>.<span class="ruby-identifier">from_json</span>({<span class="ruby-string">&#39;low&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">low</span>,<span class="ruby-string">&#39;high&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">high</span>})
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-derive_values" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">derive_values</span><span
+            class="method-args">(entry, values, value_sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>derive the values for the source data criteria</p>
+          
+          
+
+          
+          <div class="method-source-code" id="derive_values-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">derive_values</span>(<span class="ruby-identifier">entry</span>, <span class="ruby-identifier">values</span>, <span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-identifier">derived</span> = []
+  <span class="ruby-identifier">result_vals</span> = <span class="ruby-identifier">values</span>
+  <span class="ruby-identifier">result_vals</span> = [<span class="ruby-identifier">result_vals</span>] <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">result_vals</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>
+  <span class="ruby-identifier">result_vals</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">result_value</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">result_value</span>[<span class="ruby-string">&#39;type&#39;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;CD&#39;</span>
+      <span class="ruby-identifier">oid</span> = <span class="ruby-identifier">result_value</span>[<span class="ruby-string">&#39;code_list_id&#39;</span>]
+      <span class="ruby-identifier">codes</span> = <span class="ruby-identifier">result_value</span>[<span class="ruby-string">&#39;codes&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">select_codes</span>(<span class="ruby-identifier">oid</span>, <span class="ruby-identifier">value_sets</span>)
+      <span class="ruby-identifier">vs</span> = <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">select_value_sets</span>(<span class="ruby-identifier">oid</span>, <span class="ruby-identifier">value_sets</span>)
+      <span class="ruby-identifier">derived</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">CodedResultValue</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">codes</span><span class="ruby-value">:codes</span>, <span class="ruby-identifier">description</span><span class="ruby-operator">:</span> <span class="ruby-identifier">vs</span>[<span class="ruby-string">&quot;display_name&quot;</span>]})
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">range</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">Range</span>.<span class="ruby-identifier">from_json</span>(<span class="ruby-string">&#39;low&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;value&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">result_value</span>[<span class="ruby-string">&#39;value&#39;</span>], <span class="ruby-string">&#39;unit&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">result_value</span>[<span class="ruby-string">&#39;unit&#39;</span>]})
+      <span class="ruby-identifier">derived</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">PhysicalQuantityResultValue</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">range</span>.<span class="ruby-identifier">format</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">values</span>= <span class="ruby-identifier">derived</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-get_vs_oids" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_vs_oids</span><span
+            class="method-args">(source_data_criteria)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_vs_oids-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_vs_oids</span>(<span class="ruby-identifier">source_data_criteria</span>)
+  <span class="ruby-identifier">oids</span> = [<span class="ruby-identifier">source_data_criteria</span>[<span class="ruby-string">&#39;code_list_id&#39;</span>], <span class="ruby-identifier">source_data_criteria</span>[<span class="ruby-string">&#39;negation_code_list_id&#39;</span>]]
+  <span class="ruby-identifier">oids</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">source_data_criteria</span>[<span class="ruby-string">&#39;field_values&#39;</span>].<span class="ruby-identifier">values</span>.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span> <span class="ruby-identifier">field</span>[<span class="ruby-string">&#39;code_list_id&#39;</span>]} <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_data_criteria</span>[<span class="ruby-string">&#39;field_values&#39;</span>]
+  <span class="ruby-identifier">oids</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">source_data_criteria</span>[<span class="ruby-string">&#39;value&#39;</span>].<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>[<span class="ruby-string">&#39;code_list_id&#39;</span>]} <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_data_criteria</span>[<span class="ruby-string">&#39;value&#39;</span>]
+  <span class="ruby-identifier">oids</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-rebuild_patient" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rebuild_patient</span><span
+            class="method-args">(patient)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="rebuild_patient-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">rebuild_patient</span>(<span class="ruby-identifier">patient</span>)
+
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">medical_record_number</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-node">&quot;#{patient.first} #{patient.last} #{Time.now}&quot;</span>)
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">medical_record_assigner</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;Bonnie&quot;</span>
+  <span class="ruby-identifier">vs_oids</span> = <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">source_data_criteria</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">dc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">get_vs_oids</span>(<span class="ruby-identifier">dc</span>)}.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>
+
+  <span class="ruby-identifier">value_sets</span> =  <span class="ruby-constant">Hash</span>[<span class="ruby-operator">*</span><span class="ruby-constant">HealthDataStandards</span><span class="ruby-operator">::</span><span class="ruby-constant">SVS</span><span class="ruby-operator">::</span><span class="ruby-constant">ValueSet</span>.<span class="ruby-identifier">in</span>({<span class="ruby-identifier">oid</span><span class="ruby-operator">:</span> <span class="ruby-identifier">vs_oids</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">user_id</span>}).<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">vs</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">vs</span>.<span class="ruby-identifier">oid</span>,<span class="ruby-identifier">vs</span>]}.<span class="ruby-identifier">flatten</span>]
+  <span class="ruby-identifier">sections</span> = {}
+  <span class="ruby-identifier">entries</span> = {}
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">source_data_criteria</span>.<span class="ruby-identifier">each</span>  <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">source_criteria</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;id&#39;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;MeasurePeriod&#39;</span>
+    <span class="ruby-identifier">data_criteria</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">data_criteria</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">DataCriteria</span>.<span class="ruby-identifier">get_settings_for_definition</span>(<span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;definition&#39;</span>], <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;status&#39;</span>])
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-comment">#unsupported data criteria.</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">$!</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">entry</span> = <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">derive_entry</span>(<span class="ruby-identifier">data_criteria</span>, <span class="ruby-identifier">source_criteria</span>, <span class="ruby-identifier">value_sets</span>)
+
+    <span class="ruby-comment"># if its a thing like result, condition, encounter it will have an entry otherwise</span>
+    <span class="ruby-comment"># its most likely a characteristic</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">entry</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&quot;criteria_id&quot;</span>]
+        <span class="ruby-identifier">entries</span>[<span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&quot;criteria_id&quot;</span>]] = <span class="ruby-identifier">entry</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">derive_values</span>(<span class="ruby-identifier">entry</span>, <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;value&#39;</span>] ,<span class="ruby-identifier">value_sets</span>)
+      <span class="ruby-identifier">derive_negation</span>(<span class="ruby-identifier">entry</span>, <span class="ruby-identifier">source_criteria</span>, <span class="ruby-identifier">value_sets</span>)
+      <span class="ruby-identifier">derive_field_values</span>(<span class="ruby-identifier">entry</span>, <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;field_values&#39;</span>],<span class="ruby-identifier">value_sets</span>)
+
+      <span class="ruby-identifier">entry_type</span> = <span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">Generator</span>.<span class="ruby-identifier">classify_entry</span>(<span class="ruby-identifier">data_criteria</span>[<span class="ruby-string">&#39;patient_api_function&#39;</span>].<span class="ruby-identifier">to_sym</span>)
+      <span class="ruby-identifier">section_name</span> = (<span class="ruby-identifier">entry_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;lab_results&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-string">&quot;results&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">entry_type</span>
+
+      <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;coded_entry_id&#39;</span>] = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">id</span>
+
+      <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;codes&#39;</span>] = <span class="ruby-identifier">entry</span>[<span class="ruby-string">&#39;codes&#39;</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;code_source&#39;</span>] <span class="ruby-operator">!=</span> <span class="ruby-constant">CODE_SOURCE</span>[<span class="ruby-value">:USER_DEFINED</span>]
+        <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;code_source&#39;</span>] = <span class="ruby-keyword">if</span> <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">white_list_black_list?</span>(<span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&#39;code_list_id&#39;</span>], <span class="ruby-identifier">value_sets</span>)
+                                           <span class="ruby-constant">CODE_SOURCE</span>[<span class="ruby-value">:WHITE_LIST</span>]
+                                         <span class="ruby-keyword">else</span>
+                                           <span class="ruby-constant">CODE_SOURCE</span>[<span class="ruby-value">:DEFAULT</span>]
+                                         <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">section_name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;medications&quot;</span>
+        <span class="ruby-identifier">fulfillments</span> = []
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:dose_value</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:dose_unit</span>].<span class="ruby-identifier">blank?</span>
+          <span class="ruby-identifier">entry</span>[<span class="ruby-value">:dose</span>] = { <span class="ruby-string">&quot;value&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:dose_value</span>], <span class="ruby-string">&quot;unit&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:dose_unit</span>] }
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:frequency_value</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:frequency_unit</span>].<span class="ruby-identifier">blank?</span>
+          <span class="ruby-identifier">entry</span>[<span class="ruby-value">:administrationTiming</span>] = { <span class="ruby-string">&quot;period&quot;</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-string">&quot;value&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:frequency_value</span>], <span class="ruby-string">&quot;unit&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:frequency_unit</span>] } }
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:fulfillments</span>].<span class="ruby-identifier">blank?</span>
+          <span class="ruby-identifier">source_criteria</span>[<span class="ruby-value">:fulfillments</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fulfillment</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">fulfillments</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">FulfillmentHistory</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">:dispenseDate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fulfillment</span>[<span class="ruby-value">:dispense_datetime</span>], <span class="ruby-value">:quantityDispensed</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fulfillment</span>[<span class="ruby-value">:quantity_dispensed_value</span>], <span class="ruby-value">:unit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fulfillment</span>[<span class="ruby-value">:quantity_dispensed_unit</span>]}}))
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">entry</span>[<span class="ruby-value">:fulfillmentHistory</span>] = <span class="ruby-identifier">fulfillments</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Add source and destination fields to Communications class. </span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">section_name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;communications&quot;</span>
+        <span class="ruby-identifier">entry</span>[<span class="ruby-value">:direction</span>] = <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&quot;definition&quot;</span>] <span class="ruby-comment"># &quot;communication_from_provider_to_patient&quot;</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment"># Add the updated section to this patient.</span>
+      <span class="ruby-identifier">sections</span>[<span class="ruby-identifier">section_name</span>] <span class="ruby-operator">||=</span> []
+      <span class="ruby-identifier">sections</span>[<span class="ruby-identifier">section_name</span>].<span class="ruby-identifier">push</span>(<span class="ruby-identifier">entry</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+
+  <span class="ruby-comment"># if the patient is persisted, mongoid will send the updates at this point.</span>
+  <span class="ruby-constant">Record</span><span class="ruby-operator">::</span><span class="ruby-constant">Sections</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">section</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">section</span>).<span class="ruby-identifier">clear</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">sections</span>[<span class="ruby-identifier">section</span>.<span class="ruby-identifier">to_s</span>] <span class="ruby-operator">||</span> [])
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># now handle all of the references -- this needs to be done after all of the entries have been materialized</span>
+  <span class="ruby-comment"># because there is no guarantee of order in the source data criteria</span>
+
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">source_data_criteria</span>.<span class="ruby-identifier">each</span>  <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">source_criteria</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">refs</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&quot;references&quot;</span>]
+      <span class="ruby-identifier">refs</span> = []
+      <span class="ruby-identifier">source_ref</span> = <span class="ruby-identifier">entries</span>[<span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&quot;criteria_id&quot;</span>]]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_ref</span>
+        <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&quot;references&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ref</span><span class="ruby-operator">|</span>
+          <span class="ruby-comment">#find the referenced entry in the list of materialized objects</span>
+          <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">entries</span>[<span class="ruby-identifier">ref</span>[<span class="ruby-string">&quot;reference_id&quot;</span>]]
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">entry</span>
+            <span class="ruby-identifier">source_ref</span>.<span class="ruby-identifier">add_reference</span>(<span class="ruby-identifier">entry</span>,<span class="ruby-identifier">ref</span>[<span class="ruby-string">&quot;reference_type&quot;</span>])
+            <span class="ruby-identifier">refs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ref</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#only keep the references that can be matched.</span>
+    <span class="ruby-identifier">source_criteria</span>[<span class="ruby-string">&quot;references&quot;</span>] = <span class="ruby-identifier">refs</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-select_code" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_code</span><span
+            class="method-args">(oid, value_sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Select the relevant value set that matches the given OID and generate a
+hash that can be stored on a <a href="../Record.html">Record</a>. The hash
+will be of this format: { “codeSystem” =&gt; “code_set_identified”, “code”
+=&gt; code }</p>
+
+<p>@param [String] oid The target value set. @param [Hash] value_sets Value
+sets that might contain the OID for which we&#39;re searching. @return A
+Hash including a code and code system containing one randomly selected
+code.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="select_code-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 328</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">select_code</span>(<span class="ruby-identifier">oid</span>, <span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-identifier">codes</span> = <span class="ruby-identifier">select_codes</span>(<span class="ruby-identifier">oid</span>, <span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-identifier">code_system</span> = <span class="ruby-identifier">codes</span>.<span class="ruby-identifier">keys</span>[<span class="ruby-value">0</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">code_system</span>.<span class="ruby-identifier">nil?</span>
+  {
+    <span class="ruby-string">&#39;code_system&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">code_system</span>,
+    <span class="ruby-string">&#39;code&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">codes</span>[<span class="ruby-identifier">code_system</span>][<span class="ruby-value">0</span>]
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-select_codes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_codes</span><span
+            class="method-args">(oid, value_sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Select the relevant value set that matches the given OID and generate a
+hash that can be stored on a <a href="../Record.html">Record</a>. The hash
+will be of this format: { “code_set_identified” =&gt; [code] }</p>
+
+<p>@param [String] oid The target value set. @param [Hash] value_sets Value
+sets that might contain the OID for which we&#39;re searching. @return A
+Hash of code sets corresponding to the given oid, each containing one
+randomly selected code.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="select_codes-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 292</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">select_codes</span>(<span class="ruby-identifier">oid</span>, <span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-identifier">default_code_sets</span> = {}
+  <span class="ruby-identifier">listed_sets</span> = {}
+  <span class="ruby-identifier">vs</span> = <span class="ruby-identifier">value_sets</span>[<span class="ruby-identifier">oid</span>]
+  <span class="ruby-identifier">vs</span>.<span class="ruby-identifier">concepts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">concept</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">default_code_sets</span>[<span class="ruby-identifier">concept</span>.<span class="ruby-identifier">code_system_name</span>] <span class="ruby-operator">||=</span> [<span class="ruby-identifier">concept</span>.<span class="ruby-identifier">code</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">concept</span>.<span class="ruby-identifier">black_list</span>
+    <span class="ruby-identifier">listed_sets</span>[<span class="ruby-identifier">concept</span>.<span class="ruby-identifier">code_system_name</span>] <span class="ruby-operator">||=</span> [<span class="ruby-identifier">concept</span>.<span class="ruby-identifier">code</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">concept</span>.<span class="ruby-identifier">white_list</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">vs</span>
+  (<span class="ruby-identifier">listed_sets</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">default_code_sets</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">listed_sets</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-select_value_sets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_value_sets</span><span
+            class="method-args">(oid, value_sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Filter through a list of value sets and choose only the ones marked with a
+given OID.</p>
+
+<p>@param [String] oid The OID being used for filtering. @param [Array]
+value_sets A pool of available value sets @return The value set from the
+list with the requested OID.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="select_value_sets-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 315</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">select_value_sets</span>(<span class="ruby-identifier">oid</span>, <span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-comment"># Pick the value set for this DataCriteria. If it can&#39;t be found, it is an error from the value set source. We&#39;ll add the entry without codes for now.</span>
+  <span class="ruby-identifier">vs</span> = <span class="ruby-identifier">value_sets</span>[<span class="ruby-identifier">oid</span>]
+  <span class="ruby-identifier">vs</span> = <span class="ruby-identifier">vs</span> <span class="ruby-operator">||</span> <span class="ruby-constant">HealthDataStandards</span><span class="ruby-operator">::</span><span class="ruby-constant">SVS</span><span class="ruby-operator">::</span><span class="ruby-constant">ValueSet</span>.<span class="ruby-identifier">new</span>({ <span class="ruby-string">&quot;concepts&quot;</span> =<span class="ruby-operator">&gt;</span> [] })
+  <span class="ruby-identifier">vs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-white_list_black_list-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">white_list_black_list?</span><span
+            class="method-args">(oid, value_sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="white_list_black_list-3F-source">
+            <pre><span class="ruby-comment"># File lib/measures/patient_builder.rb, line 303</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">white_list_black_list?</span>(<span class="ruby-identifier">oid</span>, <span class="ruby-identifier">value_sets</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">value_sets</span>[<span class="ruby-identifier">oid</span>]
+    <span class="ruby-identifier">value_sets</span>[<span class="ruby-identifier">oid</span>].<span class="ruby-identifier">concepts</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">white_list</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">black_list</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

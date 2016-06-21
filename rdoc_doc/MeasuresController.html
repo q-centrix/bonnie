@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class MeasuresController - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-clear_cached_javascript">#clear_cached_javascript</a>
+    
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-debug">#debug</a>
+    
+    <li ><a href="#method-i-destroy">#destroy</a>
+    
+    <li ><a href="#method-i-finalize">#finalize</a>
+    
+    <li ><a href="#method-i-show">#show</a>
+    
+    <li ><a href="#method-i-value_sets">#value_sets</a>
+    
+    <li ><a href="#method-i-vsac_auth_expire">#vsac_auth_expire</a>
+    
+    <li ><a href="#method-i-vsac_auth_valid">#vsac_auth_valid</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-MeasuresController">
+  <h1 id="class-MeasuresController" class="class">
+    class MeasuresController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-clear_cached_javascript" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear_cached_javascript</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clear_cached_javascript-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 249</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_cached_javascript</span>
+  <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">generate_js</span> <span class="ruby-identifier">clear_db_cache</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:back</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">measure_details</span> = {
+   <span class="ruby-string">&#39;type&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:measure_type</span>],
+   <span class="ruby-string">&#39;episode_of_care&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:calculation_type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;episode&#39;</span>
+  }
+
+  <span class="ruby-identifier">extension</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:measure_file</span>].<span class="ruby-identifier">original_filename</span>).<span class="ruby-identifier">downcase</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:measure_file</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">extension</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>[<span class="ruby-string">&#39;.zip&#39;</span>, <span class="ruby-string">&#39;.xml&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">extension</span>)
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Loading Measure&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Incorrect Upload Format.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;The file you have uploaded does not appear to be a Measure Authoring Tool zip export of a measure or HQMF XML measure file. Please re-export your measure from the MAT and select the &#39;eMeasure Package&#39; option, or select the correct HQMF XML file.&quot;</span>}
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-node">&quot;#{root_path}##{params[:redirect_route]}&quot;</span>
+      <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">extension</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;.zip&#39;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">MATLoader</span>.<span class="ruby-identifier">mat_export?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:measure_file</span>])
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Uploading Measure&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;The uploaded zip file is not a Measure Authoring Tool export.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You have uploaded a zip file that does not appear to be a Measure Authoring Tool zip file. If the zip file contains HQMF XML, please unzip the file and upload the HQMF XML file instead of the zip file. Otherwise, please re-export your measure from the MAT and select the &#39;eMeasure Package&#39; option&quot;</span>}
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-node">&quot;#{root_path}##{params[:redirect_route]}&quot;</span>
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">is_update</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>].<span class="ruby-identifier">empty?</span>)
+    <span class="ruby-identifier">is_update</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">existing</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">hqmf_set_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>]).<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;type&#39;</span>] = <span class="ruby-identifier">existing</span>.<span class="ruby-identifier">type</span>
+    <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;episode_of_care&#39;</span>] = <span class="ruby-identifier">existing</span>.<span class="ruby-identifier">episode_of_care</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;episode_of_care&#39;</span>]
+      <span class="ruby-identifier">episodes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;eoc_#{existing.hqmf_set_id}&quot;</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">episodes</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">episodes</span>[<span class="ruby-string">&#39;episode_ids&#39;</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">episodes</span>[<span class="ruby-string">&#39;episode_ids&#39;</span>].<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;episode_ids&#39;</span>] = <span class="ruby-identifier">episodes</span>[<span class="ruby-string">&#39;episode_ids&#39;</span>]
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;episode_ids&#39;</span>] = <span class="ruby-identifier">existing</span>.<span class="ruby-identifier">episode_ids</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+ 
+    <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;population_titles&#39;</span>] = <span class="ruby-identifier">existing</span>.<span class="ruby-identifier">populations</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>[<span class="ruby-string">&#39;title&#39;</span>]} <span class="ruby-keyword">if</span> <span class="ruby-identifier">existing</span>.<span class="ruby-identifier">populations</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">extension</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;.xml&#39;</span>
+      <span class="ruby-identifier">includeDraft</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:include_draft</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;true&#39;</span>
+      <span class="ruby-identifier">effectiveDate</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">includeDraft</span>
+        <span class="ruby-identifier">effectiveDate</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:vsac_date</span>],<span class="ruby-string">&#39;%m/%d/%Y&#39;</span>).<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%Y%m%d&#39;</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">SourcesLoader</span>.<span class="ruby-identifier">load_measure_xml</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:measure_file</span>].<span class="ruby-identifier">tempfile</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:vsac_username</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:vsac_password</span>], <span class="ruby-identifier">measure_details</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-identifier">effectiveDate</span>, <span class="ruby-identifier">includeDraft</span>, <span class="ruby-identifier">get_ticket_granting_ticket</span>) <span class="ruby-comment"># overwrite_valuesets=true, cache=false, includeDraft=true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">MATLoader</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:measure_file</span>], <span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">measure_details</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">is_update</span>)
+      <span class="ruby-identifier">existing</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">hqmf_set_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">hqmf_set_id</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">existing</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">delete</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Loading Measure&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;A version of this measure is already loaded.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You have a version of this measure loaded already.  Either update that measure with the update button, or delete that measure and re-upload it.&quot;</span>}
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-node">&quot;#{root_path}##{params[:redirect_route]}&quot;</span>
+        <span class="ruby-keyword">return</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">existing</span>.<span class="ruby-identifier">hqmf_set_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">hqmf_set_id</span>
+        <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">delete</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Updating Measure&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;The update file does not match the measure.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You have attempted to update a measure with a file that represents a different measure.  Please update the correct measure or upload the file as a new measure.&quot;</span>}
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-node">&quot;#{root_path}##{params[:redirect_route]}&quot;</span>
+        <span class="ruby-keyword">return</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;episode_of_care&#39;</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">data_criteria</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>[<span class="ruby-string">&#39;specific_occurrence&#39;</span>]}.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">delete</span>
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Loading Measure&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;An episode of care measure requires at least one specific occurrence for the episode of care.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You have loaded the measure as an episode of care measure.  Episode of care measures require at lease one data element that is a specific occurrence.  Please add a specific occurrence data element to the measure logic.&quot;</span>}
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-node">&quot;#{root_path}##{params[:redirect_route]}&quot;</span>
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># exclude patient birthdate and expired OIDs used by SimpleXML parser for AGE_AT handling and bad oid protection in missing VS check</span>
+    <span class="ruby-identifier">missing_value_sets</span> = (<span class="ruby-identifier">measure</span>.<span class="ruby-identifier">as_hqmf_model</span>.<span class="ruby-identifier">all_code_set_oids</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">value_set_oids</span> <span class="ruby-operator">-</span> [<span class="ruby-string">&#39;2.16.840.1.113883.3.117.1.7.1.70&#39;</span>, <span class="ruby-string">&#39;2.16.840.1.113883.3.117.1.7.1.309&#39;</span>])
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">missing_value_sets</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">delete</span>
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Measure is missing value sets&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;The measure you have tried to load is missing value sets.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;The measure you are trying to load is missing value sets.  Try re-packaging and re-exporting the measure from the Measure Authoring Tool.  The following value sets are missing: [#{missing_value_sets.join(&#39;, &#39;)}]&quot;</span>}
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-node">&quot;#{root_path}##{params[:redirect_route]}&quot;</span>
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">end</span>
+    
+
+    <span class="ruby-identifier">existing</span>.<span class="ruby-identifier">delete</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">existing</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">is_update</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:measure_file</span>]
+      <span class="ruby-identifier">errors_dir</span> = <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;log&#39;</span>, <span class="ruby-string">&#39;load_errors&#39;</span>)
+      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">errors_dir</span>)
+      <span class="ruby-identifier">clean_email</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span>) <span class="ruby-comment"># Prevent path traversal</span>
+      <span class="ruby-identifier">filename</span> = <span class="ruby-node">&quot;#{clean_email}_#{Time.now.strftime(&#39;%Y-%m-%dT%H%M%S&#39;)}#{extension}&quot;</span>
+
+      <span class="ruby-identifier">operator_error</span> = <span class="ruby-keyword">false</span> <span class="ruby-comment"># certain types of errors are operator errors and do not need to be emailed out.</span>
+
+      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:measure_file</span>].<span class="ruby-identifier">tempfile</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">errors_dir</span>, <span class="ruby-identifier">filename</span>))
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">chmod</span>(<span class="ruby-value">0644</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">errors_dir</span>, <span class="ruby-identifier">filename</span>))
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">errors_dir</span>, <span class="ruby-node">&quot;#{clean_email}_#{Time.now.strftime(&#39;%Y-%m-%dT%H%M%S&#39;)}.error&quot;</span>), <span class="ruby-string">&#39;w&#39;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)) }
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">ValueSetException</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Loading Measure&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;The measure value sets could not be found.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Please re-package the measure in the MAT and make sure &amp;quot;VSAC Value Sets&amp;quot; are included in the package, then re-export the MAT Measure bundle.&quot;</span>}
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">HQMFException</span>
+        <span class="ruby-identifier">operator_error</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Loading Measure&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error loading XML file.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;There was an error loading the XML file you selected.  Please verify that the file you are uploading is an HQMF XML or SimpleXML file.  Message: #{e.message}&quot;</span>}
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">VSACException</span>
+        <span class="ruby-identifier">operator_error</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Loading VSAC Value Sets&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;VSAC value sets could not be loaded.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;Please verify that you are using the correct VSAC username and password. #{e.message}&quot;</span>}
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Loading Measure&quot;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;The measure could not be loaded.&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Please re-package the measure in the MAT, then re-download the MAT Measure Export.  If the measure has QDM elements without a VSAC Value Set defined the measure will not load.&quot;</span>}
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = {<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Error Loading Measure&quot;</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must specify a Measure Authoring tool measure export to use.&quot;</span>}
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># email the error</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">operator_error</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">defined?</span> <span class="ruby-constant">ExceptionNotifier</span><span class="ruby-operator">::</span><span class="ruby-constant">Notifier</span>
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:error_file</span>] = <span class="ruby-identifier">filename</span>
+      <span class="ruby-constant">ExceptionNotifier</span><span class="ruby-operator">::</span><span class="ruby-constant">Notifier</span>.<span class="ruby-identifier">exception_notification</span>(<span class="ruby-identifier">env</span>, <span class="ruby-identifier">e</span>).<span class="ruby-identifier">deliver</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-node">&quot;#{root_path}##{params[:redirect_route]}&quot;</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">measures</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">measure</span>
+  <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">save!</span>
+
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">is_update</span>)
+    <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">episode_ids</span> = <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;episode_ids&#39;</span>]
+    <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">populations</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">population</span>, <span class="ruby-identifier">population_index</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">population</span>[<span class="ruby-string">&#39;title&#39;</span>] = <span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;population_titles&#39;</span>][<span class="ruby-identifier">population_index</span>] <span class="ruby-keyword">if</span> (<span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;population_titles&#39;</span>])
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># check if episode ids have changed</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">measure</span>.<span class="ruby-identifier">episode_of_care?</span>)
+      <span class="ruby-identifier">keys</span> = <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">data_criteria</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>[<span class="ruby-string">&#39;source_data_criteria&#39;</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">d</span>[<span class="ruby-string">&#39;specific_occurrence&#39;</span>]}.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">uniq</span>
+      <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">needs_finalize</span> = (<span class="ruby-identifier">measure</span>.<span class="ruby-identifier">episode_ids</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">keys</span>).<span class="ruby-identifier">length</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">episode_ids</span>.<span class="ruby-identifier">length</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">needs_finalize</span>
+        <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">episode_ids</span> = [] 
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:redirect_route</span>] = <span class="ruby-string">&#39;&#39;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">needs_finalize</span> = (<span class="ruby-identifier">measure_details</span>[<span class="ruby-string">&#39;episode_of_care&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">populations</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">populations</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">strat_index</span> = <span class="ruby-value">1</span>
+      <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">populations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">population</span><span class="ruby-operator">|</span> 
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">population</span>[<span class="ruby-constant">HQMF</span><span class="ruby-operator">::</span><span class="ruby-constant">PopulationCriteria</span><span class="ruby-operator">::</span><span class="ruby-constant">STRAT</span>])
+          <span class="ruby-identifier">population</span>[<span class="ruby-string">&#39;title&#39;</span>] = <span class="ruby-node">&quot;Stratification #{strat_index}&quot;</span>
+          <span class="ruby-identifier">strat_index</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">end</span>
+
+
+  <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">ADEHelper</span>.<span class="ruby-identifier">update_if_ade</span>(<span class="ruby-identifier">measure</span>)
+
+  <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">generate_js</span>
+
+  <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">save!</span>
+
+  <span class="ruby-comment"># rebuild the users patients if set to do so</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:rebuild_patients</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;true&quot;</span>
+    <span class="ruby-constant">Record</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> 
+      <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">rebuild_patient</span>(<span class="ruby-identifier">r</span>)
+      <span class="ruby-identifier">r</span>.<span class="ruby-identifier">save!</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-node">&quot;#{root_path}##{params[:redirect_route]}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-debug" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">debug</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="debug-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 243</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">debug</span>
+  <span class="ruby-ivar">@measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">without</span>(<span class="ruby-value">:map_fns</span>, <span class="ruby-value">:record_ids</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@patients</span> = <span class="ruby-constant">Record</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">asc</span>(<span class="ruby-value">:last</span>, <span class="ruby-value">:first</span>)
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">layout</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;debug&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">measure</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finalize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finalize</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="finalize-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 229</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">finalize</span>
+  <span class="ruby-identifier">measure_finalize_data</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>[<span class="ruby-string">&#39;hqmf_id&#39;</span>]}.<span class="ruby-identifier">uniq</span>
+  <span class="ruby-identifier">measure_finalize_data</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">hqmf_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&#39;hqmf_id&#39;</span>]).<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">update_attributes</span>({<span class="ruby-identifier">needs_finalize</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>, <span class="ruby-identifier">episode_ids</span><span class="ruby-operator">:</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&#39;episode_ids&#39;</span>]})
+    <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">populations</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">population</span>, <span class="ruby-identifier">population_index</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">population</span>[<span class="ruby-string">&#39;title&#39;</span>] = <span class="ruby-identifier">data</span>[<span class="ruby-string">&#39;titles&#39;</span>][<span class="ruby-node">&quot;#{population_index}&quot;</span>] <span class="ruby-keyword">if</span> (<span class="ruby-identifier">data</span>[<span class="ruby-string">&#39;titles&#39;</span>])
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">generate_js</span>(<span class="ruby-identifier">clear_db_cache</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">save!</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-identifier">skippable_fields</span> = [<span class="ruby-value">:map_fns</span>, <span class="ruby-value">:record_ids</span>, <span class="ruby-value">:measure_attributes</span>]
+  <span class="ruby-ivar">@measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">without</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">skippable_fields</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">stale?</span> <span class="ruby-identifier">last_modified</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@measure</span>.<span class="ruby-identifier">updated_at</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:utc</span>), <span class="ruby-identifier">etag</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@measure</span>.<span class="ruby-identifier">cache_key</span>
+    <span class="ruby-ivar">@measure_json</span> = <span class="ruby-constant">MultiJson</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@measure</span>.<span class="ruby-identifier">as_json</span>(<span class="ruby-identifier">except</span><span class="ruby-operator">:</span> <span class="ruby-identifier">skippable_fields</span>))
+    <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@measure</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@measure_json</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-value_sets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">value_sets</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="value_sets-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">value_sets</span>
+  <span class="ruby-comment"># Caching of value sets is (temporarily?) disabled to correctly handle cases where users use multiple accounts</span>
+  <span class="ruby-comment"># if stale? last_modified: Measure.by_user(current_user).max(:updated_at).try(:utc)</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">value_set_oids</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">only</span>(<span class="ruby-value">:value_set_oids</span>).<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:value_set_oids</span>).<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>
+
+    <span class="ruby-comment"># Not the cleanest code, but we get a many second performance improvement by going directly to Moped</span>
+    <span class="ruby-comment"># (The two commented lines are functionally equivalent to the following three uncommented lines, if slower)</span>
+    <span class="ruby-comment"># value_sets_by_oid = HealthDataStandards::SVS::ValueSet.in(oid: value_set_oids).index_by(&amp;:oid)</span>
+    <span class="ruby-comment"># @value_sets_by_oid_json = MultiJson.encode(value_sets_by_oid.as_json(except: [:_id, :code_system, :code_system_version]))</span>
+    <span class="ruby-identifier">value_sets</span> = <span class="ruby-constant">Mongoid</span><span class="ruby-operator">::</span><span class="ruby-constant">Sessions</span>.<span class="ruby-identifier">default</span>[<span class="ruby-constant">HealthDataStandards</span><span class="ruby-operator">::</span><span class="ruby-constant">SVS</span><span class="ruby-operator">::</span><span class="ruby-constant">ValueSet</span>.<span class="ruby-identifier">collection_name</span>].<span class="ruby-identifier">find</span>(<span class="ruby-identifier">oid</span><span class="ruby-operator">:</span> { <span class="ruby-string">&#39;$in&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value_set_oids</span> }, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">value_sets</span> = <span class="ruby-identifier">value_sets</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;concepts.code_system&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-string">&#39;concepts.code_system_version&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@value_sets_by_oid_json</span> = <span class="ruby-constant">MultiJson</span>.<span class="ruby-identifier">encode</span> <span class="ruby-identifier">value_sets</span>.<span class="ruby-identifier">index_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">vs</span><span class="ruby-operator">|</span> <span class="ruby-identifier">vs</span>[<span class="ruby-string">&#39;oid&#39;</span>] }
+
+    <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@value_sets_by_oid_json</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@value_sets_by_oid_json</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-vsac_auth_expire" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vsac_auth_expire</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="vsac_auth_expire-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 217</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vsac_auth_expire</span>
+  <span class="ruby-comment"># Force expire the VSAC session</span>
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:tgt</span>] = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-vsac_auth_valid" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vsac_auth_valid</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="vsac_auth_valid-source">
+            <pre><span class="ruby-comment"># File app/controllers/measures_controller.rb, line 207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vsac_auth_valid</span>
+  <span class="ruby-comment"># If VSAC TGT is still valid, return its expiration date/time</span>
+  <span class="ruby-identifier">tgt</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:tgt</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">tgt</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">tgt</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">tgt</span>[<span class="ruby-value">:expires</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">valid</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">valid</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">expires</span><span class="ruby-operator">:</span> <span class="ruby-identifier">tgt</span>[<span class="ruby-value">:expires</span>]}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

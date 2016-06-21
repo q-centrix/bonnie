@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class HQMF::Randomizer - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-between">::between</a>
+    
+    <li ><a href="#method-c-randomize_address">::randomize_address</a>
+    
+    <li ><a href="#method-c-randomize_birthdate">::randomize_birthdate</a>
+    
+    <li ><a href="#method-c-randomize_demographics">::randomize_demographics</a>
+    
+    <li ><a href="#method-c-randomize_first_name">::randomize_first_name</a>
+    
+    <li ><a href="#method-c-randomize_gender">::randomize_gender</a>
+    
+    <li ><a href="#method-c-randomize_language">::randomize_language</a>
+    
+    <li ><a href="#method-c-randomize_last_name">::randomize_last_name</a>
+    
+    <li ><a href="#method-c-randomize_race_and_ethnicity">::randomize_race_and_ethnicity</a>
+    
+    <li ><a href="#method-c-randomize_range">::randomize_range</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-HQMF::Randomizer">
+  <h1 id="class-HQMF::Randomizer" class="class">
+    class HQMF::Randomizer
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-between" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">between</span><span
+            class="method-args">(min, max)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return a randomly selected number between two bounds</p>
+
+<p>@param [int] min The lower inclusive bound @param [int] max The upper
+inclusive bound @return [int] A random number between the min and max
+bounds</p>
+          
+          
+
+          
+          <div class="method-source-code" id="between-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">between</span>(<span class="ruby-identifier">min</span>, <span class="ruby-identifier">max</span>)
+  <span class="ruby-identifier">span</span> = <span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>(<span class="ruby-identifier">span</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_address</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create an address at random</p>
+
+<p>@return An address hash</p>
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_address-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_address</span>
+  <span class="ruby-identifier">streetnames</span> = <span class="ruby-node">%w{Park Main Oak Pine Maple Cedar Elm Lake Hill Second Washington}</span>
+  <span class="ruby-identifier">zipcodes</span> = {
+    <span class="ruby-string">&#39;01000&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Springfield&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MA&#39;</span>},
+    <span class="ruby-string">&#39;01200&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Springfield&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MA&#39;</span>},
+    <span class="ruby-string">&#39;01400&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Worcester&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MA&#39;</span>},
+    <span class="ruby-string">&#39;02000&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Brockton&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MA&#39;</span>},
+    <span class="ruby-string">&#39;02100&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Boston&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MA&#39;</span>},
+    <span class="ruby-string">&#39;02500&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Cape Cod&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;MA&#39;</span>},
+    <span class="ruby-string">&#39;03000&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Manchester&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;NH&#39;</span>},
+    <span class="ruby-string">&#39;03300&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Concord&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;NH&#39;</span>},
+    <span class="ruby-string">&#39;03500&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;White River Junction&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;VT&#39;</span>},
+    <span class="ruby-string">&#39;03800&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Portsmouth&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;NH&#39;</span>},
+    <span class="ruby-string">&#39;04000&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Portland&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;ME&#39;</span>},
+    <span class="ruby-string">&#39;04400&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Bangor&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;ME&#39;</span>},
+    <span class="ruby-string">&#39;05400&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Burlington&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;VT&#39;</span>},
+    <span class="ruby-string">&#39;06000&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Hartford&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;CT&#39;</span>},
+    <span class="ruby-string">&#39;06500&#39;</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&#39;city&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;New Haven&#39;</span>, <span class="ruby-string">&#39;state&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;CT&#39;</span>}
+  }
+  
+  <span class="ruby-identifier">zip</span> = <span class="ruby-identifier">zipcodes</span>.<span class="ruby-identifier">keys</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">zipcodes</span>.<span class="ruby-identifier">length</span>)]
+  <span class="ruby-identifier">street</span> = <span class="ruby-node">&quot;#{rand(100)+1} #{streetnames[rand(streetnames.length)]} Street&quot;</span>
+  
+  <span class="ruby-constant">Address</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">street</span><span class="ruby-operator">:</span> [<span class="ruby-identifier">street</span>], <span class="ruby-identifier">city</span><span class="ruby-operator">:</span> <span class="ruby-identifier">zipcodes</span>[<span class="ruby-identifier">zip</span>][<span class="ruby-string">&#39;city&#39;</span>], <span class="ruby-identifier">state</span><span class="ruby-operator">:</span> <span class="ruby-identifier">zipcodes</span>[<span class="ruby-identifier">zip</span>][<span class="ruby-string">&#39;state&#39;</span>], <span class="ruby-identifier">zip</span><span class="ruby-operator">:</span> <span class="ruby-identifier">zip</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_birthdate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_birthdate</span><span
+            class="method-args">(low=35, high=60)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>More accurately, randomize a believable birthdate. Given a patient, find
+all coded entries that have age-related implications and make sure the
+patient is at least that old. Since that is complicated, for now let&#39;s
+just make them 40</p>
+
+<p>@param A patient with coded entries that dictate potential birthdates
+@return A realistic birthdate for the given patient</p>
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_birthdate-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_birthdate</span>(<span class="ruby-identifier">low</span>=<span class="ruby-value">35</span>, <span class="ruby-identifier">high</span>=<span class="ruby-value">60</span>)
+  <span class="ruby-identifier">now</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-identifier">range</span> = <span class="ruby-identifier">randomize_range</span>(<span class="ruby-identifier">now</span>.<span class="ruby-identifier">advance</span>(<span class="ruby-identifier">years</span><span class="ruby-operator">:</span> (<span class="ruby-value">-1</span><span class="ruby-operator">*</span><span class="ruby-identifier">high</span>)), <span class="ruby-identifier">now</span>.<span class="ruby-identifier">advance</span>(<span class="ruby-identifier">years</span><span class="ruby-operator">:</span> (<span class="ruby-value">-1</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">low</span>)))
+  <span class="ruby-identifier">range</span>.<span class="ruby-identifier">low</span>.<span class="ruby-identifier">to_time_object</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_demographics" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_demographics</span><span
+            class="method-args">(patient)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add trivial demographics info to a <a href="../Record.html">Record</a>.
+Trivial fields are ones that identify a patient as unique to a human eye
+but have no impact on CQM, e.g. address. This is essentially an upsert, so
+any preexisting info will be wiped.</p>
+
+<p>@param [Record] The <a href="../Record.html">Record</a> to which we will be
+adding random demographics @return The <a href="../Record.html">Record</a>
+that was given to us with the following fields randomly generated:</p>
+
+<pre>race/ethnicity, language, last name</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_demographics-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_demographics</span>(<span class="ruby-identifier">patient</span>)
+  <span class="ruby-identifier">race_and_ethnicity</span> = <span class="ruby-identifier">randomize_race_and_ethnicity</span>
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">race</span> = {<span class="ruby-string">&quot;code&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">race_and_ethnicity</span>[<span class="ruby-value">:race</span>], <span class="ruby-string">&quot;code_set&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;CDC-RE&quot;</span>} <span class="ruby-keyword">unless</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">race</span>
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">ethnicity</span> = {<span class="ruby-string">&quot;code&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">race_and_ethnicity</span>[<span class="ruby-value">:ethnicity</span>], <span class="ruby-string">&quot;code_set&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;CDC-RE&quot;</span>} <span class="ruby-keyword">unless</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">ethnicity</span>
+  
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">languages</span> <span class="ruby-operator">||=</span> []
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">languages</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">randomize_language</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">languages</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">gender</span> = <span class="ruby-identifier">randomize_gender</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">gender</span>
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">first</span> = <span class="ruby-identifier">randomize_first_name</span>(<span class="ruby-identifier">patient</span>.<span class="ruby-identifier">gender</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">last</span> = <span class="ruby-identifier">randomize_last_name</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">medical_record_number</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-node">&quot;#{patient.first} #{patient.last} #{Time.now}&quot;</span>)
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">medical_record_assigner</span> = <span class="ruby-string">&quot;Bonnie&quot;</span>
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">addresses</span> <span class="ruby-operator">||=</span> []
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">addresses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">randomize_address</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">empty?</span>
+  
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">birthdate</span> = <span class="ruby-identifier">randomize_birthdate</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">birthdate</span>
+  <span class="ruby-identifier">patient</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_first_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_first_name</span><span
+            class="method-args">(gender)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pick a forename at random appropriate for the supplied gender.</p>
+
+<p>@param [String] gender The gender of the patient for whom we&#39;re
+generating a name. Expected to be either &#39;M&#39; or &#39;F&#39;.
+@return A suitable forename.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_first_name-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_first_name</span>(<span class="ruby-identifier">gender</span>)
+  <span class="ruby-comment"># 300 most popular forenames according to US census 1990</span>
+  <span class="ruby-identifier">forenames</span> = {
+    <span class="ruby-string">&#39;M&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">%w{James John Robert Michael William David Richard Charles Joseph Thomas Christopher Daniel Paul Mark Donald George Kenneth Steven Edward Brian Ronald Anthony Kevin Jason Matthew Gary Timothy Jose Larry Jeffrey Frank Scott Eric Stephen Andrew Raymond Gregory Joshua Jerry Dennis Walter Patrick Peter Harold Douglas Henry Carl Arthur Ryan Roger Joe Juan Jack Albert Jonathan Justin Terry Gerald Keith Samuel Willie Ralph Lawrence Nicholas Roy Benjamin Bruce Brandon Adam Harry Fred Wayne Billy Steve Louis Jeremy Aaron Randy Howard Eugene Carlos Russell Bobby Victor Martin Ernest Phillip Todd Jesse Craig Alan Shawn Clarence Sean Philip Chris Johnny Earl Jimmy Antonio Danny Bryan Tony Luis Mike Stanley Leonard Nathan Dale Manuel Rodney Curtis Norman Allen Marvin Vincent Glenn Jeffery Travis Jeff Chad Jacob Lee Melvin Alfred Kyle Francis Bradley Jesus Herbert Frederick Ray Joel Edwin Don Eddie Ricky Troy Randall Barry Alexander Bernard Mario Leroy Francisco Marcus Micheal Theodore Clifford Miguel Oscar Jay Jim Tom Calvin Alex Jon Ronnie Bill Lloyd Tommy Leon Derek Warren Darrell Jerome Floyd Leo Alvin Tim Wesley Gordon Dean Greg Jorge Dustin Pedro Derrick Dan Lewis Zachary Corey Herman Maurice Vernon Roberto Clyde Glen Hector Shane Ricardo Sam Rick Lester Brent Ramon Charlie Tyler Gilbert Gene Marc Reginald Ruben Brett Angel Nathaniel Rafael Leslie Edgar Milton Raul Ben Chester Cecil Duane Franklin Andre Elmer Brad Gabriel Ron Mitchell Roland Arnold Harvey Jared Adrian Karl Cory Claude Erik Darryl Jamie Neil Jessie Christian Javier Fernando Clinton Ted Mathew Tyrone Darren Lonnie Lance Cody Julio Kelly Kurt Allan Nelson Guy Clayton Hugh Max Dwayne Dwight Armando Felix Jimmie Everett Jordan Ian Wallace Ken Bob Jaime Casey Alfredo Alberto Dave Ivan Johnnie Sidney Byron Julian Isaac Morris Clifton Willard Daryl Ross Virgil Andy Marshall Salvador Perry Kirk Sergio Marion Tracy Seth Kent Terrance Rene Eduardo Terrence Enrique Freddie Wade}</span>,
+    <span class="ruby-string">&#39;F&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">%w{Mary Patricia Linda Barbara Elizabeth Jennifer Maria Susan Margaret Dorothy Lisa Nancy Karen Betty Helen Sandra Donna Carol Ruth Sharon Michelle Laura Sarah Kimberly Deborah Jessica Shirley Cynthia Angela Melissa Brenda Amy Anna Rebecca Virginia Kathleen Pamela Martha Debra Amanda Stephanie Carolyn Christine Marie Janet Catherine Frances Ann Joyce Diane Alice Julie Heather Teresa Doris Gloria Evelyn Jean Cheryl Mildred Katherine Joan Ashley Judith Rose Janice Kelly Nicole Judy Christina Kathy Theresa Beverly Denise Tammy Irene Jane Lori Rachel Marilyn Andrea Kathryn Louise Sara Anne Jacqueline Wanda Bonnie Julia Ruby Lois Tina Phyllis Norma Paula Diana Annie Lillian Emily Robin Peggy Crystal Gladys Rita Dawn Connie Florence Tracy Edna Tiffany Carmen Rosa Cindy Grace Wendy Victoria Edith Kim Sherry Sylvia Josephine Thelma Shannon Sheila Ethel Ellen Elaine Marjorie Carrie Charlotte Monica Esther Pauline Emma Juanita Anita Rhonda Hazel Amber Eva Debbie April Leslie Clara Lucille Jamie Joanne Eleanor Valerie Danielle Megan Alicia Suzanne Michele Gail Bertha Darlene Veronica Jill Erin Geraldine Lauren Cathy Joann Lorraine Lynn Sally Regina Erica Beatrice Dolores Bernice Audrey Yvonne Annette June Samantha Marion Dana Stacy Ana Renee Ida Vivian Roberta Holly Brittany Melanie Loretta Yolanda Jeanette Laurie Katie Kristen Vanessa Alma Sue Elsie Beth Jeanne Vicki Carla Tara Rosemary Eileen Terri Gertrude Lucy Tonya Ella Stacey Wilma Gina Kristin Jessie Natalie Agnes Vera Willie Charlene Bessie Delores Melinda Pearl Arlene Maureen Colleen Allison Tamara Joy Georgia Constance Lillie Claudia Jackie Marcia Tanya Nellie Minnie Marlene Heidi Glenda Lydia Viola Courtney Marian Stella Caroline Dora Jo Vickie Mattie Terry Maxine Irma Mabel Marsha Myrtle Lena Christy Deanna Patsy Hilda Gwendolyn Jennie Nora Margie Nina Cassandra Leah Penny Kay Priscilla Naomi Carole Brandy Olga Billie Dianne Tracey Leona Jenny Felicia Sonia Miriam Velma Becky Bobbie Violet Kristina Toni Misty Mae Shelly Daisy Ramona Sherri Erika Katrina Claire}</span>
+  }
+  
+  <span class="ruby-identifier">forenames</span>[<span class="ruby-identifier">gender</span>][<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">forenames</span>[<span class="ruby-identifier">gender</span>].<span class="ruby-identifier">length</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_gender" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_gender</span><span
+            class="method-args">(percent = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_gender-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_gender</span>(<span class="ruby-identifier">percent</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">percent</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">999</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">percent</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">499</span>
+      <span class="ruby-string">&#39;M&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">500</span><span class="ruby-operator">..</span><span class="ruby-value">999</span>
+      <span class="ruby-string">&#39;F&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_language" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_language</span><span
+            class="method-args">(percent = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Picks spoken language based on 2010 census estamates</p>
+
+<p>80.3% english 12.3% spanish 00.9% chinese 00.7% french 00.4% german 00.4%
+korean 00.4% vietnamese 00.3% italian 00.3% portuguese 00.3% russian 00.2%
+japanese 00.2% polish 00.1% greek 00.1% persian 00.1% us sign 03.0% other</p>
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_language-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_language</span>(<span class="ruby-identifier">percent</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">percent</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">999</span>)
+  
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">percent</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">802</span>
+    <span class="ruby-string">&#39;en-US&#39;</span> <span class="ruby-comment"># english</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">802</span><span class="ruby-operator">..</span><span class="ruby-value">925</span>
+    <span class="ruby-string">&#39;es-US&#39;</span> <span class="ruby-comment"># spanish</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">926</span><span class="ruby-operator">..</span><span class="ruby-value">932</span>
+    <span class="ruby-string">&#39;fr-US&#39;</span> <span class="ruby-comment"># french</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">933</span><span class="ruby-operator">..</span><span class="ruby-value">935</span>
+    <span class="ruby-string">&#39;it-US&#39;</span> <span class="ruby-comment"># italian</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">936</span><span class="ruby-operator">..</span><span class="ruby-value">938</span>
+    <span class="ruby-string">&#39;pt-US&#39;</span> <span class="ruby-comment"># portuguese</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">939</span><span class="ruby-operator">..</span><span class="ruby-value">942</span>
+    <span class="ruby-string">&#39;de-US&#39;</span> <span class="ruby-comment"># german</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">943</span><span class="ruby-operator">..</span><span class="ruby-value">943</span>
+    <span class="ruby-string">&#39;el-US&#39;</span> <span class="ruby-comment"># greek</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">944</span><span class="ruby-operator">..</span><span class="ruby-value">946</span>
+    <span class="ruby-string">&#39;ru-US&#39;</span> <span class="ruby-comment"># russian</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">947</span><span class="ruby-operator">..</span><span class="ruby-value">948</span>
+    <span class="ruby-string">&#39;pl-US&#39;</span> <span class="ruby-comment"># polish</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">949</span><span class="ruby-operator">..</span><span class="ruby-value">949</span>
+    <span class="ruby-string">&#39;fa-US&#39;</span> <span class="ruby-comment"># persian</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">950</span><span class="ruby-operator">..</span><span class="ruby-value">958</span>
+    <span class="ruby-string">&#39;zh-US&#39;</span> <span class="ruby-comment"># chinese</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">959</span><span class="ruby-operator">..</span><span class="ruby-value">960</span>
+    <span class="ruby-string">&#39;ja-US&#39;</span> <span class="ruby-comment"># japanese</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">961</span><span class="ruby-operator">..</span><span class="ruby-value">964</span>
+    <span class="ruby-string">&#39;ko-US&#39;</span> <span class="ruby-comment"># korean</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">965</span><span class="ruby-operator">..</span><span class="ruby-value">968</span>
+    <span class="ruby-string">&#39;vi-US&#39;</span> <span class="ruby-comment"># vietnamese</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">969</span><span class="ruby-operator">..</span><span class="ruby-value">969</span>
+    <span class="ruby-string">&#39;sgn-US&#39;</span> <span class="ruby-comment"># us sign language</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">970</span><span class="ruby-operator">..</span><span class="ruby-value">999</span>
+    <span class="ruby-identifier">other</span> = [<span class="ruby-string">&quot;aa&quot;</span>,<span class="ruby-string">&quot;ab&quot;</span>,<span class="ruby-string">&quot;ae&quot;</span>,<span class="ruby-string">&quot;af&quot;</span>,<span class="ruby-string">&quot;ak&quot;</span>,<span class="ruby-string">&quot;am&quot;</span>,<span class="ruby-string">&quot;an&quot;</span>,<span class="ruby-string">&quot;ar&quot;</span>,<span class="ruby-string">&quot;as&quot;</span>,<span class="ruby-string">&quot;av&quot;</span>,<span class="ruby-string">&quot;ay&quot;</span>,<span class="ruby-string">&quot;az&quot;</span>,<span class="ruby-string">&quot;ba&quot;</span>,<span class="ruby-string">&quot;be&quot;</span>,<span class="ruby-string">&quot;bg&quot;</span>,<span class="ruby-string">&quot;bh&quot;</span>,<span class="ruby-string">&quot;bi&quot;</span>,<span class="ruby-string">&quot;bm&quot;</span>,<span class="ruby-string">&quot;bn&quot;</span>,<span class="ruby-string">&quot;bo&quot;</span>,<span class="ruby-string">&quot;br&quot;</span>,<span class="ruby-string">&quot;bs&quot;</span>,<span class="ruby-string">&quot;ca&quot;</span>,<span class="ruby-string">&quot;ce&quot;</span>,<span class="ruby-string">&quot;ch&quot;</span>,<span class="ruby-string">&quot;co&quot;</span>,<span class="ruby-string">&quot;cr&quot;</span>,<span class="ruby-string">&quot;cs&quot;</span>,<span class="ruby-string">&quot;cu&quot;</span>,<span class="ruby-string">&quot;cv&quot;</span>,<span class="ruby-string">&quot;cy&quot;</span>,<span class="ruby-string">&quot;da&quot;</span>,
+             <span class="ruby-string">&quot;dv&quot;</span>,<span class="ruby-string">&quot;dz&quot;</span>,<span class="ruby-string">&quot;ee&quot;</span>,<span class="ruby-string">&quot;eo&quot;</span>,<span class="ruby-string">&quot;et&quot;</span>,<span class="ruby-string">&quot;eu&quot;</span>,<span class="ruby-string">&quot;ff&quot;</span>,<span class="ruby-string">&quot;fi&quot;</span>,<span class="ruby-string">&quot;fj&quot;</span>,<span class="ruby-string">&quot;fo&quot;</span>,<span class="ruby-string">&quot;fy&quot;</span>,<span class="ruby-string">&quot;ga&quot;</span>,<span class="ruby-string">&quot;gd&quot;</span>,<span class="ruby-string">&quot;gl&quot;</span>,<span class="ruby-string">&quot;gn&quot;</span>,<span class="ruby-string">&quot;gu&quot;</span>,<span class="ruby-string">&quot;gv&quot;</span>,<span class="ruby-string">&quot;ha&quot;</span>,<span class="ruby-string">&quot;he&quot;</span>,<span class="ruby-string">&quot;hi&quot;</span>,<span class="ruby-string">&quot;ho&quot;</span>,<span class="ruby-string">&quot;hr&quot;</span>,<span class="ruby-string">&quot;ht&quot;</span>,<span class="ruby-string">&quot;hu&quot;</span>,<span class="ruby-string">&quot;hy&quot;</span>,<span class="ruby-string">&quot;hz&quot;</span>,<span class="ruby-string">&quot;ia&quot;</span>,<span class="ruby-string">&quot;id&quot;</span>,<span class="ruby-string">&quot;ie&quot;</span>,<span class="ruby-string">&quot;ig&quot;</span>,<span class="ruby-string">&quot;ii&quot;</span>,<span class="ruby-string">&quot;ik&quot;</span>,
+             <span class="ruby-string">&quot;io&quot;</span>,<span class="ruby-string">&quot;is&quot;</span>,<span class="ruby-string">&quot;iu&quot;</span>,<span class="ruby-string">&quot;jv&quot;</span>,<span class="ruby-string">&quot;ka&quot;</span>,<span class="ruby-string">&quot;kg&quot;</span>,<span class="ruby-string">&quot;ki&quot;</span>,<span class="ruby-string">&quot;kj&quot;</span>,<span class="ruby-string">&quot;kk&quot;</span>,<span class="ruby-string">&quot;kl&quot;</span>,<span class="ruby-string">&quot;km&quot;</span>,<span class="ruby-string">&quot;kn&quot;</span>,<span class="ruby-string">&quot;kr&quot;</span>,<span class="ruby-string">&quot;ks&quot;</span>,<span class="ruby-string">&quot;ku&quot;</span>,<span class="ruby-string">&quot;kv&quot;</span>,<span class="ruby-string">&quot;kw&quot;</span>,<span class="ruby-string">&quot;ky&quot;</span>,<span class="ruby-string">&quot;la&quot;</span>,<span class="ruby-string">&quot;lb&quot;</span>,<span class="ruby-string">&quot;lg&quot;</span>,<span class="ruby-string">&quot;li&quot;</span>,<span class="ruby-string">&quot;ln&quot;</span>,<span class="ruby-string">&quot;lo&quot;</span>,<span class="ruby-string">&quot;lt&quot;</span>,<span class="ruby-string">&quot;lu&quot;</span>,<span class="ruby-string">&quot;lv&quot;</span>,<span class="ruby-string">&quot;mg&quot;</span>,<span class="ruby-string">&quot;mh&quot;</span>,<span class="ruby-string">&quot;mi&quot;</span>,<span class="ruby-string">&quot;mk&quot;</span>,<span class="ruby-string">&quot;ml&quot;</span>,
+             <span class="ruby-string">&quot;mn&quot;</span>,<span class="ruby-string">&quot;mr&quot;</span>,<span class="ruby-string">&quot;ms&quot;</span>,<span class="ruby-string">&quot;mt&quot;</span>,<span class="ruby-string">&quot;my&quot;</span>,<span class="ruby-string">&quot;na&quot;</span>,<span class="ruby-string">&quot;nb&quot;</span>,<span class="ruby-string">&quot;nd&quot;</span>,<span class="ruby-string">&quot;ne&quot;</span>,<span class="ruby-string">&quot;ng&quot;</span>,<span class="ruby-string">&quot;nl&quot;</span>,<span class="ruby-string">&quot;nn&quot;</span>,<span class="ruby-string">&quot;no&quot;</span>,<span class="ruby-string">&quot;nr&quot;</span>,<span class="ruby-string">&quot;nv&quot;</span>,<span class="ruby-string">&quot;ny&quot;</span>,<span class="ruby-string">&quot;oc&quot;</span>,<span class="ruby-string">&quot;oj&quot;</span>,<span class="ruby-string">&quot;om&quot;</span>,<span class="ruby-string">&quot;or&quot;</span>,<span class="ruby-string">&quot;os&quot;</span>,<span class="ruby-string">&quot;pa&quot;</span>,<span class="ruby-string">&quot;pi&quot;</span>,<span class="ruby-string">&quot;ps&quot;</span>,<span class="ruby-string">&quot;qu&quot;</span>,<span class="ruby-string">&quot;rm&quot;</span>,<span class="ruby-string">&quot;rn&quot;</span>,<span class="ruby-string">&quot;ro&quot;</span>,<span class="ruby-string">&quot;rw&quot;</span>,<span class="ruby-string">&quot;sa&quot;</span>,<span class="ruby-string">&quot;sc&quot;</span>,<span class="ruby-string">&quot;sd&quot;</span>,
+             <span class="ruby-string">&quot;se&quot;</span>,<span class="ruby-string">&quot;sg&quot;</span>,<span class="ruby-string">&quot;si&quot;</span>,<span class="ruby-string">&quot;sk&quot;</span>,<span class="ruby-string">&quot;sl&quot;</span>,<span class="ruby-string">&quot;sm&quot;</span>,<span class="ruby-string">&quot;sn&quot;</span>,<span class="ruby-string">&quot;so&quot;</span>,<span class="ruby-string">&quot;sq&quot;</span>,<span class="ruby-string">&quot;sr&quot;</span>,<span class="ruby-string">&quot;ss&quot;</span>,<span class="ruby-string">&quot;st&quot;</span>,<span class="ruby-string">&quot;su&quot;</span>,<span class="ruby-string">&quot;sv&quot;</span>,<span class="ruby-string">&quot;sw&quot;</span>,<span class="ruby-string">&quot;ta&quot;</span>,<span class="ruby-string">&quot;te&quot;</span>,<span class="ruby-string">&quot;tg&quot;</span>,<span class="ruby-string">&quot;th&quot;</span>,<span class="ruby-string">&quot;ti&quot;</span>,<span class="ruby-string">&quot;tk&quot;</span>,<span class="ruby-string">&quot;tl&quot;</span>,<span class="ruby-string">&quot;tn&quot;</span>,<span class="ruby-string">&quot;to&quot;</span>,<span class="ruby-string">&quot;tr&quot;</span>,<span class="ruby-string">&quot;ts&quot;</span>,<span class="ruby-string">&quot;tt&quot;</span>,<span class="ruby-string">&quot;tw&quot;</span>,<span class="ruby-string">&quot;ty&quot;</span>,<span class="ruby-string">&quot;ug&quot;</span>,<span class="ruby-string">&quot;uk&quot;</span>,<span class="ruby-string">&quot;ur&quot;</span>,
+             <span class="ruby-string">&quot;uz&quot;</span>,<span class="ruby-string">&quot;ve&quot;</span>,<span class="ruby-string">&quot;vo&quot;</span>,<span class="ruby-string">&quot;wa&quot;</span>,<span class="ruby-string">&quot;wo&quot;</span>,<span class="ruby-string">&quot;xh&quot;</span>,<span class="ruby-string">&quot;yi&quot;</span>,<span class="ruby-string">&quot;yo&quot;</span>,<span class="ruby-string">&quot;za&quot;</span>,<span class="ruby-string">&quot;zu&quot;</span>].<span class="ruby-identifier">sample</span>
+    <span class="ruby-node">&quot;#{other}-US&quot;</span> <span class="ruby-comment"># other</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_last_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_last_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pick a surname at random.</p>
+
+<p>@return A surname.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_last_name-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_last_name</span>
+  <span class="ruby-comment"># 500 most popular surnames according to US census 1990</span>
+  <span class="ruby-identifier">surnames</span> = <span class="ruby-node">%w{Smith Johnson Williams Jones Brown Davis Miller Wilson Moore Taylor Anderson Thomas Jackson White Harris Martin Thompson Garcia Martinez Robinson Clark Rodriguez Lewis Lee Walker Hall Allen Young Hernandez King Wright Lopez Hill Scott Green Adams Baker Gonzalez Nelson Carter Mitchell Perez Roberts Turner Phillips Campbell Parker Evans Edwards Collins Stewart Sanchez Morris Rogers Reed Cook Morgan Bell Murphy Bailey Rivera Cooper Richardson Cox Howard Ward Torres Peterson Gray Ramirez James Watson Brooks Kelly Sanders Price Bennett Wood Barnes Ross Henderson Coleman Jenkins Perry Powell Long Patterson Hughes Flores Washington Butler Simmons Foster Gonzales Bryant Alexander Russell Griffin Diaz Hayes Myers Ford Hamilton Graham Sullivan Wallace Woods Cole West Jordan Owens Reynolds Fisher Ellis Harrison Gibson Mcdonald Cruz Marshall Ortiz Gomez Murray Freeman Wells Webb Simpson Stevens Tucker Porter Hunter Hicks Crawford Henry Boyd Mason Morales Kennedy Warren Dixon Ramos Reyes Burns Gordon Shaw Holmes Rice Robertson Hunt Black Daniels Palmer Mills Nichols Grant Knight Ferguson Rose Stone Hawkins Dunn Perkins Hudson Spencer Gardner Stephens Payne Pierce Berry Matthews Arnold Wagner Willis Ray Watkins Olson Carroll Duncan Snyder Hart Cunningham Bradley Lane Andrews Ruiz Harper Fox Riley Armstrong Carpenter Weaver Greene Lawrence Elliott Chavez Sims Austin Peters Kelley Franklin Lawson Fields Gutierrez Ryan Schmidt Carr Vasquez Castillo Wheeler Chapman Oliver Montgomery Richards Williamson Johnston Banks Meyer Bishop Mccoy Howell Alvarez Morrison Hansen Fernandez Garza Harvey Little Burton Stanley Nguyen George Jacobs Reid Kim Fuller Lynch Dean Gilbert Garrett Romero Welch Larson Frazier Burke Hanson Day Mendoza Moreno Bowman Medina Fowler Brewer Hoffman Carlson Silva Pearson Holland Douglas Fleming Jensen Vargas Byrd Davidson Hopkins May Terry Herrera Wade Soto Walters Curtis Neal Caldwell Lowe Jennings Barnett Graves Jimenez Horton Shelton Barrett Obrien Castro Sutton Gregory Mckinney Lucas Miles Craig Rodriquez Chambers Holt Lambert Fletcher Watts Bates Hale Rhodes Pena Beck Newman Haynes Mcdaniel Mendez Bush Vaughn Parks Dawson Santiago Norris Hardy Love Steele Curry Powers Schultz Barker Guzman Page Munoz Ball Keller Chandler Weber Leonard Walsh Lyons Ramsey Wolfe Schneider Mullins Benson Sharp Bowen Daniel Barber Cummings Hines Baldwin Griffith Valdez Hubbard Salazar Reeves Warner Stevenson Burgess Santos Tate Cross Garner Mann Mack Moss Thornton Dennis Mcgee Farmer Delgado Aguilar Vega Glover Manning Cohen Harmon Rodgers Robbins Newton Todd Blair Higgins Ingram Reese Cannon Strickland Townsend Potter Goodwin Walton Rowe Hampton Ortega Patton Swanson Joseph Francis Goodman Maldonado Yates Becker Erickson Hodges Rios Conner Adkins Webster Norman Malone Hammond Flowers Cobb Moody Quinn Blake Maxwell Pope Floyd Osborne Paul Mccarthy Guerrero Lindsey Estrada Sandoval Gibbs Tyler Gross Fitzgerald Stokes Doyle Sherman Saunders Wise Colon Gill Alvarado Greer Padilla Simon Waters Nunez Ballard Schwartz Mcbride Houston Christensen Klein Pratt Briggs Parsons Mclaughlin Zimmerman French Buchanan Moran Copeland Roy Pittman Brady Mccormick Holloway Brock Poole Frank Logan Owen Bass Marsh Drake Wong Jefferson Park Morton Abbott Sparks Patrick Norton Huff Clayton Massey Lloyd Figueroa Carson Bowers Roberson Barton Tran Lamb Harrington Casey Boone Cortez Clarke Mathis Singleton Wilkins Cain Bryan Underwood Hogan Mckenzie Collier Luna Phelps Mcguire Allison Bridges Wilkerson Nash Summers Atkins}</span>
+  
+  <span class="ruby-identifier">surnames</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">surnames</span>.<span class="ruby-identifier">length</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_race_and_ethnicity" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_race_and_ethnicity</span><span
+            class="method-args">(percent = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Picks a race based on 2010 census estimates</p>
+
+<p>Pacific Islander 0.2% American Indian 0.9% Asian 4.8% Black persons 12.6%
+Hispanic 16.3% White 63.7%</p>
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_race_and_ethnicity-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_race_and_ethnicity</span>(<span class="ruby-identifier">percent</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">percent</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">999</span>)
+  
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">percent</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>
+    {<span class="ruby-identifier">race</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2076-8&#39;</span>, <span class="ruby-identifier">ethnicity</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2186-5&#39;</span>} <span class="ruby-comment"># pacific islander</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>
+    {<span class="ruby-identifier">race</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;1002-5&#39;</span>, <span class="ruby-identifier">ethnicity</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2186-5&#39;</span>} <span class="ruby-comment"># american indian</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">11</span><span class="ruby-operator">..</span><span class="ruby-value">58</span>
+    {<span class="ruby-identifier">race</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2028-9&#39;</span>, <span class="ruby-identifier">ethnicity</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2186-5&#39;</span>} <span class="ruby-comment"># asian</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">59</span><span class="ruby-operator">..</span><span class="ruby-value">184</span>
+    {<span class="ruby-identifier">race</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2054-5&#39;</span>, <span class="ruby-identifier">ethnicity</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2186-5&#39;</span>} <span class="ruby-comment"># black</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">185</span><span class="ruby-operator">..</span><span class="ruby-value">347</span>
+    {<span class="ruby-identifier">race</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2106-3&#39;</span>, <span class="ruby-identifier">ethnicity</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2135-2&#39;</span>} <span class="ruby-comment"># hispanic</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">348</span><span class="ruby-operator">..</span><span class="ruby-value">984</span>
+    {<span class="ruby-identifier">race</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2106-3&#39;</span>, <span class="ruby-identifier">ethnicity</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2186-5&#39;</span>} <span class="ruby-comment"># white (not hispanic)</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">985</span><span class="ruby-operator">..</span><span class="ruby-value">999</span>
+    {<span class="ruby-identifier">race</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2131-1&#39;</span>, <span class="ruby-identifier">ethnicity</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;2186-5&#39;</span>} <span class="ruby-comment"># other</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-randomize_range" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize_range</span><span
+            class="method-args">(earliest_time, latest_time, maximum_length = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Randomly generate a <a href="Range.html">Range</a> object that is within a
+lower and upper bounds. It is guaranteed that the high of the returned
+range will be no earlier than the low time.</p>
+
+<p>@param [Time] earliest_time The lowest possible value for the low in this
+<a href="Range.html">Range</a>. nil implies unbounded. @param [Time]
+latest_time The highest possible value for the high in this <a
+href="Range.html">Range</a>. nil implies unbounded. @param [Hash]
+maximum_length Optionally used to bound the length of a range. This is a
+hash that can be passed as a parameter to Time.advance. @return A <a
+href="Range.html">Range</a> that represents a start time and end time
+within the acceptable bounds supplied.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="randomize_range-source">
+            <pre><span class="ruby-comment"># File lib/generation/randomizer.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">randomize_range</span>(<span class="ruby-identifier">earliest_time</span>, <span class="ruby-identifier">latest_time</span>, <span class="ruby-identifier">maximum_length</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">earliest_time</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">advance</span>(<span class="ruby-identifier">years</span><span class="ruby-operator">:</span> <span class="ruby-value">-35</span>)
+  <span class="ruby-identifier">latest_time</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">advance</span>(<span class="ruby-identifier">days</span><span class="ruby-operator">:</span> <span class="ruby-value">-1</span>)
+  
+  <span class="ruby-identifier">low</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-constant">Randomizer</span>.<span class="ruby-identifier">between</span>(<span class="ruby-identifier">earliest_time</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">latest_time</span>.<span class="ruby-identifier">to_i</span>))
+  <span class="ruby-identifier">latest_time</span> = <span class="ruby-identifier">low</span>.<span class="ruby-identifier">advance</span>(<span class="ruby-identifier">maximum_length</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">maximum_length</span>
+  <span class="ruby-identifier">high</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-constant">Randomizer</span>.<span class="ruby-identifier">between</span>(<span class="ruby-identifier">low</span>, <span class="ruby-identifier">latest_time</span>.<span class="ruby-identifier">to_i</span>))
+  
+  <span class="ruby-identifier">low</span> = <span class="ruby-constant">Value</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;TS&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-constant">Value</span>.<span class="ruby-identifier">time_to_ts</span>(<span class="ruby-identifier">low</span>), <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">high</span> = <span class="ruby-constant">Value</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;TS&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-constant">Value</span>.<span class="ruby-identifier">time_to_ts</span>(<span class="ruby-identifier">high</span>), <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>)
+  
+  <span class="ruby-identifier">time</span> = <span class="ruby-constant">Range</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;IVL_TS&quot;</span>, <span class="ruby-identifier">low</span>, <span class="ruby-identifier">high</span>, <span class="ruby-value">1</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>435ComplexV2_v4_SimpleXML.xml - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Capfile.html">Capfile</a>
+  
+    <li><a href="../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../Procfile.html">Procfile</a>
+  
+    <li><a href="../README_md.html">README</a>
+  
+    <li><a href="../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Black-Italic/Roboto-BlackItalic-webfont_svg.html">Roboto-BlackItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Black/Roboto-Black-webfont_svg.html">Roboto-Black-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Condensed-Italic/RobotoCondensed-BoldItalic-webfont_svg.html">RobotoCondensed-BoldItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Condensed/RobotoCondensed-Bold-webfont_svg.html">RobotoCondensed-Bold-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Italic/Roboto-BoldItalic-webfont_svg.html">Roboto-BoldItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold/Roboto-Bold-webfont_svg.html">Roboto-Bold-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Condensed-Italic/RobotoCondensed-Italic-webfont_svg.html">RobotoCondensed-Italic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Condensed/RobotoCondensed-Regular-webfont_svg.html">RobotoCondensed-Regular-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Italic/Roboto-Italic-webfont_svg.html">Roboto-Italic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Condensed-Italic/RobotoCondensed-LightItalic-webfont_svg.html">RobotoCondensed-LightItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Condensed/RobotoCondensed-Light-webfont_svg.html">RobotoCondensed-Light-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Italic/Roboto-LightItalic-webfont_svg.html">Roboto-LightItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light/Roboto-Light-webfont_svg.html">Roboto-Light-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Medium-Italic/Roboto-MediumItalic-webfont_svg.html">Roboto-MediumItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Medium/Roboto-Medium-webfont_svg.html">Roboto-Medium-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Regular/Roboto-Regular-webfont_svg.html">Roboto-Regular-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Thin-Italic/Roboto-ThinItalic-webfont_svg.html">Roboto-ThinItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Thin/Roboto-Thin-webfont_svg.html">Roboto-Thin-webfont.svg</a>
+  
+    <li><a href="../app/assets/javascripts/templates/breadcrumb_hbs.html">breadcrumb.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/complexity_popover_hbs.html">complexity_popover.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/setup_hbs.html">setup.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/viz_hbs.html">viz.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/import/finalize_measures_hbs.html">finalize_measures.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/import/import_measure_hbs.html">import_measure.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/matrix_hbs.html">matrix.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure_hbs.html">measure.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/complexity_hbs.html">complexity.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/complexity_popover_hbs.html">complexity_popover.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/coverage_hbs.html">coverage.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/export_patients_hbs.html">export_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/fraction_hbs.html">fraction.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/percentage_hbs.html">percentage.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/population_hbs.html">population.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/population_edit_hbs.html">population_edit.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/status_hbs.html">status.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/codes_items_hbs.html">codes_items.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/codes_list_hbs.html">codes_list.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/value_sets_hbs.html">value_sets.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure_debug_hbs.html">measure_debug.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measures_hbs.html">measures.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/filters_hbs.html">filters.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/measure_patients_hbs.html">measure_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/patient_bank_hbs.html">patient_bank.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/selected_patients_hbs.html">selected_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_codes_hbs.html">edit_codes.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_criteria_hbs.html">edit_criteria.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_fulfillments_hbs.html">edit_fulfillments.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_reference_hbs.html">edit_reference.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_value_hbs.html">edit_value.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/expected_value_hbs.html">expected_value.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/expected_values_hbs.html">expected_values.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/measure_ribbon_hbs.html">measure_ribbon.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/patient_builder_hbs.html">patient_builder.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/select_criteria_hbs.html">select_criteria.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/value_set_code_checker_hbs.html">value_set_code_checker.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/patients_hbs.html">patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_hbs.html">record.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_entry_hbs.html">record_entry.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_header_hbs.html">record_header.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_section_hbs.html">record_section.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/population_calculation_hbs.html">population_calculation.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/population_calculation_results_hbs.html">population_calculation_results.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/edit_user_hbs.html">edit_user.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/email_users_hbs.html">email_users.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/export_bundle_hbs.html">export_bundle.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/table_header_hbs.html">table_header.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/user_hbs.html">user.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/user_summary_hbs.html">user_summary.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/users_hbs.html">users.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/value_sets_builder/value_set_hbs.html">value_set.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/value_sets_builder/value_sets_builder_hbs.html">value_sets_builder.hbs</a>
+  
+    <li><a href="../app/assets/stylesheets/application_css_less.html">application.css.less</a>
+  
+    <li><a href="../app/assets/stylesheets/bank_less.html">bank.less</a>
+  
+    <li><a href="../app/assets/stylesheets/bootstrap3_less.html">bootstrap3.less</a>
+  
+    <li><a href="../app/assets/stylesheets/builder_less.html">builder.less</a>
+  
+    <li><a href="../app/assets/stylesheets/dashboard_less.html">dashboard.less</a>
+  
+    <li><a href="../app/assets/stylesheets/errors_less.html">errors.less</a>
+  
+    <li><a href="../app/assets/stylesheets/landing_less.html">landing.less</a>
+  
+    <li><a href="../app/assets/stylesheets/matrix_less.html">matrix.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measure_less.html">measure.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measure_calculation_less.html">measure_calculation.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measures_less.html">measures.less</a>
+  
+    <li><a href="../app/assets/stylesheets/mixins_less.html">mixins.less</a>
+  
+    <li><a href="../app/assets/stylesheets/rationale_less.html">rationale.less</a>
+  
+    <li><a href="../app/assets/stylesheets/users_less.html">users.less</a>
+  
+    <li><a href="../app/assets/stylesheets/value_sets_less.html">value_sets.less</a>
+  
+    <li><a href="../app/assets/stylesheets/variables_less.html">variables.less</a>
+  
+    <li><a href="../app/assets/stylesheets/vsbuilder_less.html">vsbuilder.less</a>
+  
+    <li><a href="../bower_json.html">bower.json</a>
+  
+    <li><a href="../config_ru.html">config.ru</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_css.html">application.css</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_js.html">application.js</a>
+  
+    <li><a href="../coverage/covered_percent.html">covered_percent</a>
+  
+    <li><a href="../coverage/index_html.html">index.html</a>
+  
+    <li><a href="../demo_script_txt.html">demo_script</a>
+  
+    <li><a href="../deployment/ec2-deployment-steps_txt.html">ec2-deployment-steps</a>
+  
+    <li><a href="../deployment/maintenance_html.html">maintenance.html</a>
+  
+    <li><a href="../deployment/ubuntu-deployment-steps_txt.html">ubuntu-deployment-steps</a>
+  
+    <li><a href="../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+    <li><a href="../doc/bonnie_test_eMeasure_xml.html">bonnie_test_eMeasure.xml</a>
+  
+    <li><a href="../lib/assets/hqmf_template_oid_map_json.html">hqmf_template_oid_map.json</a>
+  
+    <li><a href="../lib/tasks/bonnie_rake.html">bonnie.rake</a>
+  
+    <li><a href="../lib/tasks/bonnie_run_once_rake.html">bonnie_run_once.rake</a>
+  
+    <li><a href="../lib/tasks/calculation_tests_rake.html">calculation_tests.rake</a>
+  
+    <li><a href="../lib/tasks/dashboard_rake.html">dashboard.rake</a>
+  
+    <li><a href="../lib/tasks/exporting/bundle_rake.html">bundle.rake</a>
+  
+    <li><a href="../lib/tasks/loading/bundle_rake.html">bundle.rake</a>
+  
+    <li><a href="../lib/tasks/loading/mat_rake.html">mat.rake</a>
+  
+    <li><a href="../lib/tasks/loading/sources_rake.html">sources.rake</a>
+  
+    <li><a href="../lib/tasks/loading/white_black_list_rake.html">white_black_list.rake</a>
+  
+    <li><a href="../lib/tasks/parser_comparison_rake.html">parser_comparison.rake</a>
+  
+    <li><a href="../lib/tasks/vsac_rake.html">vsac.rake</a>
+  
+    <li><a href="../public/favicon_ico.html">favicon.ico</a>
+  
+    <li><a href="../public/robots_txt.html">robots</a>
+  
+    <li><a href="../rdoc_help_txt.html">rdoc_help</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/README.html">README</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measure_diff_json.html">measure_diff.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measure_sets_json.html">measure_sets.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measures_json.html">measures.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/patients_json.html">patients.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/value_sets_json.html">value_sets.json</a>
+  
+    <li><a href="../spec/javascripts/helpers/jasmine-jquery-2_1_0_js.html">jasmine-jquery-2.1.0.js</a>
+  
+    <li><a href="../spec/javascripts/helpers/waitsForAndRuns_js.html">waitsForAndRuns.js</a>
+  
+    <li><a href="../spec/javascripts/spec_js.html">spec.js</a>
+  
+    <li><a href="../test/fixtures/draft_measures/CMS104v2_json.html">CMS104v2.json</a>
+  
+    <li><a href="../test/fixtures/draft_measures/CMS138v2_json.html">CMS138v2.json</a>
+  
+    <li><a href="../test/fixtures/patient_builder/source_data_criteria_json.html">source_data_criteria.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_A_json.html">BH_Adult_A.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_B_json.html">BH_Adult_B.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_C_json.html">BH_Adult_C.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_D_json.html">BH_Adult_D.json</a>
+  
+    <li><a href="../test/fixtures/users/bonnie_json.html">bonnie.json</a>
+  
+    <li><a href="../test/fixtures/users/user_admin_json.html">user_admin.json</a>
+  
+    <li><a href="../test/fixtures/users/user_plain_json.html">user_plain.json</a>
+  
+    <li><a href="../test/fixtures/users/user_unapproved_json.html">user_unapproved.json</a>
+  
+    <li><a href="../testplan/435ComplexV2_v4_SimpleXML_xml.html">435ComplexV2_v4_SimpleXML.xml</a>
+  
+    <li><a href="../testplan/DischargedOnAntithrombotic_eMeasure_xml.html">DischargedOnAntithrombotic_eMeasure.xml</a>
+  
+    <li><a href="../testplan/testplan_txt.html">testplan</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page testplan/435ComplexV2_v4_SimpleXML.xml">
+
+<p>&lt;?xml version=“1.0”
+encoding=“UTF-8”?&gt;&lt;measure&gt;&lt;measureDetails&gt;&lt;uuid&gt;40280581-4736-6f35-0147-3b7624fd014a&lt;/uuid&gt;&lt;title&gt;MITRE_435_complex_v2&lt;/title&gt;&lt;shortTitle&gt;435
+Complex
+V2&lt;/shortTitle&gt;&lt;guid&gt;e29e44c3-acd8-4e32-a68e-d89dbe3e7406&lt;/guid&gt;&lt;version&gt;0.0.008&lt;/version&gt;&lt;status&gt;In
+Progress&lt;/status&gt;&lt;nqfid
+root=“2.16.840.1.113883.3.560.1”/&gt;&lt;period
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b8c”&gt;&lt;startDate
+uuid=“7a429943-1e27-4949-a95b-301b0dd03d45”&gt;00000101&lt;/startDate&gt;&lt;stopDate
+uuid=“59aa3376-04d8-4049-8138-113836bb7297”&gt;00001231&lt;/stopDate&gt;&lt;/period&gt;&lt;scoring
+id=“PROPOR”&gt;Proportion&lt;/scoring&gt;&lt;componentMeasures/&gt;&lt;itemCount/&gt;&lt;initialPopDescription/&gt;&lt;measurePopulationExclusionsDescription/&gt;&lt;/measureDetails&gt;&lt;supplementalDataElements&gt;&lt;elementRef
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b86” name=“ONC Administrative
+Sex”/&gt;&lt;elementRef id=“8a4d92b2-37bf-6f1b-0137-cdadba412b87”
+name=“Race”/&gt;&lt;elementRef id=“8a4d92b2-37bf-6f1b-0137-cdadba412b88”
+name=“Ethnicity”/&gt;&lt;elementRef
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b89”
+name=“Payer”/&gt;&lt;/supplementalDataElements&gt;&lt;subTreeLookUp&gt;&lt;subTree
+displayName=“HadIschemicStroke” qdmVariable=“false”
+uuid=“96E79782-BB33-42DD-BBD5-58F388EE12B2”&gt;&lt;relationalOp
+displayName=“Starts During” type=“SDU”&gt;&lt;elementRef
+displayName=“Ischemic Stroke : Diagnosis, Active”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b9a” type=“qdm”/&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“DischargedOnAntithrombotic” qdmVariable=“false”
+uuid=“BF83A7DF-E19B-4154-BC4E-D35502BEF32D”&gt;&lt;relationalOp
+displayName=“During” type=“DURING”&gt;&lt;elementRef
+displayName=“Antithrombotic Therapy : Medication, Discharge”
+id=“8a4d92b2-3a58-b777-013a-65ae440c2116” type=“qdm”/&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“OlderThan30” qdmVariable=“false”
+uuid=“41D98150-2288-4135-966F-7B42AAE40B53”&gt;&lt;functionalOp
+displayName=“Age &amp;gt;= 30 years at” operatorType=“Greater Than or Equal
+To” quantity=“30” type=“AGE AT” unit=“years”&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919”
+type=“qdm”/&gt;&lt;/functionalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“StrokeDuringEncounter” qdmVariable=“true”
+uuid=“DAA7DA58-90EE-44F1-A5F6-37B48A0DC5BE”&gt;&lt;relationalOp
+displayName=“Starts During” type=“SDU”&gt;&lt;subTreeRef
+displayName=“AllStrokes” id=“5D3039B2-EE03-4B75-A66A-62A7F25B1632”
+type=“subTree”/&gt;&lt;elementRef displayName=“Occurrence A of Inpatient
+Encounter : Encounter, Performed” id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“EncounterAfterEDVisit” qdmVariable=“false”
+uuid=“62FD43E9-265D-4D3C-9BD2-621E4ECBAD24”&gt;&lt;relationalOp
+displayName=“&amp;lt;= 1 hours Starts After End Of” operatorType=“Less Than
+or Equal To” quantity=“1” type=“SAE” unit=“hours”&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”&gt;&lt;attribute
+mode=“Check if Present” name=“admission
+datetime”/&gt;&lt;/elementRef&gt;&lt;elementRef displayName=“Occurrence A
+of Emergency Department Visit : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4c78101d7d65” type=“qdm”&gt;&lt;attribute
+mode=“Check if Present” name=“facility location departure
+datetime”/&gt;&lt;/elementRef&gt;&lt;/relationalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“EncounterWithDischarges” qdmVariable=“false”
+uuid=“0D1C58E6-BE3A-4589-9A5D-75F259C758B5”&gt;&lt;functionalOp
+displayName=“SATISFIES ANY” type=“SATISFIES ANY”&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”/&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”&gt;&lt;attribute
+mode=“Value Set” name=“reason”
+qdmUUID=“8a4d92b2-37bf-6f1b-0137-cdadba422ba0”/&gt;&lt;/elementRef&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”&gt;&lt;attribute
+mode=“Value Set” name=“discharge status”
+qdmUUID=“8a4d92b2-37bf-6f1b-0137-cdadba422ba4”/&gt;&lt;/elementRef&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”&gt;&lt;attribute
+mode=“Value Set” name=“discharge status”
+qdmUUID=“8a4d92b2-37bf-6f1b-0137-cdadba412b9b”/&gt;&lt;/elementRef&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”&gt;&lt;attribute
+mode=“Value Set” name=“discharge status”
+qdmUUID=“8a4d92b2-37bf-6f1b-0137-cdadba422b9d”/&gt;&lt;/elementRef&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”&gt;&lt;attribute
+mode=“Value Set” name=“discharge status”
+qdmUUID=“8a4d92b2-37bf-6f1b-0137-cdadba422ba2”/&gt;&lt;/elementRef&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”&gt;&lt;attribute
+mode=“Value Set” name=“discharge status”
+qdmUUID=“8a4d92b2-37bf-6f1b-0137-cdadba422b9e”/&gt;&lt;/elementRef&gt;&lt;/functionalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“ClinicalTrialParticipant” qdmVariable=“false”
+uuid=“A78C7786-0200-4104-8A55-A44580963D38”&gt;&lt;elementRef
+displayName=“Clinical Trial Participant : Patient Characteristic Clinical
+Trial Participant” id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba1”
+type=“qdm”/&gt;&lt;/subTree&gt;&lt;subTree displayName=“PalliativeCare”
+qdmVariable=“true” uuid=“9E1AB49E-B2AA-4E5C-8A22-FA263F16C253”&gt;&lt;setOp
+displayName=“UNION” type=“union”&gt;&lt;elementRef displayName=“Palliative
+Care : Intervention, Performed” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b98”
+type=“qdm”/&gt;&lt;elementRef displayName=“Palliative Care : Intervention,
+Order” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b97”
+type=“qdm”/&gt;&lt;/setOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“PalliativeDuringEncounter” qdmVariable=“false”
+uuid=“FC4ABD6B-D539-4E53-9F61-27DD80E8E4D0”&gt;&lt;relationalOp
+displayName=“Starts During” type=“SDU”&gt;&lt;subTreeRef
+displayName=“PalliativeCare” id=“9E1AB49E-B2AA-4E5C-8A22-FA263F16C253”
+type=“subTree”/&gt;&lt;elementRef displayName=“Occurrence A of Inpatient
+Encounter : Encounter, Performed” id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“PalliativeBetweenEDandEncounter” qdmVariable=“false”
+uuid=“9C937C7A-764E-4A78-91BC-8F6568A60992”&gt;&lt;setOp
+displayName=“INTERSECTION” type=“intersection”&gt;&lt;relationalOp
+displayName=“Starts After Start Of” type=“SAS”&gt;&lt;subTreeRef
+displayName=“PalliativeCare” id=“9E1AB49E-B2AA-4E5C-8A22-FA263F16C253”
+type=“subTree”/&gt;&lt;elementRef displayName=“Occurrence A of Emergency
+Department Visit : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4c78101d7d65” type=“qdm”&gt;&lt;attribute
+mode=“Check if Present” name=“facility location arrival
+datetime”/&gt;&lt;/elementRef&gt;&lt;/relationalOp&gt;&lt;relationalOp
+displayName=“Starts Before End Of” type=“SBE”&gt;&lt;subTreeRef
+displayName=“PalliativeCare” id=“9E1AB49E-B2AA-4E5C-8A22-FA263F16C253”
+type=“subTree”/&gt;&lt;elementRef displayName=“Occurrence A of Inpatient
+Encounter : Encounter, Performed” id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;/setOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“AntiThromboticNegations” qdmVariable=“false”
+uuid=“14B86F25-6C29-42CF-A312-E6766DAF5571”&gt;&lt;functionalOp
+displayName=“SATISFIES ANY” type=“SATISFIES ANY”&gt;&lt;elementRef
+displayName=“Antithrombotic Therapy : Medication, Order”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba9” type=“qdm”/&gt;&lt;elementRef
+displayName=“Antithrombotic Therapy : Medication, Order”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba9” type=“qdm”&gt;&lt;attribute
+mode=“Value Set” name=“negation rationale”
+qdmUUID=“8a4d92b2-37bf-6f1b-0137-cdadba422ba5”/&gt;&lt;/elementRef&gt;&lt;elementRef
+displayName=“Antithrombotic Therapy : Medication, Order”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba9” type=“qdm”&gt;&lt;attribute
+mode=“Value Set” name=“negation rationale”
+qdmUUID=“8a4d92b2-37bf-6f1b-0137-cdadba422ba6”/&gt;&lt;/elementRef&gt;&lt;/functionalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“NegationDuringEncounter” qdmVariable=“false”
+uuid=“C2ED25BC-F7F3-49ED-9686-AD0537A46DBB”&gt;&lt;relationalOp
+displayName=“Starts During” type=“SDU”&gt;&lt;subTreeRef
+displayName=“AntiThromboticNegations”
+id=“14B86F25-6C29-42CF-A312-E6766DAF5571” type=“subTree”/&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“varWithinVar” qdmVariable=“true”
+uuid=“65C379DE-9008-4642-8C87-F440787ABC1D”&gt;&lt;setOp
+displayName=“UNION” type=“union”&gt;&lt;subTreeRef
+displayName=“PalliativeCare” id=“9E1AB49E-B2AA-4E5C-8A22-FA263F16C253”
+type=“subTree”/&gt;&lt;subTreeRef displayName=“StrokeDuringEncounter”
+id=“DAA7DA58-90EE-44F1-A5F6-37B48A0DC5BE” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“AllStrokes” id=“5D3039B2-EE03-4B75-A66A-62A7F25B1632”
+type=“subTree”/&gt;&lt;/setOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“AllStrokesv2” qdmVariable=“false”
+uuid=“687DC070-CF99-45CF-9FB5-1A25818B429B”&gt;&lt;setOp
+displayName=“UNION” type=“union”&gt;&lt;elementRef displayName=“Hemorrhagic
+Stroke : Diagnosis, Active” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b8e”
+type=“qdm”/&gt;&lt;elementRef displayName=“Ischemic Stroke : Diagnosis,
+Active” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b9a”
+type=“qdm”/&gt;&lt;/setOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“varWithMultipleTiming2” qdmVariable=“false”
+uuid=“4CAE4F98-8D19-477B-A2DA-87DA6EF94520”&gt;&lt;setOp
+displayName=“UNION” type=“union”&gt;&lt;relationalOp displayName=“During”
+type=“DURING”&gt;&lt;subTreeRef displayName=“AllStrokesv2”
+id=“687DC070-CF99-45CF-9FB5-1A25818B429B” type=“subTree”/&gt;&lt;elementRef
+displayName=“Measurement Period : Timing Element”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b8c”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;relationalOp displayName=“Starts
+After Start Of” type=“SAS”&gt;&lt;subTreeRef displayName=“AllStrokesv2”
+id=“687DC070-CF99-45CF-9FB5-1A25818B429B” type=“subTree”/&gt;&lt;elementRef
+displayName=“Measurement Period : Timing Element”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b8c”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;relationalOp displayName=“Ends
+Before End Of” type=“EBE”&gt;&lt;subTreeRef displayName=“AllStrokesv2”
+id=“687DC070-CF99-45CF-9FB5-1A25818B429B” type=“subTree”/&gt;&lt;elementRef
+displayName=“Measurement Period : Timing Element”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b8c”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;/setOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“varWithMultipleTiming3” qdmVariable=“true”
+uuid=“E7C84374-BF75-4B26-974B-30DD7899EC89”&gt;&lt;setOp
+displayName=“UNION” type=“union”&gt;&lt;subTreeRef
+displayName=“varWithMultipleTiming2”
+id=“4CAE4F98-8D19-477B-A2DA-87DA6EF94520”
+type=“subTree”/&gt;&lt;/setOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“importantEncounter” qdmVariable=“true”
+uuid=“24E0D090-7DA1-45A6-9134-E71150F44FF2”&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919”
+type=“qdm”/&gt;&lt;/subTree&gt;&lt;subTree displayName=“OlderThan18_v2”
+qdmVariable=“false”
+uuid=“7E421EA7-C813-4565-B77E-1820F4E878DC”&gt;&lt;functionalOp
+displayName=“Age &amp;gt;= 18 years at” operatorType=“Greater Than or Equal
+To” quantity=“18” type=“AGE AT” unit=“years”&gt;&lt;subTreeRef
+displayName=“importantEncounter” id=“24E0D090-7DA1-45A6-9134-E71150F44FF2”
+type=“subTree”/&gt;&lt;/functionalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“QualifiyingEncounterIPP_v2” qdmVariable=“false”
+uuid=“FAE8D769-5228-4156-9108-99B94721C49B”&gt;&lt;functionalOp
+displayName=“SATISFIES ALL” type=“SATISFIES ALL”&gt;&lt;elementRef
+displayName=“Occurrence A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”/&gt;&lt;relationalOp
+displayName=“During” type=“DURING”&gt;&lt;subTreeRef
+displayName=“importantEncounter” id=“24E0D090-7DA1-45A6-9134-E71150F44FF2”
+type=“subTree”/&gt;&lt;elementRef displayName=“Measurement Period : Timing
+Element” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b8c”
+type=“qdm”/&gt;&lt;/relationalOp&gt;&lt;elementRef displayName=“Occurrence
+A of Inpatient Encounter : Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” type=“qdm”&gt;&lt;attribute
+comparisonValue=“120” mode=“Less Than Or Equal To” name=“length of stay”
+unit=“days”/&gt;&lt;/elementRef&gt;&lt;/functionalOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“badStroke” qdmVariable=“true”
+uuid=“744C529A-0EA0-47FE-9AC8-8E72E7710507”&gt;&lt;elementRef
+displayName=“Hemorrhagic Stroke : Diagnosis, Active”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b8e”
+type=“qdm”/&gt;&lt;/subTree&gt;&lt;subTree displayName=“goodStroke”
+qdmVariable=“true”
+uuid=“8A6194C4-8421-4132-A401-F0385FFE6113”&gt;&lt;elementRef
+displayName=“Ischemic Stroke : Diagnosis, Active”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b9a”
+type=“qdm”/&gt;&lt;/subTree&gt;&lt;subTree displayName=“AllStrokes”
+qdmVariable=“true” uuid=“5D3039B2-EE03-4B75-A66A-62A7F25B1632”&gt;&lt;setOp
+displayName=“UNION” type=“union”&gt;&lt;subTreeRef displayName=“badStroke”
+id=“744C529A-0EA0-47FE-9AC8-8E72E7710507” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“goodStroke” id=“8A6194C4-8421-4132-A401-F0385FFE6113”
+type=“subTree”/&gt;&lt;/setOp&gt;&lt;/subTree&gt;&lt;subTree
+displayName=“OlderThan18_v3” qdmVariable=“false”
+uuid=“7B0A831A-1018-4BA6-8D67-9A69A59D1015”&gt;&lt;functionalOp
+displayName=“Age &amp;gt;= 18 years at” operatorType=“Greater Than or Equal
+To” quantity=“18” type=“AGE AT” unit=“years”&gt;&lt;subTreeRef
+displayName=“varWithinVar” id=“65C379DE-9008-4642-8C87-F440787ABC1D”
+type=“subTree”/&gt;&lt;/functionalOp&gt;&lt;/subTree&gt;&lt;/subTreeLookUp&gt;&lt;measureGrouping&gt;&lt;group
+sequence=“1”&gt;&lt;clause displayName=“Initial Population 1”
+type=“initialPopulation”
+uuid=“F255C874-2A31-4D22-B814-F1192E5BC3CB”&gt;&lt;logicalOp
+displayName=“AND” type=“and”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“OlderThan18_v2”
+id=“7E421EA7-C813-4565-B77E-1820F4E878DC” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“QualifiyingEncounterIPP_v2”
+id=“FAE8D769-5228-4156-9108-99B94721C49B” type=“subTree”&gt;&lt;comment
+displayName=“comment” type=“comment”/&gt;&lt;/subTreeRef&gt;&lt;subTreeRef
+displayName=“StrokeDuringEncounter”
+id=“DAA7DA58-90EE-44F1-A5F6-37B48A0DC5BE” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“varWithinVar” id=“65C379DE-9008-4642-8C87-F440787ABC1D”
+type=“subTree”/&gt;&lt;subTreeRef displayName=“varWithMultipleTiming2”
+id=“4CAE4F98-8D19-477B-A2DA-87DA6EF94520” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“varWithMultipleTiming3”
+id=“E7C84374-BF75-4B26-974B-30DD7899EC89” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“OlderThan18_v3” id=“7B0A831A-1018-4BA6-8D67-9A69A59D1015”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Denominator 1” type=“denominator”
+uuid=“F1ED7ED4-4E56-4046-AF64-103D433AD4AC”&gt;&lt;logicalOp
+displayName=“AND” type=“and”&gt;&lt;subTreeRef
+displayName=“HadIschemicStroke” id=“96E79782-BB33-42DD-BBD5-58F388EE12B2”
+type=“subTree”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;/subTreeRef&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Denominator Exclusions 1” type=“denominatorExclusions”
+uuid=“F1DAD2FF-9A09-4ABB-9DC1-DC539DB2B4AF”&gt;&lt;logicalOp
+displayName=“OR” type=“or”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;logicalOp displayName=“AND”
+type=“and”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“EncounterAfterEDVisit”
+id=“62FD43E9-265D-4D3C-9BD2-621E4ECBAD24” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“PalliativeBetweenEDandEncounter”
+id=“9C937C7A-764E-4A78-91BC-8F6568A60992” type=“subTree”&gt;&lt;comment
+displayName=“comment”
+type=“comment”/&gt;&lt;/subTreeRef&gt;&lt;/logicalOp&gt;&lt;subTreeRef
+displayName=“EncounterWithDischarges”
+id=“0D1C58E6-BE3A-4589-9A5D-75F259C758B5” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“ClinicalTrialParticipant”
+id=“A78C7786-0200-4104-8A55-A44580963D38” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“PalliativeDuringEncounter”
+id=“FC4ABD6B-D539-4E53-9F61-27DD80E8E4D0”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Denominator Exceptions 1” type=“denominatorExceptions”
+uuid=“5D29A798-481F-4113-A7F1-1F0049291570”&gt;&lt;logicalOp
+displayName=“OR” type=“or”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“NegationDuringEncounter”
+id=“C2ED25BC-F7F3-49ED-9686-AD0537A46DBB”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Numerator 1” type=“numerator”
+uuid=“B76EEECD-DFE3-4E79-95C6-64E02423EBB0”&gt;&lt;logicalOp
+displayName=“AND” type=“and”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“DischargedOnAntithrombotic”
+id=“BF83A7DF-E19B-4154-BC4E-D35502BEF32D”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“numeratorExclusions” type=“numeratorExclusions”
+uuid=“49fa1408-dce3-4945-a321-a663b8297d04”&gt;&lt;logicalOp
+displayName=“AND” type=“and”/&gt;&lt;/clause&gt;&lt;clause
+displayName=“stratum” type=“stratum”
+uuid=“81b72895-eb91-4db5-a6e0-7d600a2afc33”&gt;&lt;logicalOp
+displayName=“AND” type=“and”/&gt;&lt;/clause&gt;&lt;/group&gt;&lt;group
+sequence=“2”&gt;&lt;clause displayName=“Initial Population 1”
+type=“initialPopulation”
+uuid=“E34AFB9F-AD58-4A4D-963B-C301F25221B0”&gt;&lt;logicalOp
+displayName=“AND” type=“and”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“OlderThan18_v2”
+id=“7E421EA7-C813-4565-B77E-1820F4E878DC” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“QualifiyingEncounterIPP_v2”
+id=“FAE8D769-5228-4156-9108-99B94721C49B” type=“subTree”&gt;&lt;comment
+displayName=“comment” type=“comment”/&gt;&lt;/subTreeRef&gt;&lt;subTreeRef
+displayName=“StrokeDuringEncounter”
+id=“DAA7DA58-90EE-44F1-A5F6-37B48A0DC5BE” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“varWithinVar” id=“65C379DE-9008-4642-8C87-F440787ABC1D”
+type=“subTree”/&gt;&lt;subTreeRef displayName=“varWithMultipleTiming2”
+id=“4CAE4F98-8D19-477B-A2DA-87DA6EF94520” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“varWithMultipleTiming3”
+id=“E7C84374-BF75-4B26-974B-30DD7899EC89” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“OlderThan18_v3” id=“7B0A831A-1018-4BA6-8D67-9A69A59D1015”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Denominator 1” type=“denominator”
+uuid=“9AD97BB0-E30D-4502-BF24-DCEFA552C313”&gt;&lt;logicalOp
+displayName=“AND” type=“and”&gt;&lt;subTreeRef
+displayName=“HadIschemicStroke” id=“96E79782-BB33-42DD-BBD5-58F388EE12B2”
+type=“subTree”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;/subTreeRef&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Denominator Exclusions 1” type=“denominatorExclusions”
+uuid=“CBCB0CE8-0BAF-4A8D-85C3-D00AE3CB4941”&gt;&lt;logicalOp
+displayName=“OR” type=“or”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;logicalOp displayName=“AND”
+type=“and”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“EncounterAfterEDVisit”
+id=“62FD43E9-265D-4D3C-9BD2-621E4ECBAD24” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“PalliativeBetweenEDandEncounter”
+id=“9C937C7A-764E-4A78-91BC-8F6568A60992” type=“subTree”&gt;&lt;comment
+displayName=“comment”
+type=“comment”/&gt;&lt;/subTreeRef&gt;&lt;/logicalOp&gt;&lt;subTreeRef
+displayName=“EncounterWithDischarges”
+id=“0D1C58E6-BE3A-4589-9A5D-75F259C758B5” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“ClinicalTrialParticipant”
+id=“A78C7786-0200-4104-8A55-A44580963D38” type=“subTree”/&gt;&lt;subTreeRef
+displayName=“PalliativeDuringEncounter”
+id=“FC4ABD6B-D539-4E53-9F61-27DD80E8E4D0”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Denominator Exceptions 1” type=“denominatorExceptions”
+uuid=“FF85E1A2-3191-4920-8266-300CBF310F2F”&gt;&lt;logicalOp
+displayName=“OR” type=“or”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“NegationDuringEncounter”
+id=“C2ED25BC-F7F3-49ED-9686-AD0537A46DBB”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Numerator 1” type=“numerator”
+uuid=“571F8843-3F30-4B21-AD89-CD2DB1DA81B4”&gt;&lt;logicalOp
+displayName=“AND” type=“and”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“DischargedOnAntithrombotic”
+id=“BF83A7DF-E19B-4154-BC4E-D35502BEF32D”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“Stratum 1” type=“stratum”
+uuid=“E433C802-672D-4372-A7BC-6E577C394761”&gt;&lt;logicalOp
+displayName=“AND” type=“and”&gt;&lt;comment displayName=“comment”
+type=“comment”/&gt;&lt;subTreeRef displayName=“OlderThan30”
+id=“41D98150-2288-4135-966F-7B42AAE40B53”
+type=“subTree”/&gt;&lt;/logicalOp&gt;&lt;/clause&gt;&lt;clause
+displayName=“numeratorExclusions” type=“numeratorExclusions”
+uuid=“f194c931-c8de-453a-8a80-3afae0742d60”&gt;&lt;logicalOp
+displayName=“AND”
+type=“and”/&gt;&lt;/clause&gt;&lt;/group&gt;&lt;/measureGrouping&gt;&lt;elementLookUp&gt;&lt;qdm
+codeSystemName=“National Library of Medicine” datatype=“Patient
+Characteristic Sex” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b86” name=“ONC
+Administrative Sex” oid=“2.16.840.1.113762.1.4.1” suppDataElement=“true”
+taxonomy=“AdministrativeSex” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b86”
+version=“1”/&gt;&lt;qdm codeSystemName=“CDC NCHS” datatype=“Patient
+Characteristic Race” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b87” name=“Race”
+oid=“2.16.840.1.114222.4.11.836” suppDataElement=“true” taxonomy=“CDCREC”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b87” version=“1”/&gt;&lt;qdm
+codeSystemName=“CDC NCHS” datatype=“Patient Characteristic Ethnicity”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b88” name=“Ethnicity”
+oid=“2.16.840.1.114222.4.11.837” suppDataElement=“true” taxonomy=“CDCREC”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b88” version=“1”/&gt;&lt;qdm
+codeSystemName=“PHDSC” datatype=“Patient Characteristic Payer”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b89” name=“Payer”
+oid=“2.16.840.1.114222.4.11.3591” suppDataElement=“true” taxonomy=“SOP”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b89” version=“1”/&gt;&lt;qdm
+codeSystemName=“National Quality Forum” datatype=“Timing Element”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b8c” name=“Measurement Period”
+oid=“2.16.840.1.113883.3.67.1.101.1.53” suppDataElement=“false”
+taxonomy=“NQF” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b8c”
+version=“1”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“Diagnosis, Active” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b8e”
+name=“Hemorrhagic Stroke” oid=“2.16.840.1.113883.3.117.1.7.1.212”
+suppDataElement=“false” taxonomy=“Grouping”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b8e” version=“1”/&gt;&lt;qdm
+codeSystemName=“American Medical Association-convened Physician Consortium
+for Performance Improvement(R) (AMA-PCPI)” datatype=“Intervention, Order”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b97” name=“Palliative Care”
+oid=“2.16.840.1.113883.3.526.2.1076” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b97”
+version=“1”/&gt;&lt;qdm codeSystemName=“American Medical
+Association-convened Physician Consortium for Performance Improvement(R)
+(AMA-PCPI)” datatype=“Intervention, Performed”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b98” name=“Palliative Care”
+oid=“2.16.840.1.113883.3.526.2.1076” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b98”
+version=“1”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“Diagnosis, Active” id=“8a4d92b2-37bf-6f1b-0137-cdadba412b9a”
+name=“Ischemic Stroke” oid=“2.16.840.1.113883.3.117.1.7.1.247”
+suppDataElement=“false” taxonomy=“Grouping”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b9a” version=“1”/&gt;&lt;qdm
+codeSystemName=“Joint Commission” datatype=“attribute”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba412b9b” name=“Left Against Medical
+Advice” oid=“2.16.840.1.113883.3.117.1.7.1.308” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba412b9b”
+version=“1”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“attribute” id=“8a4d92b2-37bf-6f1b-0137-cdadba422b9d”
+name=“Discharged to Home for Hospice Care”
+oid=“2.16.840.1.113883.3.117.1.7.1.209” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422b9d”
+version=“1”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“attribute” id=“8a4d92b2-37bf-6f1b-0137-cdadba422b9e”
+name=“Discharged to Health Care Facility for Hospice Care”
+oid=“2.16.840.1.113883.3.117.1.7.1.207” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422b9e”
+version=“1”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“attribute” id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba0”
+name=“Carotid Intervention” oid=“2.16.840.1.113883.3.117.1.7.1.204”
+suppDataElement=“false” taxonomy=“Grouping”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422ba0” version=“1”/&gt;&lt;qdm
+codeSystemName=“Oklahoma Foundation for Medical Quality” datatype=“Patient
+Characteristic Clinical Trial Participant”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba1” name=“Clinical Trial Participant”
+oid=“2.16.840.1.113883.3.526.2.643” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422ba1”
+version=“1.0”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“attribute” id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba2”
+name=“Patient Expired” oid=“2.16.840.1.113883.3.117.1.7.1.309”
+suppDataElement=“false” taxonomy=“SNOMEDCT”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422ba2” version=“1”/&gt;&lt;qdm
+codeSystemName=“Joint Commission” datatype=“attribute”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba4” name=“Discharge To Another
+Hospital” oid=“2.16.840.1.113883.3.117.1.7.1.87” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422ba4”
+version=“1”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“attribute” id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba5”
+name=“Patient Refusal” oid=“2.16.840.1.113883.3.117.1.7.1.93”
+suppDataElement=“false” taxonomy=“SNOMEDCT”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422ba5” version=“1”/&gt;&lt;qdm
+codeSystemName=“Joint Commission” datatype=“attribute”
+id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba6” name=“Medical Reason”
+oid=“2.16.840.1.113883.3.117.1.7.1.473” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422ba6”
+version=“1”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“Medication, Order” id=“8a4d92b2-37bf-6f1b-0137-cdadba422ba9”
+name=“Antithrombotic Therapy” oid=“2.16.840.1.113883.3.117.1.7.1.201”
+suppDataElement=“false” taxonomy=“RXNORM”
+uuid=“8a4d92b2-37bf-6f1b-0137-cdadba422ba9” version=“1”/&gt;&lt;qdm
+codeSystemName=“Joint Commission” datatype=“Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” instance=“Occurrence A”
+name=“Inpatient Encounter” oid=“2.16.840.1.113883.3.117.1.7.1.23”
+suppDataElement=“false” taxonomy=“SNOMEDCT”
+uuid=“8a4d92b2-3a00-2a25-013a-4bcc0df67919” version=“1”/&gt;&lt;qdm
+codeSystemName=“Lantana” datatype=“Encounter, Performed”
+id=“8a4d92b2-3a00-2a25-013a-4c78101d7d65” instance=“Occurrence A”
+name=“Emergency Department Visit” oid=“2.16.840.1.113883.3.117.1.7.1.292”
+suppDataElement=“false” taxonomy=“SNOMEDCT”
+uuid=“8a4d92b2-3a00-2a25-013a-4c78101d7d65” version=“1”/&gt;&lt;qdm
+codeSystemName=“Joint Commission” datatype=“Medication, Discharge”
+id=“8a4d92b2-3a58-b777-013a-65ae440c2116” name=“Antithrombotic Therapy”
+oid=“2.16.840.1.113883.3.117.1.7.1.201” suppDataElement=“false”
+taxonomy=“RXNORM” uuid=“8a4d92b2-3a58-b777-013a-65ae440c2116”
+version=“1”/&gt;&lt;qdm codeSystemName=“Joint Commission”
+datatype=“Encounter, Performed” id=“ae96a293-4f1a-4e91-bf1d-8ab18856f83c”
+name=“Inpatient Encounter” oid=“2.16.840.1.113883.3.117.1.7.1.23”
+suppDataElement=“false” taxonomy=“SNOMEDCT”
+uuid=“ae96a293-4f1a-4e91-bf1d-8ab18856f83c” version=“1”/&gt;&lt;qdm
+codeSystemName=“Lantana” datatype=“Encounter, Performed”
+id=“43a770a6-b73d-4a89-b113-5f90c80ebef3” name=“Emergency Department Visit”
+oid=“2.16.840.1.113883.3.117.1.7.1.292” suppDataElement=“false”
+taxonomy=“SNOMEDCT” uuid=“43a770a6-b73d-4a89-b113-5f90c80ebef3”
+version=“1”/&gt;&lt;/elementLookUp&gt;&lt;/measure&gt;</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

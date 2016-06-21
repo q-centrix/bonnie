@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>bonnie_test_eMeasure.xml - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Capfile.html">Capfile</a>
+  
+    <li><a href="../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../Procfile.html">Procfile</a>
+  
+    <li><a href="../README_md.html">README</a>
+  
+    <li><a href="../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Black-Italic/Roboto-BlackItalic-webfont_svg.html">Roboto-BlackItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Black/Roboto-Black-webfont_svg.html">Roboto-Black-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Condensed-Italic/RobotoCondensed-BoldItalic-webfont_svg.html">RobotoCondensed-BoldItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Condensed/RobotoCondensed-Bold-webfont_svg.html">RobotoCondensed-Bold-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold-Italic/Roboto-BoldItalic-webfont_svg.html">Roboto-BoldItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Bold/Roboto-Bold-webfont_svg.html">Roboto-Bold-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Condensed-Italic/RobotoCondensed-Italic-webfont_svg.html">RobotoCondensed-Italic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Condensed/RobotoCondensed-Regular-webfont_svg.html">RobotoCondensed-Regular-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Italic/Roboto-Italic-webfont_svg.html">Roboto-Italic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Condensed-Italic/RobotoCondensed-LightItalic-webfont_svg.html">RobotoCondensed-LightItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Condensed/RobotoCondensed-Light-webfont_svg.html">RobotoCondensed-Light-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light-Italic/Roboto-LightItalic-webfont_svg.html">Roboto-LightItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Light/Roboto-Light-webfont_svg.html">Roboto-Light-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Medium-Italic/Roboto-MediumItalic-webfont_svg.html">Roboto-MediumItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Medium/Roboto-Medium-webfont_svg.html">Roboto-Medium-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Regular/Roboto-Regular-webfont_svg.html">Roboto-Regular-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Thin-Italic/Roboto-ThinItalic-webfont_svg.html">Roboto-ThinItalic-webfont.svg</a>
+  
+    <li><a href="../app/assets/fonts/Roboto-Thin/Roboto-Thin-webfont_svg.html">Roboto-Thin-webfont.svg</a>
+  
+    <li><a href="../app/assets/javascripts/templates/breadcrumb_hbs.html">breadcrumb.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/complexity_popover_hbs.html">complexity_popover.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/setup_hbs.html">setup.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/dashboard/viz_hbs.html">viz.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/import/finalize_measures_hbs.html">finalize_measures.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/import/import_measure_hbs.html">import_measure.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/matrix_hbs.html">matrix.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure_hbs.html">measure.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/complexity_hbs.html">complexity.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/complexity_popover_hbs.html">complexity_popover.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/coverage_hbs.html">coverage.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/export_patients_hbs.html">export_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/fraction_hbs.html">fraction.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/percentage_hbs.html">percentage.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/population_hbs.html">population.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/population_edit_hbs.html">population_edit.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/status_hbs.html">status.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/codes_items_hbs.html">codes_items.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/codes_list_hbs.html">codes_list.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure/value_sets/value_sets_hbs.html">value_sets.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measure_debug_hbs.html">measure_debug.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/measures_hbs.html">measures.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/filters_hbs.html">filters.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/measure_patients_hbs.html">measure_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/patient_bank_hbs.html">patient_bank.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_bank/selected_patients_hbs.html">selected_patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_codes_hbs.html">edit_codes.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_criteria_hbs.html">edit_criteria.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_fulfillments_hbs.html">edit_fulfillments.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_reference_hbs.html">edit_reference.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/edit_value_hbs.html">edit_value.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/expected_value_hbs.html">expected_value.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/expected_values_hbs.html">expected_values.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/measure_ribbon_hbs.html">measure_ribbon.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/patient_builder_hbs.html">patient_builder.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/select_criteria_hbs.html">select_criteria.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patient_builder/value_set_code_checker_hbs.html">value_set_code_checker.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/patients_hbs.html">patients.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_hbs.html">record.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_entry_hbs.html">record_entry.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_header_hbs.html">record_header.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/patients/record_section_hbs.html">record_section.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/population_calculation_hbs.html">population_calculation.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/population_calculation_results_hbs.html">population_calculation_results.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/edit_user_hbs.html">edit_user.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/email_users_hbs.html">email_users.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/export_bundle_hbs.html">export_bundle.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/table_header_hbs.html">table_header.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/user_hbs.html">user.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/user_summary_hbs.html">user_summary.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/users/users_hbs.html">users.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/value_sets_builder/value_set_hbs.html">value_set.hbs</a>
+  
+    <li><a href="../app/assets/javascripts/templates/value_sets_builder/value_sets_builder_hbs.html">value_sets_builder.hbs</a>
+  
+    <li><a href="../app/assets/stylesheets/application_css_less.html">application.css.less</a>
+  
+    <li><a href="../app/assets/stylesheets/bank_less.html">bank.less</a>
+  
+    <li><a href="../app/assets/stylesheets/bootstrap3_less.html">bootstrap3.less</a>
+  
+    <li><a href="../app/assets/stylesheets/builder_less.html">builder.less</a>
+  
+    <li><a href="../app/assets/stylesheets/dashboard_less.html">dashboard.less</a>
+  
+    <li><a href="../app/assets/stylesheets/errors_less.html">errors.less</a>
+  
+    <li><a href="../app/assets/stylesheets/landing_less.html">landing.less</a>
+  
+    <li><a href="../app/assets/stylesheets/matrix_less.html">matrix.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measure_less.html">measure.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measure_calculation_less.html">measure_calculation.less</a>
+  
+    <li><a href="../app/assets/stylesheets/measures_less.html">measures.less</a>
+  
+    <li><a href="../app/assets/stylesheets/mixins_less.html">mixins.less</a>
+  
+    <li><a href="../app/assets/stylesheets/rationale_less.html">rationale.less</a>
+  
+    <li><a href="../app/assets/stylesheets/users_less.html">users.less</a>
+  
+    <li><a href="../app/assets/stylesheets/value_sets_less.html">value_sets.less</a>
+  
+    <li><a href="../app/assets/stylesheets/variables_less.html">variables.less</a>
+  
+    <li><a href="../app/assets/stylesheets/vsbuilder_less.html">vsbuilder.less</a>
+  
+    <li><a href="../bower_json.html">bower.json</a>
+  
+    <li><a href="../config_ru.html">config.ru</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_css.html">application.css</a>
+  
+    <li><a href="../coverage/assets/0_10_0/application_js.html">application.js</a>
+  
+    <li><a href="../coverage/covered_percent.html">covered_percent</a>
+  
+    <li><a href="../coverage/index_html.html">index.html</a>
+  
+    <li><a href="../demo_script_txt.html">demo_script</a>
+  
+    <li><a href="../deployment/ec2-deployment-steps_txt.html">ec2-deployment-steps</a>
+  
+    <li><a href="../deployment/maintenance_html.html">maintenance.html</a>
+  
+    <li><a href="../deployment/ubuntu-deployment-steps_txt.html">ubuntu-deployment-steps</a>
+  
+    <li><a href="../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+    <li><a href="../doc/bonnie_test_eMeasure_xml.html">bonnie_test_eMeasure.xml</a>
+  
+    <li><a href="../lib/assets/hqmf_template_oid_map_json.html">hqmf_template_oid_map.json</a>
+  
+    <li><a href="../lib/tasks/bonnie_rake.html">bonnie.rake</a>
+  
+    <li><a href="../lib/tasks/bonnie_run_once_rake.html">bonnie_run_once.rake</a>
+  
+    <li><a href="../lib/tasks/calculation_tests_rake.html">calculation_tests.rake</a>
+  
+    <li><a href="../lib/tasks/dashboard_rake.html">dashboard.rake</a>
+  
+    <li><a href="../lib/tasks/exporting/bundle_rake.html">bundle.rake</a>
+  
+    <li><a href="../lib/tasks/loading/bundle_rake.html">bundle.rake</a>
+  
+    <li><a href="../lib/tasks/loading/mat_rake.html">mat.rake</a>
+  
+    <li><a href="../lib/tasks/loading/sources_rake.html">sources.rake</a>
+  
+    <li><a href="../lib/tasks/loading/white_black_list_rake.html">white_black_list.rake</a>
+  
+    <li><a href="../lib/tasks/parser_comparison_rake.html">parser_comparison.rake</a>
+  
+    <li><a href="../lib/tasks/vsac_rake.html">vsac.rake</a>
+  
+    <li><a href="../public/favicon_ico.html">favicon.ico</a>
+  
+    <li><a href="../public/robots_txt.html">robots</a>
+  
+    <li><a href="../rdoc_help_txt.html">rdoc_help</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/README.html">README</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measure_diff_json.html">measure_diff.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measure_sets_json.html">measure_sets.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/measures_json.html">measures.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/patients_json.html">patients.json</a>
+  
+    <li><a href="../spec/javascripts/fixtures/json/value_sets_json.html">value_sets.json</a>
+  
+    <li><a href="../spec/javascripts/helpers/jasmine-jquery-2_1_0_js.html">jasmine-jquery-2.1.0.js</a>
+  
+    <li><a href="../spec/javascripts/helpers/waitsForAndRuns_js.html">waitsForAndRuns.js</a>
+  
+    <li><a href="../spec/javascripts/spec_js.html">spec.js</a>
+  
+    <li><a href="../test/fixtures/draft_measures/CMS104v2_json.html">CMS104v2.json</a>
+  
+    <li><a href="../test/fixtures/draft_measures/CMS138v2_json.html">CMS138v2.json</a>
+  
+    <li><a href="../test/fixtures/patient_builder/source_data_criteria_json.html">source_data_criteria.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_A_json.html">BH_Adult_A.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_B_json.html">BH_Adult_B.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_C_json.html">BH_Adult_C.json</a>
+  
+    <li><a href="../test/fixtures/records/BH_Adult_D_json.html">BH_Adult_D.json</a>
+  
+    <li><a href="../test/fixtures/users/bonnie_json.html">bonnie.json</a>
+  
+    <li><a href="../test/fixtures/users/user_admin_json.html">user_admin.json</a>
+  
+    <li><a href="../test/fixtures/users/user_plain_json.html">user_plain.json</a>
+  
+    <li><a href="../test/fixtures/users/user_unapproved_json.html">user_unapproved.json</a>
+  
+    <li><a href="../testplan/435ComplexV2_v4_SimpleXML_xml.html">435ComplexV2_v4_SimpleXML.xml</a>
+  
+    <li><a href="../testplan/DischargedOnAntithrombotic_eMeasure_xml.html">DischargedOnAntithrombotic_eMeasure.xml</a>
+  
+    <li><a href="../testplan/testplan_txt.html">testplan</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page doc/bonnie_test_eMeasure.xml">
+
+<p>&lt;QualityMeasureDocument xmlns=“urn:hl7-org:v3” xmlns:xsi=“<a
+href="http://www.w3.org/2001/XMLSchema-instance">www.w3.org/2001/XMLSchema-instance</a>”&gt;</p>
+
+<pre>   &lt;!--
+      **************************************************************   
+      Measure Details Section
+      **************************************************************
+   --&gt;
+
+   &lt;typeId root=&quot;2.16.840.1.113883.1.3&quot; extension=&quot;POQM_HD000001&quot;/&gt;
+&lt;id root=&quot;40280381-446b-b8c2-0145-47ce29f16c74&quot;/&gt;
+&lt;code code=&quot;57024-2&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+      displayName=&quot;Health Quality Measure Document&quot;/&gt;
+&lt;title&gt;Bonnie Test Measure&lt;/title&gt;
+&lt;text&gt;This is an example measure&lt;/text&gt;
+&lt;statusCode code=&quot;InProgress&quot;/&gt;
+&lt;setId root=&quot;15f28bbd-3b1b-487b-bf70-804d84f3cad4&quot;/&gt;
+&lt;versionNumber value=&quot;0&quot;/&gt;
+&lt;author typeCode=&quot;AUT&quot;&gt;
+   &lt;assignedPerson classCode=&quot;ASSIGNED&quot;&gt;
+      &lt;representedOrganization classCode=&quot;ORG&quot; determinerCode=&quot;INSTANCE&quot;&gt;
+         &lt;id root=&quot;5609e511-79cc-4d00-b2aa-78d42a24bb0b&quot;/&gt;
+         &lt;name&gt;MITRE&lt;/name&gt;
+         &lt;contactParty classCode=&quot;CON&quot; nullFlavor=&quot;UNK&quot;/&gt;
+      &lt;/representedOrganization&gt;
+   &lt;/assignedPerson&gt;
+&lt;/author&gt;
+&lt;custodian&gt;
+   &lt;assignedPerson classCode=&quot;ASSIGNED&quot;&gt;
+      &lt;representedOrganization classCode=&quot;ORG&quot; determinerCode=&quot;INSTANCE&quot;&gt;
+         &lt;id root=&quot;&quot;/&gt;
+         &lt;name/&gt;
+         &lt;contactParty classCode=&quot;CON&quot; nullFlavor=&quot;UNK&quot;/&gt;
+      &lt;/representedOrganization&gt;
+   &lt;/assignedPerson&gt;
+&lt;/custodian&gt;
+&lt;verifier typeCode=&quot;VRF&quot;&gt;
+   &lt;assignedPerson classCode=&quot;ASSIGNED&quot;&gt;
+      &lt;representedOrganization classCode=&quot;ORG&quot; determinerCode=&quot;INSTANCE&quot;&gt;
+         &lt;name&gt;None&lt;/name&gt;
+         &lt;contactParty classCode=&quot;CON&quot; nullFlavor=&quot;UNK&quot;/&gt;
+      &lt;/representedOrganization&gt;
+   &lt;/assignedPerson&gt;
+&lt;/verifier&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Finalized Date/Time&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;TS&quot; value=&quot;&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;COPY&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Copyright&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRSCORE&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;
+            displayName=&quot;Measure Scoring&quot;/&gt;
+      &lt;value xsi:type=&quot;CD&quot; code=&quot;PROPOR&quot; codeSystem=&quot;2.16.840.1.113883.1.11.20367&quot;
+             displayName=&quot;Proportion&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRTYPE&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Measure Type&quot;/&gt;
+      &lt;value xsi:type=&quot;CD&quot; code=&quot;OUTCOME&quot; codeSystem=&quot;2.16.840.1.113883.1.11.20368&quot;
+             displayName=&quot;Outcome&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;STRAT&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Stratification&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRADJ&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Risk Adjustment&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRAGG&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Rate Aggregation&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;RAT&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Rationale&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;CRS&quot; codeSystem=&quot;2.16.840.1.113883.3.560&quot;
+            displayName=&quot;Clinical Recommendation Statement&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;IDUR&quot; codeSystem=&quot;2.16.840.1.113883.3.560&quot;
+            displayName=&quot;Improvement Notation&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;NQF ID Number&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;II&quot; root=&quot;2.16.840.1.113883.3.560.1&quot; extension=&quot;&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;DISC&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Disclaimer&quot;&gt;
+         &lt;originalText&gt;Disclaimer&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;eMeasure Identifier&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;324&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.74&quot;/&gt;
+      &lt;id root=&quot;ca9c40a5-3dfd-4066-86a1-044d19c5c6b8&quot;/&gt;
+      &lt;code code=&quot;MSRTP&quot; displayName=&quot;Measurement period&quot;
+            codeSystem=&quot;2.16.840.1.113883.3.560&quot;/&gt;
+      &lt;value xsi:type=&quot;IVL_TS&quot;&gt;
+         &lt;low value=&quot;00000101&quot;/&gt;
+         &lt;high value=&quot;00001231&quot;/&gt;
+      &lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;localVariableName&gt;measureStartDate&lt;/localVariableName&gt;
+   &lt;measureAttribute&gt;
+      &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.75&quot;/&gt;
+      &lt;id root=&quot;d4349b65-836e-4790-bb7e-0d63cc4fa763&quot;/&gt;
+      &lt;code code=&quot;MSRSD&quot; displayName=&quot;Measurement start date&quot;
+            codeSystem=&quot;2.16.840.1.113883.3.560&quot;/&gt;
+      &lt;value xsi:type=&quot;TS&quot; value=&quot;00000101&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;localVariableName&gt;measureEndDate&lt;/localVariableName&gt;
+   &lt;measureAttribute&gt;
+      &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.75&quot;/&gt;
+      &lt;id root=&quot;5f704b6e-7905-4686-ad22-2b257c0804d4&quot;/&gt;
+      &lt;code code=&quot;MSRED&quot; displayName=&quot;Measurement end date&quot;
+            codeSystem=&quot;2.16.840.1.113883.3.560&quot;/&gt;
+      &lt;value xsi:type=&quot;TS&quot; value=&quot;00001231&quot;/&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;REF&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Reference&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;DEF&quot; codeSystem=&quot;2.16.840.1.113883.3.560&quot; displayName=&quot;Definition&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;GUIDE&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot; displayName=&quot;Guidance&quot;/&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Transmission Format&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;None&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;IPP&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Initial Patient Population&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;DENOM&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Denominator&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Denominator Exclusions&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;NUMER&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Numerator&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Numerator Exclusions&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;DENEXCEP&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Denominator Exceptions&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code code=&quot;MSRPOPL&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;&gt;
+         &lt;originalText&gt;Measure Population&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Measure Observations&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;subjectOf&gt;
+   &lt;measureAttribute&gt;
+      &lt;code nullFlavor=&quot;OTH&quot;&gt;
+         &lt;originalText&gt;Supplemental Data Elements&lt;/originalText&gt;
+      &lt;/code&gt;
+      &lt;value xsi:type=&quot;ED&quot; mediaType=&quot;text/plain&quot;&gt;No Description&lt;/value&gt;
+   &lt;/measureAttribute&gt;
+&lt;/subjectOf&gt;
+&lt;componentOf&gt;
+   &lt;qualityMeasureSet classCode=&quot;ACT&quot;&gt;
+      &lt;id root=&quot;&quot;/&gt;
+      &lt;title/&gt;
+   &lt;/qualityMeasureSet&gt;
+&lt;/componentOf&gt;
+
+         &lt;!--
+             **************************************************************   
+             Population Criteria Section
+             **************************************************************
+         --&gt;&lt;component typeCode=&quot;COMP&quot;&gt;
+   &lt;section&gt;
+      &lt;code code=&quot;57026-7&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+            displayName=&quot;Population criteria&quot;/&gt;
+      &lt;title&gt;Population criteria&lt;/title&gt;
+      &lt;text&gt;
+         &lt;list&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Initial Patient Population =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &quot;Patient Characteristic Birthdate: birth date&quot;  &amp;gt;= 18 year(s) starts before start of &quot;Measurement Period&quot;&lt;/item&gt;
+                  &lt;item&gt;AND: &quot;Occurrence A of Encounter, Performed: Non-Elective Inpatient Encounter&quot; during &quot;Measurement Period&quot;&lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Denominator =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &quot;Initial Patient Population&quot;&lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Denominator Exclusions =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &quot;Intervention, Performed: Comfort Measures&quot; starts during &quot;Occurrence A of Encounter, Performed: Non-Elective Inpatient Encounter&quot;&lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Numerator =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;AND: &quot;Medication, Administered: Hospital Measures-Aspirin&quot; starts during &quot;Occurrence A of Encounter, Performed: Non-Elective Inpatient Encounter&quot;&lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+            &lt;item&gt;
+               &lt;content styleCode=&quot;Bold&quot;&gt;Denominator Exceptions =&lt;/content&gt;
+               &lt;list&gt;
+                  &lt;item&gt;None&lt;/item&gt;
+               &lt;/list&gt;
+            &lt;/item&gt;
+         &lt;/list&gt;
+      &lt;/text&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: initialPatientPopulation 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;23FB7AD9-C04A-4A11-BFCB-E72CFF4BE6B6&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;IPP&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Initial Patient Population&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Birthdate pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.400&quot;/&gt;
+                  &lt;id root=&quot;9189ae05-b54e-4b74-8b48-022434fc43d0&quot;/&gt;
+                  &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;21112-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Birth date&quot;/&gt;
+                        &lt;title&gt;Patient Characteristic Birthdate: birth date&lt;/title&gt;
+                        &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.560.100.4&quot;
+                               codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                               displayName=&quot;birth date LOINC Value Set&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;SBS&quot;&gt;
+                           &lt;pauseQuantity xsi:type=&quot;IVL_PQ&quot;&gt;
+                              &lt;low inclusive=&quot;true&quot; value=&quot;18&quot; unit=&quot;a&quot;/&gt;
+                           &lt;/pauseQuantity&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;id root=&quot;ca9c40a5-3dfd-4066-86a1-044d19c5c6b8&quot;/&gt;
+                              &lt;title&gt;Measurement Period&lt;/title&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/observation&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+            &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+                  &lt;id root=&quot;9f31d63f-2cd4-4255-bde3-e369fe4f580c&quot;/&gt;
+                  &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.424&quot;
+                              displayName=&quot;Non-Elective Inpatient Encounter SNOMEDCT Value Set&quot;
+                              codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;title&gt;Occurrence A of Encounter, Performed: Non-Elective Inpatient Encounter&lt;/title&gt;
+                        &lt;statusCode code=&quot;completed&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;DURING&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;id root=&quot;ca9c40a5-3dfd-4066-86a1-044d19c5c6b8&quot;/&gt;
+                              &lt;title&gt;Measurement Period&lt;/title&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/encounter&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: denominator 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;84E7A851-DF12-44FE-81F5-962E9D824DCC&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;DENOM&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Denominator&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;23FB7AD9-C04A-4A11-BFCB-E72CFF4BE6B6&quot;/&gt;
+                  &lt;title&gt;Initial Patient Population &lt;/title&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: denominatorExclusions 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot; actionNegationInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;9e06f61a-6ad6-4ae3-8a6b-034bd059ece1&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;DENOM&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Denominator&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;23FB7AD9-C04A-4A11-BFCB-E72CFF4BE6B6&quot;/&gt;
+                  &lt;title&gt;Initial Patient Population &lt;/title&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+            &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.46&quot;/&gt;
+                  &lt;id root=&quot;b94596e9-8b8d-4d42-8cc4-e1531d72eef4&quot;/&gt;
+                  &lt;code code=&quot;47519-4&quot; displayName=&quot;Procedures&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;code code=&quot;1.3.6.1.4.1.33895.1.3.0.45&quot;
+                              displayName=&quot;Comfort Measures  SNOMEDCT Value Set&quot;
+                              codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;title&gt;Intervention, Performed: Comfort Measures &lt;/title&gt;
+                        &lt;statusCode code=&quot;completed&quot;/&gt;
+                        &lt;sourceOf typeCode=&quot;SDU&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;id root=&quot;9f31d63f-2cd4-4255-bde3-e369fe4f580c&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Non-Elective Inpatient Encounter&lt;/title&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/procedure&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: denominatorExceptions 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;3896d210-10b4-4a28-a726-3a50d4c365a3&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;DENEXCEP&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Denominator Exception&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;84E7A851-DF12-44FE-81F5-962E9D824DCC&quot;/&gt;
+                  &lt;title&gt;Denominator&lt;/title&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;!--
+         **************************************************************   
+         Population Criteria Section: numerator 
+         **************************************************************
+   --&gt;&lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+            &lt;id root=&quot;92d9a112-b68a-466f-9e48-8edbb0054dcd&quot;/&gt;
+            &lt;code code=&quot;ASSERTION&quot; codeSystem=&quot;2.16.840.1.113883.5.4&quot;/&gt;
+            &lt;value xsi:type=&quot;CD&quot; code=&quot;NUMER&quot; codeSystem=&quot;2.16.840.1.113883.5.1063&quot;
+                   codeSystemName=&quot;HL7 Observation Value&quot;
+                   displayName=&quot;Numerator&quot;/&gt;
+            &lt;!--  top and/or --&gt;&lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;84E7A851-DF12-44FE-81F5-962E9D824DCC&quot;/&gt;
+                  &lt;title&gt;Denominator&lt;/title&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+            &lt;sourceOf typeCode=&quot;PRCN&quot;&gt;
+               &lt;conjunctionCode code=&quot;AND&quot;/&gt;
+               &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Medication, Administered pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.14&quot;/&gt;
+                  &lt;id root=&quot;6e5723d8-487d-46f0-9a60-14cbe1245f87&quot;/&gt;
+                  &lt;code code=&quot;18610-6&quot; displayName=&quot;Medication administered&quot;
+                        codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+                  &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+                     &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                        &lt;title&gt;Medication, Administered: Hospital Measures-Aspirin&lt;/title&gt;
+                        &lt;participant typeCode=&quot;CSM&quot;&gt;
+                           &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                              &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                                 &lt;code code=&quot;2.16.840.1.113883.3.666.5.626&quot;
+                                       displayName=&quot;Hospital Measures-Aspirin RXNORM Value Set&quot;
+                                       codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                              &lt;/playingMaterial&gt;
+                           &lt;/roleParticipant&gt;
+                        &lt;/participant&gt;
+                        &lt;sourceOf typeCode=&quot;SDU&quot;&gt;
+                           &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                              &lt;id root=&quot;9f31d63f-2cd4-4255-bde3-e369fe4f580c&quot;/&gt;
+                              &lt;title&gt;Occurrence A of Encounter, Performed: Non-Elective Inpatient Encounter&lt;/title&gt;
+                           &lt;/observation&gt;
+                        &lt;/sourceOf&gt;
+                     &lt;/substanceAdministration&gt;
+                  &lt;/sourceOf&gt;
+               &lt;/act&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+   &lt;/section&gt;
+&lt;/component&gt;
+
+   &lt;!--
+      ******************************************   
+      Data Criteria Section
+      ******************************************
+   --&gt;&lt;component typeCode=&quot;COMP&quot;&gt;
+   &lt;section&gt;
+      &lt;code code=&quot;57025-9&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+            displayName=&quot;Data criteria (QDM Data Elements)&quot;/&gt;
+      &lt;title&gt;Data criteria (QDM Data Elements)&lt;/title&gt;
+      &lt;text&gt;
+         &lt;list&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Encounter, Performed: Non-Elective Inpatient Encounter&quot;&lt;/content&gt; using &quot;Non-Elective Inpatient Encounter SNOMEDCT Value Set (2.16.840.1.113883.3.117.1.7.1.424)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Intervention, Performed: Comfort Measures &quot;&lt;/content&gt; using &quot;Comfort Measures SNOMEDCT Value Set (1.3.6.1.4.1.33895.1.3.0.45)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Medication, Administered: Hospital Measures-Aspirin&quot;&lt;/content&gt; using &quot;Hospital Measures-Aspirin RXNORM Value Set (2.16.840.1.113883.3.666.5.626)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Birthdate: birth date&quot;&lt;/content&gt; using &quot;birth date LOINC Value Set (2.16.840.1.113883.3.560.100.4)&quot;&lt;/item&gt;
+         &lt;/list&gt;
+      &lt;/text&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Birthdate pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.400&quot;/&gt;
+            &lt;id root=&quot;9189ae05-b54e-4b74-8b48-022434fc43d0&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;21112-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Birth date&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Birthdate: birth date&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113883.3.560.100.4&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;birth date LOINC Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;COMP&quot;&gt;
+         &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;DEF&quot;&gt;
+            &lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+            &lt;id root=&quot;9f31d63f-2cd4-4255-bde3-e369fe4f580c&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;DRIV&quot;&gt;
+               &lt;localVariableName&gt;Non-Elective Inpatient Encounter&lt;/localVariableName&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;id root=&quot;56bec239-9aa6-40bc-83bc-422160ac901b&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/observation&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Intervention, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.46&quot;/&gt;
+            &lt;id root=&quot;b94596e9-8b8d-4d42-8cc4-e1531d72eef4&quot;/&gt;
+            &lt;code code=&quot;47519-4&quot; displayName=&quot;Procedures&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;procedure classCode=&quot;PROC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;1.3.6.1.4.1.33895.1.3.0.45&quot;
+                        displayName=&quot;Comfort Measures  SNOMEDCT Value Set&quot;
+                        codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                  &lt;title&gt;Intervention, Performed: Comfort Measures &lt;/title&gt;
+                  &lt;statusCode code=&quot;completed&quot;/&gt;
+               &lt;/procedure&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Medication, Administered pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.14&quot;/&gt;
+            &lt;id root=&quot;6e5723d8-487d-46f0-9a60-14cbe1245f87&quot;/&gt;
+            &lt;code code=&quot;18610-6&quot; displayName=&quot;Medication administered&quot;
+                  codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;substanceAdministration classCode=&quot;SBADM&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;title&gt;Medication, Administered: Hospital Measures-Aspirin&lt;/title&gt;
+                  &lt;participant typeCode=&quot;CSM&quot;&gt;
+                     &lt;roleParticipant classCode=&quot;MANU&quot;&gt;
+                        &lt;playingMaterial classCode=&quot;MMAT&quot; determinerCode=&quot;KIND&quot;&gt;
+                           &lt;code code=&quot;2.16.840.1.113883.3.666.5.626&quot;
+                                 displayName=&quot;Hospital Measures-Aspirin RXNORM Value Set&quot;
+                                 codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                        &lt;/playingMaterial&gt;
+                     &lt;/roleParticipant&gt;
+                  &lt;/participant&gt;
+               &lt;/substanceAdministration&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Encounter, Performed pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.79&quot;/&gt;
+            &lt;id root=&quot;56bec239-9aa6-40bc-83bc-422160ac901b&quot;/&gt;
+            &lt;code code=&quot;46240-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Encounter list&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;encounter classCode=&quot;ENC&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;2.16.840.1.113883.3.117.1.7.1.424&quot;
+                        displayName=&quot;Non-Elective Inpatient Encounter SNOMEDCT Value Set&quot;
+                        codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;/&gt;
+                  &lt;title&gt;Encounter, Performed: Non-Elective Inpatient Encounter&lt;/title&gt;
+                  &lt;statusCode code=&quot;completed&quot;/&gt;
+               &lt;/encounter&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+   &lt;/section&gt;
+&lt;/component&gt;
+
+      &lt;!--
+         **************************************************************   
+         Stratification Section
+         **************************************************************
+      --&gt;&lt;component typeCode=&quot;COMP&quot;&gt;
+   &lt;section&gt;
+      &lt;code code=&quot;69669-0&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+            displayName=&quot;Population stratification description&quot;/&gt;
+      &lt;title&gt;Reporting Stratification&lt;/title&gt;
+      &lt;text&gt;
+         &lt;list&gt;
+            &lt;item&gt;None&lt;/item&gt;
+         &lt;/list&gt;
+      &lt;/text&gt;
+   &lt;/section&gt;
+&lt;/component&gt;
+
+   &lt;!--
+      ******************************************   
+      Supplemental Data Elements Section
+      ******************************************
+   --&gt;&lt;component typeCode=&quot;COMP&quot;&gt;
+   &lt;section&gt;
+      &lt;code code=&quot;69670-8&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;
+            displayName=&quot;Supplemental Data Elements&quot;/&gt;
+      &lt;title&gt;Supplemental Data Elements&lt;/title&gt;
+      &lt;text&gt;
+         &lt;list&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Ethnicity: Ethnicity&quot;&lt;/content&gt; using &quot;Ethnicity CDC Value Set (2.16.840.1.114222.4.11.837)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Payer: Payer&quot;&lt;/content&gt; using &quot;Payer Source of Payment Typology Value Set (2.16.840.1.114222.4.11.3591)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Race: Race&quot;&lt;/content&gt; using &quot;Race CDC Value Set (2.16.840.1.114222.4.11.836)&quot;&lt;/item&gt;
+            &lt;item&gt;
+               &lt;content&gt;&quot;Patient Characteristic Sex: ONC Administrative Sex&quot;&lt;/content&gt; using &quot;ONC Administrative Sex Administrative Sex Value Set (2.16.840.1.113762.1.4.1)&quot;&lt;/item&gt;
+         &lt;/list&gt;
+      &lt;/text&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Sex pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.402&quot;/&gt;
+            &lt;id root=&quot;6eee4be7-7342-4790-9dd9-d4ce2f170d1f&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;263495000&quot; codeSystem=&quot;2.16.840.1.113883.6.96&quot; displayName=&quot;Sex&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Sex: ONC Administrative Sex&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.113762.1.4.1&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;ONC Administrative Sex Administrative Sex Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Race pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.406&quot;/&gt;
+            &lt;id root=&quot;6700eb13-ed87-438e-aea2-ca971d690120&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;32624-9&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Race&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Race: Race&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.114222.4.11.836&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;Race CDC Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Ethnicity pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.403&quot;/&gt;
+            &lt;id root=&quot;7f80722a-9383-458e-ba7f-cef4fadda450&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;54133-4&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Ethnicity&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Ethnicity: Ethnicity&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.114222.4.11.837&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;Ethnicity CDC Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+      &lt;entry typeCode=&quot;DRIV&quot;&gt;
+         &lt;act classCode=&quot;ACT&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;&lt;!-- Patient Characteristic Payer pattern --&gt;&lt;templateId root=&quot;2.16.840.1.113883.3.560.1.405&quot;/&gt;
+            &lt;id root=&quot;3aa0005e-ba67-4ff9-9e36-b508c026be3c&quot;/&gt;
+            &lt;code code=&quot;45970-1&quot; displayName=&quot;Demographics&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot;/&gt;
+            &lt;sourceOf typeCode=&quot;COMP&quot;&gt;
+               &lt;observation classCode=&quot;OBS&quot; moodCode=&quot;EVN&quot; isCriterionInd=&quot;true&quot;&gt;
+                  &lt;code code=&quot;48768-6&quot; codeSystem=&quot;2.16.840.1.113883.6.1&quot; displayName=&quot;Payer&quot;/&gt;
+                  &lt;title&gt;Patient Characteristic Payer: Payer&lt;/title&gt;
+                  &lt;value xsi:type=&quot;CD&quot; code=&quot;2.16.840.1.114222.4.11.3591&quot;
+                         codeSystem=&quot;2.16.840.1.113883.3.560.101.1&quot;
+                         displayName=&quot;Payer Source of Payment Typology Value Set&quot;/&gt;
+               &lt;/observation&gt;
+            &lt;/sourceOf&gt;
+         &lt;/act&gt;
+      &lt;/entry&gt;
+   &lt;/section&gt;
+&lt;/component&gt;</pre>
+
+<p>&lt;/QualityMeasureDocument&gt;</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

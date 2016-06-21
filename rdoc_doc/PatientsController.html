@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class PatientsController - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-destroy">#destroy</a>
+    
+    <li ><a href="#method-i-excel_export">#excel_export</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-materialize">#materialize</a>
+    
+    <li ><a href="#method-i-qrda_export">#qrda_export</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-PatientsController">
+  <h1 id="class-PatientsController" class="class">
+    class PatientsController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="ETHNICITY_NAME_MAP">ETHNICITY_NAME_MAP
+        
+        <dd>
+        
+      
+        <dt id="RACE_NAME_MAP">RACE_NAME_MAP
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/patients_controller.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">patient</span> = <span class="ruby-identifier">update_patient</span>(<span class="ruby-constant">Record</span>.<span class="ruby-identifier">new</span>)
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">save!</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">patient</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/patients_controller.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">patient</span> = <span class="ruby-constant">Record</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]) <span class="ruby-comment"># FIXME: will we have an ID attribute on server side?</span>
+  <span class="ruby-constant">Record</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">patient</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-excel_export" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">excel_export</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="excel_export-source">
+            <pre><span class="ruby-comment"># File app/controllers/patients_controller.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">excel_export</span>
+
+  <span class="ruby-comment"># Grab all records for the given measure</span>
+  <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">hqmf_set_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>], <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">records</span> = <span class="ruby-constant">Record</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">where</span>({<span class="ruby-value">:measure_ids</span>.<span class="ruby-identifier">in</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>]]})   
+  
+  <span class="ruby-comment"># Only generate excel document if there are patients for the given measure.</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">records</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:fileDownload</span>] = <span class="ruby-string">&quot;true&quot;</span> <span class="ruby-comment"># We need to set this cookie for jquery.fileDownload</span>
+    <span class="ruby-identifier">package</span> = <span class="ruby-constant">PatientExport</span>.<span class="ruby-identifier">export_excel_file</span>(<span class="ruby-identifier">measure</span>, <span class="ruby-identifier">records</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:results</span>])
+    <span class="ruby-identifier">send_data</span> <span class="ruby-identifier">package</span>.<span class="ruby-identifier">to_stream</span>.<span class="ruby-identifier">read</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;application/xlsx&quot;</span>, <span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{measure.cms_id}.xlsx&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">nothing</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Index method used for patient bank, returning all shared patient records</p>
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/patients_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-identifier">records</span> = <span class="ruby-constant">Record</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">is_shared</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">to_a</span>
+  <span class="ruby-comment"># Some gymnastics to deal with a 1+N problem, so we don&#39;t need additional queries for each</span>
+  <span class="ruby-comment"># record for cms_id and user_email; prepopulate these values using lookup tables, with lookups</span>
+  <span class="ruby-comment"># for email by user_id and cms_id by user_id and measure_id</span>
+  <span class="ruby-identifier">user_ids</span> = <span class="ruby-identifier">records</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:user_id</span>).<span class="ruby-identifier">uniq</span>
+  <span class="ruby-identifier">users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">only</span>(<span class="ruby-value">:_id</span>, <span class="ruby-value">:email</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_ids</span>)
+  <span class="ruby-identifier">email_lookup</span> = <span class="ruby-identifier">users</span>.<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">u</span>, <span class="ruby-identifier">h</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>] = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">email</span> }
+  <span class="ruby-identifier">measure_ids</span> = <span class="ruby-identifier">records</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">measure_ids</span>.<span class="ruby-identifier">first</span> }.<span class="ruby-identifier">uniq</span>
+  <span class="ruby-identifier">measures</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">only</span>(<span class="ruby-value">:_id</span>, <span class="ruby-value">:hqmf_set_id</span>, <span class="ruby-value">:user_id</span>, <span class="ruby-value">:cms_id</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:hqmf_set_id</span>.<span class="ruby-identifier">in</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">measure_ids</span>, <span class="ruby-value">:user_id</span>.<span class="ruby-identifier">in</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_ids</span>)
+  <span class="ruby-identifier">cms_lookup</span> = <span class="ruby-identifier">measures</span>.<span class="ruby-identifier">each_with_object</span>(<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = {} }) { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span>, <span class="ruby-identifier">h</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">m</span>.<span class="ruby-identifier">user_id</span>][<span class="ruby-identifier">m</span>.<span class="ruby-identifier">hqmf_set_id</span>] = <span class="ruby-identifier">m</span>.<span class="ruby-identifier">cms_id</span> }
+  <span class="ruby-identifier">records</span> = <span class="ruby-identifier">records</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">measures</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:hqmf_set_id</span>).<span class="ruby-identifier">include?</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">measure_ids</span>.<span class="ruby-identifier">first</span> } <span class="ruby-comment"># select shared patients with existing measures</span>
+  <span class="ruby-identifier">records</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">user_email</span> = <span class="ruby-identifier">email_lookup</span>[<span class="ruby-identifier">record</span>.<span class="ruby-identifier">user_id</span>]
+    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">cms_id</span> = <span class="ruby-identifier">cms_lookup</span>[<span class="ruby-identifier">record</span>.<span class="ruby-identifier">user_id</span>][<span class="ruby-identifier">record</span>.<span class="ruby-identifier">measure_ids</span>.<span class="ruby-identifier">first</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">MultiJson</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">records</span>.<span class="ruby-identifier">as_json</span>(<span class="ruby-identifier">methods</span><span class="ruby-operator">:</span> [<span class="ruby-value">:cms_id</span>, <span class="ruby-value">:user_email</span>]))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-materialize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">materialize</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="materialize-source">
+            <pre><span class="ruby-comment"># File app/controllers/patients_controller.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">materialize</span>
+  <span class="ruby-identifier">patient</span> = <span class="ruby-identifier">update_patient</span>(<span class="ruby-constant">Record</span>.<span class="ruby-identifier">new</span>) <span class="ruby-comment"># Always materialize a patient from scratch</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">patient</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-qrda_export" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">qrda_export</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="qrda_export-source">
+            <pre><span class="ruby-comment"># File app/controllers/patients_controller.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">qrda_export</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:patients</span>]
+    <span class="ruby-comment"># if patients are given, they&#39;re from the patient bank; use those patients</span>
+    <span class="ruby-identifier">records</span> = <span class="ruby-constant">Record</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">is_shared</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:patients</span>])
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">records</span> = <span class="ruby-constant">Record</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>)
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">portfolio?</span>
+      <span class="ruby-identifier">records</span> = <span class="ruby-identifier">records</span>.<span class="ruby-identifier">where</span>({<span class="ruby-value">:measure_ids</span>.<span class="ruby-identifier">in</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>]]})
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">where</span>({<span class="ruby-value">:hqmf_set_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>]})
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">qrda_errors</span> = {}
+  <span class="ruby-identifier">html_errors</span> = {}
+
+  <span class="ruby-identifier">stringio</span> = <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">ZipOutputStream</span><span class="ruby-operator">::</span><span class="ruby-identifier">write_buffer</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">zip</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">records</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment"># Use defined measure if available, else get the specific measure for this patient</span>
+      <span class="ruby-identifier">patient_measure</span> = <span class="ruby-identifier">measure</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">get_associated_measure</span>(<span class="ruby-identifier">patient</span>)
+      <span class="ruby-comment"># attach the QRDA export, or the error</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">qrda</span> = <span class="ruby-identifier">qrda_patient_export</span>(<span class="ruby-identifier">patient</span>, <span class="ruby-identifier">patient_measure</span>) <span class="ruby-comment"># allow error to stop execution before header is written</span>
+        <span class="ruby-identifier">zip</span>.<span class="ruby-identifier">put_next_entry</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;qrda&quot;</span>,<span class="ruby-node">&quot;#{index+1}_#{patient.last}_#{patient.first}.xml&quot;</span>))
+        <span class="ruby-identifier">zip</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">qrda</span>
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">qrda_errors</span>[<span class="ruby-identifier">patient</span>.<span class="ruby-identifier">id</span>] = <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-comment"># attach the HTML export, or the error</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">html</span> = <span class="ruby-identifier">html_patient_export</span>(<span class="ruby-identifier">patient</span>, <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">portfolio?</span> <span class="ruby-keyword">then</span> [] <span class="ruby-keyword">else</span> <span class="ruby-identifier">patient_measure</span> <span class="ruby-keyword">end</span>) <span class="ruby-comment"># allow error to stop execution before header is written</span>
+        <span class="ruby-identifier">zip</span>.<span class="ruby-identifier">put_next_entry</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;html&quot;</span>,<span class="ruby-node">&quot;#{index+1}_#{patient.last}_#{patient.first}.html&quot;</span>))
+        <span class="ruby-identifier">zip</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">html</span>
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">html_errors</span>[<span class="ruby-identifier">patient</span>.<span class="ruby-identifier">id</span>] = <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># add the summary content if there are results</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:results</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:patients</span>])
+      <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">where</span>({<span class="ruby-value">:hqmf_set_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>]}).<span class="ruby-identifier">first</span>
+      <span class="ruby-identifier">zip</span>.<span class="ruby-identifier">put_next_entry</span>(<span class="ruby-node">&quot;#{measure.cms_id}_patients_results.html&quot;</span>)
+      <span class="ruby-identifier">zip</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">measure_patients_summary</span>(<span class="ruby-identifier">records</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:results</span>].<span class="ruby-identifier">values</span>, <span class="ruby-identifier">qrda_errors</span>, <span class="ruby-identifier">html_errors</span>, <span class="ruby-identifier">measure</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:fileDownload</span>] = <span class="ruby-string">&quot;true&quot;</span> <span class="ruby-comment"># We need to set this cookie for jquery.fileDownload</span>
+  <span class="ruby-identifier">stringio</span>.<span class="ruby-identifier">rewind</span>
+  <span class="ruby-identifier">filename</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:hqmf_set_id</span>] <span class="ruby-keyword">then</span> <span class="ruby-node">&quot;#{Measure.by_user(current_user).where({:hqmf_set_id =&gt; params[:hqmf_set_id]}).first.cms_id}_patient_export.zip&quot;</span> <span class="ruby-keyword">else</span> <span class="ruby-string">&quot;bonnie_patient_export.zip&quot;</span> <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">send_data</span> <span class="ruby-identifier">stringio</span>.<span class="ruby-identifier">sysread</span>, <span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;application/zip&#39;</span>, <span class="ruby-value">:disposition</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;attachment&#39;</span>, <span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filename</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/patients_controller.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-identifier">patient</span> = <span class="ruby-constant">Record</span>.<span class="ruby-identifier">by_user</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]) <span class="ruby-comment"># FIXME: will we have an ID attribute on server side?</span>
+  <span class="ruby-identifier">update_patient</span>(<span class="ruby-identifier">patient</span>)
+  <span class="ruby-identifier">patient</span>.<span class="ruby-identifier">save!</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">patient</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

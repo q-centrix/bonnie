@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Record - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-cms_id">#cms_id</a>
+    
+    <li ><a href="#method-i-rebuild-21">#rebuild!</a>
+    
+    <li ><a href="#method-i-user_email">#user_email</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Record">
+  <h1 id="class-Record" class="class">
+    class Record
+  </h1>
+
+  <section class="description">
+    
+<p>Extensions to the <a href="Record.html">Record</a> model in
+health-data-standards to add needed functionality for test patient
+generation</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-cms_id" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cms_id</span><span
+            class="attribute-access-type">[W]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-user_email" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user_email</span><span
+            class="attribute-access-type">[W]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="User.html">User</a> email or measure CMS ID can be prepopulated
+(to solve 1+N performance issue) or just retrieved</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-cms_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cms_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the <strong>CMS</strong> <strong>ID</strong> of the measure. <br> Bold
+<strong>text</strong> using html tags.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="cms_id-source">
+            <pre><span class="ruby-comment"># File lib/ext/record.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cms_id</span>
+  <span class="ruby-ivar">@cms_id</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">begin</span>
+               <span class="ruby-identifier">measure_id</span> = <span class="ruby-identifier">measure_ids</span>.<span class="ruby-identifier">first</span> <span class="ruby-comment"># gets the primary measure ID</span>
+               <span class="ruby-identifier">measure</span> = <span class="ruby-constant">Measure</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">hqmf_set_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">measure_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">first</span> <span class="ruby-comment"># gets corresponding measure, for this user</span>
+               <span class="ruby-identifier">measure</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:cms_id</span>)
+             <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rebuild-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rebuild!</span><span
+            class="method-args">(payer=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="rebuild-21-source">
+            <pre><span class="ruby-comment"># File lib/ext/record.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rebuild!</span>(<span class="ruby-identifier">payer</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span>.<span class="ruby-identifier">rebuild_patient</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">payer</span>
+    <span class="ruby-identifier">insurance_provider</span> = <span class="ruby-constant">InsuranceProvider</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">type</span> = <span class="ruby-identifier">payer</span>
+    <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">member_id</span> = <span class="ruby-string">&#39;1234567890&#39;</span>
+    <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">name</span> = <span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span><span class="ruby-operator">::</span><span class="ruby-constant">INSURANCE_TYPES</span>[<span class="ruby-identifier">payer</span>]
+    <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">financial_responsibility_type</span> = {<span class="ruby-string">&#39;code&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;SELF&#39;</span>, <span class="ruby-string">&#39;codeSystem&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;HL7 Relationship Code&#39;</span>}
+    <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2008</span>,<span class="ruby-value">1</span>,<span class="ruby-value">1</span>).<span class="ruby-identifier">to_i</span>
+    <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">payer</span> = <span class="ruby-constant">Organization</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">payer</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">insurance_provider</span>.<span class="ruby-identifier">codes</span>[<span class="ruby-string">&quot;SOP&quot;</span>] = [<span class="ruby-constant">Measures</span><span class="ruby-operator">::</span><span class="ruby-constant">PatientBuilder</span><span class="ruby-operator">::</span><span class="ruby-constant">INSURANCE_CODES</span>[<span class="ruby-identifier">payer</span>]]
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">insurance_providers</span>.<span class="ruby-identifier">clear</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">insurance_provider</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user_email" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_email</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user_email-source">
+            <pre><span class="ruby-comment"># File lib/ext/record.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_email</span>
+  <span class="ruby-ivar">@user_email</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:email</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
