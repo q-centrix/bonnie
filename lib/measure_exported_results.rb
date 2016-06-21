@@ -14,7 +14,7 @@ class MeasureExportedResults
   def value_for_population_type(population_type)
     if population_type == 'OBSERV'
       if @patient.key?('values') && @patient[:rationale].key?('OBSERV')
-        # Convert the array of strings to an array of integers. 
+        # Convert the array of strings to an array of integers.
         return @patient[:values].map { |x| x.to_i }.to_s
       else
         return 0
@@ -27,15 +27,26 @@ class MeasureExportedResults
     value = @patient[:rationale][criteria_key]
     # value could be true, false, or nil.
     if value != nil && value != "false"
-      value = "TRUE"
+      temp_value = value
+      value = "TRUE " + "\x0D\x0A"
+      if temp_value['results']
+        temp_value['results'].each do |k, v|
+          if v.is_a?(Hash) || v.is_a?(Array)
+            if v['json'] && v['json']['description']
+              value << v['json']['description']
+              value << "\x0D\x0A"
+            end
+          end
+        end
+      end
     elsif value == "false"
       value = "FALSE"
     end
 
-    # Change value if specific rationale is involved. 
-    if @patient[:specificsRationale] && @patient[:specificsRationale][population_type] 
+    # Change value if specific rationale is involved.
+    if @patient[:specificsRationale] && @patient[:specificsRationale][population_type]
       specific_value = @patient[:specificsRationale][population_type][criteria_key]
-      
+
       # value could be "false", nil, "true"
       if specific_value == "false" && value == "TRUE"
         value = "SPECIFICALLY FALSE"

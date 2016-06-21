@@ -1,4 +1,4 @@
-# Generates a formatted Excel document of Patients for the given measure and records. 
+# Generates a formatted Excel document of Patients for the given measure and records.
 class PatientExport
 
   # List of attributes we want to print to excel
@@ -19,13 +19,14 @@ class PatientExport
 
     # COMMENTED OUT -- until we decide whether or not we want duplicate data.
     # Remove duplicates by population type
-    #criteria_keys_by_population.each do | population_type, values | 
+    #criteria_keys_by_population.each do | population_type, values |
     #  values.uniq!
     #end
 
     criteria_key_header_lookup = self.create_criteria_key_header_lookup(measure, criteria_keys_by_population)
 
     Axlsx::Package.new do |package|
+      package.use_shared_strings = true
       package.workbook do |workbook|
 
         # Styles
@@ -92,7 +93,7 @@ class PatientExport
 
             heading_positions = {}
             previous_length = population_criteria.length*2 + DISPLAYED_ATTRIBUTES.length
-          
+
             population_criteria.each do |pc|
               if criteria_keys_by_population[population[pc]].length > 0
                 toplevel_headings[previous_length] = pc
@@ -105,7 +106,7 @@ class PatientExport
             sheet.add_row(toplevel_headings, style: text_center, height: 30)
             sheet.merge_cells "A1:#{excel_column(population_criteria.length)}1"
             sheet.merge_cells "#{excel_column(population_criteria.length+1)}1:#{excel_column(population_criteria.length*2)}1"
-      
+
             population_criteria.each do |pc|
               if criteria_keys_by_population[population[pc]].length > 0
                 start_position = heading_positions[pc]
@@ -172,17 +173,17 @@ class PatientExport
   def self.generate_rows(sheet, records, measure, population_index, population_categories, population_criteria_keys, results, criteria_keys_by_population)
     # Populates the patient data
     records.each do |patient|
-      # Removes \" from beignning and end of the patient_id string 
+      # Removes \" from beignning and end of the patient_id string
       exported_results = MeasureExportedResults.new(patient.id.to_json.tr('\"',''), population_index, results)
       patient_row = []
 
       # populates the array with expected values for each population
       population_categories.each do |population_category|
         # Filter out the expected values that match the measure hqmf_set_id. Return the first object in the array.
-        expected_values = patient[:expected_values].select{ |expected_values| expected_values[:measure_id] == measure.hqmf_set_id && 
+        expected_values = patient[:expected_values].select{ |expected_values| expected_values[:measure_id] == measure.hqmf_set_id &&
                                                                               expected_values[:population_index] == population_index }.try(:first)
         # populate array with expected values
-        if expected_values && expected_values[population_category]  
+        if expected_values && expected_values[population_category]
           patient_row.push(expected_values[population_category])
         else
           patient_row.push(0)
@@ -217,14 +218,14 @@ class PatientExport
       # Generate a list of population types in order of the population_criteria_keys
       population_list = []
       criteria_keys_by_population.each do |key, list|
-        list.each do |value| 
+        list.each do |value|
           population_list.push(key)
         end
       end
 
       # Populate the values of each row, in the order that the headers were generated.
       population_criteria_keys.each_with_index do |key, index|
-        value = exported_results.get_criteria_value(key, population_list[index]) 
+        value = exported_results.get_criteria_value(key, population_list[index])
         patient_row.push(value)
       end
 
