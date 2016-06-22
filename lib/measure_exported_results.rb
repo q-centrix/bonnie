@@ -48,9 +48,9 @@ class MeasureExportedResults
       specific_value = @patient[:specificsRationale][population_type][criteria_key]
 
       # value could be "false", nil, "true"
-      if specific_value == "false" && value == "TRUE"
+      if specific_value == "false" && value.include?("TRUE")
         value = "SPECIFICALLY FALSE"
-      elsif specific_value == "true" && value == "FALSE"
+      elsif specific_value == "true" && value.include?("FALSE")
         value = "SPECIFICALLY TRUE"
       end
     end
