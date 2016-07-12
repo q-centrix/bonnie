@@ -6,7 +6,11 @@ class MeasuresController < ApplicationController
 
   def show
     skippable_fields = [:map_fns, :record_ids, :measure_attributes]
-    @measure = Measure.by_user(current_user).without(*skippable_fields).find(params[:id])
+    # Lookup the measure both in the regular and CQL sets
+    # TODO: can we skip the elm if it's CQL?
+    @measure = Measure.by_user(current_user).without(*skippable_fields).where(id: params[:id]).first
+    @measure ||= CqlMeasure.by_user(current_user).without(*skippable_fields).where(id: params[:id]).first
+    raise Mongoid::Errors::DocumentNotFound unless @measure
     if stale? last_modified: @measure.updated_at.try(:utc), etag: @measure.cache_key
       @measure_json = MultiJson.encode(@measure.as_json(except: skippable_fields))
       respond_with @measure do |format|
@@ -42,6 +46,11 @@ class MeasuresController < ApplicationController
     }
 
     extension = File.extname(params[:measure_file].original_filename).downcase if params[:measure_file]
+
+    if extension == '.cql'
+      return load_cql_measure
+    end
+
     if extension && !['.zip', '.xml'].include?(extension)
         flash[:error] = {title: "Error Loading Measure", summary: "Incorrect Upload Format.", body: "The file you have uploaded does not appear to be a Measure Authoring Tool zip export of a measure or HQMF XML measure file. Please re-export your measure from the MAT and select the 'eMeasure Package' option, or select the correct HQMF XML file."}
         redirect_to "#{root_path}##{params[:redirect_route]}"
@@ -292,6 +301,26 @@ class MeasuresController < ApplicationController
     else
       tgt[:ticket]
     end
+  end
+
+  def load_cql_measure
+    # TODO: update existing measure, integrate with vsac, etc
+    cql = params[:measure_file].read
+    # TODO: handle cases where elm is provided?
+    begin
+      elm = RestClient.post('http://localhost:8080/cql/translator', cql, content_type: 'application/cql', accept: 'application/elm+json')
+    rescue RestClient::BadRequest => e
+      errors = JSON.parse(e.response)['library']['annotation'].map { |a| "Line #{a['startLine']}: #{a['message']}" }
+      flash[:error] = {
+        title: "Error Loading Measure",
+        summary: "Error converting CQL measure into ELM.",
+        body: errors.join("<br>")
+      }
+      redirect_to "#{root_path}##{params[:redirect_route]}"
+      return
+    end
+    measure = CqlMeasure.create(cql: cql, elm: JSON.parse(elm), user: current_user)
+    redirect_to "#{root_path}##{params[:redirect_route]}"
   end
 
 end

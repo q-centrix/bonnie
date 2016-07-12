@@ -147,7 +147,6 @@ module Measures
     # @param [Hash] value_sets The value sets that this data criteria references.
     # @return A coded entry with basic data defined by this data criteria.
     def self.derive_entry(data_criteria,source_criteria, value_sets)
-
       return nil if data_criteria.nil? || (data_criteria['type'] == 'characteristic' && data_criteria['patient_api_function'].nil?)
       time = derive_time_range(source_criteria)
       entry_type = HQMF::Generator.classify_entry(data_criteria['patient_api_function'].to_sym)
