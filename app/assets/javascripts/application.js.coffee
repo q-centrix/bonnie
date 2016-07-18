@@ -34,8 +34,14 @@
 #= require MutationObserver-shim/dist/mutationobserver.min
 #
 #= require datatables.net/js/jquery.dataTables
-#= require datatables.net-bs/js/dataTables.bootstrap
+#= require datatables.net-bs/js/dataTables.bootstrap.min
 #= require datatables.net-fixedColumns/js/dataTables.fixedColumns
+#= require jszip/dist/jszip.min
+#= require datatables.net-buttons/js/dataTables.buttons.min
+#= require datatables.net-buttons/js/buttons.html5.min
+#= require datatables.net-buttons/js/buttons.colVis.min
+#= require datatables.net-buttons-bs/js/buttons.bootstrap.min
+
 #= require jquery.scrollTo/jquery.scrollTo
 #
 #= require helpers
