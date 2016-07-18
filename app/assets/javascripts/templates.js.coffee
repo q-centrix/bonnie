@@ -4,6 +4,15 @@ in our view functions.
 ###
 
 ###
+Provides the inner HTML for DataTables Buttons
+###
+JST['pd_tools_createpatient'] = Handlebars.compile '<i aria-hidden="true" class="fa fa-plus"></i><i aria-hidden="true" class="fa fa-user"></i> <span class="sr-only">Create New Patient</span>'
+JST['pd_tools_editpatients'] = Handlebars.compile '<i aria-hidden="true" class="fa fa-fw fa-pencil"></i> Edit Multiple'
+JST['pd_tools_togglecolumns'] = Handlebars.compile '<i aria-hidden="true" class="fa fa-fw fa-eye"></i> Show/Hide Columns...'
+# JST['pd_tools_exportexcel'] = Handlebars.compile '<i aria-hidden="true" class="fa fa-fw fa-download"></i> Get XLSX'
+JST['pd_tools_scrollto'] = Handlebars.compile '<i aria-hidden="true" class="fa fa-fw fa-arrow-circle-right"></i> Scroll To...'
+
+###
 Provides a generic date field
 ###
 JST['pd_date_field'] = Handlebars.compile '

@@ -83,11 +83,49 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       # Create column access info for use by DataTables
       @tableColumns = @getTableColumns()
 
+      # add buttons from scrolling to populations
+      scrollToButtons = []
+      for pop, index in @nonEmptyPopulations
+        scrollToButtons.push {
+          text: pop,
+          action: => @scrollToPopulation(pop)
+        }
+
       # Initialize patient dashboard using DataTables
       table = @$('#patientDashboardTable').DataTable(
         data: @patientData,
         columns: @tableColumns,
-        dom: '<if<"scrolling-table"t>>', # places table info and filter, then table, then nothing
+        # stateSave: true,
+        buttons: [
+          {
+            text: JST['pd_tools_createpatient']({}),
+            className: 'btn-success',
+            action: => @createNewPatient()
+          },
+          {
+            text: JST['pd_tools_editpatients']({}),
+            className: 'btn-primary',
+            action: (e, dt, node, config) => @enableBulkRowEdits(e, dt, node, config)
+          },
+          {
+            extend: 'colvis',
+            text: JST['pd_tools_togglecolumns']({}),
+            columns: ':not(:first-child)'
+          },
+          {
+            extend: 'collection',
+            text: JST['pd_tools_scrollto']({}),
+            className: 'btn-warning',
+            autoClose: true,
+            buttons: scrollToButtons
+          }
+          # {
+          #   extend: 'excel',
+          #   text: JST['pd_tools_exportexcel']({}),
+          #   columns: ':not(:first-child)'
+          # }
+        ],
+        dom: '<<"pd-toolbar"Bf><"scrolling-table"t>>', # places table info and filter, then table, then nothing
         deferRender: true,
         scrollX: true,
         scrollY: "600px",
@@ -98,6 +136,14 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
           leftColumns: 4 + @populations.length
         preDrawCallback: => @updateDisplay()
       )
+
+      # # add buttons from scrolling to populations
+      # for pop, index in @nonEmptyPopulations
+      #   table.button().add(3 + index, {
+      #     text: JST['pd_tools_scrollto']({ population: pop }),
+      #     className: 'btn-warning',
+      #     action: => @scrollToPopulation(pop)
+      #   })
 
       # Removes the form-inline class from the wrapper so that inputs in our table can
       # take on full width. This is expected to be fixed in a future release of DataTables.
@@ -114,6 +160,13 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
       @updateActualWarnings(rowIndex)
     else
       @updateAllActualWarnings()
+
+  ###
+  Will toggle editing of multiple rows.
+  TODO: Roll our own solution since DataTables Editor is licensed.
+  ###
+  enableBulkRowEdits: (e, dt, node, config) =>
+    alert 'Coming soon!'
 
   ###
   @returns {Array} an array of "instructions" for each column in a row that
@@ -242,8 +295,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
   ###
   Scrolls the table to a particular population
   ###
-  scrollToPopulation: (sender) ->
-    pop = sender?.currentTarget.innerText
+  scrollToPopulation: (pop) ->
+    # pop = sender?.currentTarget.innerText
     @$('.dataTables_scrollBody').scrollTo($('#' + pop), offset: left: -@pd.getHorizontalScrollOffset())
 
   ###
