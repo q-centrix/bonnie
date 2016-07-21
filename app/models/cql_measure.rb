@@ -7,8 +7,8 @@ class CqlMeasure
   # TODO: Some of these are currently here for backwards compatibility, and may or not actually be available
   # once we're getting CQL packaged with HQMF
   field :cms_id, type: String
-  field :title, type: String
-  field :description, type: String
+  field :title, type: String, default: ""
+  field :description, type: String, default: ""
   field :hqmf_id, type: String
   field :hqmf_set_id, type: String
   field :populations, type: Array, default: []
@@ -50,7 +50,7 @@ class CqlMeasure
       self.description = self.cms_id
       self.hqmf_id = self.cms_id
       self.hqmf_set_id = identifier['id']
-      self.populations << {}
+      self.populations << {} if self.populations.empty?
     end
   end
 
@@ -120,15 +120,53 @@ class CqlMeasure
       description = "#{settings['title'].titleize}: #{name}"
 
       source_data_criteria[data_criteria_key] = { title: name, description: description, code_list_id: oid, type: settings['category'], definition: settings['definition'], status: settings['status'] }
+      # TODO: Do we need both data_criteria and source_data_criteria? Look at what's actually needed (ie patient builder)
       data_criteria[data_criteria_key] = source_data_criteria[data_criteria_key]
     end
 
   end
   
   # When saving calculate the cyclomatic complexity of the measure
+  # TODO: Do we want to consider a measure other than "cyclomatic complexity" for CQL?
+  # TODO: THIS IS NOT CYCLOMATIC COMPLEXITY, ALL MULTIPLE ELEMENT EXPRESSIONS GET COUNTED AS HIGHER COMPLEXITY, NOT JUST LOGICAL
   before_save :calculate_complexity
   def calculate_complexity
+    # We calculate the complexity for each statement, and (at least for now) store the result in the same way
+    # we store the complexity for QDM variables
+    # TODO: consider whether this is too much of a force fit
     self.complexity = { variables: [] }
+
+    # Recursively look through an expression to count the logical branches
+    def count_expression_logical_branches(expression)
+      case expression
+      when nil
+        0
+      when Array
+        expression.map { |exp| count_expression_logical_branches(exp) }.sum
+      when Hash
+        case expression['type']
+        when 'And', 'Or', 'Not'
+          count_expression_logical_branches(expression['operand'])
+        when 'Query'
+          # TODO: Do we need to look into the source side of the query? Can there be logical operators there?
+          count_expression_logical_branches(expression['where']) + count_expression_logical_branches(expression['relationship'])
+        else
+          1
+        end
+      else
+        0
+      end
+    end
+
+    # Determine the complexity of each statement
+    if statements = self.elm.try(:[], 'library').try(:[], 'statements').try(:[], 'def')
+      statements.each do |statement|
+        self.complexity[:variables] << { name: statement['name'], complexity: count_expression_logical_branches(statement['expression']) }
+      end
+    end
+
+    self.complexity
+
   end
 
 end
