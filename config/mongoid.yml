@@ -3,7 +3,7 @@ development:
     default:
       database: bonnie_development
       hosts:
-        - localhost:27017
+        - 127.0.0.1:27017
 test:
   sessions:
     default:
@@ -21,4 +21,4 @@ production:
     default:
       database: bonnie_production
       hosts:
-        - localhost:27017
+        - 127.0.0.1:27017
