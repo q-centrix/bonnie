@@ -49,6 +49,7 @@ group :test, :development, :ci do
   gem 'pry'
   gem 'teaspoon'
   gem 'teaspoon-jasmine'
+  gem 'phantomjs'
   gem 'simplecov', :require => false
   gem 'minitest'
   gem 'webmock'
