@@ -3,13 +3,13 @@ development:
     default:
       database: bonnie_development
       hosts:
-        - 127.0.0.1:27017
+        - localhost:27017
 test:
   sessions:
     default:
       database: bonnie_test
       hosts:
-        - localhost:27017
+        - 127.0.0.1:27017
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
