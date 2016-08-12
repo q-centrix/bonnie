@@ -29,7 +29,9 @@ class Thorax.Models.Patient extends Thorax.Model
 
     new @constructor JSON.parse(json), parse: true
 
-  getBirthDate: -> new Date(@get('birthdate'))
+  getBirthDate: -> 
+    console.log "Random useless change"
+    new Date(@get('birthdate'))
   getPayerName: -> @get('insurance_providers')[0].name
   getValidMeasureIds: (measures) ->
     validIds = {}
