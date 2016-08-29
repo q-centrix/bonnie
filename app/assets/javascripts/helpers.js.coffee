@@ -61,3 +61,32 @@ Handlebars.registerHelper 'ifIn', (obj, arr, options) ->
     options.fn(this)
   else
     options.inverse(this)
+
+
+Handlebars.registerHelper 'cqlDateTime', (dateTime) ->
+  out = 'DateTime('
+  unitValues = (dateTime[unit].value for unit in ['year', 'month', 'day', 'hour', 'minute', 'second', 'millisecond'])
+  out += unitValues.join(', ')
+  out += ')'
+  out
+
+Handlebars.registerHelper 'cqlInterval', (interval) ->
+  out = 'Interval'
+  out += if interval.lowClosed then '[' else '('
+  # TODO: low and high may not be dateTime, need to test and dispatch
+  out += Handlebars.helpers.cqlDateTime(interval.low)
+  out += ', '
+  out += Handlebars.helpers.cqlDateTime(interval.high)
+  out += if interval.highClosed then ']' else ')'
+  out
+
+Handlebars.registerHelper 'cqlAnnotation', (annotation) ->
+  debugger
+  out = ''
+  annotation = [annotation] unless _.isArray(annotation)
+  for a in annotation
+    if a.value
+      out += a.value.join('')
+    if a.s
+      out += Handlebars.helpers.cqlAnnotation(a.s)
+  out

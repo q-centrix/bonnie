@@ -309,6 +309,8 @@ class MeasuresController < ApplicationController
     # TODO: handle cases where elm is provided?
     begin
       elm = RestClient.post('http://localhost:8080/cql/translator', cql, content_type: 'application/cql', accept: 'application/elm+json')
+      # Include XML at the moment so we can compare annotation
+      xml = RestClient.post('http://localhost:8080/cql/translator', cql, content_type: 'application/cql', accept: 'application/elm+xml')
     rescue RestClient::BadRequest => e
       errors = JSON.parse(e.response)['library']['annotation'].map { |a| "Line #{a['startLine']}: #{a['message']}" }
       flash[:error] = {
@@ -319,7 +321,7 @@ class MeasuresController < ApplicationController
       redirect_to "#{root_path}##{params[:redirect_route]}"
       return
     end
-    measure = CqlMeasure.create(cql: cql, elm: JSON.parse(elm), user: current_user)
+    measure = CqlMeasure.create(cql: cql, elm: JSON.parse(elm), xml: xml, user: current_user)
     redirect_to "#{root_path}##{params[:redirect_route]}"
   end
 

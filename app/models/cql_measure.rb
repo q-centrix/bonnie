@@ -20,6 +20,9 @@ class CqlMeasure
   # TODO: some simple documentation on the formatting of ELM (or pointers to main doc)
   field :elm, type: Hash
 
+  # TEMPORARY: store the XML for comparison
+  field :xml, type: String
+
   # Store the data criteria found in the measure; these are extracted before save, and we store them in both
   # the data_criteria and source_data_criteria fields to enable some simple usage of CQL measures in the same
   # contexts as we've used QDM+HQMF measures

@@ -1,3 +1,47 @@
+{{! For experimentation, we currently show re-generated CQL and original CQL }}
+<div class="measure-viz rationale panel-group">
+
+  library {{identifier.id}} version '{{identifier.version}}'<br/>
+
+  <br/>
+
+  {{#each usings}}
+    using {{localIdentifier}}<br/>
+  {{/each}}
+
+  <br/>
+
+  {{#each valueSets}}
+    valueset "{{name}}": '{{id}}'<br/>
+  {{/each}}
+
+  <br/>
+
+  {{#each parameters}}
+    parameter {{name}}
+    {{#if default}}
+      default
+      {{#ifCond default.type '==' 'Interval'}}
+        {{cqlInterval default}}
+      {{/ifCond}}
+    {{/if}}
+    <br/>
+  {{/each}}
+
+  <br/>
+
+  {{#each statements}}
+    {{#if annotation}}
+      {{cqlAnnotation annotation}}<br/><br/>
+    {{else}}
+      STATEMENT WITHOUT ANNOTATION<br/><br/>
+    {{/if}}
+  {{/each}}
+
+</div>
+
+<hr/>
+
 <div class="measure-viz rationale panel-group">
   {{#each cqlLines}}
     {{this}}<br/>
