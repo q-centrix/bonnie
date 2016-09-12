@@ -9,9 +9,9 @@
           <thead>
             <tr>
               {{#ifCond ../../../numberOfPopulations "==" 1}}
-                <th width="1300px" class="centered"> <h2>Upload Summary</h2>No Patients were affected by the updated measure! </th>
+                <th width="1300px" class="text-center"> <h2>Upload Summary</h2>No Patients were affected by the updated measure! </th>
               {{else}}
-                <th width="1300px" class="centered"> <h2>{{populationTitle}}</h2>No Patients were affected by the updated measure! </th>
+                <th width="1300px" class="text-center"> <h2>{{populationTitle}}</h2>No Patients were affected by the updated measure! </th>
               {{/ifCond}}
             </tr>
           </thead>
@@ -23,12 +23,12 @@
           <thead>
             <tr>
               {{#ifCond ../../../numberOfPopulations "==" 1}}
-                <th width="1300px" class="centered"> <h2>Upload Summary</h2> </th>
+                <th width="1300px" class="text-center" scope="col"> <h2>Upload Summary</h2> </th>
               {{else}}
-                <th width="1300px" class="centered"> <h2>{{populationTitle}}</h2> </th>
+                <th width="1300px" class="text-center" scope="col"> <h2>{{populationTitle}}</h2> </th>
               {{/ifCond}}
-              <th width="200px" class="centered">Previous &nbsp;Version</th>
-              <th width="150px" class="centered">&ensp;Current &emsp;&nbsp;Version</th>
+              <th width="200px" class="text-center" scope="col">Previous Version</th>
+              <th width="150px" class="text-center" scope="col">Current Version</th>
             </tr>
           </thead>
           <tbody>
@@ -42,21 +42,21 @@
         <table class="table table-condensed table-striped table-hover">
           <thead>
             <tr>
-              <th>Test Patient Name</th>
-              <th>Before Status</th>
-              <th>After Status</th>
+              <th scope="col">Test Patient Name</th>
+              <th scope="col">Before Status</th>
+              <th scope="col">After Status</th>
             </tr>
           </thead>
           <tbody>
             {{#each patientsWhoChanged}}
               <tr>
                 {{#ifCond after_status "==" "pass"}}
-                  <td> <i class="pass fa fa-fw fa-check"></i> <i class="fa fa-fw fa-user"> </i>
+                  <td> <i class="pass fa fa-fw fa-check" aria-hidden="true"></i> <i class="fa fa-fw fa-user" aria-hidden="true"> </i>
                   <a class="patient-link" href="/#measures/{{../../../../hqmfSetId}}/patients/{{patientID}}/edit">{{name}}</a></td>
                   <td class="fail">Failing</td>
                   <td class="pass">Passing</td>
                 {{else}}
-                  <td> <i class="fail fa fa-fw fa-times"></i> <i class="fa fa-fw fa-user"> </i>
+                  <td> <i class="fail fa fa-fw fa-times" aria-hidden="true"></i> <i class="fa fa-fw fa-user" aria-hidden="true"> </i>
                   <a class="patient-link" href="/#measures/{{../../../../hqmfSetId}}/patients/{{patientID}}/edit">{{name}}</a></td>
                   <td class="pass">Passing</td>
                   <td class="fail">Failing</td>
