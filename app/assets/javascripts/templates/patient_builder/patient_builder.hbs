@@ -24,7 +24,7 @@
       {{#button "save" class="btn btn-primary" data-saving-text="SAVING..."}}SAVE{{/button}}
     </div>
   </div>
-</div> 
+</div>
 
 <div class="row">
   <form class="col-left" role="form">
@@ -137,7 +137,9 @@
     <div class="expand closed pull-right">Show more <i class="fa fa-caret-down"></i></div>
     {{view expectedValuesView}}
     {{#if has_measure_history}}
-      {{#button "showCompare" class="btn btn-primary btn-wrap"}}<i class="fa fa-fw fa-columns" aria-hidden="true"></i>Compare patient results to last measure upload{{/button}}
+    <p>
+      {{#button "showCompare" class="btn btn-link btn-wrap"}}<i class="fa fa-fw fa-columns" aria-hidden="true"></i> Compare patient results to last measure upload{{/button}}
+    </p>
     {{/if}}
   </div>
 </div>

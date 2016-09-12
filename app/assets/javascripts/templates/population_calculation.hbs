@@ -16,11 +16,9 @@
     </div>
   </div>
   {{view coverageView}}
-  <br>
-  <div style="text-align:center;">
-    <a href="#measures/{{measure_id}}/history"><i class="fa fa-history"></i> </i>MEASURE UPLOAD HISTORY</a>
-  </div>
-  <br>
+  <p class="text-center">
+    <a href="#measures/{{measure_id}}/history" class="btn btn-link"><i class="fa fa-history fa-fw" aria-hidden="true"></i> Measure Upload History</a>
+  </p>
   {{#collection differences tag="div" class="panel panel-default" item-context=differenceContext}}
     <div class="panel-heading">
       <div class="panel-title">
