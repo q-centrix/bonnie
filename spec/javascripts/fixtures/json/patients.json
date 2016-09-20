@@ -2617,5 +2617,1245 @@
     "type": "ep",
     "updated_at": "2014-02-26T20:55:31Z",
     "user_id": "501fdba3044a111b98000001"
+  },
+  {
+    "_id": "5491245f69702d7f15dd0800",
+    "birthdate": 1325491200,
+    "bundle_id": "546130ed69702d0650d11000",
+    "conditions": [
+      {
+        "_id": "56e1e329f081f33a65003f16",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-9-CM": [
+            "V30.00"
+          ],
+          "ICD-10-CM": [
+            "Z38.00"
+          ]
+        },
+        "description": "Diagnosis, Active: Single Liveborn Newborn Born in Hospital",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f17",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-9-CM": [
+            "763.0"
+          ],
+          "ICD-10-CM": [
+            "P03.0"
+          ],
+          "SNOMED-CT": [
+            "4787007"
+          ]
+        },
+        "description": "Diagnosis, Active: Birth Trauma or Injuries Group",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f18",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-9-CM": [
+            "343.0"
+          ],
+          "ICD-10-CM": [
+            "G80.0"
+          ],
+          "SNOMED-CT": [
+            "12246008"
+          ]
+        },
+        "description": "Diagnosis, Active: Congenital or Infantile Cerebral Palsy Group",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f19",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "SNOMED-CT": [
+            "30828007"
+          ],
+          "ICD-9-CM": [
+            "343.0"
+          ],
+          "ICD-10-CM": [
+            "G80.0"
+          ]
+        },
+        "description": "Diagnosis, Active: Hypoxia or Asphyxia Group",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f1a",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "SNOMED-CT": [
+            "43424001"
+          ],
+          "ICD-9-CM": [
+            "770.0"
+          ],
+          "ICD-10-CM": [
+            "P23.0"
+          ]
+        },
+        "description": "Diagnosis, Active: Infection Group",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f1b",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-9-CM": [
+            "345.3"
+          ],
+          "SNOMED-CT": [
+            "4952001"
+          ],
+          "ICD-10-CM": [
+            "G80.0"
+          ]
+        },
+        "description": "Diagnosis, Active: Neurologic Complications Group",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f1c",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "SNOMED-CT": [
+            "2707005"
+          ],
+          "ICD-9-CM": [
+            "584.5"
+          ],
+          "ICD-10-CM": [
+            "P60"
+          ]
+        },
+        "description": "Diagnosis, Active: Shock and Complications Group",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f1d",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "SNOMED-CT": [
+            "7550008"
+          ],
+          "ICD-9-CM": [
+            "747.83"
+          ],
+          "ICD-10-CM": [
+            "P22.0"
+          ]
+        },
+        "description": "Diagnosis, Active: Respiratory Problems Group",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f1e",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "SNOMED-CT": [
+            "7550008"
+          ],
+          "ICD-9-CM": [
+            "747.83"
+          ],
+          "ICD-10-CM": [
+            "P22.0"
+          ]
+        },
+        "description": "Diagnosis, Active: Respiratory Problems Group",
+        "end_time": 1325578500,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325494800,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f1f",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "SNOMED-CT": [
+            "5015009"
+          ],
+          "ICD-9-CM": [
+            "V60.0"
+          ],
+          "ICD-10-CM": [
+            "Z56.82"
+          ]
+        },
+        "description": "Diagnosis, Active: Social Reasons Group",
+        "end_time": 1326183300,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325494800,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      }
+    ],
+    "created_at": "2014-12-17T06:36:15.376Z",
+    "deathdate": null,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "56e1e329f081f33a65003f20",
+        "admitTime": 1325404800,
+        "admitType": null,
+        "codes": {
+          "SNOMED-CT": [
+            "8715000"
+          ]
+        },
+        "description": "Encounter, Performed: Encounter Inpatient",
+        "dischargeDisposition": null,
+        "dischargeTime": 1325578500,
+        "end_time": 1325578500,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": {
+          "_id": "56e1e329f081f33a65003f21",
+          "code": "3950001",
+          "code_system": "SNOMED-CT",
+          "codes": {
+          },
+          "description": null,
+          "end_time": null,
+          "mood_code": "EVN",
+          "negationInd": null,
+          "negationReason": null,
+          "oid": null,
+          "reason": null,
+          "specifics": null,
+          "start_time": null,
+          "status_code": null,
+          "time": null,
+          "title": "Birth"
+        },
+        "specifics": null,
+        "start_time": 1325404800,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2186-5",
+      "name": "Not Hispanic or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "population_index": 0,
+        "IPP": 1,
+        "DENOM": 1,
+        "DENEX": 1,
+        "NUMER": 0
+      }
+    ],
+    "expired": null,
+    "first": "NotInNumer",
+    "gender": "M",
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "HasConditions",
+    "marital_status": null,
+    "measure_ids": [
+      "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "7f4cca10f4130ab1335fd7554de1f370",
+    "notes": null,
+    "origin_data": null,
+    "procedures": [
+      {
+        "_id": "56e1e329f081f33a65003f22",
+        "anatomical_approach": null,
+        "anatomical_target": null,
+        "codes": {
+          "ICD-9-CM": [
+            "38.91"
+          ],
+          "ICD-10-PCS": [
+            "03HY32Z"
+          ],
+          "SNOMED-CT": [
+            "20395003"
+          ]
+        },
+        "description": "Procedure, Performed: Arterial or Umbilical Venous Cath Group",
+        "end_time": 1325492100,
+        "incisionTime": null,
+        "method": null,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.6",
+        "ordinality": null,
+        "performer_id": null,
+        "radiation_dose": null,
+        "radiation_duration": null,
+        "reaction": null,
+        "reason": null,
+        "source": null,
+        "specifics": null,
+        "start_time": 1325487600,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      },
+      {
+        "_id": "56e1e329f081f33a65003f23",
+        "anatomical_approach": null,
+        "anatomical_target": null,
+        "codes": {
+          "SNOMED-CT": [
+            "433601000124106"
+          ],
+          "ICD-9-CM": [
+            "765.29"
+          ]
+        },
+        "description": "Physical Exam, Finding: Gestational age >= 37 weeks",
+        "end_time": null,
+        "incisionTime": null,
+        "method": null,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.18",
+        "ordinality": null,
+        "performer_id": null,
+        "radiation_dose": null,
+        "radiation_duration": null,
+        "reaction": null,
+        "reason": null,
+        "source": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "HL7 ActStatus": [
+            null
+          ]
+        },
+        "time": null,
+        "values": [
+          {
+            "_id": "56e1e329f081f33a65003f24",
+            "scalar": "38",
+            "units": "wks"
+          }
+        ]
+      }
+    ],
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Encounter Inpatient",
+        "description": "Encounter, Performed: Encounter Inpatient",
+        "code_list_id": "2.16.840.1.113883.3.666.5.307",
+        "type": "encounters",
+        "id": "OccurrenceAEncounterInpatient1",
+        "start_date": 1325404800000,
+        "end_date": 1325578500000,
+        "value": [
+
+        ],
+        "field_values": {
+          "REASON": {
+            "type": "CD",
+            "code_list_id": "2.16.840.1.113883.3.117.1.7.1.70",
+            "title": "Birth"
+          },
+          "ADMISSION_DATETIME": {
+            "type": "TS",
+            "value": 1325404800000
+          },
+          "DISCHARGE_DATETIME": {
+            "type": "TS",
+            "value": 1325578500000
+          }
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "8715000"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f20",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "procedure",
+        "status": "performed",
+        "title": "Arterial or Umbilical Venous Cath Group",
+        "description": "Procedure, Performed: Arterial or Umbilical Venous Cath Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1582",
+        "type": "procedures",
+        "id": "ProcedurePerformedArterialOrUmbilicalVenousCathGroup",
+        "start_date": 1325487600000,
+        "end_date": 1325492100000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "ICD-9-CM": [
+            "38.91"
+          ],
+          "ICD-10-PCS": [
+            "03HY32Z"
+          ],
+          "SNOMED-CT": [
+            "20395003"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f22",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "physical_exam",
+        "title": "Gestational age >= 37 weeks",
+        "description": "Physical Exam, Finding: Gestational age >= 37 weeks",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1596",
+        "type": "physical_exams",
+        "id": "PhysicalExamFindingGestationalAge37Weeks",
+        "start_date": 1325491200000,
+        "value": [
+          {
+            "type": "PQ",
+            "value": "38",
+            "unit": "wks"
+          }
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "433601000124106"
+          ],
+          "ICD-9-CM": [
+            "765.29"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f23",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Single Liveborn Newborn Born in Hospital",
+        "description": "Diagnosis, Active: Single Liveborn Newborn Born in Hospital",
+        "code_list_id": "2.16.840.1.113883.3.117.1.7.1.26",
+        "type": "conditions",
+        "id": "DiagnosisActiveSingleLivebornNewbornBornInHospital",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "ICD-9-CM": [
+            "V30.00"
+          ],
+          "ICD-10-CM": [
+            "Z38.00"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f16",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Birth Trauma or Injuries Group",
+        "description": "Diagnosis, Active: Birth Trauma or Injuries Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1567",
+        "type": "conditions",
+        "id": "DiagnosisActiveBirthTraumaOrInjuriesGroup",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "ICD-9-CM": [
+            "763.0"
+          ],
+          "ICD-10-CM": [
+            "P03.0"
+          ],
+          "SNOMED-CT": [
+            "4787007"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f17",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Congenital or Infantile Cerebral Palsy Group",
+        "description": "Diagnosis, Active: Congenital or Infantile Cerebral Palsy Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1580",
+        "type": "conditions",
+        "id": "DiagnosisActiveCongenitalOrInfantileCerebralPalsyGroup",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "ICD-9-CM": [
+            "343.0"
+          ],
+          "ICD-10-CM": [
+            "G80.0"
+          ],
+          "SNOMED-CT": [
+            "12246008"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f18",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Hypoxia or Asphyxia Group",
+        "description": "Diagnosis, Active: Hypoxia or Asphyxia Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1577",
+        "type": "conditions",
+        "id": "DiagnosisActiveHypoxiaOrAsphyxiaGroup",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "30828007"
+          ],
+          "ICD-9-CM": [
+            "343.0"
+          ],
+          "ICD-10-CM": [
+            "G80.0"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f19",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Infection Group",
+        "description": "Diagnosis, Active: Infection Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1590",
+        "type": "conditions",
+        "id": "DiagnosisActiveInfectionGroup",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "43424001"
+          ],
+          "ICD-9-CM": [
+            "770.0"
+          ],
+          "ICD-10-CM": [
+            "P23.0"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f1a",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Neurologic Complications Group",
+        "description": "Diagnosis, Active: Neurologic Complications Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1591",
+        "type": "conditions",
+        "id": "DiagnosisActiveNeurologicComplicationsGroup",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "ICD-9-CM": [
+            "345.3"
+          ],
+          "SNOMED-CT": [
+            "4952001"
+          ],
+          "ICD-10-CM": [
+            "G80.0"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f1b",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Shock and Complications Group",
+        "description": "Diagnosis, Active: Shock and Complications Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1581",
+        "type": "conditions",
+        "id": "DiagnosisActiveShockAndComplicationsGroup",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "2707005"
+          ],
+          "ICD-9-CM": [
+            "584.5"
+          ],
+          "ICD-10-CM": [
+            "P60"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f1c",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Respiratory Problems Group",
+        "description": "Diagnosis, Active: Respiratory Problems Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1588",
+        "type": "conditions",
+        "id": "DiagnosisActiveRespiratoryProblemsGroup",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "7550008"
+          ],
+          "ICD-9-CM": [
+            "747.83"
+          ],
+          "ICD-10-CM": [
+            "P22.0"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f1d",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Respiratory Problems Group",
+        "description": "Diagnosis, Active: Respiratory Problems Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1588",
+        "type": "conditions",
+        "id": "DiagnosisActiveRespiratoryProblemsGroup",
+        "start_date": 1325494800000,
+        "end_date": 1325578500000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "7550008"
+          ],
+          "ICD-9-CM": [
+            "747.83"
+          ],
+          "ICD-10-CM": [
+            "P22.0"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f1e",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Social Reasons Group",
+        "description": "Diagnosis, Active: Social Reasons Group",
+        "code_list_id": "2.16.840.1.113883.3.666.5.1595",
+        "type": "conditions",
+        "id": "DiagnosisActiveSocialReasonsGroup",
+        "start_date": 1325494800000,
+        "end_date": 1326183300000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "5015009"
+          ],
+          "ICD-9-CM": [
+            "V60.0"
+          ],
+          "ICD-10-CM": [
+            "Z56.82"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003f1f",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-03-10T21:12:09.926Z",
+    "user_id": "546130ec69702d0650d01000"
+  },
+
+  {
+    "_id": "5491196d69702d7f15a40200",
+    "birthdate": 1325491200,
+    "bundle_id": "546130ed69702d0650d11000",
+    "conditions": [
+      {
+        "_id": "56e1e329f081f33a65003ecd",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-9-CM": [
+            "V30.00"
+          ],
+          "ICD-10-CM": [
+            "Z38.00"
+          ]
+        },
+        "description": "Diagnosis, Active: Single Liveborn Newborn Born in Hospital",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325491200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      }
+    ],
+    "created_at": "2014-12-17T05:49:33.304Z",
+    "deathdate": null,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "56e1e329f081f33a65003ece",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "SNOMED-CT": [
+            "8715000"
+          ]
+        },
+        "description": "Encounter, Performed: Encounter Inpatient",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1336205700,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1325404800,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2186-5",
+      "name": "Not Hispanic or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "population_index": 0,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0
+      }
+    ],
+    "expired": null,
+    "first": "NotInIPP",
+    "gender": "M",
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "StayTooLong",
+    "marital_status": null,
+    "measure_ids": [
+      "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "157d15a0b0c2c883557a0f5cc1a1cb08",
+    "notes": null,
+    "origin_data": null,
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Encounter Inpatient",
+        "description": "Encounter, Performed: Encounter Inpatient",
+        "code_list_id": "2.16.840.1.113883.3.666.5.307",
+        "type": "encounters",
+        "id": "OccurrenceAEncounterInpatient1",
+        "start_date": 1325404800000,
+        "end_date": 1336205700000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "SNOMED-CT": [
+            "8715000"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003ece",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Single Liveborn Newborn Born in Hospital",
+        "description": "Diagnosis, Active: Single Liveborn Newborn Born in Hospital",
+        "code_list_id": "2.16.840.1.113883.3.117.1.7.1.26",
+        "type": "conditions",
+        "id": "DiagnosisActiveSingleLivebornNewbornBornInHospital",
+        "start_date": 1325491200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "FF796FD9-F99D-41FD-B8C2-57D0A59A5D8D",
+        "cms_id": "CMS185v3",
+        "codes": {
+          "ICD-9-CM": [
+            "V30.00"
+          ],
+          "ICD-10-CM": [
+            "Z38.00"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e329f081f33a65003ecd",
+        "code_source": "DEFAULT",
+        "references": null
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-03-10T21:12:09.569Z",
+    "user_id": "501fdba3044a111b98000001"
   }
 ]
