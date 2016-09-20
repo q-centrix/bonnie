@@ -3857,5 +3857,651 @@
     "type": null,
     "updated_at": "2016-03-10T21:12:09.569Z",
     "user_id": "501fdba3044a111b98000001"
+  },
+  {
+    "_id": "5480c0dd69702d2ad29c0300",
+    "birthdate": -294854400,
+    "bundle_id": "546130ed69702d0650d11000",
+    "conditions": [
+      {
+        "_id": "56e1e324f081f33a65003da6",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-10-CM": [
+            "F01.50"
+          ],
+          "ICD-9-CM": [
+            "290.0"
+          ],
+          "SNOMED-CT": [
+            "288281000119100"
+          ]
+        },
+        "description": "Diagnosis, Active: Psychiatric/Mental Health Patient",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.2",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1339306200,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      }
+    ],
+    "created_at": "2014-12-04T20:15:25.538Z",
+    "deathdate": null,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "56e1e324f081f33a65003da7",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "SNOMED-CT": [
+            "4525004"
+          ]
+        },
+        "description": "Encounter, Performed: Emergency Department Visit",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1339312500,
+        "facility": {
+          "_id": "56e1e324f081f33a65003da8",
+          "code": null,
+          "end_time": 1339312500,
+          "name": null,
+          "start_time": null
+        },
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1339304400,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      },
+      {
+        "_id": "56e1e324f081f33a65003da9",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "SNOMED-CT": [
+            "10378005"
+          ]
+        },
+        "description": "Encounter, Ordered: Decision to Admit to Hospital Inpatient",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": null,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.83",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1339312500,
+        "status_code": {
+          "HL7 ActStatus": [
+            "ordered"
+          ]
+        },
+        "time": null
+      },
+      {
+        "_id": "56e1e324f081f33a65003daa",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "SNOMED-CT": [
+            "8715000"
+          ]
+        },
+        "description": "Encounter, Performed: Encounter Inpatient",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1339581600,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1339312500,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2135-2",
+      "name": "Hispanic Or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "population_index": 0,
+        "IPP": 1,
+        "MSRPOPL": 1,
+        "OBSERV_UNIT": " mins",
+        "OBSERV": [
+          0
+        ],
+        "MSRPOPLEX": 0
+      },
+      {
+        "measure_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "population_index": 1,
+        "STRAT": 1,
+        "IPP": 1,
+        "MSRPOPL": 1,
+        "OBSERV_UNIT": " mins",
+        "OBSERV": [
+          0
+        ],
+        "MSRPOPLEX": 0
+      },
+      {
+        "measure_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "population_index": 2,
+        "STRAT": 0,
+        "IPP": 0,
+        "MSRPOPL": 0,
+        "OBSERV_UNIT": " mins",
+        "MSRPOPLEX": 0
+      },
+      {
+        "measure_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "population_index": 3,
+        "STRAT": 0,
+        "IPP": 0,
+        "MSRPOPL": 0,
+        "OBSERV_UNIT": " mins"
+      }
+    ],
+    "expired": null,
+    "first": "HasNPPsychDiagDuringED",
+    "gender": "M",
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "InMSRPOPL",
+    "marital_status": null,
+    "measure_ids": [
+      "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "69a7f0de910068c909303a95e7aea3c6",
+    "notes": "",
+    "origin_data": [
+
+    ],
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Emergency Department Visit",
+        "description": "Encounter, Performed: Emergency Department Visit",
+        "code_list_id": "2.16.840.1.113883.3.117.1.7.1.292",
+        "type": "encounters",
+        "id": "OccurrenceAEmergencyDepartmentVisit1",
+        "start_date": 1339304400000,
+        "end_date": 1339312500000,
+        "value": [
+
+        ],
+        "field_values": {
+          "FACILITY_LOCATION_DEPARTURE_DATETIME": {
+            "type": "TS",
+            "value": 1339312500000
+          }
+        },
+        "hqmf_set_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "cms_id": "CMS111v3",
+        "codes": {
+          "SNOMED-CT": [
+            "4525004"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e324f081f33a65003da7",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "14c33fc2e0aeX"
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "status": "active",
+        "title": "Psychiatric/Mental Health Patient",
+        "description": "Diagnosis, Active: Psychiatric/Mental Health Patient",
+        "code_list_id": "2.16.840.1.113883.3.117.1.7.1.299",
+        "type": "conditions",
+        "id": "DiagnosisActivePsychiatricMentalHealthPatient",
+        "start_date": 1339306200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "cms_id": "CMS111v3",
+        "codes": {
+          "ICD-10-CM": [
+            "F01.50"
+          ],
+          "ICD-9-CM": [
+            "290.0"
+          ],
+          "SNOMED-CT": [
+            "288281000119100"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e324f081f33a65003da6",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "14c33fc2e0ag9"
+      },
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "ordered",
+        "title": "Decision to Admit to Hospital Inpatient",
+        "description": "Encounter, Ordered: Decision to Admit to Hospital Inpatient",
+        "code_list_id": "2.16.840.1.113883.3.117.1.7.1.295",
+        "type": "encounters",
+        "id": "OccurrenceADecisionToAdmitToHospitalInpatient3",
+        "start_date": 1339312500000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "cms_id": "CMS111v3",
+        "codes": {
+          "SNOMED-CT": [
+            "10378005"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e324f081f33a65003da9",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "14c33fc2e0aEM"
+      },
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Encounter Inpatient",
+        "description": "Encounter, Performed: Encounter Inpatient",
+        "code_list_id": "2.16.840.1.113883.3.666.5.307",
+        "type": "encounters",
+        "id": "OccurrenceAEncounterInpatient2",
+        "start_date": 1339312500000,
+        "end_date": 1339581600000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "cms_id": "CMS111v3",
+        "codes": {
+          "SNOMED-CT": [
+            "8715000"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e324f081f33a65003daa",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "14c33fc2e0axJ"
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-03-10T21:12:04.414Z",
+    "user_id": "501fdba3044a111b98000001"
+  },
+  {
+    "_id": "54ca9ef069702d47044d6500",
+    "birthdate": -294854400,
+    "bundle_id": "546130ed69702d0650d11000",
+    "created_at": "2015-01-29T20:58:24.299Z",
+    "deathdate": null,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "56e1e335f081f33a65004116",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "SNOMED-CT": [
+            "4525004"
+          ]
+        },
+        "description": "Encounter, Performed: Emergency Department Visit",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1339312500,
+        "facility": {
+          "_id": "56e1e335f081f33a65004117",
+          "code": null,
+          "end_time": 1339312500,
+          "name": null,
+          "start_time": null
+        },
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "principalDiagnosis": {
+          "_id": "57e17187184111fd01000000",
+          "code": "F01.50",
+          "code_system": "ICD-10-CM",
+          "title": "Psychiatric/Mental Health Patient"
+        },
+        "reason": null,
+        "specifics": null,
+        "start_time": 1339304400,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      },
+      {
+        "_id": "56e1e335f081f33a65004118",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "SNOMED-CT": [
+            "10378005"
+          ]
+        },
+        "description": "Encounter, Ordered: Decision to Admit to Hospital Inpatient",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1339308900,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.83",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1339308900,
+        "status_code": {
+          "HL7 ActStatus": [
+            "ordered"
+          ]
+        },
+        "time": null
+      },
+      {
+        "_id": "56e1e335f081f33a65004119",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "SNOMED-CT": [
+            "8715000"
+          ]
+        },
+        "description": "Encounter, Performed: Encounter Inpatient",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1339581600,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1339315200,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2135-2",
+      "name": "Hispanic Or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "population_index": 0,
+        "IPP": 1,
+        "MSRPOPL": 1,
+        "OBSERV_UNIT": " mins",
+        "OBSERV": [
+          60
+        ],
+        "MSRPOPLEX": 0
+      },
+      {
+        "measure_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "population_index": 1,
+        "STRAT": 1,
+        "IPP": 1,
+        "MSRPOPL": 1,
+        "OBSERV_UNIT": " mins",
+        "OBSERV": [
+          60
+        ],
+        "MSRPOPLEX": 0
+      },
+      {
+        "measure_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "population_index": 2,
+        "STRAT": 0,
+        "IPP": 0,
+        "MSRPOPL": 0,
+        "OBSERV_UNIT": " mins",
+        "MSRPOPLEX": 0
+      },
+      {
+        "measure_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "population_index": 3,
+        "STRAT": 0,
+        "IPP": 0,
+        "MSRPOPL": 0,
+        "OBSERV_UNIT": " mins"
+      }
+    ],
+    "expired": null,
+    "first": "HasPPsychDiaginED",
+    "gender": "M",
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "RS3 Negative",
+    "marital_status": null,
+    "measure_ids": [
+      "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "4644c5d6ab3e4f942b4259f7a657d067",
+    "notes": "",
+    "origin_data": [
+
+    ],
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Emergency Department Visit",
+        "description": "Encounter, Performed: Emergency Department Visit",
+        "code_list_id": "2.16.840.1.113883.3.117.1.7.1.292",
+        "type": "encounters",
+        "id": "OccurrenceAEmergencyDepartmentVisit1",
+        "start_date": 1339304400000,
+        "end_date": 1339312500000,
+        "value": [
+
+        ],
+        "field_values": {
+          "FACILITY_LOCATION_DEPARTURE_DATETIME": {
+            "type": "TS",
+            "value": 1339312500000
+          },
+          "PRINCIPAL_DIAGNOSIS": {
+            "type": "CD",
+            "code_list_id": "2.16.840.1.113883.3.117.1.7.1.299",
+            "title": "Psychiatric/Mental Health Patient"
+          }
+        },
+        "hqmf_set_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "cms_id": "CMS111v3",
+        "codes": {
+          "SNOMED-CT": [
+            "4525004"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e335f081f33a65004116",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "14c33fc319fXb"
+      },
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "ordered",
+        "title": "Decision to Admit to Hospital Inpatient",
+        "description": "Encounter, Ordered: Decision to Admit to Hospital Inpatient",
+        "code_list_id": "2.16.840.1.113883.3.117.1.7.1.295",
+        "type": "encounters",
+        "id": "OccurrenceADecisionToAdmitToHospitalInpatient3",
+        "start_date": 1339308900000,
+        "end_date": 1339308900000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "cms_id": "CMS111v3",
+        "codes": {
+          "SNOMED-CT": [
+            "10378005"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e335f081f33a65004118",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "14c33fc319fJe"
+      },
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Encounter Inpatient",
+        "description": "Encounter, Performed: Encounter Inpatient",
+        "code_list_id": "2.16.840.1.113883.3.666.5.307",
+        "type": "encounters",
+        "id": "OccurrenceAEncounterInpatient2",
+        "start_date": 1339315200000,
+        "end_date": 1339581600000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "979F21BD-3F93-4CDD-8273-B23DFE9C0513",
+        "cms_id": "CMS111v3",
+        "codes": {
+          "SNOMED-CT": [
+            "8715000"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e1e335f081f33a65004119",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "14c33fc319fWA"
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-03-10T21:12:21.423Z",
+    "user_id": "501fdba3044a111b98000001"
   }
 ]
