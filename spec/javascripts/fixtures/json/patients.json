@@ -4503,5 +4503,508 @@
     "type": null,
     "updated_at": "2016-03-10T21:12:21.423Z",
     "user_id": "501fdba3044a111b98000001"
+  },
+  {
+    "_id": "567ae64ff081f36d32000776",
+    "birthdate": 1167638400,
+    "bundle_id": "54205c145441432888db0200",
+    "conditions": [
+      {
+        "_id": "56e8098cf081f35900001036",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-10-CM": [
+            "J45.50"
+          ]
+        },
+        "description": "Diagnosis: Persistent Asthma",
+        "end_time": 1356860700,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.10.20.28.3.110",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1249803900,
+        "status_code": {
+          "HL7 ActStatus": [
+            null
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e8098cf081f35900001037",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-10-CM": [
+            "J43.0"
+          ]
+        },
+        "description": "Diagnosis: Emphysema",
+        "end_time": 1356860700,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.10.20.28.3.110",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1249803900,
+        "status_code": {
+          "HL7 ActStatus": [
+            null
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      },
+      {
+        "_id": "56e8098cf081f35900001038",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-10-CM": [
+            "E84.0"
+          ]
+        },
+        "description": "Diagnosis: Cystic Fibrosis",
+        "end_time": 1356860700,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.10.20.28.3.110",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1249803900,
+        "status_code": {
+          "HL7 ActStatus": [
+            null
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      }
+    ],
+    "created_at": "2015-12-23T18:22:07.393Z",
+    "deathdate": null,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "56e8098cf081f35900001039",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "CPT": [
+            "99395"
+          ]
+        },
+        "description": "Encounter, Performed: Preventive Care Services   Established Office Visit, 18 And Up",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1339663800,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1339663800,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2186-5",
+      "name": "Not Hispanic or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 0,
+        "IPP": 1,
+        "DENOM": 1,
+        "DENEX": 1,
+        "NUMER": 0,
+        "DENEXCEP": 0
+      },
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 1,
+        "STRAT": 1,
+        "IPP": 1,
+        "DENOM": 1,
+        "DENEX": 1,
+        "NUMER": 0,
+        "DENEXCEP": 0
+      },
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 2,
+        "STRAT": 0,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0,
+        "DENEXCEP": 0
+      },
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 3,
+        "STRAT": 0,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0,
+        "DENEXCEP": 0
+      },
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 4,
+        "STRAT": 0,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0,
+        "DENEXCEP": 0
+      }
+    ],
+    "expired": null,
+    "first": "Victor",
+    "gender": "M",
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "von Doom",
+    "marital_status": null,
+    "measure_ids": [
+      "59E84144-6332-4369-AEBD-03A7899CA3DA",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "3ef7f082d7d63c8e6bfb16a3d4cc6ca7",
+    "notes": "null",
+    "origin_data": [
+
+    ],
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "title": "Persistent Asthma",
+        "description": "Diagnosis: Persistent Asthma",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.102.12.1023",
+        "type": "conditions",
+        "id": "Overlaps_44A7A76C_9A2F_4E66_9C46_E10B823F0F1E_27411BE3_A813_4327_85A3_69AAB534C805",
+        "start_date": 1249803900000,
+        "end_date": 1356860700000,
+        "value": [
+
+        ],
+        "references": null,
+        "field_values": {
+        },
+        "hqmf_set_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "cms_id": "CMS126v5",
+        "criteria_id": "152f52a8e25qv",
+        "codes": {
+          "ICD-10-CM": [
+            "J45.50"
+          ]
+        },
+        "coded_entry_id": "56e8098cf081f35900001036",
+        "code_source": "USER_DEFINED"
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "title": "Emphysema",
+        "description": "Diagnosis: Emphysema",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.102.12.1004",
+        "type": "conditions",
+        "id": "Emphysema_Diagnosis_40280381_3d61_56a7_013e_6649112043d7",
+        "start_date": 1249803900000,
+        "end_date": 1356860700000,
+        "value": [
+
+        ],
+        "references": null,
+        "field_values": {
+        },
+        "hqmf_set_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "cms_id": "CMS126v5",
+        "criteria_id": "152f52ad41cte",
+        "codes": {
+          "ICD-10-CM": [
+            "J43.0"
+          ]
+        },
+        "coded_entry_id": "56e8098cf081f35900001037",
+        "code_source": "USER_DEFINED"
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "title": "Cystic Fibrosis",
+        "description": "Diagnosis: Cystic Fibrosis",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.102.12.1002",
+        "type": "conditions",
+        "id": "CysticFibrosis_Diagnosis_40280381_3d61_56a7_013e_6649112043d8",
+        "start_date": 1249803900000,
+        "end_date": 1356860700000,
+        "value": [
+
+        ],
+        "references": null,
+        "field_values": {
+        },
+        "hqmf_set_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "cms_id": "CMS126v5",
+        "criteria_id": "152f52b45eea4",
+        "codes": {
+          "ICD-10-CM": [
+            "E84.0"
+          ]
+        },
+        "coded_entry_id": "56e8098cf081f35900001038",
+        "code_source": "USER_DEFINED"
+      },
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Preventive Care Services - Established Office Visit, 18 and Up",
+        "description": "Encounter, Performed: Preventive Care Services   Established Office Visit, 18 And Up",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.101.12.1025",
+        "type": "encounters",
+        "id": "EncounterPerformedPreventiveCareServicesEstablishedOfficeVisit18AndUp",
+        "start_date": 1339663800000,
+        "end_date": 1339663800000,
+        "value": [
+
+        ],
+        "references": null,
+        "field_values": {
+        },
+        "hqmf_set_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "cms_id": "CMS126v3",
+        "criteria_id": "151d012b216K4",
+        "codes": {
+          "CPT": [
+            "99395"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e8098cf081f35900001039",
+        "code_source": "DEFAULT"
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-05-24T18:45:40.414Z",
+    "user_id": "501fdba3044a111b98000001"
+  },
+  {
+    "_id": "5436b6d869702d367d3f2800",
+    "birthdate": 1167638400,
+    "bundle_id": "54205c145441432888db0200",
+    "created_at": "2014-10-09T16:24:56.013Z",
+    "deathdate": null,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "56e80979f081f359000006bf",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "CPT": [
+            "99385"
+          ]
+        },
+        "description": "Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1336122000,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1336122000,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2186-5",
+      "name": "Not Hispanic or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 0,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0
+      },
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 1,
+        "STRAT": 1,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0
+      },
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 2,
+        "STRAT": 0,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0
+      },
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 3,
+        "STRAT": 0,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0
+      },
+      {
+        "measure_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "population_index": 4,
+        "STRAT": 0,
+        "IPP": 0,
+        "DENOM": 0,
+        "DENEX": 0,
+        "NUMER": 0
+      }
+    ],
+    "expired": null,
+    "first": "Phil",
+    "gender": "M",
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "Coulson",
+    "marital_status": null,
+    "measure_ids": [
+      "59E84144-6332-4369-AEBD-03A7899CA3DA",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "6f19290d854d8dd46c070851fe15c9b5",
+    "notes": "",
+    "origin_data": [
+
+    ],
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Preventive Care Services-Initial Office Visit, 18 and Up",
+        "description": "Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.101.12.1023",
+        "type": "encounters",
+        "id": "EncounterPerformedPreventiveCareServicesInitialOfficeVisit18AndUp",
+        "start_date": 1336122000000,
+        "end_date": 1336122000000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "59E84144-6332-4369-AEBD-03A7899CA3DA",
+        "cms_id": "CMS126v3",
+        "codes": {
+          "CPT": [
+            "99385"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e80979f081f359000006bf",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "15319ebe309yU"
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-03-15T13:09:13.324Z",
+    "user_id": "501fdba3044a111b98000001"
   }
 ]
