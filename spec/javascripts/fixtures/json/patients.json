@@ -5006,5 +5006,845 @@
     "type": null,
     "updated_at": "2016-03-15T13:09:13.324Z",
     "user_id": "501fdba3044a111b98000001"
+  },
+  {
+    "_id": "543b4e3a69702d691a580200",
+    "birthdate": 757411200,
+    "bundle_id": "54205c145441432888db0200",
+    "conditions": [
+      {
+        "_id": "56e8098ef081f3590000119f",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-9-CM": [
+            "296.24"
+          ]
+        },
+        "description": "Diagnosis: Major Depression",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.10.20.28.3.110",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1325379600,
+        "status_code": {
+          "HL7 ActStatus": [
+            null
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      }
+    ],
+    "created_at": "2014-10-13T03:59:54.430Z",
+    "deathdate": null,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "56e8098ef081f359000011a0",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "CPT": [
+            "99202"
+          ]
+        },
+        "description": "Encounter, Performed: Office Visit",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1349870400,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1349870400,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2186-5",
+      "name": "Not Hispanic or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "population_index": 0,
+        "IPP": 1,
+        "DENOM": 1,
+        "DENEX": 0,
+        "NUMER": 0,
+        "DENEXCEP": 0
+      },
+      {
+        "measure_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "population_index": 1,
+        "IPP": 1,
+        "DENOM": 1,
+        "DENEX": 0,
+        "NUMER": 0,
+        "DENEXCEP": 0
+      }
+    ],
+    "expired": null,
+    "first": "Ronald",
+    "gender": "M",
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "Reagan",
+    "marital_status": null,
+    "measure_ids": [
+      "8924F2B3-EC06-4650-B634-D70A53DEE577",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "a544cb6e6dbb0f6125b099e7f0f3abdf",
+    "medications": [
+      {
+        "_id": "56e8098ef081f359000011a1",
+        "active_datetime": null,
+        "administrationTiming": {
+          "period": {
+            "value": "1",
+            "unit": "d"
+          }
+        },
+        "anatomical_approach": null,
+        "codes": {
+          "RxNorm": [
+            "199283"
+          ]
+        },
+        "cumulativeMedicationDuration": null,
+        "deliveryMethod": null,
+        "description": "Medication, Dispensed: Antidepressant Medication",
+        "dose": {
+          "value": "10",
+          "unit": "mg"
+        },
+        "doseIndicator": null,
+        "doseRestriction": null,
+        "end_time": 1325850300,
+        "freeTextSig": null,
+        "fulfillmentHistory": [
+          {
+            "_id": "56e8098ef081f359000011a2",
+            "dispenseDate": 1325893500,
+            "fillNumber": null,
+            "fillStatus": null,
+            "prescriptionNumber": null,
+            "provider_id": null,
+            "quantityDispensed": {
+              "value": "700",
+              "unit": "mg"
+            }
+          },
+          {
+            "_id": "56e8098ef081f359000011a3",
+            "dispenseDate": 1331829000,
+            "fillNumber": null,
+            "fillStatus": null,
+            "prescriptionNumber": null,
+            "provider_id": null,
+            "quantityDispensed": {
+              "value": "150",
+              "unit": "mg"
+            }
+          }
+        ],
+        "fulfillmentInstructions": null,
+        "indication": null,
+        "method": null,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.8",
+        "patientInstructions": null,
+        "productForm": null,
+        "reaction": null,
+        "reason": null,
+        "route": null,
+        "signed_datetime": null,
+        "specifics": null,
+        "start_time": 1325850300,
+        "statusOfMedication": null,
+        "status_code": {
+          "HL7 ActStatus": [
+            "dispensed"
+          ]
+        },
+        "time": null,
+        "typeOfMedication": null,
+        "vehicle": null
+      },
+      {
+        "_id": "56e8098ef081f359000011a4",
+        "active_datetime": null,
+        "administrationTiming": {
+          "period": {
+            "value": "1",
+            "unit": "d"
+          }
+        },
+        "anatomical_approach": null,
+        "codes": {
+          "RxNorm": [
+            "104837"
+          ]
+        },
+        "cumulativeMedicationDuration": null,
+        "deliveryMethod": null,
+        "description": "Medication, Active: Antidepressant Medication",
+        "dose": {
+          "value": "10",
+          "unit": "mg"
+        },
+        "doseIndicator": null,
+        "doseRestriction": null,
+        "end_time": 1335773700,
+        "freeTextSig": null,
+        "fulfillmentHistory": [
+          {
+            "_id": "56e8098ef081f359000011a5",
+            "dispenseDate": 1330503300,
+            "fillNumber": null,
+            "fillStatus": null,
+            "prescriptionNumber": null,
+            "provider_id": null,
+            "quantityDispensed": {
+              "value": "840",
+              "unit": "mg"
+            }
+          }
+        ],
+        "fulfillmentInstructions": null,
+        "indication": null,
+        "method": null,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.13",
+        "patientInstructions": null,
+        "productForm": null,
+        "reaction": null,
+        "reason": null,
+        "route": null,
+        "signed_datetime": null,
+        "specifics": null,
+        "start_time": 1335772800,
+        "statusOfMedication": null,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "typeOfMedication": null,
+        "vehicle": null
+      }
+    ],
+    "notes": "",
+    "origin_data": [
+
+    ],
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "title": "Major Depression",
+        "description": "Diagnosis: Major Depression",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.105.12.1007",
+        "type": "conditions",
+        "id": "less_thn_eql_60daysStartsBeforeStartOf_0AB97F97_B6E3_4768_8C43_FCFA5190C466_803dee17_fee5_468e_8bfd_b84aaa114703",
+        "start_date": 1325379600000,
+        "value": [
+
+        ],
+        "references": null,
+        "field_values": {
+        },
+        "hqmf_set_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "cms_id": "CMS128v5",
+        "criteria_id": "152f50d10eenp",
+        "codes": {
+          "ICD-9-CM": [
+            "296.24"
+          ]
+        },
+        "coded_entry_id": "56e8098ef081f3590000119f",
+        "code_source": "USER_DEFINED"
+      },
+      {
+        "negation": false,
+        "definition": "medication",
+        "status": "dispensed",
+        "title": "Antidepressant Medication",
+        "description": "Medication, Dispensed: Antidepressant Medication",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.196.12.1213",
+        "type": "medications",
+        "id": "OccurrenceAAntidepressantMedication1",
+        "start_date": 1325850300000,
+        "end_date": 1325850300000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "cms_id": "CMS128v3",
+        "codes": {
+          "RxNorm": [
+            "199283"
+          ]
+        },
+        "fulfillments": [
+          {
+            "dispense_date": "01/06/2012",
+            "dispense_time": "11:45 PM",
+            "quantity_dispensed_value": "700",
+            "quantity_dispensed_unit": "mg",
+            "dispense_datetime": "1325893500"
+          },
+          {
+            "dispense_date": "03/15/2012",
+            "dispense_time": "4:30 PM",
+            "quantity_dispensed_value": "150",
+            "quantity_dispensed_unit": "mg",
+            "dispense_datetime": "1331829000"
+          }
+        ],
+        "dose_value": "10",
+        "dose_unit": "mg",
+        "frequency_value": "1",
+        "frequency_unit": "d",
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e8098ef081f359000011a1",
+        "code_source": "USER_DEFINED",
+        "criteria_id": "14bffa1f6d06C",
+        "references": null
+      },
+      {
+        "negation": false,
+        "definition": "medication",
+        "status": "active",
+        "title": "Antidepressant Medication",
+        "description": "Medication, Active: Antidepressant Medication",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.196.12.1213",
+        "type": "medications",
+        "id": "less_thn_eql_231daysEndsAfterStartOf_1A4BCA5C_73E8_4B9B_86E8_51298EF40AE7_7F38A365_D60E_4BA3_8A72_831F5286098C",
+        "start_date": 1335772800000,
+        "end_date": 1335773700000,
+        "value": [
+
+        ],
+        "references": null,
+        "field_values": {
+        },
+        "hqmf_set_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "cms_id": "CMS128v5",
+        "criteria_id": "1532db4d87827",
+        "codes": {
+          "RxNorm": [
+            "104837"
+          ]
+        },
+        "fulfillments": [
+          {
+            "dispense_date": "02/29/2012",
+            "dispense_time": "8:15 AM",
+            "quantity_dispensed_value": "840",
+            "quantity_dispensed_unit": "mg",
+            "dispense_datetime": "1330503300"
+          }
+        ],
+        "dose_value": "10",
+        "dose_unit": "mg",
+        "frequency_value": "1",
+        "frequency_unit": "d",
+        "coded_entry_id": "56e8098ef081f359000011a4",
+        "code_source": "DEFAULT"
+      },
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Office Visit",
+        "description": "Encounter, Performed: Office Visit",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.101.12.1001",
+        "type": "encounters",
+        "id": "EncounterPerformedOfficeVisit",
+        "start_date": 1349870400000,
+        "end_date": 1349870400000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "cms_id": "CMS128v3",
+        "codes": {
+          "CPT": [
+            "99202"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e8098ef081f359000011a0",
+        "code_source": "USER_DEFINED",
+        "criteria_id": "14bffa1f6d0x8",
+        "references": null
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-05-24T18:45:44.249Z",
+    "user_id": "501fdba3044a111b98000001"
+  },
+  {
+    "_id": "543b5d2d69702d08a4c40500",
+    "birthdate": -328118400,
+    "bundle_id": "54205c145441432888db0200",
+    "conditions": [
+      {
+        "_id": "56e8097ff081f359000009f1",
+        "anatomical_location": null,
+        "anatomical_target": null,
+        "causeOfDeath": null,
+        "codes": {
+          "ICD-9-CM": [
+            "296.34"
+          ]
+        },
+        "description": "Diagnosis: Major Depression",
+        "end_time": null,
+        "laterality": null,
+        "mood_code": "EVN",
+        "name": null,
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.10.20.28.3.110",
+        "ordinality": null,
+        "priority": null,
+        "reason": null,
+        "severity": null,
+        "specifics": null,
+        "start_time": 1318269600,
+        "status_code": {
+          "HL7 ActStatus": [
+            null
+          ]
+        },
+        "time": null,
+        "time_of_death": null,
+        "type": null
+      }
+    ],
+    "created_at": "2014-10-13T05:03:41.278Z",
+    "deathdate": null,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "56e8097ff081f359000009f2",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "CPT": [
+            "99385"
+          ]
+        },
+        "description": "Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1330695900,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1330695900,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2186-5",
+      "name": "Not Hispanic or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "population_index": 0,
+        "IPP": 1,
+        "DENOM": 1,
+        "DENEX": 0,
+        "NUMER": 1
+      },
+      {
+        "measure_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "population_index": 1,
+        "IPP": 1,
+        "DENOM": 1,
+        "DENEX": 0,
+        "NUMER": 0
+      }
+    ],
+    "expired": null,
+    "first": "Rosalind",
+    "gender": "F",
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "Carter",
+    "marital_status": null,
+    "measure_ids": [
+      "8924F2B3-EC06-4650-B634-D70A53DEE577",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "866e613d2e89e9441486d5bda3313ed1",
+    "medications": [
+      {
+        "_id": "56e8097ff081f359000009f3",
+        "active_datetime": null,
+        "administrationTiming": {
+          "period": {
+            "value": "1",
+            "unit": "d"
+          }
+        },
+        "anatomical_approach": null,
+        "codes": {
+          "RxNorm": [
+            "283672"
+          ]
+        },
+        "cumulativeMedicationDuration": null,
+        "deliveryMethod": null,
+        "description": "Medication, Dispensed: Antidepressant Medication",
+        "dose": {
+          "value": "100",
+          "unit": "mg"
+        },
+        "doseIndicator": null,
+        "doseRestriction": null,
+        "end_time": 1317495600,
+        "freeTextSig": null,
+        "fulfillmentHistory": [
+          {
+            "_id": "56e8097ff081f359000009f4",
+            "dispenseDate": 1317495600,
+            "fillNumber": null,
+            "fillStatus": null,
+            "prescriptionNumber": null,
+            "provider_id": null,
+            "quantityDispensed": {
+              "value": "10000",
+              "unit": "mg"
+            }
+          }
+        ],
+        "fulfillmentInstructions": null,
+        "indication": null,
+        "method": null,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.8",
+        "patientInstructions": null,
+        "productForm": null,
+        "reaction": null,
+        "reason": null,
+        "route": null,
+        "signed_datetime": null,
+        "specifics": null,
+        "start_time": 1317495600,
+        "statusOfMedication": null,
+        "status_code": {
+          "HL7 ActStatus": [
+            "dispensed"
+          ]
+        },
+        "time": null,
+        "typeOfMedication": null,
+        "vehicle": null
+      },
+      {
+        "_id": "56e8097ff081f359000009f5",
+        "active_datetime": null,
+        "administrationTiming": {
+          "period": {
+            "value": "1",
+            "unit": "d"
+          }
+        },
+        "anatomical_approach": null,
+        "codes": {
+          "RxNorm": [
+            "104837"
+          ]
+        },
+        "cumulativeMedicationDuration": null,
+        "deliveryMethod": null,
+        "description": "Medication, Active: Antidepressant Medication",
+        "dose": {
+          "value": "100",
+          "unit": "mg"
+        },
+        "doseIndicator": null,
+        "doseRestriction": null,
+        "end_time": 1324825200,
+        "freeTextSig": null,
+        "fulfillmentHistory": [
+          {
+            "_id": "56e8097ff081f359000009f6",
+            "dispenseDate": 1317452400,
+            "fillNumber": null,
+            "fillStatus": null,
+            "prescriptionNumber": null,
+            "provider_id": null,
+            "quantityDispensed": {
+              "value": "10000",
+              "unit": "mg"
+            }
+          }
+        ],
+        "fulfillmentInstructions": null,
+        "indication": null,
+        "method": null,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.13",
+        "patientInstructions": null,
+        "productForm": null,
+        "reaction": null,
+        "reason": null,
+        "route": null,
+        "signed_datetime": null,
+        "specifics": null,
+        "start_time": 1317495600,
+        "statusOfMedication": null,
+        "status_code": {
+          "SNOMED-CT": [
+            "55561003"
+          ],
+          "HL7 ActStatus": [
+            "active"
+          ]
+        },
+        "time": null,
+        "typeOfMedication": null,
+        "vehicle": null
+      }
+    ],
+    "notes": "Correct age. Encounter takes place during MP. Diagnosis of depression takes place within the allowed time frame (<=270d SBOCW MP OR <=90d SASO MP). Occ A of medication dispensed within allowed time frame (<=14d SASO OR <=30d SBSO occ A major depressi",
+    "origin_data": [
+
+    ],
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "medication",
+        "status": "dispensed",
+        "title": "Antidepressant Medication",
+        "description": "Medication, Dispensed: Antidepressant Medication",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.196.12.1213",
+        "type": "medications",
+        "id": "OccurrenceAAntidepressantMedication1",
+        "start_date": 1317495600000,
+        "end_date": 1317495600000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "cms_id": "CMS128v3",
+        "codes": {
+          "RxNorm": [
+            "283672"
+          ]
+        },
+        "fulfillments": [
+          {
+            "quantity_dispensed_value": "10000",
+            "quantity_dispensed_unit": "mg",
+            "dispense_date": "10/01/2011",
+            "dispense_time": "7:00 PM",
+            "dispense_datetime": "1317495600"
+          }
+        ],
+        "dose_value": "100",
+        "dose_unit": "mg",
+        "frequency_value": "1",
+        "frequency_unit": "d",
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e8097ff081f359000009f3",
+        "code_source": "USER_DEFINED",
+        "references": null,
+        "criteria_id": "152f4d80014EC"
+      },
+      {
+        "negation": false,
+        "definition": "medication",
+        "status": "active",
+        "title": "Antidepressant Medication",
+        "description": "Medication, Active: Antidepressant Medication",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.196.12.1213",
+        "type": "medications",
+        "id": "MedicationActiveAntidepressantMedication",
+        "start_date": 1317495600000,
+        "end_date": 1324825200000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "cms_id": "CMS128v3",
+        "codes": {
+          "RxNorm": [
+            "104837"
+          ]
+        },
+        "fulfillments": [
+          {
+            "quantity_dispensed_value": "10000",
+            "quantity_dispensed_unit": "mg",
+            "dispense_date": "10/01/2011",
+            "dispense_time": "7:00 AM",
+            "dispense_datetime": "1317452400"
+          }
+        ],
+        "dose_value": "100",
+        "dose_unit": "mg",
+        "frequency_value": "1",
+        "frequency_unit": "d",
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e8097ff081f359000009f5",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "152f4d80015Gn"
+      },
+      {
+        "negation": false,
+        "definition": "diagnosis",
+        "title": "Major Depression",
+        "description": "Diagnosis: Major Depression",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.105.12.1007",
+        "type": "conditions",
+        "id": "less_thn_eql_60daysStartsBeforeStartOf_0AB97F97_B6E3_4768_8C43_FCFA5190C466_803dee17_fee5_468e_8bfd_b84aaa114703",
+        "start_date": 1318269600000,
+        "value": [
+
+        ],
+        "references": null,
+        "field_values": {
+        },
+        "hqmf_set_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "cms_id": "CMS128v5",
+        "criteria_id": "152f5078008Bt",
+        "codes": {
+          "ICD-9-CM": [
+            "296.34"
+          ]
+        },
+        "coded_entry_id": "56e8097ff081f359000009f1",
+        "code_source": "USER_DEFINED"
+      },
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Preventive Care Services-Initial Office Visit, 18 and Up",
+        "description": "Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.101.12.1023",
+        "type": "encounters",
+        "id": "EncounterPerformedPreventiveCareServicesInitialOfficeVisit18AndUp",
+        "start_date": 1330695900000,
+        "end_date": 1330695900000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "8924F2B3-EC06-4650-B634-D70A53DEE577",
+        "cms_id": "CMS128v3",
+        "codes": {
+          "CPT": [
+            "99385"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "56e8097ff081f359000009f2",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "152f4d80016h3"
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-05-24T18:45:25.449Z",
+    "user_id": "501fdba3044a111b98000001"
   }
 ]
