@@ -1,11 +1,12 @@
 describe 'PatientDashboardView', ->
 
   beforeEach ->
+    jasmine.getJSONFixtures().clearCache()
     @measure = bonnie.measures.findWhere(cms_id: 'CMS156v2')
     @patients = new Thorax.Collections.Patients getJSONFixture('patients.json')
     @patientDashboard = new Thorax.Views.MeasureLayout(measure: @measure, patients: @patients)
     # PatientDashboardView is set as view in showDashboard
-    @patientDashboard.showDashboard( showFixedColumns: false)
+    @patientDashboard.showDashboard( showFixedColumns: true)
 
   afterEach ->
     @patientDashboard.remove()
