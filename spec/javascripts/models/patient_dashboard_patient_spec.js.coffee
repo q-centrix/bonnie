@@ -19,21 +19,32 @@ describe 'PatientDashboardPatient', ->
     
     # getting the population sets relevant to the model (IPP, DENOM, etc.)
     codes = (population['code'] for population in @measure.get('measure_logic'))
-    @populationSets = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
+    @populations = _.intersection(Thorax.Models.Measure.allPopulationCodes, codes)
     
-    @population = @measure.get('populations').at(0)
+    @populationSet = @measure.get('populations').at(0)
     
-    @patientDashboard = new Thorax.Models.PatientDashboard @measure, @populationSets, @population
+    # need to pass in defined widths
+    widths =
+      population: 30
+      meta_huge: 200
+      meta_large: 110
+      meta_medium: 100
+      meta_small: 40
+      freetext: 240
+      criteria: 200
+      result: 80
+
+    @patientDashboard = new Thorax.Models.PatientDashboard @measure, @populations, @populationSet, widths
     
     # retrieving the calculation result for the patients relevant to the measure.
     # this is a deferred operation. We create the @patientDashboardPatient once this completes.
-    @results = @population.calculateResult(@patient)
-    @results.calculationsComplete =>
+    @result = @populationSet.calculateResult(@patient)
+    @result.calculationComplete =>
       # there is only one result because we calculated for just a single patient
       # need to get the JSON representation because this adds additional information to the model
       # (and it's what the code expects).
-      @result = @results.at(0).toJSON()
-      @patientDashboardPatient = new Thorax.Models.PatientDashboardPatient(@patient, @patientDashboard, @measure, @result, @populationSets, @population)
+      @result = @result.toJSON()
+      @patientDashboardPatient = new Thorax.Models.PatientDashboardPatient(@patient, @patientDashboard, @measure, @result, @populations, @populationSet)
       done()
     
   it 'intialized properly', ->
@@ -46,29 +57,8 @@ describe 'PatientDashboardPatient', ->
     expect(@patientDashboardPatient.gender).toEqual('F')
     expect(@patientDashboardPatient.expected).toEqual({IPP: 1, DENOM: 1, DENEX: 0, NUMER: 1})
     expect(@patientDashboardPatient.actual).toEqual({IPP: 1, DENOM: 1, DENEX: 0, NUMER: 1})
-    expect(@patientDashboardPatient.passes).toEqual('<div
-      class="patient-status status status-pass">
-        pass
-      </div>')
-    expect(@patientDashboardPatient.actions).toEqual('<span class="pd-settings-container">
-        <a href="" class="btn btn-settings" data-call-method="expandActions">
-          <i class="fa fa-cog" aria-hidden="true"></i>
-          <span class="sr-only">Patient Actions</span>
-        </a>
-        <div class="pd-settings">
-          <button class="btn btn-sm btn-primary" data-call-method="makeInlineEditable">
-            <i aria-hidden="true" class="fa fa-fw fa-pencil"></i>
-            Edit
-          </button>
-          <button class="btn btn-sm btn-primary" data-call-method="openEditDialog">
-            <i aria-hidden="true" class="fa fa-fw fa-square-o"></i>
-            Open
-          </button>
-          <button class="btn btn-sm btn-danger-inverse" data-call-method="showDelete">
-            <i class="fa fa-minus-circle" aria-hidden="true"></i> <span class="sr-only">Show Delete</span>
-          </button>
-        </div>
-      </span>')
+    expect(@patientDashboardPatient.passes).toEqual('PASS')
+    expect(@patientDashboardPatient.actions).toEqual('')
     
     expect(@patientDashboardPatient.expectedIPP).toEqual(1)
     expect(@patientDashboardPatient.expectedDENOM).toEqual(1)
