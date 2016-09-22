@@ -12571,5 +12571,258 @@
     "type": null,
     "updated_at": "2016-05-24T18:45:28.233Z",
     "user_id": "501fdba3044a111b98000001"
+  },
+  {
+    "_id": "5358434a192e738335000e88",
+    "birthdate": -946713600,
+    "bundle_id": "53500188192e73b7580008d0",
+    "created_at": "2014-04-23T22:48:42.897Z",
+    "deathdate": 1473235200,
+    "description": null,
+    "description_category": null,
+    "effective_time": null,
+    "encounters": [
+      {
+        "_id": "57e28df6184111fb270000e8",
+        "admitTime": null,
+        "admitType": null,
+        "codes": {
+          "CPT": [
+            "99203"
+          ]
+        },
+        "description": "Encounter, Performed: Office Visit",
+        "dischargeDisposition": null,
+        "dischargeTime": null,
+        "end_time": 1335220440,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.79",
+        "performer_id": null,
+        "reason": null,
+        "specifics": null,
+        "start_time": 1335220440,
+        "status_code": {
+          "HL7 ActStatus": [
+            "performed"
+          ]
+        },
+        "time": null
+      }
+    ],
+    "ethnicity": {
+      "code": "2186-5",
+      "name": "Not Hispanic or Latino",
+      "codeSystem": "CDC Race"
+    },
+    "expected_values": [
+      {
+        "measure_id": "A3837FF8-1ABC-4BA9-800E-FD4E7953ADBD",
+        "population_index": 0,
+        "IPP": 1,
+        "DENOM": 1,
+        "NUMER": 0,
+        "OBSERV_UNIT": " mins"
+      },
+      {
+        "measure_id": "A3837FF8-1ABC-4BA9-800E-FD4E7953ADBD",
+        "population_index": 1,
+        "IPP": 0,
+        "DENOM": 0,
+        "NUMER": 0,
+        "OBSERV_UNIT": " mins"
+      }
+    ],
+    "expired": true,
+    "first": "John",
+    "gender": "M",
+    "insurance_providers": [
+      {
+        "_id": "57e28df6184111fb270000ea",
+        "codes": {
+          "SOP": [
+            "349"
+          ]
+        },
+        "description": null,
+        "end_time": null,
+        "financial_responsibility_type": {
+          "code": "SELF",
+          "codeSystem": "HL7 Relationship Code"
+        },
+        "member_id": "1234567890",
+        "mood_code": "EVN",
+        "name": "Other",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": null,
+        "payer": {
+          "_id": "57e28df6184111fb270000eb",
+          "name": "Other"
+        },
+        "reason": null,
+        "relationship": null,
+        "specifics": null,
+        "start_time": 1199163600,
+        "status_code": null,
+        "time": null,
+        "type": "OT"
+      }
+    ],
+    "is_shared": null,
+    "languages": [
+
+    ],
+    "last": "Smith",
+    "marital_status": null,
+    "measure_ids": [
+      "A3837FF8-1ABC-4BA9-800E-FD4E7953ADBD",
+      null
+    ],
+    "medical_record_assigner": "Bonnie",
+    "medical_record_number": "5e653f5df5c706a51b25e17cd41df60f",
+    "medications": [
+      {
+        "_id": "57e28df6184111fb270000e9",
+        "active_datetime": null,
+        "administrationTiming": null,
+        "anatomical_approach": null,
+        "codes": {
+          "RxNorm": [
+            "1232194"
+          ]
+        },
+        "cumulativeMedicationDuration": {
+          "scalar": "> 90 days",
+          "units": ""
+        },
+        "deliveryMethod": null,
+        "description": "Medication, Order: High-Risk Medications With Days Supply Criteria",
+        "dose": null,
+        "doseIndicator": null,
+        "doseRestriction": null,
+        "end_time": 1356305640,
+        "freeTextSig": null,
+        "fulfillmentHistory": [
+
+        ],
+        "fulfillmentInstructions": null,
+        "indication": null,
+        "method": null,
+        "mood_code": "EVN",
+        "negationInd": null,
+        "negationReason": null,
+        "oid": "2.16.840.1.113883.3.560.1.17",
+        "patientInstructions": null,
+        "productForm": null,
+        "reaction": null,
+        "reason": null,
+        "route": null,
+        "signed_datetime": null,
+        "specifics": null,
+        "start_time": 1335220440,
+        "statusOfMedication": null,
+        "status_code": {
+          "HL7 ActStatus": [
+            "ordered"
+          ]
+        },
+        "time": null,
+        "typeOfMedication": null,
+        "vehicle": null
+      }
+    ],
+    "notes": "",
+    "origin_data": [
+
+    ],
+    "race": {
+      "code": "1002-5",
+      "name": "American Indian or Alaska Native",
+      "codeSystem": "CDC Race"
+    },
+    "religious_affiliation": null,
+    "source_data_criteria": [
+      {
+        "negation": false,
+        "definition": "encounter",
+        "status": "performed",
+        "title": "Office Visit",
+        "description": "Encounter, Performed: Office Visit",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.101.12.1001",
+        "type": "encounters",
+        "id": "EncounterPerformedOfficeVisit",
+        "start_date": 1335220440000,
+        "end_date": 1335220440000,
+        "value": [
+
+        ],
+        "field_values": {
+        },
+        "hqmf_set_id": "A3837FF8-1ABC-4BA9-800E-FD4E7953ADBD",
+        "cms_id": "CMS156v2",
+        "codes": {
+          "CPT": [
+            "99203"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "57e28df6184111fb270000e8",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "1574cf9b913Pz"
+      },
+      {
+        "negation": false,
+        "definition": "medication",
+        "status": "ordered",
+        "title": "High-Risk Medications With Days Supply Criteria",
+        "description": "Medication, Order: High-Risk Medications With Days Supply Criteria",
+        "code_list_id": "2.16.840.1.113883.3.464.1003.196.12.1254",
+        "type": "medications",
+        "id": "MedicationOrderHighRiskMedicationsWithDaysSupplyCriteria",
+        "start_date": 1335220440000,
+        "end_date": 1356305640000,
+        "value": [
+
+        ],
+        "field_values": {
+          "CUMULATIVE_MEDICATION_DURATION": {
+            "type": "PQ",
+            "value": "> 90 days",
+            "unit": ""
+          }
+        },
+        "hqmf_set_id": "A3837FF8-1ABC-4BA9-800E-FD4E7953ADBD",
+        "cms_id": "CMS156v2",
+        "codes": {
+          "RxNorm": [
+            "1232194"
+          ]
+        },
+        "negation_code_list_id": "",
+        "coded_entry_id": "57e28df6184111fb270000e9",
+        "code_source": "DEFAULT",
+        "references": null,
+        "criteria_id": "1574cf9b913jP",
+        "fulfillments": null,
+        "dose_value": "",
+        "dose_unit": "capsule(s)",
+        "frequency_value": "",
+        "frequency_unit": "min"
+      },
+      {
+        "id": "MeasurePeriod",
+        "start_date": 0,
+        "end_date": 0,
+        "references": null
+      }
+    ],
+    "test_id": null,
+    "title": null,
+    "type": null,
+    "updated_at": "2016-09-21T13:41:10.089Z",
+    "user_id": "501fdba3044a111b98000001"
   }
 ]
