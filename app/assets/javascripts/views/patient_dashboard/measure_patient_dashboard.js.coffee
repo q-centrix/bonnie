@@ -40,6 +40,8 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
     @episodeOfCare = @measure.get('episode_of_care')
     @continuousVariable = @measure.get('continuous_variable')
     @displayedPopulationIndex = @measure.get('displayedPopulation').index()
+    
+    @patientsLoaded = $.Deferred()
 
   context: ->
     _(super).extend
@@ -112,6 +114,7 @@ class Thorax.Views.MeasurePopulationPatientDashboard extends Thorax.Views.Bonnie
         if @patientHasExpecteds(patient, @measure)
           @patientData.push new Thorax.Models.PatientDashboardPatient patient, @patientDashboard, @measure, @getPatientResultsById(patient.id), @populations, @populationSet
 
+      @patientsLoaded.resolve()
       @render()
 
   ###

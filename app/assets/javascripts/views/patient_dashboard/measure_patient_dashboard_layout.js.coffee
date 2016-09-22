@@ -5,6 +5,7 @@ class Thorax.Views.MeasurePatientDashboardLayout extends Thorax.LayoutView
     # Highlights correct button, based on selected view
     $('#patient-dashboard-button').addClass('btn-primary')
     $('#measure-details-button').removeClass('btn-primary')
+    @viewSet = $.Deferred()
 
   ###
   Switches populations (changes the population displayed by patient dashboard)
@@ -31,3 +32,4 @@ class Thorax.Views.MeasurePatientDashboardLayout extends Thorax.LayoutView
     results.calculationsComplete =>
       view.results = results
       super(view)
+      @viewSet.resolve()
