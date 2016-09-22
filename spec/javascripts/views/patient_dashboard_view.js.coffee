@@ -12,7 +12,14 @@ describe 'PatientDashboardView', ->
     @patientDashboard.remove()
 
   it 'renders dashboard', ->
+    debugger
     expect(@patientDashboard.$el).toContainText @measure.get('cms_id')
     expect(@patientDashboard.$el.html()).toContain "patient-dashboard"
+    
+  it 'contains empty table when no patients loaded', ->
+    dataTable = @patientDashboard.$('#patientDashboardTable').DataTable()
+    expect(dataTable.rows().count()).toEqual 0
+
+  
     
   
