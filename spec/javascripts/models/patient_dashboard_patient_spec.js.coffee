@@ -77,4 +77,39 @@ describe 'PatientDashboardPatient', ->
     expect(@patientDashboardPatient.DENEX_less_thn_eql_105daysStartsBeforeStartOf_0457E84E_FAC2_4D58_815C_EAED430BB231_43B4B0F6_EA34_42B4_95B2_6A943CABDF52).toEqual('FALSE')
     expect(@patientDashboardPatient.NUMER_less_thn_eql_114daysEndsAfterStartOf_01B99489_936F_47EC_A457_7151F9049A75_988EB0D7_AC7A_41BE_90DC_ACEE9C6B575E).toEqual('TRUE')
 
-  
+  it 'handles expected result change', ->
+    expectedResultSet = @patientDashboardPatient.patient.get('expected_values').findWhere(measure_id: @measure.get('hqmf_set_id', population_index: @populationSet.get('index')))
+    expectedResultSet.set('NUMER', 0)
+    
+    # no updates yet so expectations are the same as original
+    expect(@patientDashboardPatient.expected).toEqual({IPP: 1, DENOM: 1, DENEX: 0, NUMER: 1})
+    expect(@patientDashboardPatient.actual).toEqual({IPP: 1, DENOM: 1, DENEX: 0, NUMER: 1})
+    expect(@patientDashboardPatient.expectedIPP).toEqual(1)
+    expect(@patientDashboardPatient.expectedDENOM).toEqual(1)
+    expect(@patientDashboardPatient.expectedDENEX).toEqual(0)
+    expect(@patientDashboardPatient.expectedNUMER).toEqual(1)
+    expect(@patientDashboardPatient.actualIPP).toEqual(1)
+    expect(@patientDashboardPatient.actualDENOM).toEqual(1)
+    expect(@patientDashboardPatient.actualDENEX).toEqual(0)
+    expect(@patientDashboardPatient.actualNUMER).toEqual(1)
+    expect(@patientDashboardPatient.passes).toEqual('PASS')
+    
+    @patientDashboardPatient.updatePasses()
+    
+    # now expect patient to fail
+    expect(@patientDashboardPatient.expected).toEqual({IPP: 1, DENOM: 1, DENEX: 0, NUMER: 0})
+    expect(@patientDashboardPatient.actual).toEqual({IPP: 1, DENOM: 1, DENEX: 0, NUMER: 1})
+    expect(@patientDashboardPatient.expectedIPP).toEqual(1)
+    expect(@patientDashboardPatient.expectedDENOM).toEqual(1)
+    expect(@patientDashboardPatient.expectedDENEX).toEqual(0)
+    expect(@patientDashboardPatient.expectedNUMER).toEqual(0)
+    expect(@patientDashboardPatient.actualIPP).toEqual(1)
+    expect(@patientDashboardPatient.actualDENOM).toEqual(1)
+    expect(@patientDashboardPatient.actualDENEX).toEqual(0)
+    expect(@patientDashboardPatient.actualNUMER).toEqual(1)
+    expect(@patientDashboardPatient.passes).toEqual('FAIL')
+    
+    # reset expected result
+    expectedResultSet.set('NUMER', 1)
+    @patientDashboardPatient.updatePasses()
+    

@@ -31,5 +31,20 @@ describe 'PatientDashboard', ->
     expectedCriteriaKeys['DENOM'] = []
     expectedCriteriaKeys['DENEX'] = ['less_thn_eql_105daysStartsBeforeStartOf_0457E84E_FAC2_4D58_815C_EAED430BB231_43B4B0F6_EA34_42B4_95B2_6A943CABDF52']
     expectedCriteriaKeys['NUMER'] = ['less_thn_eql_114daysEndsAfterStartOf_01B99489_936F_47EC_A457_7151F9049A75_988EB0D7_AC7A_41BE_90DC_ACEE9C6B575E']
-    
     expect(@patientDashboard.criteriaKeysByPopulation).toEqual(expectedCriteriaKeys)
+
+    
+
+  it 'properly strips leading tokens', ->
+    expect(@patientDashboard.stripLeadingToken('expectedIPP')).toEqual('IPP')
+    expect(@patientDashboard.stripLeadingToken('actualDENOM')).toEqual('DENOM')
+    expect(@patientDashboard.stripLeadingToken('anythingBLAH')).toEqual('anythingBLAH')
+    expect(@patientDashboard.stripLeadingToken('anything_BLAH')).toEqual('BLAH')
+
+  it 'properly finds children criteria', ->
+    expect(@patientDashboard.hasChildrenCriteria('Agegrtr_thn_eql_18yearsat_017BF72A_2885_4350_B259_80D19397C35F_8C7B3095_A649_4913_A90D_11A5AE59387E')).toEqual(false)
+    expect(@patientDashboard.hasChildrenCriteria('qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF')).toEqual(true)
+    
+    # TODO: these are currently failing because I think `dataCriteriaChildrenKeys` is inappropriately including 'MeasurePeriod'
+    expect(@patientDashboard.dataCriteriaChildrenKeys('Agegrtr_thn_eql_18yearsat_017BF72A_2885_4350_B259_80D19397C35F_8C7B3095_A649_4913_A90D_11A5AE59387E')).toEqual(['Agegrtr_thn_eql_18yearsat_017BF72A_2885_4350_B259_80D19397C35F_8C7B3095_A649_4913_A90D_11A5AE59387E'])
+    expect(@patientDashboard.dataCriteriaChildrenKeys('qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF')).toEqual(['qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF', 'GROUP_qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF', 'less_thn_eql_270daysStartsBeforeOrConcurrentWithStartOf_D03E4E49_66B8_44A2_85ED_470964A9220A_3a1c834c_0fa5_4a0d_a1c6_7fea9915b80a', 'less_thn_eql_90daysStartsAfterStartOf_B4E36072_B9A1_496F_946B_FB6A16DE3FB1_3a1c834c_0fa5_4a0d_a1c6_7fea9915b80a'])
