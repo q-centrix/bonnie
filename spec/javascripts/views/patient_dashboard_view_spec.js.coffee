@@ -30,21 +30,40 @@ describe 'PopulatedPatientDashboardView', ->
     # need to add patients to the measure
     @measure.get('patients').add(@patients)
     @measureLayout = new Thorax.Views.MeasureLayout(measure: @measure, patients: @patients)
+    
     # PatientDashboardView is set as view in showDashboard
     @measureLayout.showDashboard(showFixedColumns: true)
+    @patientDashboardLayout = @measureLayout.getView() # multiple populations so have a layout view
     
-    @patientDashboardLayout = @measureLayout._view # multiple populations so have a layout view
     @patientDashboardLayout.viewSet.done =>
       @patientDashboardView = @patientDashboardLayout._view
       @patientDashboardView.patientsLoaded.done =>
         done()
 
   afterEach ->
-    @measureLayout.remove()
     @patientDashboardView.results.reset() # empties the results so that they get recalculated for each run
+    @patientDashboardView.unbind()
+    @patientDashboardView.remove()
 
   it 'fake test 1', ->
     expect(true).toEqual(true)
 
   it 'fake test 2', ->
     expect(true).toEqual(true)
+
+
+describe 'Load Measure With Multiple Populations', ->
+
+  beforeEach ->
+    jasmine.getJSONFixtures().clearCache()
+    @measure = bonnie.measures.findWhere(cms_id: 'CMS156v2')
+    @measureLayout = new Thorax.Views.MeasureLayout(measure: @measure)
+    # PatientDashboardView is set as view in showDashboard
+    @measureLayout.showDashboard(showFixedColumns: true)
+
+  afterEach ->
+    @measureLayout.remove()
+
+  it 'view displays the correct number of populations', ->
+    num_populations = @measure.get('populations').length
+    expect(@measureLayout.populations.length).toEqual num_populations
