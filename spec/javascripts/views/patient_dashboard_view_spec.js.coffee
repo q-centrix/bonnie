@@ -40,7 +40,7 @@ describe 'PopulatedPatientDashboardView', ->
     @patientDashboardLayout = @measureLayout.getView() # multiple populations so have a layout view
   
     @patientDashboardLayout.viewSet.done =>
-      @patientDashboardView = @patientDashboardLayout._view
+      @patientDashboardView = @patientDashboardLayout.getView()
       @patientDashboardView.patientsLoaded.done =>
         done()
 
@@ -51,11 +51,8 @@ describe 'PopulatedPatientDashboardView', ->
 
   # Ideally,this number would be pulled from the number of rows in datatable
   it 'view has correct number of patients', ->
-    console.log this.patients.length
     expect(@patientDashboardView.patientData.length).toEqual this.patients.length
     dataTable = @patientDashboardView.$('#patientDashboardTable').DataTable()
-    dataTable.on "all", (eventName) =>
-      console.log eventName
     expect(dataTable.rows().count()).toEqual 19
 
 
