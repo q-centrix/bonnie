@@ -17,7 +17,11 @@ describe 'EmptyPatientDashboardView', ->
   it 'contains empty table when no patients loaded', ->
     dataTable = @measureLayout.$('#patientDashboardTable').DataTable()
     expect(dataTable.rows().count()).toEqual 0
-
+    
+  it 'view displays the correct number of populations', ->
+    num_populations = @measure.get('populations').length
+    console.log(num_populations)
+    expect(@measureLayout.populations.length).toEqual num_populations
 
 describe 'PopulatedPatientDashboardView', ->
 
@@ -34,7 +38,7 @@ describe 'PopulatedPatientDashboardView', ->
     # PatientDashboardView is set as view in showDashboard
     @measureLayout.showDashboard(showFixedColumns: true)
     @patientDashboardLayout = @measureLayout.getView() # multiple populations so have a layout view
-    
+  
     @patientDashboardLayout.viewSet.done =>
       @patientDashboardView = @patientDashboardLayout._view
       @patientDashboardView.patientsLoaded.done =>
@@ -45,25 +49,15 @@ describe 'PopulatedPatientDashboardView', ->
     @patientDashboardView.unbind()
     @patientDashboardView.remove()
 
-  it 'fake test 1', ->
-    expect(true).toEqual(true)
+  # Ideally,this number would be pulled from the number of rows in datatable
+  it 'view has correct number of patients', ->
+    console.log this.patients.length
+    expect(@patientDashboardView.patientData.length).toEqual this.patients.length
+    dataTable = @patientDashboardView.$('#patientDashboardTable').DataTable()
+    dataTable.on "all", (eventName) =>
+      console.log eventName
+    expect(dataTable.rows().count()).toEqual 19
+
 
   it 'fake test 2', ->
     expect(true).toEqual(true)
-
-
-describe 'Load Measure With Multiple Populations', ->
-
-  beforeEach ->
-    jasmine.getJSONFixtures().clearCache()
-    @measure = bonnie.measures.findWhere(cms_id: 'CMS156v2')
-    @measureLayout = new Thorax.Views.MeasureLayout(measure: @measure)
-    # PatientDashboardView is set as view in showDashboard
-    @measureLayout.showDashboard(showFixedColumns: true)
-
-  afterEach ->
-    @measureLayout.remove()
-
-  it 'view displays the correct number of populations', ->
-    num_populations = @measure.get('populations').length
-    expect(@measureLayout.populations.length).toEqual num_populations
