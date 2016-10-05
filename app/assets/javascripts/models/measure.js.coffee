@@ -88,7 +88,7 @@ class Thorax.Models.Measure extends Thorax.Model
       conditions: ['anatomical_structure', 'anatomical_location', 'ordinality', 'severity', 'laterality']
       devices: ['removal_time', 'anatomical_structure']
       diagnostic_studies: ['result_date_time']
-      encounters: ['admit_time', 'discharge_time', 'discharge_disposition', 'facility',
+      encounters: ['admission_source', 'admit_time', 'discharge_time', 'discharge_disposition', 'facility',
         'facility_arrival', 'facility_departure', 'transfer_to', 'transfer_to_time', 
         'transfer_from', 'transfer_from_time', 'principal_diagnosis', 'diagnosis']
       family_history: ['relationship_to_patient', 'onset_age']
