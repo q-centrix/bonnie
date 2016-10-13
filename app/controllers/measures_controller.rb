@@ -6,7 +6,11 @@ class MeasuresController < ApplicationController
 
   def show
     skippable_fields = [:map_fns, :record_ids, :measure_attributes]
-    @measure = Measure.by_user(current_user).without(*skippable_fields).find(params[:id])
+    # Lookup the measure both in the regular and CQL sets
+    # TODO: Can we skip the elm if it's CQL?
+    @measure = Measure.by_user(current_user).without(*skippable_fields).where(id: params[:id]).first
+    @measure ||= CqlMeasure.by_user(current_user).without(*skippable_fields).where(id: params[:id]).first
+    raise Mongoid::Errors::DocumentNotFound unless @measure
     if stale? last_modified: @measure.updated_at.try(:utc), etag: @measure.cache_key
       @measure_json = MultiJson.encode(@measure.as_json(except: skippable_fields))
       respond_with @measure do |format|
@@ -20,6 +24,7 @@ class MeasuresController < ApplicationController
     # if stale? last_modified: Measure.by_user(current_user).max(:updated_at).try(:utc)
     if true
       value_set_oids = Measure.by_user(current_user).only(:value_set_oids).pluck(:value_set_oids).flatten.uniq
+      value_set_oids += CqlMeasure.by_user(current_user).only(:value_set_oids).pluck(:value_set_oids).flatten.uniq
 
       # Not the cleanest code, but we get a many second performance improvement by going directly to Moped
       # (The two commented lines are functionally equivalent to the following three uncommented lines, if slower)
@@ -53,26 +58,55 @@ class MeasuresController < ApplicationController
         return
       end
     end
-
-    is_update = false
-    if (params[:hqmf_set_id] && !params[:hqmf_set_id].empty?)
-      is_update = true
-      existing = Measure.by_user(current_user).where(hqmf_set_id: params[:hqmf_set_id]).first
-      measure_details['type'] = existing.type
-      measure_details['episode_of_care'] = existing.episode_of_care
-      if measure_details['episode_of_care']
-        episodes = params["eoc_#{existing.hqmf_set_id}"]
-        if episodes && episodes['episode_ids'] && !episodes['episode_ids'].empty?
-          measure_details['episode_ids'] = episodes['episode_ids']
-        else
-          measure_details['episode_ids'] = existing.episode_ids
-        end
-      end
- 
-      measure_details['population_titles'] = existing.populations.map {|p| p['title']} if existing.populations.length > 1
-    end
-
     begin
+      # Is this a CQL measure, or a CQL MAT export?
+      # TODO: This will need to change when we know what the MAT will be exporting!
+      if extension == '.cql' || (extension == '.zip' && Measures::CqlLoader.mat_cql_export?(params[:measure_file]))
+        measure = Measures::MATLoader.load(params[:measure_file], current_user, measure_details, params[:vsac_username], params[:vsac_password]) # overwrite_valuesets=true, cache=false, includeDraft=true
+
+        existing = CqlMeasure.by_user(current_user).where(hqmf_set_id: measure.hqmf_set_id)
+        if existing.count > 0
+          flash[:error] = {title: "Error Loading Measure", summary: "A version of this measure is already loaded.", body: "You have a version of this measure loaded already.  Try deleting that measure and re-uploading it."}
+          redirect_to "#{root_path}##{params[:redirect_route]}"
+          return
+        else
+          current_user.measures << measure
+          current_user.save!
+          measure.save!
+        end
+
+        # rebuild the users patients if set to do so
+        if params[:rebuild_patients] == "true"
+          Record.by_user(current_user).each do |r|
+            Measures::PatientBuilder.rebuild_patient(r)
+            r.save!
+          end
+        end
+
+        redirect_to "#{root_path}##{params[:redirect_route]}"
+    #    create_cql(measure_details, params)
+        return
+      end
+
+      is_update = false
+      if (params[:hqmf_set_id] && !params[:hqmf_set_id].empty?)
+        is_update = true
+        existing = Measure.by_user(current_user).where(hqmf_set_id: params[:hqmf_set_id]).first
+        measure_details['type'] = existing.type
+        measure_details['episode_of_care'] = existing.episode_of_care
+        if measure_details['episode_of_care']
+          episodes = params["eoc_#{existing.hqmf_set_id}"]
+          if episodes && episodes['episode_ids'] && !episodes['episode_ids'].empty?
+            measure_details['episode_ids'] = episodes['episode_ids']
+          else
+            measure_details['episode_ids'] = existing.episode_ids
+          end
+        end
+
+        measure_details['population_titles'] = existing.populations.map {|p| p['title']} if existing.populations.length > 1
+      end
+
+  #  begin
       if extension == '.xml'
         includeDraft = params[:include_draft] == 'true'
         effectiveDate = nil
@@ -86,7 +120,7 @@ class MeasuresController < ApplicationController
 
       if (!is_update)
         existing = Measure.by_user(current_user).where(hqmf_set_id: measure.hqmf_set_id)
-        if existing.count > 1
+        if existing.count > 0
           measure.delete
           flash[:error] = {title: "Error Loading Measure", summary: "A version of this measure is already loaded.", body: "You have a version of this measure loaded already.  Either update that measure with the update button, or delete that measure and re-upload it."}
           redirect_to "#{root_path}##{params[:redirect_route]}"
@@ -171,7 +205,7 @@ class MeasuresController < ApplicationController
         keys = measure.data_criteria.values.map {|d| d['source_data_criteria'] if d['specific_occurrence']}.compact.uniq
         measure.needs_finalize = (measure.episode_ids & keys).length != measure.episode_ids.length
         if measure.needs_finalize
-          measure.episode_ids = [] 
+          measure.episode_ids = []
           params[:redirect_route] = ''
         end
       end
@@ -179,7 +213,7 @@ class MeasuresController < ApplicationController
       measure.needs_finalize = (measure_details['episode_of_care'] || measure.populations.size > 1)
       if measure.populations.size > 1
         strat_index = 1
-        measure.populations.each do |population| 
+        measure.populations.each do |population|
           if (population[HQMF::PopulationCriteria::STRAT])
             population['title'] = "Stratification #{strat_index}"
             strat_index += 1
@@ -189,7 +223,6 @@ class MeasuresController < ApplicationController
 
     end
 
-
     Measures::ADEHelper.update_if_ade(measure)
 
     measure.generate_js
@@ -198,12 +231,19 @@ class MeasuresController < ApplicationController
 
     # rebuild the users patients if set to do so
     if params[:rebuild_patients] == "true"
-      Record.by_user(current_user).each do |r| 
+      Record.by_user(current_user).each do |r|
         Measures::PatientBuilder.rebuild_patient(r)
         r.save!
       end
     end
 
+    redirect_to "#{root_path}##{params[:redirect_route]}"
+  end
+
+  # Handles creating a measure that is HQMF + QDM + CQL (using CQL for the
+  # logic and QDM for the data model).
+  def create_cql(measure_details, params)
+    measure = Measures::MATLoader.load(params[:measure_file], current_user, measure_details)
     redirect_to "#{root_path}##{params[:redirect_route]}"
   end
 
@@ -216,7 +256,7 @@ class MeasuresController < ApplicationController
       render :json => {valid: true, expires: tgt[:expires]}
     end
   end
-  
+
   def vsac_auth_expire
     # Force expire the VSAC session
     session[:tgt] = nil
@@ -224,8 +264,16 @@ class MeasuresController < ApplicationController
   end
 
   def destroy
-    measure = Measure.by_user(current_user).find(params[:id])
-    Measure.by_user(current_user).find(params[:id]).destroy
+    hqmf_measure = Measure.by_user(current_user).where(id: params[:id]).first
+    cql_measure  = CqlMeasure.by_user(current_user).where(id: params[:id]).first
+
+    if hqmf_measure
+      measure = hqmf_measure
+      Measure.by_user(current_user).find(params[:id]).destroy
+    elsif cql_measure
+      measure = cql_measure
+      CqlMeasure.by_user(current_user).find(params[:id]).destroy
+    end
     render :json => measure
   end
 
@@ -266,27 +314,27 @@ class MeasuresController < ApplicationController
       render json: e.response, :status => 400
     end
   end
-  
+
   private
 
   def get_ticket_granting_ticket
     # Retreive a (possibly) existing ticket granting ticket
     tgt = session[:tgt]
-    
+
     # If the ticket granting ticket doesn't exist (or has expired), get a new one
     if tgt.nil? || tgt.empty? || tgt[:expires] < Time.now
       # Retrieve a new ticket granting ticket
       begin
         ticket = String.new(HealthDataStandards::Util::VSApi.get_tgt_using_credentials(
-          params[:vsac_username], 
-          params[:vsac_password], 
+          params[:vsac_username],
+          params[:vsac_password],
           APP_CONFIG['nlm']['ticket_url']
         ))
       rescue Exception
         # Given username and password are invalid, ticket cannot be created
         return nil
       end
-      # Create a new ticket granting ticket session variable that expires 
+      # Create a new ticket granting ticket session variable that expires
       # 7.5hrs from now
       if !ticket.nil? && !ticket.empty?
         session[:tgt] = {ticket: ticket, expires: Time.now + 27000}
