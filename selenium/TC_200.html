@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://127.0.0.1:3000/" />
-<title>TC 202</title>
+<link rel="selenium.base" href="https://127.0.0.1:3000/" />
+<title>TC_200</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">TC 202</td></tr>
+<tr><td rowspan="1" colspan="3">TC_200</td></tr>
 </thead><tbody>
 <tr>
 	<td>click</td>
@@ -24,22 +24,32 @@
 <tr>
 	<td>type</td>
 	<td>id=last</td>
-	<td>Chives</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=first</td>
-	<td>Test202</td>
+	<td>Jackson</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=notes</td>
-	<td>TC202-Invalid DOB changed to wrong date</td>
+	<td>TC_200 - No First Name</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=birthdate</td>
-	<td>99/99/9999</td>
+	<td>09/07/1900</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.alert.alert-danger</td>
+	<td>Name fields cannot be blank</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=first</td>
+	<td>Test200</td>
 </tr>
 <tr>
 	<td>click</td>
