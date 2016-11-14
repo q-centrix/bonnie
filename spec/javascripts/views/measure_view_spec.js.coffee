@@ -12,11 +12,12 @@ describe 'MeasureView', ->
       @vs2.get('concepts').push { code: "XYZ#{n}", display_name: "XYZ", code_system_name: "XYZ" }
     @vs1.get('concepts').push { code: "OVERLAP", display_name: "OVERLAP", code_system_name: "OVERLAP" }
     @vs2.get('concepts').push { code: "OVERLAP", display_name: "OVERLAP", code_system_name: "OVERLAP" }
-
+    # Clear the fixtures cache so that getJSONFixture does not return stale/modified fixtures
+    jasmine.getJSONFixtures().clearCache()
     @patient = new Thorax.Models.Patient getJSONFixture('patients.json')[0], parse: true
     @measure.get('patients').add @patient
-    @measureView = new Thorax.Views.Measure(model: @measure, patients: @measure.get('patients'))
-    @measureView.render()
+    @measureLayoutView = new Thorax.Views.MeasureLayout(measure: @measure, patients: @measure.get('patients'))
+    @measureView = @measureLayoutView.showMeasure()
     @measureView.appendTo 'body'
 
   afterEach ->
@@ -27,7 +28,7 @@ describe 'MeasureView', ->
 
   it 'renders measure details', ->
     expect(@measureView.$el).toContainText @measure.get('title')
-    expect(@measureView.$el).toContainText @measure.get('cms_id')
+    expect(@measureLayoutView.$el).toContainText @measure.get('cms_id')
     expect(@measureView.$el).toContainText @measure.get('description')
 
   it 'renders measure populations', ->
