@@ -1,6 +1,6 @@
 describe 'PatientDashboardPopoverView', ->
   
-  beforeEach ->
+  beforeEach (done) ->
     jasmine.getJSONFixtures().clearCache()
     @measure = bonnie.measures.findWhere(cms_id: 'CMS128v5')
         
@@ -24,15 +24,18 @@ describe 'PatientDashboardPopoverView', ->
 
     @dataCriteriaKey = 'qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF'
     @popoverView = new Thorax.Views.PatientDashboardPopover(measure: @measure, populationKey: 'IPP', dataCriteriaKey: @dataCriteriaKey, allChildrenCriteria: @patientDashboard.dataCriteriaChildrenKeys @dataCriteriaKey)
+    done()
 
   it 'initialized properly', ->
-    expect(@popoverView.rootPrecondition.preconditions?).toEqual(false) # the precondition associated with teh dataCriteriaKey has no child statements
+    expect(@popoverView.rootPrecondition.preconditions?).toEqual(false) # the precondition associated with the dataCriteriaKey has no child statements
     expect(@popoverView.rootPrecondition.reference).toEqual(@dataCriteriaKey)
     
     expect(@popoverView.parentPrecondition.preconditions?).toEqual(true) # has precondition assocaited with the IPP has child statements
     expect(@popoverView.parentPrecondition.preconditions.length).toEqual(4) # there are four logic clauses in the IPP
     expect(@popoverView.copyParentPrecondition.preconditions?).toEqual(true)
-    expect(@popoverView.copyParentPrecondition.preconditions.length).toEqual(4)
+    # the copy of the parentpreconditions are filtered to only contain 1 precondition upon initialization
+    # the one precondition that is contained is the one relevant to the particular popoverview selected
+    expect(@popoverView.copyParentPrecondition.preconditions.length).toEqual(1)
     
     expect(@popoverView.variables.length).toEqual(1) # there is one variable referenced in the statement
     expect(@popoverView.variables.at(0).get('source_data_criteria')).toEqual(@dataCriteriaKey) # the variable is our referenced logic clause

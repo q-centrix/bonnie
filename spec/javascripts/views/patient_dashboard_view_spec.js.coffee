@@ -26,7 +26,8 @@ describe 'EmptyPatientDashboardView', ->
 
 
 
-
+###
+ The following tests should be converted to use webdriver if possible 
 describe 'PopulatedPatientDashboardView', ->
 
   beforeEach (done) ->
@@ -77,7 +78,6 @@ describe 'AddDeleteInPatientDashboardView', ->
     @patientDashboardView = @measureLayout.getView() # multiple populations so have a layout view
 
     @patientDashboardView.on "append",=>
-      # debugger
       @patientDashboardView.render()
 
     @patientDashboardView.initialize()
@@ -93,4 +93,4 @@ describe 'AddDeleteInPatientDashboardView', ->
     dataTable = @patientDashboardView.$('#patientDashboardTable').DataTable()
 
     expect(dataTable.rows().count()).toEqual patientsCount
-    #debugger
+###
