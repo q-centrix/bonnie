@@ -45,6 +45,26 @@ describe 'PatientDashboard', ->
     expect(@patientDashboard.hasChildrenCriteria('Agegrtr_thn_eql_18yearsat_017BF72A_2885_4350_B259_80D19397C35F_8C7B3095_A649_4913_A90D_11A5AE59387E')).toEqual(false)
     expect(@patientDashboard.hasChildrenCriteria('qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF')).toEqual(true)
     
-    # TODO: these are currently failing because I think `dataCriteriaChildrenKeys` is inappropriately including 'MeasurePeriod'
-    expect(@patientDashboard.dataCriteriaChildrenKeys('Agegrtr_thn_eql_18yearsat_017BF72A_2885_4350_B259_80D19397C35F_8C7B3095_A649_4913_A90D_11A5AE59387E')).toEqual(['Agegrtr_thn_eql_18yearsat_017BF72A_2885_4350_B259_80D19397C35F_8C7B3095_A649_4913_A90D_11A5AE59387E'])
-    expect(@patientDashboard.dataCriteriaChildrenKeys('qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF')).toEqual(['qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF', 'GROUP_qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF', 'less_thn_eql_270daysStartsBeforeOrConcurrentWithStartOf_D03E4E49_66B8_44A2_85ED_470964A9220A_3a1c834c_0fa5_4a0d_a1c6_7fea9915b80a', 'less_thn_eql_90daysStartsAfterStartOf_B4E36072_B9A1_496F_946B_FB6A16DE3FB1_3a1c834c_0fa5_4a0d_a1c6_7fea9915b80a'])
+    # MeasurePeriod is included in the returned array of data criteria keys because it is a child criteria to the data criterea
+    expect(@patientDashboard.dataCriteriaChildrenKeys('Agegrtr_thn_eql_18yearsat_017BF72A_2885_4350_B259_80D19397C35F_8C7B3095_A649_4913_A90D_11A5AE59387E')).toEqual(['Agegrtr_thn_eql_18yearsat_017BF72A_2885_4350_B259_80D19397C35F_8C7B3095_A649_4913_A90D_11A5AE59387E', 'MeasurePeriod'])
+    expect(@patientDashboard.dataCriteriaChildrenKeys('qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF')).toEqual(['qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF', 'GROUP_qdm_var_SatisfiesAny_899DFA04_7197_4DB9_8E22_3DE5B351FE79_15479A20_DCBF_423F_A895_FDEEDB4F44BF', 'less_thn_eql_270daysStartsBeforeOrConcurrentWithStartOf_D03E4E49_66B8_44A2_85ED_470964A9220A_3a1c834c_0fa5_4a0d_a1c6_7fea9915b80a', 'MeasurePeriod', 'less_thn_eql_90daysStartsAfterStartOf_B4E36072_B9A1_496F_946B_FB6A16DE3FB1_3a1c834c_0fa5_4a0d_a1c6_7fea9915b80a', 'MeasurePeriod'])
+
+  it 'includes all patient dashboard columns', ->
+    dataInfo = @patientDashboard.getDataInfo()
+    # This does not include the names of the data criteria fields, just the generic named columns
+    expect(dataInfo.first.name).toEqual("First Name")
+    expect(dataInfo.last.name).toEqual("Last Name")
+    expect(dataInfo.gender.name).toEqual("Gender")
+    expect(dataInfo.result.name).toEqual("Result")
+    expect(dataInfo.birthdate.name).toEqual("Birthdate")
+    expect(dataInfo.deathdate.name).toEqual("Deathdate")
+    expect(dataInfo.description.name).toEqual("Description")
+    expect(dataInfo.actions.name).toEqual("Options")
+    expect(dataInfo.actualDENEX.name).toEqual("DENEX")
+    expect(dataInfo.actualDENOM.name).toEqual("DENOM")
+    expect(dataInfo.actualIPP.name).toEqual("IPP")
+    expect(dataInfo.actualNUMER.name).toEqual("NUMER")
+    expect(dataInfo.expectedDENEX.name).toEqual("DENEX")
+    expect(dataInfo.expectedDENOM.name).toEqual("DENOM")
+    expect(dataInfo.expectedIPP.name).toEqual("IPP")
+    expect(dataInfo.expectedNUMER.name).toEqual("NUMER")
