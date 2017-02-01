@@ -38,8 +38,8 @@ GIT
 
 GIT
   remote: https://github.com/projecttacoma/cql_qdm_patientapi.git
-  revision: 9e119482da11e816624fb6e8c35dcccc05a2611a
-  branch: cql4bonnie
+  revision: cbd6ee3943197d578cb91122ffcb646519caab27
+  branch: cql4bonnieBroke
   specs:
     cql_qdm_patientapi (0.1.0)
 

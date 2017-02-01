@@ -56,8 +56,8 @@
       # Grab start and end of Measurement Period
       start = moment.utc(population.collection.parent.get('measure_period').low.value, 'YYYYMDDHHmm').toDate()
       end = moment.utc(population.collection.parent.get('measure_period').high.value, 'YYYYMDDHHmm').toDate()
-      start_cql = cql.DateTime.fromDate(start, 0) # No timezone offset for start
-      end_cql = cql.DateTime.fromDate(end, 0) # No timezone offset for stop
+      start_cql = cql.DateTime.fromDate(start, -21900) # No timezone offset for start
+      end_cql = cql.DateTime.fromDate(end, -21900) # No timezone offset for stop
 
       # Construct CQL params
       params = {"Measurement Period": new cql.Interval(start_cql, end_cql)}
