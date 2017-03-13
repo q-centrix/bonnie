@@ -101,8 +101,8 @@ class PatientsController < ApplicationController
 
     # Grab all records for the given measure
     measure = Measure.where(hqmf_set_id: params[:hqmf_set_id], user_id: current_user.id).first
-    records = Record.by_user(current_user).where({:measure_ids.in => [params[:hqmf_set_id]]})   
-    
+    records = Record.by_user(current_user).where({:measure_ids.in => [params[:hqmf_set_id]]})
+
     # Only generate excel document if there are patients for the given measure.
     if records.length > 0
       cookies[:fileDownload] = "true" # We need to set this cookie for jquery.fileDownload
@@ -110,7 +110,7 @@ class PatientsController < ApplicationController
       send_data package.to_stream.read, type: "application/xlsx", filename: "#{measure.cms_id}.xlsx"
     else
       render nothing: true
-    end 
+    end
   end
 
 private
@@ -161,12 +161,22 @@ private
     Measure.where(hqmf_set_id: patient.measure_ids.first)
   end
 
+  # def qrda_patient_export(patient, measure)
+  #   start_time = Time.new(Time.zone.at(APP_CONFIG['measure_period_start']).year, 1, 1)
+  #   end_time = Time.new(Time.zone.at(APP_CONFIG['measure_period_start']).year, 12, 31)
+  #   qrda_exporter = HealthDataStandards::Export::Cat1.new 'r3_1'
+  #   qrda_exporter.export(patient, measure, start_time, end_time, nil, 'r3_1')
+  # end
+
   def qrda_patient_export(patient, measure)
-    start_time = Time.new(Time.zone.at(APP_CONFIG['measure_period_start']).year, 1, 1)
-    end_time = Time.new(Time.zone.at(APP_CONFIG['measure_period_start']).year, 12, 31)
-    qrda_exporter = HealthDataStandards::Export::Cat1.new 'r3_1'
-    qrda_exporter.export(patient, measure, start_time, end_time, nil, 'r3_1')
-  end
+     start_time = Time.new(Time.zone.at(APP_CONFIG['measure_period_start']).year, 1, 1)
+     end_time = Time.new(Time.zone.at(APP_CONFIG['measure_period_start']).year, 12, 31)
+     qrda_exporter = HealthDataStandards::Export::Cat1.new 'r3'
+     qrda_exporter.export(patient, measure, start_time, end_time, nil, 'r3')
+     # qrda_exporter = HealthDataStandards::Export::Cat1.new 'r3_1'
+     # qrda_exporter.export(patient, measure, start_time, end_time, nil, 'r3_1')
+   end
+
 
   def html_patient_export(patient, measure)
     value_sets = measure.map(&:value_sets).flatten unless measure.empty?
